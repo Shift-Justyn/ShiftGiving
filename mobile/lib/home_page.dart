@@ -97,15 +97,11 @@ class HomePage extends StatelessWidget {
                 ],
               ),
             ),
-
-            // Campaigns Section
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24.0),
               child: _buildSectionHeader('Campaigns'),
             ),
             _buildHorizontalList(data: campaigns),
-
-            // Organizations Section
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24.0),
               child: _buildSectionHeader('Organizations'),
@@ -121,11 +117,14 @@ class HomePage extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(
-          title,
-          style: const TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
+        Expanded(
+          child: Text(
+            title,
+            style: const TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+            overflow: TextOverflow.ellipsis,
           ),
         ),
         TextButton(
@@ -153,7 +152,7 @@ class HomePage extends StatelessWidget {
 
   Widget _buildHorizontalList({required List<Map<String, String>> data}) {
     return SizedBox(
-      height: 250,
+      height: 257,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: data.length,

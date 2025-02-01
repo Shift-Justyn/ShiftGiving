@@ -1,28 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:shift_giving/home_page.dart';
 import 'package:shift_giving/splash_screen.dart';
 
 void main() {
   testWidgets('SplashScreen navigates to HomePage after 3 seconds',
-          (WidgetTester tester) async {
-        await tester.pumpWidget(
-          MaterialApp(
-            home: const SplashScreen(),
-          ),
-        );
+      (WidgetTester tester) async {
+    await tester.binding.setSurfaceSize(const Size(360, 640));
 
-        // Verify SplashScreen is initially displayed
-        expect(find.byType(SplashScreen), findsOneWidget);
-        expect(find.byType(Image), findsOneWidget);
+    await tester.pumpWidget(
+      MaterialApp(
+        home: const SplashScreen(),
+      ),
+    );
 
-        // Fast-forward time by 3 seconds
-        await tester.pump(const Duration(seconds: 3));
+    expect(find.byType(SplashScreen), findsOneWidget);
+    expect(find.byType(Image), findsOneWidget);
 
-        // Wait for all scheduled animations and navigation to complete
-        await tester.pumpAndSettle();
+    await tester.pump(const Duration(seconds: 3));
+    await tester.pumpAndSettle();
 
-        // Verify navigation to HomePage
-        expect(find.byType(HomePage), findsOneWidget);
-      });
+    expect(find.text('Hello, Sally'), findsOneWidget);
+  });
 }
