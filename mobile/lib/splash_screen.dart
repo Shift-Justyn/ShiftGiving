@@ -20,7 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
       Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (context) => const HomePage()
+              builder: (context) => HomePage()
           ),
       );
     });
@@ -37,7 +37,7 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       body: SizedBox.expand(
         child: Image.asset(
-          "assets/splash-screen.png",
+          "assets/images/splash-screen.png",
           fit: BoxFit.cover,
         ),
       ),
