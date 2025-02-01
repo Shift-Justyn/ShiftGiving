@@ -1,0 +1,5 @@
+.dart_tool/
+build/
+ios/Runner.xcworkspace/
+ios/Runner.xcodeproj/project.xcworkspace/
+*.iml
