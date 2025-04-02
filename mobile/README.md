@@ -2,15 +2,18 @@
 
 A new Flutter project.
 
-## Getting Started
+## Setting Up Your Local Environment
 
-This project is a starting point for a Flutter application.
+1. Install Xcode
 
-A few resources to get you started if this is your first Flutter project:
+## Running the Application Locally
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### Ios App
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+1. Run `open -a Simulator`
+2. Run `flutter run`
+
+### Android App
+
+1. Run `emulator -avd [Emulator Name]`
+2. Run `flutter run` in a separate terminal
