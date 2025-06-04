@@ -1,7 +1,83 @@
+# Dart/Pub related
 .dart_tool/
+.packages
+.pub-cache/
 build/
-ios/Runner.xcworkspace/
-ios/Runner.xcodeproj/project.xcworkspace/
+# VS Code & IntelliJ/Android Studio settings
+.idea/
+.vscode/
 *.iml
+
+# Flutter generated files
 .flutter-plugins
 .flutter-plugins-dependencies
+.flutter-versions
+.flutter-*
+.melos_tool/
+
+# Dependency lock files (if you’re building a package, ignore pubspec.lock)
+# For apps, you want pubspec.lock checked in, so don’t ignore it here
+
+# iOS & macOS build/output
+ios/Flutter/Flutter.framework
+ios/Flutter/Flutter.podspec
+ios/.symlinks/
+ios/Pods/
+ios/Podfile.local
+ios/Runner.xcworkspace/
+ios/build/
+ios/DerivedData/
+macos/Flutter/Flutter.framework
+macos/Flutter/Flutter.podspec
+macos/.symlinks/
+macos/Pods/
+macos/Podfile.local
+macos/Runner.xcworkspace/
+macos/build/
+macos/DerivedData/
+
+# Xcode
+*.xcuserstate
+*.xcworkspace
+*.xccheckout
+*.xcodeproj/project.xcworkspace/
+xcuserdata/
+# Xcode’s user settings (don’t check in)
+ios/Runner.xcodeproj/project.xcworkspace/
+ios/Runner.xcodeproj/xcuserdata/
+
+# Android
+android/.gradle/
+android/app/build/
+android/local.properties
+android/.idea/
+android/.settings/
+android/build/
+*.jks
+
+# Web
+web/.dart_tool/
+web/build/
+
+# Linux
+linux/build/
+linux/Flutter/ephemeral/
+
+# Windows
+windows/build/
+windows/Flutter/ephemeral/
+
+# Coverage
+coverage/
+
+# Misc
+*.log
+*.tmp
+
+# Fastlane (if used)
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/**/*.png
+
+# By default, do not ignore pubspec.lock for apps
+!pubspec.lock
