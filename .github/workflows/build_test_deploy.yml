@@ -206,24 +206,22 @@ jobs:
         run: flutter pub get
         working-directory: mobile
 
-      - name: "Launch Android Emulator for Tests"
+      - name: "Enable KVM"
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+
+      - name: "Launch Android Emulator"
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 34
           target: google_apis
-          arch: arm64-v8a
+          arch: x86_64
           profile: pixel_5
-          emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim
-          disable-linux-hw-accel: true
-          emulator-boot-timeout: 480
+          force-avd-creation: false
           disable-animations: true
           script: ./gradlew connectedCheck
-
-      - name: "Restart ADB server"
-        run: |
-          adb kill-server
-          adb start-server
-          adb devices
 
       - name: "Wait for emulator to boot"
         run: |
