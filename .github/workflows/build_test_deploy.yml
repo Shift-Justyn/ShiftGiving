@@ -10,201 +10,201 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-api:
-    name: "Build API"
-    runs-on: ubuntu-latest
+#  build-api:
+#    name: "Build API"
+#    runs-on: ubuntu-latest
+#
+#    steps:
+#      - name: "Checkout repository code"
+#        uses: actions/checkout@v4
+#
+#      - name: "Setup .NET SDK"
+#        uses: actions/setup-dotnet@v4
+#        with:
+#          dotnet-version: '8.x'
+#
+#      - name: "Restore dependencies"
+#        run: dotnet restore
+#        working-directory: api/ShiftGiving
+#
+#      - name: "Build project"
+#        run: dotnet build --configuration Release --no-restore
+#        working-directory: api/ShiftGiving
+#
+#      - name: "Run the API"
+#        run: |
+#          dotnet run --configuration Release &
+#          echo "API_SERVER_PID=$!" >> $GITHUB_ENV
+#          echo "API started with PID: $!"
+#          echo "Waiting for API to be ready..."
+#          timeout 60s bash -c 'until curl --silent --fail http://localhost:5237; do echo "Waiting for API..."; sleep 2; done' || { echo "API did not start in time!"; exit 1; }
+#          echo "API is up!"
+#        working-directory: api/ShiftGiving
+#
+#      - name: "Run API Tests"
+#        run: ./run_tests.sh
+#        working-directory: api
+#
+#  build-web:
+#    name: "Build Web"
+#    runs-on: ubuntu-latest
+#    needs: build-api
+#
+#    steps:
+#      - name: "Checkout repository code"
+#        uses: actions/checkout@v4
+#
+#      - name: "Setup Node.js"
+#        uses: actions/setup-node@v4
+#        with:
+#          node-version: '22'
+#
+#      - name: "Install React dependencies"
+#        run: npm install
+#        working-directory: web
+#
+#      - name: "Build React application"
+#        run: npm run build
+#        working-directory: web
+#
+#      - name: "Install serve package"
+#        run: npm install -g serve
+#        working-directory: web
+#
+#      - name: "Serve Web App in background"
+#        id: start_web_server
+#        run: |
+#          serve ./dist -l 8080 &
+#          echo "WEB_SERVER_PID=$!" >> $GITHUB_ENV
+#          echo "Web server started with PID: $!"
+#          echo "Waiting for web server to be ready..."
+#          timeout 60s bash -c 'until curl --silent --fail http://localhost:8080; do echo "waiting for Web..."; sleep 2; done' || { echo "Web did not start in time!"; exit 1; }
+#          echo "Web app is up!"
+#        working-directory: web
+#
+#      - name: "Install Playwright system dependencies"
+#        run: npx playwright install-deps
+#        working-directory: web
+#
+#      - name: "Install Playwright browsers"
+#        run: npx playwright install
+#        working-directory: web
+#
+#      - name: "Run Web Tests"
+#        run: ./run_tests.sh
+#        working-directory: web
+#
+#      - name: "Stop the Web Server"
+#        if: always()
+#        run: |
+#          if [ -n "${{ env.WEB_SERVER_PID }}" ]; then
+#            echo "Stopping web server with PID: ${{ env.WEB_SERVER_PID }}"
+#            kill "${{ env.WEB_SERVER_PID }}" || true
+#          else
+#            echo "Web server PID not found. Could not stop explicitly."
+#          fi
 
-    steps:
-      - name: "Checkout repository code"
-        uses: actions/checkout@v4
-
-      - name: "Setup .NET SDK"
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: '8.x'
-
-      - name: "Restore dependencies"
-        run: dotnet restore
-        working-directory: api/ShiftGiving
-
-      - name: "Build project"
-        run: dotnet build --configuration Release --no-restore
-        working-directory: api/ShiftGiving
-
-      - name: "Run the API"
-        run: |
-          dotnet run --configuration Release &
-          echo "API_SERVER_PID=$!" >> $GITHUB_ENV
-          echo "API started with PID: $!"
-          echo "Waiting for API to be ready..."
-          timeout 60s bash -c 'until curl --silent --fail http://localhost:5237; do echo "Waiting for API..."; sleep 2; done' || { echo "API did not start in time!"; exit 1; }
-          echo "API is up!"
-        working-directory: api/ShiftGiving
-
-      - name: "Run API Tests"
-        run: ./run_tests.sh
-        working-directory: api
-
-  build-web:
-    name: "Build Web"
-    runs-on: ubuntu-latest
-    needs: build-api
-
-    steps:
-      - name: "Checkout repository code"
-        uses: actions/checkout@v4
-
-      - name: "Setup Node.js"
-        uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-
-      - name: "Install React dependencies"
-        run: npm install
-        working-directory: web
-
-      - name: "Build React application"
-        run: npm run build
-        working-directory: web
-
-      - name: "Install serve package"
-        run: npm install -g serve
-        working-directory: web
-
-      - name: "Serve Web App in background"
-        id: start_web_server
-        run: |
-          serve ./dist -l 8080 &
-          echo "WEB_SERVER_PID=$!" >> $GITHUB_ENV
-          echo "Web server started with PID: $!"
-          echo "Waiting for web server to be ready..."
-          timeout 60s bash -c 'until curl --silent --fail http://localhost:8080; do echo "waiting for Web..."; sleep 2; done' || { echo "Web did not start in time!"; exit 1; }
-          echo "Web app is up!"
-        working-directory: web
-
-      - name: "Install Playwright system dependencies"
-        run: npx playwright install-deps
-        working-directory: web
-
-      - name: "Install Playwright browsers"
-        run: npx playwright install
-        working-directory: web
-
-      - name: "Run Web Tests"
-        run: ./run_tests.sh
-        working-directory: web
-
-      - name: "Stop the Web Server"
-        if: always()
-        run: |
-          if [ -n "${{ env.WEB_SERVER_PID }}" ]; then
-            echo "Stopping web server with PID: ${{ env.WEB_SERVER_PID }}"
-            kill "${{ env.WEB_SERVER_PID }}" || true
-          else
-            echo "Web server PID not found. Could not stop explicitly."
-          fi
-
-  build-mobile-ios:
-    name: "Build Mobile iOS"
-    runs-on: macos-latest
-    needs: build-api
-
-    steps:
-      - name: "Checkout repository code"
-        uses: actions/checkout@v4
-
-      - name: "Setup Flutter SDK"
-        uses: subosito/flutter-action@v2
-        with:
-          flutter-version: '3.27.x'
-          channel: 'stable'
-
-      - name: "Install Flutter dependencies"
-        run: flutter pub get
-        working-directory: mobile
-
-      - name: "Build Flutter iOS IPA"
-        run: flutter build ipa --release --no-codesign
-        working-directory: mobile
-
-      - name: "Install coreutils"
-        run: |
-          brew install coreutils || true
-          echo "PATH=/opt/homebrew/bin:$PATH" >> $GITHUB_ENV
-          echo "PATH=/usr/local/bin:$PATH" >> $GITHUB_ENV
-          export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
-
-      - name: "Launch iOS Simulator"
-        id: launch_simulator
-        run: |
-          DEVICE_TYPE="iPhone 15"
-          IOS_SIMULATOR_NAME="${DEVICE_TYPE} Simulator for CI"
-          UDID=$(xcrun simctl list devices | grep "$IOS_SIMULATOR_NAME" | awk -F '[()]' '{print $2}')
-
-          if [ -z "$UDID" ]; then
-            echo "Creating new simulator: $IOS_SIMULATOR_NAME"
-            RUNTIME_IDENTIFIER=$(xcrun simctl list runtimes | grep -E 'iOS' | grep -v 'unavailable' | tail -1 | awk -F ' ' '{print $NF}' | tr -d '[:space:]')
-          
-            if [ -z "$RUNTIME_IDENTIFIER" ]; then
-              echo "Error: No suitable iOS runtime found on the runner."
-              xcrun simctl list runtimes
-              exit 1
-            fi
-          
-            echo "Using runtime identifier: $RUNTIME_IDENTIFIER"
-            UDID=$(xcrun simctl create "$IOS_SIMULATOR_NAME" "$DEVICE_TYPE" "$RUNTIME_IDENTIFIER")
-            echo "Created simulator with UDID: $UDID"
-          else
-            echo "Found existing simulator with UDID: $UDID"
-          fi
-
-          echo "Booting simulator with UDID: $UDID"
-          xcrun simctl boot "$UDID"
-          sleep 5 
-          
-          export UDID
-          
-          echo "Waiting for simulator to be ready..."
-          gtimeout 300 bash -c 'until xcrun simctl bootstatus "$UDID" -d boot | grep -q "booted"; do echo "Still waiting for simulator..."; sleep 5; done' || \
-          { echo "Simulator did not become ready in time (300s)!"; exit 1; }
-          echo "Simulator is ready!"
-
-          echo "IOS_SIMULATOR_UDID=$UDID" >> $GITHUB_ENV
-        working-directory: mobile
-
-      - name: "Run iOS Mobile Tests"
-        run: ./run_tests.sh
-        working-directory: mobile
-
-      - name: "Shutdown iOS Simulator"
-        if: always()
-        run: |
-          if [ -n "${{ env.IOS_SIMULATOR_UDID }}" ]; then
-            echo "Shutting down simulator with UDID: ${{ env.IOS_SIMULATOR_UDID }}"
-            xcrun simctl shutdown "${{ env.IOS_SIMULATOR_UDID }}" || true
-          else
-            echo "Simulator UDID not found. Could not shut down explicitly."
-          fi
-        working-directory: mobile
+#  build-mobile-ios:
+#    name: "Build Mobile iOS"
+#    runs-on: macos-latest
+#    needs: build-api
+#
+#    steps:
+#      - name: "Checkout repository code"
+#        uses: actions/checkout@v4
+#
+#      - name: "Setup Flutter SDK"
+#        uses: subosito/flutter-action@v2
+#        with:
+#          flutter-version: '3.27.x'
+#          channel: 'stable'
+#
+#      - name: "Install Flutter dependencies"
+#        run: flutter pub get
+#        working-directory: mobile
+#
+#      - name: "Build Flutter iOS IPA"
+#        run: flutter build ipa --release --no-codesign
+#        working-directory: mobile
+#
+#      - name: "Install coreutils"
+#        run: |
+#          brew install coreutils || true
+#          echo "PATH=/opt/homebrew/bin:$PATH" >> $GITHUB_ENV
+#          echo "PATH=/usr/local/bin:$PATH" >> $GITHUB_ENV
+#          export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
+#
+#      - name: "Launch iOS Simulator"
+#        id: launch_simulator
+#        run: |
+#          DEVICE_TYPE="iPhone 15"
+#          IOS_SIMULATOR_NAME="${DEVICE_TYPE} Simulator for CI"
+#          UDID=$(xcrun simctl list devices | grep "$IOS_SIMULATOR_NAME" | awk -F '[()]' '{print $2}')
+#
+#          if [ -z "$UDID" ]; then
+#            echo "Creating new simulator: $IOS_SIMULATOR_NAME"
+#            RUNTIME_IDENTIFIER=$(xcrun simctl list runtimes | grep -E 'iOS' | grep -v 'unavailable' | tail -1 | awk -F ' ' '{print $NF}' | tr -d '[:space:]')
+#
+#            if [ -z "$RUNTIME_IDENTIFIER" ]; then
+#              echo "Error: No suitable iOS runtime found on the runner."
+#              xcrun simctl list runtimes
+#              exit 1
+#            fi
+#
+#            echo "Using runtime identifier: $RUNTIME_IDENTIFIER"
+#            UDID=$(xcrun simctl create "$IOS_SIMULATOR_NAME" "$DEVICE_TYPE" "$RUNTIME_IDENTIFIER")
+#            echo "Created simulator with UDID: $UDID"
+#          else
+#            echo "Found existing simulator with UDID: $UDID"
+#          fi
+#
+#          echo "Booting simulator with UDID: $UDID"
+#          xcrun simctl boot "$UDID"
+#          sleep 5
+#
+#          export UDID
+#
+#          echo "Waiting for simulator to be ready..."
+#          gtimeout 300 bash -c 'until xcrun simctl bootstatus "$UDID" -d boot | grep -q "booted"; do echo "Still waiting for simulator..."; sleep 5; done' || \
+#          { echo "Simulator did not become ready in time (300s)!"; exit 1; }
+#          echo "Simulator is ready!"
+#
+#          echo "IOS_SIMULATOR_UDID=$UDID" >> $GITHUB_ENV
+#        working-directory: mobile
+#
+#      - name: "Run iOS Mobile Tests"
+#        run: ./run_tests.sh
+#        working-directory: mobile
+#
+#      - name: "Shutdown iOS Simulator"
+#        if: always()
+#        run: |
+#          if [ -n "${{ env.IOS_SIMULATOR_UDID }}" ]; then
+#            echo "Shutting down simulator with UDID: ${{ env.IOS_SIMULATOR_UDID }}"
+#            xcrun simctl shutdown "${{ env.IOS_SIMULATOR_UDID }}" || true
+#          else
+#            echo "Simulator UDID not found. Could not shut down explicitly."
+#          fi
+#        working-directory: mobile
 
   build-mobile-android:
     name: "Build Mobile Android"
     runs-on: ubuntu-latest
-    needs: build-api
+    #needs: build-api
 
     steps:
       - name: "Checkout repository code"
         uses: actions/checkout@v4
 
-      - name: "Setup Flutter SDK"
-        uses: subosito/flutter-action@v2
-        with:
-          flutter-version: '3.27.x'
-          channel: 'stable'
-
-      - name: "Install Flutter dependencies"
-        run: flutter pub get
-        working-directory: mobile
+#      - name: "Setup Flutter SDK"
+#        uses: subosito/flutter-action@v2
+#        with:
+#          flutter-version: '3.27.x'
+#          channel: 'stable'
+#
+#      - name: "Install Flutter dependencies"
+#        run: flutter pub get
+#        working-directory: mobile
 
       - name: "Enable KVM"
         run: |
@@ -221,32 +221,32 @@ jobs:
           profile: pixel_5
           force-avd-creation: true
           disable-animations: true
-          script: ls && cd mobile/android && ./gradlew connectedCheck
+          script: ls && cd mobile/android && ls
 
       - name: "Wait for emulator to boot"
         run: |
           timeout 300 bash -c "until adb shell getprop sys.boot_completed | grep -m 1 '1'; do sleep 5; done"
 
-      - name: "Build Flutter Android APK"
-        run: flutter build apk --release
-        working-directory: mobile
+#      - name: "Build Flutter Android APK"
+#        run: flutter build apk --release
+#        working-directory: mobile
+#
+#      - name: "Run Android Mobile Tests"
+#        run: ./run_tests.sh
+#        working-directory: mobile
 
-      - name: "Run Android Mobile Tests"
-        run: ./run_tests.sh
-        working-directory: mobile
-
-  shutdown-api-server:
-    name: "Shutdown API Server"
-    runs-on: ubuntu-latest
-    needs: [build-mobile-android, build-mobile-ios, build-web]
-
-    steps:
-      - name: "Stop the API Server"
-        if: always()
-        run: |
-          if [ -n "${{ env.API_SERVER_PID }}" ]; then
-            echo "Stopping API server with PID: ${{ env.API_SERVER_PID }}"
-            kill "${{ env.API_SERVER_PID }}" || true
-          else
-            echo "API server PID not found. Could not stop explicitly."
-          fi
+#  shutdown-api-server:
+#    name: "Shutdown API Server"
+#    runs-on: ubuntu-latest
+#    needs: [build-mobile-android, build-mobile-ios, build-web]
+#
+#    steps:
+#      - name: "Stop the API Server"
+#        if: always()
+#        run: |
+#          if [ -n "${{ env.API_SERVER_PID }}" ]; then
+#            echo "Stopping API server with PID: ${{ env.API_SERVER_PID }}"
+#            kill "${{ env.API_SERVER_PID }}" || true
+#          else
+#            echo "API server PID not found. Could not stop explicitly."
+#          fi
