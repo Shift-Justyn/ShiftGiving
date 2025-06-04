@@ -127,6 +127,13 @@ jobs:
         run: flutter build ipa --release --no-codesign
         working-directory: mobile
 
+      - name: "Install coreutils"
+        run: |
+          brew install coreutils || true
+          echo "PATH=/opt/homebrew/bin:$PATH" >> $GITHUB_ENV
+          echo "PATH=/usr/local/bin:$PATH" >> $GITHUB_ENV
+          export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
+
       - name: "Launch iOS Simulator"
         id: launch_simulator
         run: |
@@ -223,7 +230,8 @@ jobs:
         run: |
           export PATH="${{ env.ANDROID_CMD_TOOLS_PATH }}:${{ env.ANDROID_PLATFORM_TOOLS_PATH }}:$PATH"
           echo "Creating Android Virtual Device..."
-          echo "y" | avdmanager create avd --name test_emulator --package "system-images;android-34;google_apis;x86_64" --tag "google_apis" --abi "x86_64"
+          echo -e "no\nyes" | avdmanager create avd --name test_emulator --package "system-images;android-34;google_apis;x86_64" --tag "google_apis" --abi "x86_64"
+          echo "AVD created successfully."
 
       - name: "Launch Android Emulator"
         run: |
