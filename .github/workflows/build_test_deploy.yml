@@ -210,7 +210,8 @@ jobs:
         run: |
           echo "ANDROID_CMD_TOOLS_PATH=$ANDROID_HOME/cmdline-tools/latest/bin" >> $GITHUB_ENV
           echo "ANDROID_PLATFORM_TOOLS_PATH=$ANDROID_HOME/platform-tools" >> $GITHUB_ENV
-          export PATH="$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$PATH"
+          echo "ANDROID_EMULATOR_PATH=$ANDROID_HOME/emulator" >> $GITHUB_ENV 
+          export PATH="$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator:$PATH"
 
       - name: "Accept Android SDK licenses and Install System Image"
         run: |
@@ -236,7 +237,7 @@ jobs:
 
       - name: "Launch Android Emulator"
         run: |
-          export PATH="${{ env.ANDROID_CMD_TOOLS_PATH }}:${{ env.ANDROID_PLATFORM_TOOLS_PATH }}:$PATH"
+          export PATH="${{ env.ANDROID_CMD_TOOLS_PATH }}:${{ env.ANDROID_PLATFORM_TOOLS_PATH }}:${{ env.ANDROID_EMULATOR_PATH }}:$PATH"
           emulator -avd test_emulator -no-skin -no-audio -no-window &
           echo "ANDROID_EMULATOR_PID=$!" >> $GITHUB_ENV
 
