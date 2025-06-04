@@ -206,11 +206,14 @@ jobs:
         run: flutter pub get
         working-directory: mobile
 
-      - name: "Set Android SDK Tools Path"
+      - name: "Set Android SDK Tools Path and AVD Home"
         run: |
           echo "ANDROID_CMD_TOOLS_PATH=$ANDROID_HOME/cmdline-tools/latest/bin" >> $GITHUB_ENV
           echo "ANDROID_PLATFORM_TOOLS_PATH=$ANDROID_HOME/platform-tools" >> $GITHUB_ENV
-          echo "ANDROID_EMULATOR_PATH=$ANDROID_HOME/emulator" >> $GITHUB_ENV 
+          echo "ANDROID_EMULATOR_PATH=$ANDROID_HOME/emulator" >> $GITHUB_ENV
+          echo "ANDROID_AVD_HOME=$GITHUB_WORKSPACE/.android/avd" >> $GITHUB_ENV
+          mkdir -p "$GITHUB_WORKSPACE/.android/avd"
+          
           export PATH="$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator:$PATH"
 
       - name: "Accept Android SDK licenses and Install System Image"
