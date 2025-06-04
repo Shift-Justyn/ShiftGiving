@@ -225,11 +225,7 @@ jobs:
           profile: pixel_5
           force-avd-creation: true
           disable-animations: true
-          script: |
-            cd mobile/android
-            ./gradlew connectedCheck
-            cd ../
-            ./run_tests.sh
+          script: cd mobile/android && ./gradlew connectedCheck && cd ../ && ./run_tests.sh
 
   shutdown-api-server:
     name: "Shutdown API Server"
