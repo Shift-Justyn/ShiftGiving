@@ -123,6 +123,10 @@ jobs:
         run: flutter pub get
         working-directory: mobile
 
+      - name: "Build Flutter iOS IPA"
+        run: flutter build ipa --release --no-codesign
+        working-directory: mobile
+
       - name: "Install coreutils"
         run: |
           brew install coreutils || true
@@ -166,10 +170,6 @@ jobs:
           echo "Simulator is ready!"
 
           echo "IOS_SIMULATOR_UDID=$UDID" >> $GITHUB_ENV
-        working-directory: mobile
-
-      - name: "Build Flutter iOS IPA"
-        run: flutter build ipa --release --no-codesign
         working-directory: mobile
 
       - name: "Run iOS Mobile Tests"
@@ -228,9 +228,8 @@ jobs:
         run: |
           export PATH="${{ env.ANDROID_CMD_TOOLS_PATH }}:${{ env.ANDROID_PLATFORM_TOOLS_PATH }}:$PATH"
           echo "Creating Android Virtual Device..."
-          # Use a here-document to provide the two lines of input to avdmanager
-          avdmanager create avd --name test_emulator --package "system-images;android-34;google_apis;x86_64" --tag "google_apis" --abi "x86_64" <<EOF 
-          no 
+          
+          avdmanager create avd --name test_emulator --package "system-images;android-34;google_apis;x86_64" --tag "google_apis" --abi "x86_64" --device "pixel_5" <<EOF
           yes
           EOF
           echo "AVD created successfully."
