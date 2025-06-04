@@ -195,22 +195,11 @@ jobs:
         run: flutter pub get
         working-directory: mobile
 
-      - name: "Install Android SDK dependencies"
-        run: |
-          - mkdir -p android/sdk/cmdline-tools
-          - curl -sSLo android-sdk-tools.zip https://dl.google.com/android/repository/commandlinetools-mac-10406996_latest.zip
-          - if [ $? -ne 0 ]; then echo "curl failed"; exit 1; fi
-          - unzip android-sdk-tools.zip -d android/sdk/cmdline-tools
-          - mkdir -p android/sdk/cmdline-tools/latest
-          - mv android/sdk/cmdline-tools/cmdline-tools/* android/sdk/cmdline-tools/latest/
-          - export ANDROID_HOME=$PWD/android/sdk
-          - export PATH=$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$PATH
-          - chmod +x $ANDROID_HOME/cmdline-tools/latest/bin/*
-
       - name: "Accept Android SDK licenses"
         run: |
-          - yes | sdkmanager --licenses && sdkmanager --update
-          - sdkmanager --sdk_root=$ANDROID_HOME "platforms;android-34" "build-tools;33.0.0"
+          export PATH="$ANDROID_HOME/cmdline-tools/latest/bin:$PATH"
+          yes | sdkmanager --licenses
+          sdkmanager "platforms;android-34" "build-tools;34.0.0" # Use 34.0.0 for android-34 platform
 
       - name: "Build Flutter Android APK"
         run: flutter build apk --release
