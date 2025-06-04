@@ -153,9 +153,11 @@ jobs:
 
           echo "Booting simulator with UDID: $UDID"
           xcrun simctl boot "$UDID"
-
+          sleep 5 
+          
           echo "Waiting for simulator to be ready..."
-          xcrun simctl bootstatus "$UDID" -d boot | grep "booted"
+          timeout 300 bash -c 'until xcrun simctl bootstatus "$UDID" -d boot | grep -q "booted"; do echo "Still waiting for simulator..."; sleep 5; done' || \
+          { echo "Simulator did not become ready in time (300s)!"; exit 1; }
           echo "Simulator is ready!"
 
           echo "IOS_SIMULATOR_UDID=$UDID" >> $GITHUB_ENV
@@ -195,23 +197,31 @@ jobs:
         run: flutter pub get
         working-directory: mobile
 
-      - name: "Accept Android SDK licenses"
-        run: |
-          export PATH="$ANDROID_HOME/cmdline-tools/latest/bin:$PATH"
-          yes | sdkmanager --licenses
-          sdkmanager "platforms;android-34" "build-tools;34.0.0" # Use 34.0.0 for android-34 platform
-
       - name: "Build Flutter Android APK"
         run: flutter build apk --release
         working-directory: mobile
 
+      - name: "Set Android SDK Tools Path"
+        run: |
+          echo "ANDROID_CMD_TOOLS_PATH=$ANDROID_HOME/cmdline-tools/latest/bin" >> $GITHUB_ENV
+          echo "ANDROID_PLATFORM_TOOLS_PATH=$ANDROID_HOME/platform-tools" >> $GITHUB_ENV
+          export PATH="$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$PATH"
+
+      - name: "Accept Android SDK licenses"
+        run: |
+          export PATH="${{ env.ANDROID_CMD_TOOLS_PATH }}:${{ env.ANDROID_PLATFORM_TOOLS_PATH }}:$PATH"
+          yes | sdkmanager --licenses
+          sdkmanager "platforms;android-34" "build-tools;34.0.0"
+
       - name: "Create AVD"
         run: |
+          export PATH="${{ env.ANDROID_CMD_TOOLS_PATH }}:${{ env.ANDROID_PLATFORM_TOOLS_PATH }}:$PATH"
           echo "Creating Android Virtual Device..."
           echo "y" | avdmanager create avd --name test_emulator --package "system-images;android-34;google_apis;x86_64" --tag "google_apis" --abi "x86_64"
 
       - name: "Launch Android Emulator"
         run: |
+          export PATH="${{ env.ANDROID_CMD_TOOLS_PATH }}:${{ env.ANDROID_PLATFORM_TOOLS_PATH }}:$PATH"
           emulator -avd test_emulator -no-skin -no-audio -no-window &
           echo "ANDROID_EMULATOR_PID=$!" >> $GITHUB_ENV
 
