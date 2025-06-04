@@ -4,7 +4,8 @@ This is a web application for the Shift Giving platform to support donations to 
 
 ## Setting Up Your Local Environment
 
-1. Run `npm install`
+1. Run `nvm use`
+2. Run `npm install`
 
 ## Running the Application Locally
 

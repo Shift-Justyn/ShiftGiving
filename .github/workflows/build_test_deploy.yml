@@ -1,0 +1,97 @@
+name: "Build, Test, and Deploy"
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build-api:
+    name: "Build API"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "Checkout repository code"
+        uses: actions/checkout@v4
+
+      - name: "Setup .NET SDK"
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.x'
+
+      - name: "Restore dependencies"
+        run: dotnet restore
+        working-directory: api/ShiftGiving
+
+      - name: "Build project"
+        run: dotnet build --configuration Release --no-restore
+        working-directory: api/ShiftGiving
+  build-web:
+    name: "Build Web"
+    runs-on: ubuntu-latest
+    needs: build-api
+
+    steps:
+      - name: "Checkout repository code"
+        uses: actions/checkout@v4
+
+      - name: "Setup Node.js"
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: "Install React dependencies"
+        run: npm install
+        working-directory: web
+
+      - name: "Build React application"
+        run: npm run build
+        working-directory: web
+  build-mobile-ios:
+    name: "Build Mobile iOS"
+    runs-on: macos-latest
+    needs: build-api
+
+    steps:
+      - name: "Checkout repository code"
+        uses: actions/checkout@v4
+
+      - name: "Setup Flutter SDK"
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.27.x'
+          channel: 'stable'
+
+      - name: "Install Flutter dependencies"
+        run: flutter pub get
+        working-directory: mobile
+
+      - name: "Build Flutter iOS IPA"
+        run: flutter build ipa --release --no-codesign
+        working-directory: mobile
+  build-mobile-android:
+    name: "Build Mobile Android"
+    runs-on: ubuntu-latest
+    needs: build-api
+
+    steps:
+      - name: "Checkout repository code"
+        uses: actions/checkout@v4
+
+      - name: "Setup Flutter SDK"
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.27.x'
+          channel: 'stable'
+
+      - name: "Install Flutter dependencies"
+        run: flutter pub get
+        working-directory: mobile
+
+      - name: "Build Flutter Android APK"
+        run: flutter build apk --release
+        working-directory: mobile
