@@ -216,7 +216,7 @@ jobs:
           sudo udevadm control --reload-rules
           sudo udevadm trigger --name-match=kvm
 
-      - name: "Launch Android Emulator"
+      - name: "Launch Android Emulator and Run Tests"
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 34
@@ -225,15 +225,11 @@ jobs:
           profile: pixel_5
           force-avd-creation: true
           disable-animations: true
-          script: cd mobile/android && ./gradlew connectedCheck
-
-      - name: "Wait for emulator to boot"
-        run: |
-          timeout 300 bash -c "until adb shell getprop sys.boot_completed | grep -m 1 '1'; do sleep 5; done"
-
-      - name: "Run Android Mobile Tests"
-        run: ./run_tests.sh
-        working-directory: mobile
+          script: |
+            cd mobile/android
+            ./gradlew connectedCheck
+            cd ../
+            ./run_tests.sh
 
   shutdown-api-server:
     name: "Shutdown API Server"
