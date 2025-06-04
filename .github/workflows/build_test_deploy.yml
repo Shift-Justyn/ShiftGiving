@@ -34,34 +34,16 @@ jobs:
       - name: "Run the API"
         run: |
           dotnet run --configuration Release &
-          SERVER_PID=$!
-          echo "API started with PID: $SERVER_PID"
-          echo "Waiting for API to start..."
-          for i in $(seq 1 30); do
-            curl -f http://localhost:5237 || sleep 1
-            if [ $? -eq 0 ]; then
-              echo "API is up!"
-              break
-            fi
-            if [ $i -eq 30 ]; then
-              echo "API did not start in time!"
-              kill $SERVER_PID
-              exit 1
-            fi
-          done
+          echo "API_SERVER_PID=$!" >> $GITHUB_ENV
+          echo "API started with PID: $!"
+          echo "Waiting for API to be ready..."
+          timeout 60s bash -c 'until curl --silent --fail http://localhost:5237; do echo "Waiting for API..."; sleep 2; done' || { echo "API did not start in time!"; exit 1; }
+          echo "API is up!"
         working-directory: api/ShiftGiving
 
       - name: "Run API Tests"
         run: ./run_tests.sh
         working-directory: api
-
-      - name: "Stop the API"
-        if: always()
-        run: |
-          if [ -n "$SERVER_PID" ]; then
-            echo "Stopping API with PID: $SERVER_PID"
-            kill "$SERVER_PID" || true
-          fi
   build-web:
     name: "Build Web"
     runs-on: ubuntu-latest
@@ -83,6 +65,45 @@ jobs:
       - name: "Build React application"
         run: npm run build
         working-directory: web
+
+      - name: "Install serve package"
+        run: npm install -g serve
+        working-directory: web
+
+      - name: "Serve Web App in background"
+        id: start_web_server
+        run: |
+          serve ./dist -l 8080 &
+          echo "WEB_SERVER_PID=$!" >> $GITHUB_ENV
+          echo "Web server started with PID: $!"
+          echo "Waiting for web server to be ready..."
+          timeout 60s bash -c 'until curl --silent --fail http://localhost:8080; do echo "waiting for Web..."; sleep 2; done' || { echo "Web did not start in time!"; exit 1; }
+          echo "Web app is up!"
+        working-directory: web
+
+      - name: "Run Web Tests"
+        run: ./run_tests.sh
+        working-directory: web
+
+      - name: "Stop the Web Server"
+        if: always()
+        run: |
+          if [ -n "${{ env.WEB_SERVER_PID }}" ]; then
+            echo "Stopping web server with PID: ${{ env.WEB_SERVER_PID }}"
+            kill "${{ env.WEB_SERVER_PID }}" || true
+          else
+            echo "Web server PID not found. Could not stop explicitly."
+          fi
+
+      - name: "Stop the API Server"
+        if: always()
+        run: |
+          if [ -n "${{ env.API_SERVER_PID }}" ]; then
+            echo "Stopping API server with PID: ${{ env.API_SERVER_PID }}"
+            kill "${{ env.API_SERVER_PID }}" || true
+          else
+            echo "API server PID not found. Could not stop explicitly."
+          fi
   build-mobile-ios:
     name: "Build Mobile iOS"
     runs-on: macos-latest
