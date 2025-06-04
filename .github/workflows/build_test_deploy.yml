@@ -212,13 +212,20 @@ jobs:
           api-level: 34
           target: google_apis
           arch: x86_64
-          emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim
-          disable-linux-hw-accel: true
           profile: pixel_5
-          emulator-boot-timeout: 300
+          force-avd-creation: false
           disable-animations: true
-          script: |
-            cd mobile 
+          script: ./gradlew connectedCheck
+
+      - name: "Restart ADB server"
+        run: |
+          adb kill-server
+          adb start-server
+          adb devices
+
+      - name: "Wait for emulator to boot"
+        run: |
+          timeout 300 bash -c "until adb shell getprop sys.boot_completed | grep -m 1 '1'; do sleep 5; done"
 
       - name: "Build Flutter Android APK"
         run: flutter build apk --release
