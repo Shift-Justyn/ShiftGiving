@@ -196,15 +196,15 @@ jobs:
       - name: "Checkout repository code"
         uses: actions/checkout@v4
 
-#      - name: "Setup Flutter SDK"
-#        uses: subosito/flutter-action@v2
-#        with:
-#          flutter-version: '3.27.x'
-#          channel: 'stable'
-#
-#      - name: "Install Flutter dependencies"
-#        run: flutter pub get
-#        working-directory: mobile
+      - name: "Setup Flutter SDK"
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.27.x'
+          channel: 'stable'
+
+      - name: "Install Flutter dependencies"
+        run: flutter pub get
+        working-directory: mobile
 
       - name: "Build Flutter Android APK"
         run: flutter build apk --release
