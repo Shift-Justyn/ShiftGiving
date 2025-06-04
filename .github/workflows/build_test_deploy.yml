@@ -30,6 +30,38 @@ jobs:
       - name: "Build project"
         run: dotnet build --configuration Release --no-restore
         working-directory: api/ShiftGiving
+
+      - name: "Run the API"
+        run: |
+          dotnet run --configuration Release &
+          SERVER_PID=$!
+          echo "API started with PID: $SERVER_PID"
+          echo "Waiting for API to start..."
+          for i in $(seq 1 30); do
+            curl -f http://localhost:5237 || sleep 1
+            if [ $? -eq 0 ]; then
+              echo "API is up!"
+              break
+            fi
+            if [ $i -eq 30 ]; then
+              echo "API did not start in time!"
+              kill $SERVER_PID
+              exit 1
+            fi
+          done
+        working-directory: api/ShiftGiving
+
+      - name: "Run API Tests"
+        run: ./run_tests.sh
+        working-directory: api
+
+      - name: "Stop the API"
+        if: always()
+        run: |
+          if [ -n "$SERVER_PID" ]; then
+            echo "Stopping API with PID: $SERVER_PID"
+            kill "$SERVER_PID" || true
+          fi
   build-web:
     name: "Build Web"
     runs-on: ubuntu-latest
