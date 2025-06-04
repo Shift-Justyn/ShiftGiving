@@ -123,10 +123,6 @@ jobs:
         run: flutter pub get
         working-directory: mobile
 
-      - name: "Build Flutter iOS IPA"
-        run: flutter build ipa --release --no-codesign
-        working-directory: mobile
-
       - name: "Install coreutils"
         run: |
           brew install coreutils || true
@@ -162,12 +158,18 @@ jobs:
           xcrun simctl boot "$UDID"
           sleep 5 
           
+          export UDID
+          
           echo "Waiting for simulator to be ready..."
           gtimeout 300 bash -c 'until xcrun simctl bootstatus "$UDID" -d boot | grep -q "booted"; do echo "Still waiting for simulator..."; sleep 5; done' || \
           { echo "Simulator did not become ready in time (300s)!"; exit 1; }
           echo "Simulator is ready!"
 
           echo "IOS_SIMULATOR_UDID=$UDID" >> $GITHUB_ENV
+        working-directory: mobile
+
+      - name: "Build Flutter iOS IPA"
+        run: flutter build ipa --release --no-codesign
         working-directory: mobile
 
       - name: "Run iOS Mobile Tests"
@@ -204,10 +206,6 @@ jobs:
         run: flutter pub get
         working-directory: mobile
 
-      - name: "Build Flutter Android APK"
-        run: flutter build apk --release
-        working-directory: mobile
-
       - name: "Set Android SDK Tools Path"
         run: |
           echo "ANDROID_CMD_TOOLS_PATH=$ANDROID_HOME/cmdline-tools/latest/bin" >> $GITHUB_ENV
@@ -230,8 +228,12 @@ jobs:
         run: |
           export PATH="${{ env.ANDROID_CMD_TOOLS_PATH }}:${{ env.ANDROID_PLATFORM_TOOLS_PATH }}:$PATH"
           echo "Creating Android Virtual Device..."
-          echo -e "no\nyes" | avdmanager create avd --name test_emulator --package "system-images;android-34;google_apis;x86_64" --tag "google_apis" --abi "x86_64"
-          echo "AVD created successfully."
+          # Use a here-document to provide the two lines of input to avdmanager
+          avdmanager create avd --name test_emulator --package "system-images;android-34;google_apis;x86_64" --tag "google_apis" --abi "x86_64" <<EOF
+        no
+        yes
+        EOF
+        echo "AVD created successfully."
 
       - name: "Launch Android Emulator"
         run: |
@@ -243,6 +245,10 @@ jobs:
           timeout 300 bash -c 'until adb shell getprop sys.boot_completed | grep -q "1"; do echo "Still waiting for emulator..."; sleep 5; done' || { echo "Emulator did not boot in time!"; exit 1; }
           adb shell input keyevent 82
           echo "Android emulator is ready!"
+
+      - name: "Build Flutter Android APK"
+        run: flutter build apk --release
+        working-directory: mobile
 
       - name: "Run Android Mobile Tests"
         run: ./run_tests.sh
