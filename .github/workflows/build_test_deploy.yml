@@ -136,7 +136,7 @@ jobs:
 
           if [ -z "$UDID" ]; then
             echo "Creating new simulator: $IOS_SIMULATOR_NAME"
-            RUNTIME_IDENTIFIER=$(xcrun simctl list runtimes | grep -E 'iOS|tvOS|watchOS' | grep -v 'unavailable' | tail -1 | awk -F ' ' '{print $NF}' | tr -d '[:space:]')
+            RUNTIME_IDENTIFIER=$(xcrun simctl list runtimes | grep -E 'iOS' | grep -v 'unavailable' | tail -1 | awk -F ' ' '{print $NF}' | tr -d '[:space:]')
           
             if [ -z "$RUNTIME_IDENTIFIER" ]; then
               echo "Error: No suitable iOS runtime found on the runner."
