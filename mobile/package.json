@@ -8,10 +8,8 @@
     "test": "test"
   },
   "scripts": {
-    "test:unit_widget": "flutter test",
-    "test:integration": "flutter test integration_test/all_tests.dart",
-    "test:all": "npm run test:unit_widget && npm run test:integration",
-    "test": "npm run test:all"
+    "test": "flutter test",
+    "e2e": "flutter test integration_test/all_tests.dart"
   },
   "keywords": [],
   "author": "",
