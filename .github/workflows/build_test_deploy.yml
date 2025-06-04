@@ -211,8 +211,8 @@ jobs:
         with:
           api-level: 34
           target: google_apis
-          arch: x86
-          emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -no-audio -no-boot-anim -accel off
+          arch: x86_64
+          emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim
           disable-linux-hw-accel: true
           profile: pixel_5
           emulator-boot-timeout: 300
