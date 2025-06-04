@@ -1,0 +1,13 @@
+{
+  "name": "shiftgiving.tests",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "dotnet test --filter 'Category=Unit'",
+    "e2e": "dotnet test --filter 'Category=API'"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
