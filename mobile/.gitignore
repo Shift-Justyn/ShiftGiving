@@ -3,3 +3,5 @@ build/
 ios/Runner.xcworkspace/
 ios/Runner.xcodeproj/project.xcworkspace/
 *.iml
+.flutter-plugins
+.flutter-plugins-dependencies

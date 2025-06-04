@@ -1,0 +1,19 @@
+{
+  "name": "mobile",
+  "version": "1.0.0",
+  "description": "A new Flutter project.",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test:unit_widget": "flutter test",
+    "test:integration": "flutter test integration_test/all_tests.dart",
+    "test:all": "npm run test:unit_widget && npm run test:integration",
+    "test": "npm run test:all"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
