@@ -229,11 +229,11 @@ jobs:
           export PATH="${{ env.ANDROID_CMD_TOOLS_PATH }}:${{ env.ANDROID_PLATFORM_TOOLS_PATH }}:$PATH"
           echo "Creating Android Virtual Device..."
           # Use a here-document to provide the two lines of input to avdmanager
-          avdmanager create avd --name test_emulator --package "system-images;android-34;google_apis;x86_64" --tag "google_apis" --abi "x86_64" <<EOF
-        no
-        yes
-        EOF
-        echo "AVD created successfully."
+          avdmanager create avd --name test_emulator --package "system-images;android-34;google_apis;x86_64" --tag "google_apis" --abi "x86_64" <<EOF 
+          no 
+          yes
+          EOF
+          echo "AVD created successfully."
 
       - name: "Launch Android Emulator"
         run: |
