@@ -221,7 +221,7 @@ jobs:
           profile: pixel_5
           force-avd-creation: true
           disable-animations: true
-          script: cd mobile && ./gradlew connectedCheck
+          script: cd mobile/android && ./gradlew connectedCheck
 
       - name: "Wait for emulator to boot"
         run: |
