@@ -206,48 +206,17 @@ jobs:
         run: flutter pub get
         working-directory: mobile
 
-      - name: "Set Android SDK Tools Path and AVD Home"
-        run: |
-          echo "ANDROID_CMD_TOOLS_PATH=$ANDROID_HOME/cmdline-tools/latest/bin" >> $GITHUB_ENV
-          echo "ANDROID_PLATFORM_TOOLS_PATH=$ANDROID_HOME/platform-tools" >> $GITHUB_ENV
-          echo "ANDROID_EMULATOR_PATH=$ANDROID_HOME/emulator" >> $GITHUB_ENV
-          echo "ANDROID_AVD_HOME=$GITHUB_WORKSPACE/.android/avd" >> $GITHUB_ENV
-          mkdir -p "$GITHUB_WORKSPACE/.android/avd"
-          
-          export PATH="$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator:$PATH"
-
-      - name: "Accept Android SDK licenses and Install System Image"
-        run: |
-          export PATH="${{ env.ANDROID_CMD_TOOLS_PATH }}:${{ env.ANDROID_PLATFORM_TOOLS_PATH }}:$PATH"
-          echo "Accepting Android SDK licenses..."
-          yes | sdkmanager --licenses
-          
-          echo "Installing Android platform and build tools..."
-          sdkmanager "platforms;android-34" "build-tools;34.0.0" # Use 34.0.0 for android-34 platform
-  
-          echo "Installing Android system image for AVD..."
-          sdkmanager "system-images;android-34;google_apis;x86_64"
-
-      - name: "Create AVD"
-        run: |
-          export PATH="${{ env.ANDROID_CMD_TOOLS_PATH }}:${{ env.ANDROID_PLATFORM_TOOLS_PATH }}:$PATH"
-          echo "Creating Android Virtual Device..."
-          
-          avdmanager create avd --name test_emulator --package "system-images;android-34;google_apis;x86_64" --tag "google_apis" --abi "x86_64" --device "pixel_5" <<EOF
-          yes
-          EOF
-          echo "AVD created successfully."
-
-      - name: "Launch Android Emulator"
-        run: |
-          export PATH="${{ env.ANDROID_CMD_TOOLS_PATH }}:${{ env.ANDROID_PLATFORM_TOOLS_PATH }}:${{ env.ANDROID_EMULATOR_PATH }}:$PATH"
-          emulator -avd test_emulator -no-skin -no-audio -no-window &
-          echo "ANDROID_EMULATOR_PID=$!" >> $GITHUB_ENV
-
-          echo "Waiting for Android emulator to boot..."
-          timeout 300 bash -c 'until adb shell getprop sys.boot_completed | grep -q "1"; do echo "Still waiting for emulator..."; sleep 5; done' || { echo "Emulator did not boot in time!"; exit 1; }
-          adb shell input keyevent 82
-          echo "Android emulator is ready!"
+      - name: "Launch Android Emulator for Tests"
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 34
+          target: google_apis
+          arch: x86_64
+          profile: Pixel 5
+          emulator-boot-timeout: 300
+          disable-animations: true
+          script: |
+            cd mobile 
 
       - name: "Build Flutter Android APK"
         run: flutter build apk --release
@@ -256,16 +225,6 @@ jobs:
       - name: "Run Android Mobile Tests"
         run: ./run_tests.sh
         working-directory: mobile
-
-      - name: "Shutdown Android Emulator"
-        if: always()
-        run: |
-          if [ -n "${{ env.ANDROID_EMULATOR_PID }}" ]; then
-            echo "Stopping Android emulator with PID: ${{ env.ANDROID_EMULATOR_PID }}"
-            kill "${{ env.ANDROID_EMULATOR_PID }}" || true
-          else
-            echo "Android emulator PID not found. Could not shut down explicitly."
-          fi
 
   shutdown-api-server:
     name: "Shutdown API Server"
