@@ -136,8 +136,16 @@ jobs:
 
           if [ -z "$UDID" ]; then
             echo "Creating new simulator: $IOS_SIMULATOR_NAME"
-            RUNTIME=$(xcrun simctl list runtimes | grep "iOS" | tail -1 | awk -F '[()]' '{print $2}')
-            UDID=$(xcrun simctl create "$IOS_SIMULATOR_NAME" "$DEVICE_TYPE" "$RUNTIME")
+            RUNTIME_IDENTIFIER=$(xcrun simctl list runtimes | grep -E 'iOS|tvOS|watchOS' | grep -v 'unavailable' | tail -1 | awk -F ' ' '{print $NF}' | tr -d '[:space:]')
+          
+            if [ -z "$RUNTIME_IDENTIFIER" ]; then
+              echo "Error: No suitable iOS runtime found on the runner."
+              xcrun simctl list runtimes
+              exit 1
+            fi
+          
+            echo "Using runtime identifier: $RUNTIME_IDENTIFIER"
+            UDID=$(xcrun simctl create "$IOS_SIMULATOR_NAME" "$DEVICE_TYPE" "$RUNTIME_IDENTIFIER")
             echo "Created simulator with UDID: $UDID"
           else
             echo "Found existing simulator with UDID: $UDID"
@@ -187,8 +195,22 @@ jobs:
         run: flutter pub get
         working-directory: mobile
 
+      - name: "Install Android SDK dependencies"
+        run: |
+          - mkdir -p android/sdk/cmdline-tools
+          - curl -sSLo android-sdk-tools.zip https://dl.google.com/android/repository/commandlinetools-mac-10406996_latest.zip
+          - if [ $? -ne 0 ]; then echo "curl failed"; exit 1; fi
+          - unzip android-sdk-tools.zip -d android/sdk/cmdline-tools
+          - mkdir -p android/sdk/cmdline-tools/latest
+          - mv android/sdk/cmdline-tools/cmdline-tools/* android/sdk/cmdline-tools/latest/
+          - export ANDROID_HOME=$PWD/android/sdk
+          - export PATH=$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$PATH
+          - chmod +x $ANDROID_HOME/cmdline-tools/latest/bin/*
+
       - name: "Accept Android SDK licenses"
-        run: yes | sdkmanager --licenses
+        run: |
+          - yes | sdkmanager --licenses && sdkmanager --update
+          - sdkmanager --sdk_root=$ANDROID_HOME "platforms;android-34" "build-tools;33.0.0"
 
       - name: "Build Flutter Android APK"
         run: flutter build apk --release
