@@ -81,6 +81,10 @@ jobs:
           echo "Web app is up!"
         working-directory: web
 
+      - name: "Install Playwright system dependencies"
+        run: npx playwright install-deps
+        working-directory: web
+
       - name: "Install Playwright browsers"
         run: npx playwright install
         working-directory: web
