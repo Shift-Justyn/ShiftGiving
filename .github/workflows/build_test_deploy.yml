@@ -104,7 +104,7 @@ jobs:
         run: |
           dotnet run --configuration Release --urls "http://localhost:5237" &
           echo "API_SERVER_PID_FOR_WEB=$!" >> $GITHUB_ENV
-          timeout 60s bash -c 'until curl --silent --fail http://localhost:5237/healthz; do echo "Waiting for API..."; sleep 2; done' || { echo "API did not start in time for Web Test!"; exit 1; }
+          timeout 60s bash -c 'until curl --silent --fail http://localhost:5237/health; do echo "Waiting for API..."; sleep 2; done' || { echo "API did not start in time for Web Test!"; exit 1; }
           echo "API is up for Web Test!"
         working-directory: api/ShiftGiving
 
@@ -198,7 +198,7 @@ jobs:
         run: |
           dotnet run --configuration Release --urls "http://localhost:5237" &
           echo "API_SERVER_PID_FOR_IOS=$!" >> $GITHUB_ENV
-          timeout 60s bash -c 'until curl --silent --fail http://localhost:5237/healthz; do echo "Waiting for API..."; sleep 2; done' || { echo "API did not start in time for iOS Test!"; exit 1; }
+          timeout 60s bash -c 'until curl --silent --fail http://localhost:5237/health; do echo "Waiting for API..."; sleep 2; done' || { echo "API did not start in time for iOS Test!"; exit 1; }
           echo "API is up for iOS Test!"
         working-directory: api/ShiftGiving
 
@@ -308,7 +308,7 @@ jobs:
         run: |
           dotnet run --configuration Release --urls "http://localhost:5237" &
           echo "API_SERVER_PID_FOR_ANDROID=$!" >> $GITHUB_ENV
-          timeout 60s bash -c 'until curl --silent --fail http://localhost:5237/healthz; do echo "Waiting for API..."; sleep 2; done' || { echo "API did not start in time for Android Test!"; exit 1; }
+          timeout 60s bash -c 'until curl --silent --fail http://localhost:5237/health; do echo "Waiting for API..."; sleep 2; done' || { echo "API did not start in time for Android Test!"; exit 1; }
           echo "API is up for Android Test!"
         working-directory: api/ShiftGiving
 
