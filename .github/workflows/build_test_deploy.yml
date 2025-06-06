@@ -202,47 +202,35 @@ jobs:
           echo "API is up for iOS Test!"
         working-directory: api/ShiftGiving
 
+      - name: Cleanup Simulators
+        run: |
+          xcrun simctl shutdown all || true
+          xcrun simctl erase all || true
+
       - name: "Launch iOS Simulator"
         id: launch_simulator
         run: |
           DEVICE_TYPE="iPhone 15"
           IOS_SIMULATOR_NAME="${DEVICE_TYPE} Simulator for CI"
           UDID=$(xcrun simctl list devices | grep "$IOS_SIMULATOR_NAME" | awk -F '[()]' '{print $2}')
-
+          
           if [ -z "$UDID" ]; then
-            echo "Creating new simulator: $IOS_SIMULATOR_NAME"
             RUNTIME_IDENTIFIER=$(xcrun simctl list runtimes | grep -E 'iOS' | grep -v 'unavailable' | tail -1 | awk -F ' ' '{print $NF}' | tr -d '[:space:]')
-
-            if [ -z "$RUNTIME_IDENTIFIER" ]; then
-              echo "Error: No suitable iOS runtime found on the runner."
-              xcrun simctl list runtimes
-              exit 1
-            fi
-
-            echo "Using runtime identifier: $RUNTIME_IDENTIFIER"
             UDID=$(xcrun simctl create "$IOS_SIMULATOR_NAME" "$DEVICE_TYPE" "$RUNTIME_IDENTIFIER")
-            echo "Created simulator with UDID: $UDID"
-          else
-            echo "Found existing simulator with UDID: $UDID"
           fi
-
-          echo "Booting simulator with UDID: $UDID"
+          
           xcrun simctl boot "$UDID"
-          sleep 5
-
-          export UDID
-
-          echo "Waiting for simulator to be ready..."
-          gtimeout 300 bash -c 'until xcrun simctl bootstatus "$UDID" -d boot | grep -q "booted"; do echo "Still waiting for simulator..."; sleep 5; done' || \
-          { echo "Simulator did not become ready in time (300s)!"; exit 1; }
+          echo "Booting simulator with UDID: $UDID"
+          gtimeout 300 bash -c 'until xcrun simctl bootstatus "$UDID" -d boot | grep -q "booted"; do echo "Still waiting for simulator..."; sleep 5; done'
+          xcrun simctl list devices
           echo "Simulator is ready!"
-
           echo "IOS_SIMULATOR_UDID=$UDID" >> $GITHUB_ENV
         working-directory: mobile
 
       - name: "Run iOS Mobile Tests"
         run: ./run_tests.sh
         working-directory: mobile
+        timeout-minutes: 5
 
       - name: "Shutdown iOS Simulator"
         if: always()
