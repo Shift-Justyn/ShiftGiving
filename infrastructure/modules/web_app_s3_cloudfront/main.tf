@@ -6,11 +6,6 @@ resource "aws_s3_bucket" "static_site_bucket" {
   }
 }
 
-resource "aws_s3_bucket_acl" "static_site_bucket_acl" {
-  bucket = aws_s3_bucket.static_site_bucket.id
-  acl    = "private"
-}
-
 resource "aws_s3_bucket_website_configuration" "static_site_bucket_website" {
   bucket = aws_s3_bucket.static_site_bucket.id
 
