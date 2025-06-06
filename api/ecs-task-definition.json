@@ -1,0 +1,42 @@
+{
+  "family": "ECS_TASK_DEFINITION_FAMILY_PLACEHOLDER",
+  "cpu": "256",
+  "memory": "512",
+  "networkMode": "awsvpc",
+  "requiresCompatibilities": [
+    "FARGATE"
+  ],
+  "executionRoleArn": "ECS_EXECUTION_ROLE_ARN_PLACEHOLDER",
+  "taskRoleArn": "ECS_TASK_ROLE_ARN_PLACEHOLDER",
+  "containerDefinitions": [
+    {
+      "name": "shift-giving-api-container",
+      "image": "",
+      "cpu": 256,
+      "memory": 512,
+      "essential": true,
+      "portMappings": [
+        {
+          "containerPort": 80,
+          "hostPort": 80,
+          "protocol": "tcp"
+        }
+      ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "ECS_LOG_GROUP_NAME_PLACEHOLDER",
+          "awslogs-region": "AWS_REGION_PLACEHOLDER",
+          "awslogs-stream-prefix": "ecs"
+        }
+      },
+      "healthCheck": {
+        "command": ["CMD-SHELL", "curl -f http://localhost:80/health || exit 1"],
+        "interval": 30,
+        "timeout": 5,
+        "retries": 3,
+        "startPeriod": 10
+      }
+    }
+  ]
+}
