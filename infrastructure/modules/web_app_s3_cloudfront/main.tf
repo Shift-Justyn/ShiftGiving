@@ -40,7 +40,7 @@ resource "aws_s3_bucket_policy" "static_site_bucket_policy" {
         Resource  = "${aws_s3_bucket.static_site_bucket.arn}/*"
         Condition = {
           StringEquals = {
-            "CloudFrontOriginAccessControlId" = aws_cloudfront_origin_access_control.s3_oac.id
+            "AWS:SourceArn" = aws_cloudfront_distribution.static_site_distribution.arn
           }
         }
       }
