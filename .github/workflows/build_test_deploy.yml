@@ -315,7 +315,7 @@ jobs:
           api-level: 34
           target: google_apis
           arch: x86_64
-          profile: Nexus_5
+          profile: Nexus 5
           emulator-options: '-no-window -no-snapshot -no-audio -no-boot-anim'
           force-avd-creation: false
           disable-animations: true
