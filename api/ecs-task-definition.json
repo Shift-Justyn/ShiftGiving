@@ -10,7 +10,7 @@
   "taskRoleArn": "ECS_TASK_ROLE_ARN_PLACEHOLDER",
   "containerDefinitions": [
     {
-      "name": "shift-giving-api-container",
+      "name": "ECS_TASK_CONTAINER_NAME_PLACEHOLDER",
       "image": "",
       "cpu": 256,
       "memory": 512,
