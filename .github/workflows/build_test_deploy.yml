@@ -403,7 +403,7 @@ jobs:
         with:
           task-definition: ${{ steps.render-env-task-def.outputs.TEMPLATED_TASK_DEF_PATH }}
           container-name: shift-giving-api-container
-          image: ${{ needs.build-and-push-api-docker.outputs.api_image_uri }}
+          image: ${{ needs.build-and-push-api-docker-qa.outputs.api_image_uri }}
 
       - name: "Deploy Amazon ECS task definition"
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
