@@ -406,11 +406,6 @@ jobs:
           container-name: ${{ vars.ECS_API_CONTAINER_NAME }}
           image: ${{ needs.build-and-push-api-docker-qa.outputs.api_image_uri }}
 
-      - name: "Ensure log group exists"
-        run: |
-          aws logs describe-log-groups --log-group-name-prefix ${{ vars.ECS_LOG_GROUP_NAME }} | grep logGroupName || \
-          aws logs create-log-group --log-group-name ${{ vars.ECS_LOG_GROUP_NAME }}
-
       - name: "Deploy Amazon ECS task definition"
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
