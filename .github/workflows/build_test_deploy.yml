@@ -349,7 +349,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: ${{ secrets.AWS_ROLE_ARN_API_DEPLOY }}
-          aws-region: ${{ var.AWS_REGION }}
+          aws-region: ${{ vars.AWS_REGION }}
 
       - name: "Login to Amazon ECR"
         id: login-ecr
@@ -381,7 +381,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: ${{ secrets.AWS_ROLE_ARN_API_DEPLOY }}
-          aws-region: ${{ var.AWS_REGION }}
+          aws-region: ${{ vars.AWS_REGION }}
 
       - name: "Render environment-specific task definition template"
         id: render-env-task-def
