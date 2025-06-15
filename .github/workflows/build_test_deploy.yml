@@ -389,7 +389,7 @@ jobs:
           TEMP_TASK_DEF_FILE="api/ecs-task-definition-rendered.json"
           cp api/ecs-task-definition.json "$TEMP_TASK_DEF_FILE"
 
-          sed -i "s|ECS_TASK_DEFINITION_FAMILY_PLACEHOLDER|${{ vars.ECS_TASK_DEFINITION_FAMILY_VAR }}|g" "$TEMP_TASK_DEF_FILE"
+          sed -i "s|ECS_TASK_DEFINITION_FAMILY_PLACEHOLDER|${{ vars.ECS_API_TASK_DEFINITION_FAMILY }}|g" "$TEMP_TASK_DEF_FILE"
           sed -i "s|ECS_LOG_GROUP_NAME_PLACEHOLDER|${{ vars.ECS_LOG_GROUP_NAME_VAR }}|g" "$TEMP_TASK_DEF_FILE"
           sed -i "s|AWS_REGION_PLACEHOLDER|${{ vars.AWS_REGION }}|g" "$TEMP_TASK_DEF_FILE"
           sed -i "s|ECS_EXECUTION_ROLE_ARN_PLACEHOLDER|arn:aws:iam::${{ vars.AWS_ACCOUNT_ID }}:role/${{ vars.ECS_EXECUTION_ROLE_NAME }}|g" "$TEMP_TASK_DEF_FILE"
