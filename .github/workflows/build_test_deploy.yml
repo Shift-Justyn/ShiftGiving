@@ -293,10 +293,6 @@ jobs:
         run: flutter pub get
         working-directory: mobile
 
-      - name: "Prewarm Gradle build"
-        run: android/gradlew --no-daemon assembleRelease -x lint
-        working-directory: mobile
-
       - name: "Build Flutter Android APK"
         run: flutter build apk --release --split-debug-info=build/symbols --no-tree-shake-icons
         timeout-minutes: 6
