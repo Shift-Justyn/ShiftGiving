@@ -298,16 +298,16 @@ jobs:
         timeout-minutes: 6
         working-directory: mobile
 
-#      - name: "Enable KVM"
-#        run: |
-#          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
-#          sudo udevadm control --reload-rules
-#          sudo udevadm trigger --name-match=kvm
-#
-#      - name: "Setup .NET SDK for Android Test API dependency"
-#        uses: actions/setup-dotnet@v4
-#        with:
-#          dotnet-version: '8.x'
+      - name: "Enable KVM"
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+
+      - name: "Setup .NET SDK for Android Test API dependency"
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.x'
 
 #      - name: "Restore API dependencies for Android Test"
 #        run: dotnet restore
