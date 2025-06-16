@@ -24,6 +24,13 @@ jobs:
       api_built: ${{ steps.build-api-status.outcome }}
 
     steps:
+      - name: Cache NuGet packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }}
+          restore-keys: ${{ runner.os }}-nuget-
+
       - name: "Checkout repository code"
         uses: actions/checkout@v4
 
@@ -36,14 +43,14 @@ jobs:
         run: dotnet restore
         working-directory: api/ShiftGiving
 
-      - name: "Build project"
+      - name: "Publish API"
         id: build-api-status
-        run: dotnet build --configuration Release --no-restore
+        run: dotnet publish --configuration Release --output out
         working-directory: api/ShiftGiving
 
       - name: "Run the API in background for testing"
         run: |
-          dotnet run --configuration Release --urls "http://localhost:5237" &
+          ASPNETCORE_URLS=http://localhost:5237 ./out/ShiftGiving &
           echo "API_SERVER_PID=$!" >> $GITHUB_ENV
           echo "API started with PID: $!"
           echo "Waiting for API to be ready..."
@@ -126,7 +133,7 @@ jobs:
         id: start_api_server_for_web
         run: |
           dotnet publish --configuration Release -o out
-          ./out/ShiftGiving --urls "http://localhost:5237" &
+          ASPNETCORE_URLS=http://localhost:5237 ./out/ShiftGiving &
           echo "API_SERVER_PID_FOR_WEB=$!" >> $GITHUB_ENV
           timeout 60s bash -c 'until curl --silent --fail http://localhost:5237/health; do echo "Waiting for API..."; sleep 2; done' || { echo "API did not start in time for Web Test!"; exit 1; }
           echo "API is up for Web Test!"
