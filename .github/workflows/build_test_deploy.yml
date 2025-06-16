@@ -309,18 +309,18 @@ jobs:
         with:
           dotnet-version: '8.x'
 
-#      - name: "Restore API dependencies for Android Test"
-#        run: dotnet restore
-#        working-directory: api/ShiftGiving
-#
-#      - name: "Run the API in background for Android Test"
-#        id: start_api_server_for_android
-#        run: |
-#          dotnet run --configuration Release --urls "http://localhost:5237" &
-#          echo "API_SERVER_PID_FOR_ANDROID=$!" >> $GITHUB_ENV
-#          timeout 60s bash -c 'until curl --silent --fail http://localhost:5237/health; do echo "Waiting for API..."; sleep 2; done' || { echo "API did not start in time for Android Test!"; exit 1; }
-#          echo "API is up for Android Test!"
-#        working-directory: api/ShiftGiving
+      - name: "Restore API dependencies for Android Test"
+        run: dotnet restore
+        working-directory: api/ShiftGiving
+
+      - name: "Run the API in background for Android Test"
+        id: start_api_server_for_android
+        run: |
+          dotnet run --configuration Release --urls "http://localhost:5237" &
+          echo "API_SERVER_PID_FOR_ANDROID=$!" >> $GITHUB_ENV
+          timeout 60s bash -c 'until curl --silent --fail http://localhost:5237/health; do echo "Waiting for API..."; sleep 2; done' || { echo "API did not start in time for Android Test!"; exit 1; }
+          echo "API is up for Android Test!"
+        working-directory: api/ShiftGiving
 #
 #      - name: "Launch Android Emulator and Run Tests"
 #        uses: reactivecircus/android-emulator-runner@v2
