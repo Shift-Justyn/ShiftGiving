@@ -276,6 +276,7 @@ jobs:
             mobile/android/.gradle
             .dart_tool
             build
+            ${{ runner.tool_cache }}/flutter
           key: ${{ runner.os }}-flutter-${{ hashFiles('**/pubspec.yaml') }}
           restore-keys: |
             ${{ runner.os }}-flutter-
@@ -294,8 +295,8 @@ jobs:
         working-directory: mobile
 
       - name: "Build Flutter Android APK"
-        run: flutter build apk --release --split-debug-info=build/symbols --no-tree-shake-icons
-        timeout-minutes: 6
+        run: flutter build apk --release --split-debug-info=build/symbols --no-tree-shake-icons --split-per-abi
+        timeout-minutes: 5
         working-directory: mobile
 
       - name: "Enable KVM"
@@ -321,28 +322,28 @@ jobs:
           timeout 60s bash -c 'until curl --silent --fail http://localhost:5237/health; do echo "Waiting for API..."; sleep 2; done' || { echo "API did not start in time for Android Test!"; exit 1; }
           echo "API is up for Android Test!"
         working-directory: api/ShiftGiving
-#
-#      - name: "Launch Android Emulator and Run Tests"
-#        uses: reactivecircus/android-emulator-runner@v2
-#        with:
-#          api-level: 30
-#          target: google_apis
-#          arch: x86_64
-#          profile: Nexus 5
-#          emulator-options: '-no-window -no-snapshot -no-audio -no-boot-anim'
-#          force-avd-creation: false
-#          disable-animations: true
-#          script: cd mobile/android && ./gradlew connectedCheck && cd ../ && ./run_tests.sh
-#
-#      - name: "Stop the API Server for Android Test"
-#        if: always()
-#        run: |
-#          if [ -n "${{ env.API_SERVER_PID_FOR_ANDROID }}" ]; then
-#            echo "Stopping API server for Android Test with PID: ${{ env.API_SERVER_PID_FOR_ANDROID }}"
-#            kill "${{ env.API_SERVER_PID_FOR_ANDROID }}" || true
-#          else
-#            echo "API server PID for Android Test not found. Could not stop explicitly."
-#          fi
+
+      - name: "Launch Android Emulator and Run Tests"
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 30
+          target: google_apis
+          arch: x86_64
+          profile: Nexus 5
+          emulator-options: '-no-window -no-snapshot -no-audio -no-boot-anim'
+          force-avd-creation: false
+          disable-animations: true
+          script: cd mobile/android && ./gradlew connectedCheck && cd ../ && ./run_tests.sh
+
+      - name: "Stop the API Server for Android Test"
+        if: always()
+        run: |
+          if [ -n "${{ env.API_SERVER_PID_FOR_ANDROID }}" ]; then
+            echo "Stopping API server for Android Test with PID: ${{ env.API_SERVER_PID_FOR_ANDROID }}"
+            kill "${{ env.API_SERVER_PID_FOR_ANDROID }}" || true
+          else
+            echo "API server PID for Android Test not found. Could not stop explicitly."
+          fi
 #  build-and-push-api-docker-qa:
 #    name: "Build & Push API Docker Image"
 #    runs-on: ubuntu-latest
