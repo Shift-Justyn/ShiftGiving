@@ -17,53 +17,53 @@ permissions:
   contents: read
 
 jobs:
-#  build-and-test-api:
-#    name: "Build & Test API"
-#    runs-on: ubuntu-latest
-#    outputs:
-#      api_built: ${{ steps.build-api-status.outcome }}
-#
-#    steps:
-#      - name: "Checkout repository code"
-#        uses: actions/checkout@v4
-#
-#      - name: "Setup .NET SDK"
-#        uses: actions/setup-dotnet@v4
-#        with:
-#          dotnet-version: '8.x'
-#
-#      - name: "Restore dependencies"
-#        run: dotnet restore
-#        working-directory: api/ShiftGiving
-#
-#      - name: "Build project"
-#        id: build-api-status
-#        run: dotnet build --configuration Release --no-restore
-#        working-directory: api/ShiftGiving
-#
-#      - name: "Run the API in background for testing"
-#        run: |
-#          dotnet run --configuration Release --urls "http://localhost:5237" &
-#          echo "API_SERVER_PID=$!" >> $GITHUB_ENV
-#          echo "API started with PID: $!"
-#          echo "Waiting for API to be ready..."
-#          timeout 60s bash -c 'until curl --silent --fail http://localhost:5237; do echo "Waiting for API..."; sleep 2; done' || { echo "API did not start in time!"; exit 1; }
-#          echo "API is up!"
-#        working-directory: api/ShiftGiving
-#
-#      - name: "Run API Tests"
-#        run: ./run_tests.sh
-#        working-directory: api
-#
-#      - name: "Stop the API Server"
-#        if: always()
-#        run: |
-#          if [ -n "${{ env.API_SERVER_PID }}" ]; then
-#            echo "Stopping API server with PID: ${{ env.API_SERVER_PID }}"
-#            kill "${{ env.API_SERVER_PID }}" || true
-#          else
-#            echo "API server PID not found. Could not stop explicitly."
-#          fi
+  build-and-test-api:
+    name: "Build & Test API"
+    runs-on: ubuntu-latest
+    outputs:
+      api_built: ${{ steps.build-api-status.outcome }}
+
+    steps:
+      - name: "Checkout repository code"
+        uses: actions/checkout@v4
+
+      - name: "Setup .NET SDK"
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.x'
+
+      - name: "Restore dependencies"
+        run: dotnet restore
+        working-directory: api/ShiftGiving
+
+      - name: "Build project"
+        id: build-api-status
+        run: dotnet build --configuration Release --no-restore
+        working-directory: api/ShiftGiving
+
+      - name: "Run the API in background for testing"
+        run: |
+          dotnet run --configuration Release --urls "http://localhost:5237" &
+          echo "API_SERVER_PID=$!" >> $GITHUB_ENV
+          echo "API started with PID: $!"
+          echo "Waiting for API to be ready..."
+          timeout 60s bash -c 'until curl --silent --fail http://localhost:5237; do echo "Waiting for API..."; sleep 2; done' || { echo "API did not start in time!"; exit 1; }
+          echo "API is up!"
+        working-directory: api/ShiftGiving
+
+      - name: "Run API Tests"
+        run: ./run_tests.sh
+        working-directory: api
+
+      - name: "Stop the API Server"
+        if: always()
+        run: |
+          if [ -n "${{ env.API_SERVER_PID }}" ]; then
+            echo "Stopping API server with PID: ${{ env.API_SERVER_PID }}"
+            kill "${{ env.API_SERVER_PID }}" || true
+          else
+            echo "API server PID not found. Could not stop explicitly."
+          fi
 #  build-and-test-web:
 #    name: "Build & Test Web"
 #    runs-on: ubuntu-latest
@@ -265,7 +265,7 @@ jobs:
   build-and-test-mobile-android:
     name: "Build & Test Mobile Android"
     runs-on: ubuntu-latest
-#    needs: build-and-test-api
+    needs: build-and-test-api
 
     steps:
       - name: Cache Flutter SDK and Packages
