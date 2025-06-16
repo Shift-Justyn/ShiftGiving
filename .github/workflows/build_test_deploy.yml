@@ -277,6 +277,11 @@ jobs:
             mobile/build
             mobile/android/.gradle
             ${{ runner.tool_cache }}/flutter
+            ~/.android/avd
+            ~/.android/adb*
+            ~/.android/emu-update-last-check.ini
+            ~/.android/advancedFeatures.ini
+            ~/.android/cache
           key: ${{ runner.os }}-flutter-${{ hashFiles('**/pubspec.lock', '**/*.gradle') }}
           restore-keys: |
             ${{ runner.os }}-flutter-
@@ -327,11 +332,13 @@ jobs:
         with:
           api-level: 30
           target: google_apis
-          arch: x86_64
+          arch: x86
+          cores: 4
           profile: Nexus 5
-          emulator-options: '-no-window -no-snapshot -no-audio -no-boot-anim'
+          emulator-options: '-no-window -no-snapshot -no-audio -no-boot-anim -no-metrics'
           force-avd-creation: false
           disable-animations: true
+          emulator-boot-timeout: 300
           script: cd mobile/android && ./gradlew connectedCheck && cd ../ && ./run_tests.sh
 
       - name: "Stop the API Server for Android Test"
