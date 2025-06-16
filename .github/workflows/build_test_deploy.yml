@@ -158,6 +158,18 @@ jobs:
     needs: build-and-test-api
 
     steps:
+      - name: Cache Flutter, CocoaPods, and Simulator Data
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/Library/Caches/CocoaPods
+            ~/.pub-cache
+            ~/.dart_tool
+            mobile/build
+            ~/Library/Developer/CoreSimulator
+          key: ${{ runner.os }}-ios-${{ hashFiles('**/pubspec.lock', '**/Podfile.lock') }}
+          restore-keys: ${{ runner.os }}-ios-
+
       - name: "Checkout repository code"
         uses: actions/checkout@v4
 
@@ -169,10 +181,6 @@ jobs:
 
       - name: "Install Flutter dependencies"
         run: flutter pub get
-        working-directory: mobile
-
-      - name: "Build Flutter iOS IPA"
-        run: flutter build ipa --release --no-codesign
         working-directory: mobile
 
       - name: "Install coreutils"
@@ -208,9 +216,8 @@ jobs:
       - name: "Launch iOS Simulator"
         id: launch_simulator
         run: |
-            DEVICE_TYPE="iPhone 15"
+            DEVICE_TYPE="iPhone 14"
             IOS_SIMULATOR_NAME="${DEVICE_TYPE} Simulator for CI"
-            UDID=""
 
             UDID=$(xcrun simctl list devices | grep "$IOS_SIMULATOR_NAME" | grep -v unavailable | awk -F '[()]' '{print $2}' | head -1)
 
