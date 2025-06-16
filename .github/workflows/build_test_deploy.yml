@@ -273,11 +273,11 @@ jobs:
           path: |
             ~/.pub-cache
             ~/.gradle
+            mobile/.dart_tool
+            mobile/build
             mobile/android/.gradle
-            .dart_tool
-            build
             ${{ runner.tool_cache }}/flutter
-          key: ${{ runner.os }}-flutter-${{ hashFiles('**/pubspec.yaml') }}
+          key: ${{ runner.os }}-flutter-${{ hashFiles('**/pubspec.lock', '**/*.gradle') }}
           restore-keys: |
             ${{ runner.os }}-flutter-
 
