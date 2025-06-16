@@ -137,6 +137,10 @@ jobs:
           name: api-out
           path: api/ShiftGiving/out
 
+      - name: Make API binary executable
+        run: chmod +x ./out/ShiftGiving
+        working-directory: api/ShiftGiving
+
       - name: "Run the API in background for Web Test"
         id: start_api_server_for_web
         run: |
@@ -230,6 +234,10 @@ jobs:
         with:
           name: api-out
           path: api/ShiftGiving/out
+
+      - name: Make API binary executable
+        run: chmod +x ./out/ShiftGiving
+        working-directory: api/ShiftGiving
 
       - name: "Run the API in background for iOS Test"
         id: start_api_server_for_ios
@@ -372,6 +380,10 @@ jobs:
         with:
           name: api-out
           path: api/ShiftGiving/out
+
+      - name: Make API binary executable
+        run: chmod +x ./out/ShiftGiving
+        working-directory: api/ShiftGiving
 
       - name: "Run the API in background for Android Test"
         id: start_api_server_for_android
