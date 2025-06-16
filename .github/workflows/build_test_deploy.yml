@@ -321,19 +321,19 @@ jobs:
           timeout 60s bash -c 'until curl --silent --fail http://localhost:5237/health; do echo "Waiting for API..."; sleep 2; done' || { echo "API did not start in time for Android Test!"; exit 1; }
           echo "API is up for Android Test!"
         working-directory: api/ShiftGiving
-#
-#      - name: "Launch Android Emulator and Run Tests"
-#        uses: reactivecircus/android-emulator-runner@v2
-#        with:
-#          api-level: 30
-#          target: google_apis
-#          arch: x86_64
-#          profile: Nexus 5
-#          emulator-options: '-no-window -no-snapshot -no-audio -no-boot-anim'
-#          force-avd-creation: false
-#          disable-animations: true
-#          script: cd mobile/android && ./gradlew connectedCheck && cd ../ && ./run_tests.sh
-#
+
+      - name: "Launch Android Emulator and Run Tests"
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 30
+          target: google_apis
+          arch: x86_64
+          profile: Nexus 5
+          emulator-options: '-no-window -no-snapshot -no-audio -no-boot-anim'
+          force-avd-creation: false
+          disable-animations: true
+          script: cd mobile/android && ./gradlew connectedCheck && cd ../ && ./run_tests.sh
+
       - name: "Stop the API Server for Android Test"
         if: always()
         run: |
