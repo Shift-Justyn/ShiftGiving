@@ -193,15 +193,10 @@ jobs:
     needs: build-and-test-api
 
     steps:
-      - name: Cache Flutter, CocoaPods, and Simulator Data
+      - name: Cache Flutter
         uses: actions/cache@v4
         with:
-          path: |
-            ~/Library/Caches/CocoaPods
-            ~/.pub-cache
-            ~/.dart_tool
-            mobile/build
-            ~/Library/Developer/CoreSimulator
+          path: ~/.pub-cache
           key: ${{ runner.os }}-ios-${{ hashFiles('**/pubspec.lock', '**/Podfile.lock') }}
           restore-keys: ${{ runner.os }}-ios-
 
