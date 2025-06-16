@@ -261,7 +261,7 @@ jobs:
 
             xcrun simctl boot "$UDID"
             echo "Booting simulator with UDID: $UDID"
-            gtimeout 300 bash -c "until xcrun simctl bootstatus \"$UDID\" -d boot | grep -q 'booted'; do echo 'Still waiting for simulator...'; sleep 5; done"
+            gtimeout 600 bash -c "until xcrun simctl bootstatus \"$UDID\" -d boot | grep -q 'booted'; do echo 'Still waiting for simulator...'; sleep 5; done"
             xcrun simctl list devices
             echo "Simulator is ready!"
             echo "IOS_SIMULATOR_UDID=$UDID" >> $GITHUB_ENV
@@ -400,119 +400,119 @@ jobs:
           else
             echo "API server PID for Android Test not found. Could not stop explicitly."
           fi
-#  build-and-push-api-docker-qa:
-#    name: "Build & Push API Docker Image"
-#    runs-on: ubuntu-latest
-#    needs: [build-and-test-api, build-and-test-web, build-and-test-mobile-ios, build-and-test-mobile-android]
-#    environment: QA
-#    outputs:
-#      api_image_uri: ${{ steps.set-image.outputs.API_IMAGE_URI }}
-#
-#    steps:
-#      - name: "Checkout repository code"
-#        uses: actions/checkout@v4
-#
-#      - name: "Configure AWS credentials"
-#        uses: aws-actions/configure-aws-credentials@v4
-#        with:
-#          role-to-assume: ${{ secrets.AWS_ROLE_ARN_API_DEPLOY }}
-#          aws-region: ${{ vars.AWS_REGION }}
-#
-#      - name: "Login to Amazon ECR"
-#        id: login-ecr
-#        uses: aws-actions/amazon-ecr-login@v2
-#
-#      - name: "Build, tag, and push API image to Amazon ECR"
-#        env:
-#          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-#          ECR_REPOSITORY: ${{ vars.ECR_REPOSITORY_NAME }}
-#          IMAGE_TAG: ${{ github.sha }}
-#        run: |
-#          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f api/ShiftGiving/Dockerfile api/ShiftGiving
-#          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-#
-#      - name: "Set output image URI"
-#        id: set-image
-#        run: echo "API_IMAGE_URI=${{ steps.login-ecr.outputs.registry }}/${{ vars.ECR_REPOSITORY_NAME }}:${{ github.sha }}" >> $GITHUB_OUTPUT
-#  deploy-api-qa:
-#    name: "Deploy API to QA"
-#    runs-on: ubuntu-latest
-#    needs: build-and-push-api-docker-qa
-#    environment: QA
-#
-#    steps:
-#      - name: "Checkout repository code"
-#        uses: actions/checkout@v4
-#
-#      - name: "Configure AWS credentials"
-#        uses: aws-actions/configure-aws-credentials@v4
-#        with:
-#          role-to-assume: ${{ secrets.AWS_ROLE_ARN_API_DEPLOY }}
-#          aws-region: ${{ vars.AWS_REGION }}
-#
-#      - name: "Render environment-specific task definition template"
-#        id: render-env-task-def
-#        run: |
-#          TEMP_TASK_DEF_FILE="api/ecs-task-definition-rendered.json"
-#          cp api/ecs-task-definition.json "$TEMP_TASK_DEF_FILE"
-#
-#          sed -i "s|ECS_TASK_DEFINITION_FAMILY_PLACEHOLDER|${{ vars.ECS_API_TASK_DEFINITION_FAMILY }}|g" "$TEMP_TASK_DEF_FILE"
-#          sed -i "s|ECS_LOG_GROUP_NAME_PLACEHOLDER|${{ vars.ECS_LOG_GROUP_NAME }}|g" "$TEMP_TASK_DEF_FILE"
-#          sed -i "s|AWS_REGION_PLACEHOLDER|${{ vars.AWS_REGION }}|g" "$TEMP_TASK_DEF_FILE"
-#          sed -i "s|ECS_TASK_CONTAINER_NAME_PLACEHOLDER|${{ vars.ECS_API_CONTAINER_NAME }}|g" "$TEMP_TASK_DEF_FILE"
-#          sed -i "s|ECS_EXECUTION_ROLE_ARN_PLACEHOLDER|arn:aws:iam::${{ vars.AWS_ACCOUNT_ID }}:role/${{ vars.ECS_API_EXECUTION_ROLE_NAME }}|g" "$TEMP_TASK_DEF_FILE"
-#          sed -i "s|ECS_TASK_ROLE_ARN_PLACEHOLDER|arn:aws:iam::${{ vars.AWS_ACCOUNT_ID }}:role/${{ vars.ECS_API_TASK_ROLE_NAME }}|g" "$TEMP_TASK_DEF_FILE"
-#
-#          echo "TEMPLATED_TASK_DEF_PATH=$TEMP_TASK_DEF_FILE" >> "$GITHUB_OUTPUT"
-#
-#      - name: "Fill in the new image ID in the ECS task definition"
-#        id: render-task-def
-#        uses: aws-actions/amazon-ecs-render-task-definition@v1
-#        with:
-#          task-definition: ${{ steps.render-env-task-def.outputs.TEMPLATED_TASK_DEF_PATH }}
-#          container-name: ${{ vars.ECS_API_CONTAINER_NAME }}
-#          image: ${{ needs.build-and-push-api-docker-qa.outputs.api_image_uri }}
-#
-#      - name: "Deploy Amazon ECS task definition"
-#        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
-#        with:
-#          service: ${{ vars.ECS_API_SERVICE_NAME }}
-#          cluster: ${{ vars.ECS_CLUSTER_NAME }}
-#          task-definition: ${{ steps.render-task-def.outputs.task-definition }}
-#          wait-for-service-stability: true
-#  build-and-deploy-web-qa:
-#    name: "Deploy Web App to QA"
-#    runs-on: ubuntu-latest
-#    needs: [deploy-api-qa]
-#    environment: QA
-#
-#    steps:
-#      - name: "Checkout repository code"
-#        uses: actions/checkout@v4
-#
-#      - name: "Setup Node.js"
-#        uses: actions/setup-node@v4
-#        with:
-#          node-version: '22'
-#
-#      - name: "Install React dependencies"
-#        run: npm install
-#        working-directory: web
-#
-#      - name: "Build React application"
-#        run: npm run build
-#        working-directory: web
-#
-#      - name: "Configure AWS credentials"
-#        uses: aws-actions/configure-aws-credentials@v4
-#        with:
-#          role-to-assume: ${{ secrets.AWS_ROLE_ARN_WEB_DEPLOY }}
-#          aws-region: ${{ vars.AWS_REGION }}
-#
-#      - name: "Deploy to S3"
-#        run: |
-#          aws s3 sync web/dist s3://${{ vars.S3_WEB_BUCKET_NAME }} --delete
-#
-#      - name: "Invalidate CloudFront cache"
-#        run: |
-#          aws cloudfront create-invalidation --distribution-id ${{ vars.CLOUDFRONT_WEB_DISTRIBUTION_ID }} --paths "/*"
+  build-and-push-api-docker-qa:
+    name: "Build & Push API Docker Image"
+    runs-on: ubuntu-latest
+    needs: [build-and-test-api, build-and-test-web, build-and-test-mobile-ios, build-and-test-mobile-android]
+    environment: QA
+    outputs:
+      api_image_uri: ${{ steps.set-image.outputs.API_IMAGE_URI }}
+
+    steps:
+      - name: "Checkout repository code"
+        uses: actions/checkout@v4
+
+      - name: "Configure AWS credentials"
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN_API_DEPLOY }}
+          aws-region: ${{ vars.AWS_REGION }}
+
+      - name: "Login to Amazon ECR"
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: "Build, tag, and push API image to Amazon ECR"
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY: ${{ vars.ECR_REPOSITORY_NAME }}
+          IMAGE_TAG: ${{ github.sha }}
+        run: |
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f api/ShiftGiving/Dockerfile api/ShiftGiving
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+
+      - name: "Set output image URI"
+        id: set-image
+        run: echo "API_IMAGE_URI=${{ steps.login-ecr.outputs.registry }}/${{ vars.ECR_REPOSITORY_NAME }}:${{ github.sha }}" >> $GITHUB_OUTPUT
+  deploy-api-qa:
+    name: "Deploy API to QA"
+    runs-on: ubuntu-latest
+    needs: build-and-push-api-docker-qa
+    environment: QA
+
+    steps:
+      - name: "Checkout repository code"
+        uses: actions/checkout@v4
+
+      - name: "Configure AWS credentials"
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN_API_DEPLOY }}
+          aws-region: ${{ vars.AWS_REGION }}
+
+      - name: "Render environment-specific task definition template"
+        id: render-env-task-def
+        run: |
+          TEMP_TASK_DEF_FILE="api/ecs-task-definition-rendered.json"
+          cp api/ecs-task-definition.json "$TEMP_TASK_DEF_FILE"
+
+          sed -i "s|ECS_TASK_DEFINITION_FAMILY_PLACEHOLDER|${{ vars.ECS_API_TASK_DEFINITION_FAMILY }}|g" "$TEMP_TASK_DEF_FILE"
+          sed -i "s|ECS_LOG_GROUP_NAME_PLACEHOLDER|${{ vars.ECS_LOG_GROUP_NAME }}|g" "$TEMP_TASK_DEF_FILE"
+          sed -i "s|AWS_REGION_PLACEHOLDER|${{ vars.AWS_REGION }}|g" "$TEMP_TASK_DEF_FILE"
+          sed -i "s|ECS_TASK_CONTAINER_NAME_PLACEHOLDER|${{ vars.ECS_API_CONTAINER_NAME }}|g" "$TEMP_TASK_DEF_FILE"
+          sed -i "s|ECS_EXECUTION_ROLE_ARN_PLACEHOLDER|arn:aws:iam::${{ vars.AWS_ACCOUNT_ID }}:role/${{ vars.ECS_API_EXECUTION_ROLE_NAME }}|g" "$TEMP_TASK_DEF_FILE"
+          sed -i "s|ECS_TASK_ROLE_ARN_PLACEHOLDER|arn:aws:iam::${{ vars.AWS_ACCOUNT_ID }}:role/${{ vars.ECS_API_TASK_ROLE_NAME }}|g" "$TEMP_TASK_DEF_FILE"
+
+          echo "TEMPLATED_TASK_DEF_PATH=$TEMP_TASK_DEF_FILE" >> "$GITHUB_OUTPUT"
+
+      - name: "Fill in the new image ID in the ECS task definition"
+        id: render-task-def
+        uses: aws-actions/amazon-ecs-render-task-definition@v1
+        with:
+          task-definition: ${{ steps.render-env-task-def.outputs.TEMPLATED_TASK_DEF_PATH }}
+          container-name: ${{ vars.ECS_API_CONTAINER_NAME }}
+          image: ${{ needs.build-and-push-api-docker-qa.outputs.api_image_uri }}
+
+      - name: "Deploy Amazon ECS task definition"
+        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+        with:
+          service: ${{ vars.ECS_API_SERVICE_NAME }}
+          cluster: ${{ vars.ECS_CLUSTER_NAME }}
+          task-definition: ${{ steps.render-task-def.outputs.task-definition }}
+          wait-for-service-stability: true
+  build-and-deploy-web-qa:
+    name: "Deploy Web App to QA"
+    runs-on: ubuntu-latest
+    needs: [deploy-api-qa]
+    environment: QA
+
+    steps:
+      - name: "Checkout repository code"
+        uses: actions/checkout@v4
+
+      - name: "Setup Node.js"
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: "Install React dependencies"
+        run: npm install
+        working-directory: web
+
+      - name: "Build React application"
+        run: npm run build
+        working-directory: web
+
+      - name: "Configure AWS credentials"
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN_WEB_DEPLOY }}
+          aws-region: ${{ vars.AWS_REGION }}
+
+      - name: "Deploy to S3"
+        run: |
+          aws s3 sync web/dist s3://${{ vars.S3_WEB_BUCKET_NAME }} --delete
+
+      - name: "Invalidate CloudFront cache"
+        run: |
+          aws cloudfront create-invalidation --distribution-id ${{ vars.CLOUDFRONT_WEB_DISTRIBUTION_ID }} --paths "/*"
