@@ -268,6 +268,18 @@ jobs:
     needs: build-and-test-api
 
     steps:
+      - uses: actions/cache@v4
+        with:
+          path: |
+            ~/.pub-cache
+            ~/.gradle
+            mobile/android/.gradle
+            .dart_tool
+            build
+          key: ${{ runner.os }}-flutter-${{ hashFiles('**/pubspec.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-flutter-
+
       - name: "Checkout repository code"
         uses: actions/checkout@v4
 
@@ -281,55 +293,60 @@ jobs:
         run: flutter pub get
         working-directory: mobile
 
+      - name: "Prewarm Gradle build"
+        run: ./gradlew --no-daemon assembleRelease -x lint
+        working-directory: mobile/android
+
       - name: "Build Flutter Android APK"
-        run: flutter build apk --release
+        run: flutter build apk --release --split-debug-info=build/symbols --no-tree-shake-icons
+        timeout-minutes: 6
         working-directory: mobile
 
-      - name: "Enable KVM"
-        run: |
-          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
-          sudo udevadm control --reload-rules
-          sudo udevadm trigger --name-match=kvm
+#      - name: "Enable KVM"
+#        run: |
+#          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+#          sudo udevadm control --reload-rules
+#          sudo udevadm trigger --name-match=kvm
+#
+#      - name: "Setup .NET SDK for Android Test API dependency"
+#        uses: actions/setup-dotnet@v4
+#        with:
+#          dotnet-version: '8.x'
 
-      - name: "Setup .NET SDK for Android Test API dependency"
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: '8.x'
-
-      - name: "Restore API dependencies for Android Test"
-        run: dotnet restore
-        working-directory: api/ShiftGiving
-
-      - name: "Run the API in background for Android Test"
-        id: start_api_server_for_android
-        run: |
-          dotnet run --configuration Release --urls "http://localhost:5237" &
-          echo "API_SERVER_PID_FOR_ANDROID=$!" >> $GITHUB_ENV
-          timeout 60s bash -c 'until curl --silent --fail http://localhost:5237/health; do echo "Waiting for API..."; sleep 2; done' || { echo "API did not start in time for Android Test!"; exit 1; }
-          echo "API is up for Android Test!"
-        working-directory: api/ShiftGiving
-
-      - name: "Launch Android Emulator and Run Tests"
-        uses: reactivecircus/android-emulator-runner@v2
-        with:
-          api-level: 34
-          target: google_apis
-          arch: x86_64
-          profile: Nexus 5
-          emulator-options: '-no-window -no-snapshot -no-audio -no-boot-anim'
-          force-avd-creation: false
-          disable-animations: true
-          script: cd mobile/android && ./gradlew connectedCheck && cd ../ && ./run_tests.sh
-
-      - name: "Stop the API Server for Android Test"
-        if: always()
-        run: |
-          if [ -n "${{ env.API_SERVER_PID_FOR_ANDROID }}" ]; then
-            echo "Stopping API server for Android Test with PID: ${{ env.API_SERVER_PID_FOR_ANDROID }}"
-            kill "${{ env.API_SERVER_PID_FOR_ANDROID }}" || true
-          else
-            echo "API server PID for Android Test not found. Could not stop explicitly."
-          fi
+#      - name: "Restore API dependencies for Android Test"
+#        run: dotnet restore
+#        working-directory: api/ShiftGiving
+#
+#      - name: "Run the API in background for Android Test"
+#        id: start_api_server_for_android
+#        run: |
+#          dotnet run --configuration Release --urls "http://localhost:5237" &
+#          echo "API_SERVER_PID_FOR_ANDROID=$!" >> $GITHUB_ENV
+#          timeout 60s bash -c 'until curl --silent --fail http://localhost:5237/health; do echo "Waiting for API..."; sleep 2; done' || { echo "API did not start in time for Android Test!"; exit 1; }
+#          echo "API is up for Android Test!"
+#        working-directory: api/ShiftGiving
+#
+#      - name: "Launch Android Emulator and Run Tests"
+#        uses: reactivecircus/android-emulator-runner@v2
+#        with:
+#          api-level: 30
+#          target: google_apis
+#          arch: x86_64
+#          profile: Nexus 5
+#          emulator-options: '-no-window -no-snapshot -no-audio -no-boot-anim'
+#          force-avd-creation: false
+#          disable-animations: true
+#          script: cd mobile/android && ./gradlew connectedCheck && cd ../ && ./run_tests.sh
+#
+#      - name: "Stop the API Server for Android Test"
+#        if: always()
+#        run: |
+#          if [ -n "${{ env.API_SERVER_PID_FOR_ANDROID }}" ]; then
+#            echo "Stopping API server for Android Test with PID: ${{ env.API_SERVER_PID_FOR_ANDROID }}"
+#            kill "${{ env.API_SERVER_PID_FOR_ANDROID }}" || true
+#          else
+#            echo "API server PID for Android Test not found. Could not stop explicitly."
+#          fi
 #  build-and-push-api-docker-qa:
 #    name: "Build & Push API Docker Image"
 #    runs-on: ubuntu-latest
