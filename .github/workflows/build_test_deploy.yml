@@ -295,7 +295,7 @@ jobs:
         working-directory: mobile
 
       - name: "Build Flutter Android APK"
-        run: flutter build apk --release --split-debug-info=build/symbols --no-tree-shake-icons --split-per-abi --verbose
+        run: flutter build apk --release --split-debug-info=build/symbols --no-tree-shake-icons --split-per-abi
         working-directory: mobile
 
       - name: "Enable KVM"
