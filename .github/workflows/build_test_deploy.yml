@@ -100,12 +100,6 @@ jobs:
           key: ${{ runner.os }}-playwright-${{ hashFiles('web/package-lock.json') }}
           restore-keys: ${{ runner.os }}-playwright-
 
-      - name: Cache serve CLI
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/serve
-          key: ${{ runner.os }}-serve
-
       - name: "Checkout repository code"
         uses: actions/checkout@v4
 
@@ -229,22 +223,11 @@ jobs:
         with:
           dotnet-version: '8.x'
 
-      - name: Download API Artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: api-out
-          path: api/ShiftGiving/out
-
-      - name: Make API binary executable
-        run: chmod +x ./out/ShiftGiving
-        working-directory: api/ShiftGiving
-
       - name: "Run the API in background for iOS Test"
-        id: start_api_server_for_ios
         run: |
-          ASPNETCORE_URLS=http://localhost:5237 ./out/ShiftGiving &
+          dotnet run --configuration Release --urls "http://localhost:5237" &
           echo "API_SERVER_PID_FOR_IOS=$!" >> $GITHUB_ENV
-          timeout 60s bash -c 'until curl --silent --fail http://localhost:5237/health; do echo "Waiting for API..."; sleep 2; done' || { echo "API did not start in time for iOS Test!"; exit 1; }
+          timeout 60s bash -c 'until curl --silent --fail http://localhost:5237/health; do echo "Waiting for API..."; sleep 2; done' || exit 1
           echo "API is up for iOS Test!"
         working-directory: api/ShiftGiving
 
