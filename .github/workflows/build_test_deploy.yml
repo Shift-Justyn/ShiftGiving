@@ -71,6 +71,12 @@ jobs:
           else
             echo "API server PID not found. Could not stop explicitly."
           fi
+
+      - name: Upload API Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: api-out
+          path: api/ShiftGiving/out
   build-and-test-web:
     name: "Build & Test Web"
     runs-on: ubuntu-latest
@@ -125,14 +131,15 @@ jobs:
         with:
           dotnet-version: '8.x'
 
-      - name: "Restore API dependencies for Web Test"
-        run: dotnet restore
-        working-directory: api/ShiftGiving
+      - name: Download API Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: api-out
+          path: api/ShiftGiving/out
 
       - name: "Run the API in background for Web Test"
         id: start_api_server_for_web
         run: |
-          dotnet publish --configuration Release -o out
           ASPNETCORE_URLS=http://localhost:5237 ./out/ShiftGiving &
           echo "API_SERVER_PID_FOR_WEB=$!" >> $GITHUB_ENV
           timeout 60s bash -c 'until curl --silent --fail http://localhost:5237/health; do echo "Waiting for API..."; sleep 2; done' || { echo "API did not start in time for Web Test!"; exit 1; }
@@ -223,14 +230,16 @@ jobs:
         with:
           dotnet-version: '8.x'
 
-      - name: "Restore API dependencies for iOS Test"
-        run: dotnet restore
-        working-directory: api/ShiftGiving
+      - name: Download API Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: api-out
+          path: api/ShiftGiving/out
 
       - name: "Run the API in background for iOS Test"
         id: start_api_server_for_ios
         run: |
-          dotnet run --configuration Release --urls "http://localhost:5237" &
+          ASPNETCORE_URLS=http://localhost:5237 ./out/ShiftGiving &
           echo "API_SERVER_PID_FOR_IOS=$!" >> $GITHUB_ENV
           timeout 60s bash -c 'until curl --silent --fail http://localhost:5237/health; do echo "Waiting for API..."; sleep 2; done' || { echo "API did not start in time for iOS Test!"; exit 1; }
           echo "API is up for iOS Test!"
@@ -363,14 +372,16 @@ jobs:
         with:
           dotnet-version: '8.x'
 
-      - name: "Restore API dependencies for Android Test"
-        run: dotnet restore
-        working-directory: api/ShiftGiving
+      - name: Download API Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: api-out
+          path: api/ShiftGiving/out
 
       - name: "Run the API in background for Android Test"
         id: start_api_server_for_android
         run: |
-          dotnet run --configuration Release --urls "http://localhost:5237" &
+          ASPNETCORE_URLS=http://localhost:5237 ./out/ShiftGiving &
           echo "API_SERVER_PID_FOR_ANDROID=$!" >> $GITHUB_ENV
           timeout 60s bash -c 'until curl --silent --fail http://localhost:5237/health; do echo "Waiting for API..."; sleep 2; done' || { echo "API did not start in time for Android Test!"; exit 1; }
           echo "API is up for Android Test!"
