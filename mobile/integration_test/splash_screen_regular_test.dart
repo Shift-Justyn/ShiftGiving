@@ -10,7 +10,7 @@ void splashScreenRegularTests() {
     testWidgets(
       'Should navigate from SplashScreen to HomePage after 3 seconds',
           (WidgetTester tester) async {
-        app.main();
+        await tester.pumpWidget(const app.ShiftGivingApp());
         await tester.pumpAndSettle();
 
         expect(find.byType(SplashScreen), findsOneWidget);
