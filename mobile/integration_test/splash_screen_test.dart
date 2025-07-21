@@ -1,7 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
+import 'package:flutter/material.dart';
 
-import 'app_test.dart' as test_app;
+import 'app.dart';
 import 'package:shift_giving/home_page.dart';
 import 'package:shift_giving/splash_screen.dart';
 
@@ -10,7 +11,9 @@ void splashScreenTests() {
     testWidgets(
       'Should navigate from SplashScreen to HomePage quickly in test mode',
           (WidgetTester tester) async {
-        await tester.pumpWidget(const test_app.ShiftGivingTestApp());
+        await tester.pumpWidget(
+          const ShiftGivingApp(splashDelay: Duration(milliseconds: 100))
+        );
         await tester.pumpAndSettle();
 
         expect(find.byType(SplashScreen), findsOneWidget);
