@@ -12,7 +12,7 @@ resource "aws_ecr_repository" "app_repo" {
 }
 
 resource "aws_cloudwatch_log_group" "app_logs" {
-  name              = "/ecs/${var.project_name}-${var.service_name_suffix}"
+  name              = "${var.project_name}-${var.service_name_suffix}"
   retention_in_days = 30
 
   tags = {
