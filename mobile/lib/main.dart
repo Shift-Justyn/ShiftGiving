@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shift_giving/splash_screen.dart';
 
 void main() {
-  runApp(ShiftGivingApp());
+  runApp(const ShiftGivingApp());
 }
 
 class ShiftGivingApp extends StatelessWidget {
