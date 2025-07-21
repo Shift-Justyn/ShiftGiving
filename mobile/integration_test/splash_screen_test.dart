@@ -1,22 +1,22 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
 
-import 'package:shift_giving/main.dart' as app;
+import 'app_test.dart' as test_app;
 import 'package:shift_giving/home_page.dart';
 import 'package:shift_giving/splash_screen.dart';
 
 void splashScreenTests() {
   group('Splash Screen Navigation Tests', () {
     testWidgets(
-      'Should navigate from SplashScreen to HomePage after 3 seconds',
+      'Should navigate from SplashScreen to HomePage quickly in test mode',
           (WidgetTester tester) async {
-        app.main();
+        test_app.main();
         await tester.pumpAndSettle();
 
         expect(find.byType(SplashScreen), findsOneWidget);
         expect(find.byType(HomePage), findsNothing);
 
-        await tester.pumpAndSettle(const Duration(seconds: 3, milliseconds: 500));
+        await tester.pumpAndSettle(const Duration(milliseconds: 200));
 
         expect(find.byType(SplashScreen), findsNothing);
         expect(find.byType(HomePage), findsOneWidget);

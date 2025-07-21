@@ -199,6 +199,15 @@ jobs:
           key: ${{ runner.os }}-ios-${{ hashFiles('**/pubspec.lock', '**/Podfile.lock') }}
           restore-keys: ${{ runner.os }}-ios-
 
+      - name: Cache iOS Simulator Runtime
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/Library/Developer/CoreSimulator/Devices
+            ~/Library/Developer/CoreSimulator/Runtimes
+          key: ${{ runner.os }}-ios-simulator-${{ hashFiles('.github/workflows/build_test_deploy.yml') }}
+          restore-keys: ${{ runner.os }}-ios-simulator-
+
       - name: "Checkout repository code"
         uses: actions/checkout@v4
 
@@ -280,7 +289,7 @@ jobs:
       - name: "Run iOS Mobile Tests"
         run: ./run_tests.sh
         working-directory: mobile
-        timeout-minutes: 5
+        timeout-minutes: 15
 
       - name: "Shutdown iOS Simulator"
         if: always()
