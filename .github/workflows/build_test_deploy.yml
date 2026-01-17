@@ -419,8 +419,12 @@ jobs:
           else
             echo "API server PID for Android Test not found. Could not stop explicitly."
           fi
+  # DEPLOYMENT JOBS DISABLED - Enable when ready for AWS AppRunner deployment
+  # Uncomment 'if: false' lines when local development is complete
+
   build-and-push-api-docker-qa:
     name: "Build & Push API Docker Image"
+    if: false  # Disabled until ready for deployment
     runs-on: ubuntu-latest
     needs: [build-and-test-api, build-and-test-web, build-and-test-mobile-ios, build-and-test-mobile-android]
     environment: QA
@@ -455,6 +459,7 @@ jobs:
         run: echo "API_IMAGE_URI=${{ steps.login-ecr.outputs.registry }}/${{ vars.ECR_REPOSITORY_NAME }}:${{ github.sha }}" >> $GITHUB_OUTPUT
   deploy-api-qa:
     name: "Deploy API to QA"
+    if: false  # Disabled until ready for deployment
     runs-on: ubuntu-latest
     needs: build-and-push-api-docker-qa
     environment: QA
@@ -501,6 +506,7 @@ jobs:
           wait-for-service-stability: true
   build-and-deploy-web-qa:
     name: "Deploy Web App to QA"
+    if: false  # Disabled until ready for deployment
     runs-on: ubuntu-latest
     needs: [deploy-api-qa]
     environment: QA
