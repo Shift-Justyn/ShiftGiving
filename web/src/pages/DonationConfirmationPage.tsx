@@ -4,6 +4,7 @@ import styled, { keyframes } from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { getDonationById } from '../api/donations';
 import { Donation } from '../api/types';
+import { FeatureFlag } from '../components/FeatureFlag';
 
 export const DonationConfirmationPage = () => {
   const { t } = useTranslation();
@@ -131,20 +132,22 @@ export const DonationConfirmationPage = () => {
             <PrimaryLink to="/">{t('donation.backToCampaigns')}</PrimaryLink>
           </ActionsSection>
 
-          <ShareSection>
-            <ShareText>Share your support</ShareText>
-            <ShareButtons>
-              <ShareButton $platform="twitter">
-                <span>&#128038;</span>
-              </ShareButton>
-              <ShareButton $platform="facebook">
-                <span>f</span>
-              </ShareButton>
-              <ShareButton $platform="linkedin">
-                <span>in</span>
-              </ShareButton>
-            </ShareButtons>
-          </ShareSection>
+          <FeatureFlag name="SOCIAL_SHARING">
+            <ShareSection>
+              <ShareText>Share your support</ShareText>
+              <ShareButtons>
+                <ShareButton $platform="twitter">
+                  <span>&#128038;</span>
+                </ShareButton>
+                <ShareButton $platform="facebook">
+                  <span>f</span>
+                </ShareButton>
+                <ShareButton $platform="linkedin">
+                  <span>in</span>
+                </ShareButton>
+              </ShareButtons>
+            </ShareSection>
+          </FeatureFlag>
         </SuccessCard>
 
         <ThankYouNote>

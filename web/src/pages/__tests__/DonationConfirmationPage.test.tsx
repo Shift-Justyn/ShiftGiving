@@ -3,6 +3,7 @@ import { DonationConfirmationPage } from '../DonationConfirmationPage';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from '../../context/AuthContext';
 import { ThemeProvider } from '../../context/ThemeContext';
+import { FeatureFlagsProvider } from '../../context/FeatureFlagsContext';
 import * as donationApi from '../../api/donations';
 
 jest.mock('../../api/donations');
@@ -26,13 +27,15 @@ const renderConfirmationPage = () => {
   window.history.pushState({}, '', '/donations/donation-123/confirmation');
   return render(
     <BrowserRouter>
-      <ThemeProvider>
-        <AuthProvider>
-          <Routes>
-            <Route path="/donations/:id/confirmation" element={<DonationConfirmationPage />} />
-          </Routes>
-        </AuthProvider>
-      </ThemeProvider>
+      <FeatureFlagsProvider>
+        <ThemeProvider>
+          <AuthProvider>
+            <Routes>
+              <Route path="/donations/:id/confirmation" element={<DonationConfirmationPage />} />
+            </Routes>
+          </AuthProvider>
+        </ThemeProvider>
+      </FeatureFlagsProvider>
     </BrowserRouter>
   );
 };
