@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:shift_giving/home_page.dart';
+import 'package:shift_giving/presentation/screens/home/home_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   final Duration? overrideDelay;
@@ -25,7 +25,7 @@ class _SplashScreenState extends State<SplashScreen> {
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-              builder: (context) => HomePage(),
+              builder: (context) => const HomeScreen(),
             ),
           );
         }
