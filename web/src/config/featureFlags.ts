@@ -15,5 +15,5 @@ export const FLAG_DESCRIPTIONS: Record<FeatureFlagName, string> = {
 export const FEATURE_FLAGS_STORAGE_KEY = 'feature_flags';
 
 export const isProduction = (): boolean => {
-  return process.env.NODE_ENV === 'production';
+  return import.meta.env.PROD;
 };

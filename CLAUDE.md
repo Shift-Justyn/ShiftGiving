@@ -16,7 +16,7 @@ Shift Giving is a full-stack donation platform that enables users to make donati
 | Component | Technology | Location |
 |-----------|------------|----------|
 | API | .NET 10, ASP.NET Core | `/api/ShiftGiving/` |
-| Web | React 19, Webpack 5, TypeScript | `/web/` |
+| Web | React 19, Vite, TypeScript | `/web/` |
 | Mobile | Flutter 3.27.x+, Dart 3.6.1+ | `/mobile/` |
 | Infrastructure | Terraform, AWS | `/infrastructure/` |
 | CI/CD | GitHub Actions | `.github/workflows/` |
@@ -69,7 +69,7 @@ These standards govern all AI-assisted development on this project.
 ### Infrastructure & Architecture
 
 - Monorepo structure
-- Web: TypeScript, Jest, Playwright, styled-components, Vite (note: currently using Webpack)
+- Web: TypeScript, Jest, Playwright, styled-components, Vite
 - No Redux
 - Server-side rendering preferred
 - Support dark/light modes, responsive design, accessibility
@@ -194,13 +194,13 @@ These standards govern all AI-assisted development on this project.
 | Test coverage reporting | Completed | Jest coverage with thresholds, coverlet for .NET |
 | Dark/light mode | Completed | ThemeContext with localStorage persistence, system preference detection |
 | Localization (i18n) | Completed | react-i18next with en-US, language detection, localStorage persistence |
+| Feature flags | Completed | FeatureFlagsContext with dev tools, localStorage persistence |
+| Vite bundler | Completed | Migrated from Webpack to Vite |
 
 ### Gaps to Address
 
 | Guideline | Current State | Action Needed |
 |-----------|---------------|---------------|
-| Vite bundler | Using Webpack | Consider migrating to Vite |
-| Feature flags | Not implemented | Add feature flag system |
 | Mobile app testing | Not tested | Test end-to-end with local API |
 
 ---
@@ -221,8 +221,10 @@ dotnet test             # Run unit tests
 cd web
 nvm use                 # Use Node version from .nvmrc
 npm install             # Install dependencies
-npm start               # Run dev server on http://localhost:8080
-npm run build           # Production build
+npm start               # Run Vite dev server on http://localhost:8080
+npm run dev             # Alias for npm start
+npm run build           # Vite production build
+npm run preview         # Preview production build
 npm test                # Run Jest unit tests with coverage
 npm run test:coverage   # Run tests with full coverage report
 npm run e2e             # Run Playwright e2e tests
@@ -280,7 +282,7 @@ Figma exports are stored in `/ShiftGivesFigma/` including:
 ## Key Configuration Files
 
 - `/api/ShiftGiving/appsettings.json` - API configuration
-- `/web/webpack.config.js` - Webpack bundler config
+- `/web/vite.config.ts` - Vite bundler config
 - `/mobile/pubspec.yaml` - Flutter dependencies
 - `/infrastructure/main.tf` - Terraform main config
 - `/.github/workflows/build_test_deploy.yml` - CI/CD pipeline
