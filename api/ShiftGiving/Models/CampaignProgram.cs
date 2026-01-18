@@ -1,0 +1,13 @@
+namespace ShiftGiving.Models;
+
+public class CampaignProgram
+{
+    public Guid Id { get; set; }
+    public Guid CampaignId { get; set; }
+    public string Name { get; set; } = string.Empty;
+    public string? Description { get; set; }
+    public decimal? AllocationPercentage { get; set; }
+    public DateTime CreatedAt { get; set; }
+
+    public Campaign Campaign { get; set; } = null!;
+}

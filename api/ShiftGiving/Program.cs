@@ -1,12 +1,40 @@
-var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddHealthChecks();
+using ShiftGiving.Endpoints;
+using ShiftGiving.Extensions;
 
-if (builder.Environment.IsProduction() && string.IsNullOrEmpty(Environment.GetEnvironmentVariable("ASPNETCORE_URLS")))
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDatabase(builder.Configuration, builder.Environment);
+builder.Services.AddApplicationServices();
+builder.Services.AddJwtAuthentication(builder.Configuration);
+builder.Services.AddHealthChecksWithDatabase();
+builder.Services.AddCors(options =>
 {
-    builder.WebHost.UseUrls("http://*:80");
-}
+    options.AddPolicy("Development", policy =>
+    {
+        policy.WithOrigins("http://localhost:8080", "http://localhost:3000")
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            .AllowCredentials();
+    });
+});
+builder.ConfigureProductionUrls();
 
 var app = builder.Build();
-app.MapGet("/", () => "Hello World!");
-app.MapHealthChecks("/health");
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseCors("Development");
+}
+
+app.UseAuthentication();
+app.UseAuthorization();
+
+app.MapHealthEndpoints();
+app.MapAuthEndpoints();
+app.MapCampaignEndpoints();
+app.MapOrganizationEndpoints();
+app.MapDonationEndpoints();
+
 app.Run();
+
+public partial class Program { }

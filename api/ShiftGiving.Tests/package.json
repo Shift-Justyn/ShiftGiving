@@ -4,6 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test": "dotnet test --filter 'Category=Unit'",
+    "test:coverage": "dotnet test --filter 'Category=Unit' --collect:\"XPlat Code Coverage\" --results-directory:./coverage",
     "e2e": "dotnet test --filter 'Category=API'"
   },
   "keywords": [],
