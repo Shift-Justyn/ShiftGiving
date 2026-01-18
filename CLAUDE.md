@@ -8,16 +8,16 @@ Shift Giving is a full-stack donation platform that enables users to make donati
 
 - **Web Application**: React-based frontend
 - **Mobile Application**: Flutter-based iOS and Android app
-- **Backend API**: ASP.NET Core (.NET 8) minimal API
+- **Backend API**: ASP.NET Core (.NET 10) minimal API
 - **Infrastructure**: AWS (ECS, S3, CloudFront, RDS) managed via Terraform
 
 ## Tech Stack
 
 | Component | Technology | Location |
 |-----------|------------|----------|
-| API | .NET 8, ASP.NET Core | `/api/ShiftGiving/` |
+| API | .NET 10, ASP.NET Core | `/api/ShiftGiving/` |
 | Web | React 19, Webpack 5, TypeScript | `/web/` |
-| Mobile | Flutter 3.27.x, Dart 3.6.1+ | `/mobile/` |
+| Mobile | Flutter 3.27.x+, Dart 3.6.1+ | `/mobile/` |
 | Infrastructure | Terraform, AWS | `/infrastructure/` |
 | CI/CD | GitHub Actions | `.github/workflows/` |
 
@@ -25,7 +25,7 @@ Shift Giving is a full-stack donation platform that enables users to make donati
 
 ```
 /shift-giving/
-├── api/                    # .NET 8 backend API
+├── api/                    # .NET 10 backend API
 │   ├── ShiftGiving/        # Main API project
 │   └── ShiftGiving.Tests/  # API unit tests
 ├── web/                    # React frontend
@@ -176,21 +176,32 @@ These standards govern all AI-assisted development on this project.
 | No Redux | Aligned | No Redux dependency found |
 | Shell scripts for tests | Aligned | run_tests.sh, run_linter.sh present |
 
+### Completed Items
+
+| Guideline | Status | Notes |
+|-----------|--------|-------|
+| styled-components | Completed | Installed and used in web app |
+| ESLint + Prettier | Completed | Configured in web/.eslintrc.js and .prettierrc |
+| Docker Postgres locally | Completed | docker-compose.yml with start/stop scripts |
+| Health endpoint | Completed | /health endpoint in API |
+| Seeded test data | Completed | 3 users, 2 orgs, 5 campaigns, 10 donations |
+| Web app authentication | Completed | Login/register with JWT tokens |
+| Web app home page | Completed | Campaigns and organizations display |
+| Web app campaign detail | Completed | Full campaign details view |
+| API CORS | Completed | Configured for localhost development |
+| Password hashing | Completed | BCrypt implementation |
+| Pre-commit hooks | Completed | Husky with lint-staged, runs linting and tests |
+| Test coverage reporting | Completed | Jest coverage with thresholds, coverlet for .NET |
+| Dark/light mode | Completed | ThemeContext with localStorage persistence, system preference detection |
+| Localization (i18n) | Completed | react-i18next with en-US, language detection, localStorage persistence |
+
 ### Gaps to Address
 
 | Guideline | Current State | Action Needed |
 |-----------|---------------|---------------|
-| styled-components | Not installed | Add styled-components to web |
 | Vite bundler | Using Webpack | Consider migrating to Vite |
-| ESLint + Prettier | Not configured | Add ESLint and Prettier |
-| Docker Postgres locally | Not configured | Add docker-compose for local DB |
-| Health endpoint | Not implemented | Add /health endpoint to API |
 | Feature flags | Not implemented | Add feature flag system |
-| Dark/light mode | Not implemented | Add theme support |
-| Localization (i18n) | Not implemented | Add internationalization |
-| Pre-commit hooks | Not configured | Add husky or similar |
-| Test coverage reporting | Not configured | Add coverage tooling |
-| Seeded test data | Not implemented | Add database seeding |
+| Mobile app testing | Not tested | Test end-to-end with local API |
 
 ---
 
@@ -212,7 +223,8 @@ nvm use                 # Use Node version from .nvmrc
 npm install             # Install dependencies
 npm start               # Run dev server on http://localhost:8080
 npm run build           # Production build
-npm test                # Run Jest unit tests
+npm test                # Run Jest unit tests with coverage
+npm run test:coverage   # Run tests with full coverage report
 npm run e2e             # Run Playwright e2e tests
 ```
 
