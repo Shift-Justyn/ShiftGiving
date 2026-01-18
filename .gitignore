@@ -1,2 +1,36 @@
 .idea/
 .DS_Store
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Docker volumes
+postgres_data/
+
+# IDE
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+tmp/
+temp/
+
+# Node modules (root level for husky)
+node_modules/
+
+# Test coverage
+coverage/
+*.lcov
+TestResults/

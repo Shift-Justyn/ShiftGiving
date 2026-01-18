@@ -1,0 +1,23 @@
+{
+  "name": "shift-giving",
+  "version": "1.0.0",
+  "description": "Shift Giving is a full-stack donation platform that enables users to make donations to organization campaigns.",
+  "private": true,
+  "scripts": {
+    "test:web": "cd web && npm test",
+    "test:api": "cd api/ShiftGiving.Tests && dotnet test",
+    "lint:web": "cd web && npm run lint",
+    "format:web": "cd web && npm run format",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "web/src/**/*.{ts,tsx}": [
+      "npm run lint:web --",
+      "npm run format:web --"
+    ]
+  },
+  "devDependencies": {
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.7"
+  }
+}
