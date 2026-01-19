@@ -184,9 +184,9 @@ These standards govern all AI-assisted development on this project.
 | ESLint + Prettier | Completed | Configured in web/.eslintrc.js and .prettierrc |
 | Docker Postgres locally | Completed | docker-compose.yml with start/stop scripts |
 | Health endpoint | Completed | /health endpoint in API |
-| Seeded test data | Completed | 3 users, 2 orgs, 5 campaigns, 10 donations |
+| Seeded test data | Completed | 3 users, 5 orgs, 8 campaigns, 15 donations (mock data) |
 | Web app authentication | Completed | Login/register with JWT tokens |
-| Web app home page | Completed | Campaigns and organizations display |
+| Web app home page | Completed | Campaigns and organizations display with animations |
 | Web app campaign detail | Completed | Full campaign details view |
 | API CORS | Completed | Configured for localhost development |
 | Password hashing | Completed | BCrypt implementation |
@@ -196,12 +196,85 @@ These standards govern all AI-assisted development on this project.
 | Localization (i18n) | Completed | react-i18next with en-US, language detection, localStorage persistence |
 | Feature flags | Completed | FeatureFlagsContext with dev tools, localStorage persistence |
 | Vite bundler | Completed | Migrated from Webpack to Vite |
+| Donation flow | Completed | Amount selection, payment, confirmation screens |
+| History page | Completed | Donation history with search and export options |
+| Messages page | Completed | Notifications with unread indicators |
+| Mock data service | Completed | MSW handlers for offline development |
+| Framer-motion animations | Completed | Carbon-inspired UI enhancements |
 
 ### Gaps to Address
 
 | Guideline | Current State | Action Needed |
 |-----------|---------------|---------------|
 | Mobile app testing | Not tested | Test end-to-end with local API |
+| Native app (Expo) | Scaffolded | Complete native donation flow |
+| Stripe integration | Mock only | Add real Stripe SDK |
+
+---
+
+## Development Status (January 2026)
+
+### Web App - Completed Phases
+
+| Phase | Status | Features |
+|-------|--------|----------|
+| Phase 1 | Complete | Project setup, API models, authentication |
+| Phase 2 | Complete | Home screen, campaign/org cards, tab navigation |
+| Phase 3 | Complete | Donation flow (amount, payment, confirmation) |
+| Phase 4 | Complete | History screen with donation tracking |
+| Phase 5 | Complete | Messages/notifications screen |
+
+### Web App Pages
+
+| Route | Page | Status |
+|-------|------|--------|
+| `/login` | LoginPage | Complete |
+| `/register` | RegisterPage | Complete |
+| `/` | HomePage | Complete (with animations) |
+| `/campaigns/:id` | CampaignDetailPage | Complete |
+| `/campaigns/:id/donate` | DonationPage | Complete |
+| `/campaigns/:id/donate/payment` | PaymentPage | Complete |
+| `/donations/:id/confirmation` | DonationConfirmationPage | Complete |
+| `/history` | HistoryPage | Complete |
+| `/messages` | MessagesPage | Complete |
+
+### Test Files (18 total)
+
+```
+src/api/auth.test.ts
+src/api/campaigns.test.ts
+src/api/client.test.ts
+src/api/donations.test.ts
+src/components/campaigns/CampaignCard.test.tsx
+src/components/navigation/BottomNavigation.test.tsx
+src/components/organizations/OrganizationCard.test.tsx
+src/components/FeatureFlag.test.tsx
+src/context/AuthContext.test.tsx
+src/context/FeatureFlagsContext.test.tsx
+src/pages/__tests__/DonationConfirmationPage.test.tsx
+src/pages/__tests__/DonationPage.test.tsx
+src/pages/__tests__/HistoryPage.test.tsx
+src/pages/__tests__/HomePage.test.tsx
+src/pages/__tests__/MessagesPage.test.tsx
+src/pages/__tests__/PaymentPage.test.tsx
+src/pages/__tests__/PaymentPage.helpers.test.tsx
+src/example.test.ts
+```
+
+### Mock Data Service
+
+The web app includes MSW (Mock Service Worker) for offline development:
+- Location: `web/src/mocks/`
+- Test users: donor@example.com, orgadmin@example.com, siteadmin@example.com
+- Password: password123 (all users)
+- Automatically enabled in development mode
+
+### Next Steps
+
+1. **Native App (Expo)**: Complete donation flow in mobile app
+2. **Stripe Integration**: Replace mock payment with real Stripe SDK
+3. **API Integration**: Connect web app to live .NET API
+4. **E2E Tests**: Add Playwright tests for critical user flows
 
 ---
 

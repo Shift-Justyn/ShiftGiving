@@ -1,11 +1,12 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import styled, { keyframes, css } from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { getCampaignById } from '../api/campaigns';
 import { CampaignDetail } from '../api/types';
 
-const PRESET_AMOUNTS = [25, 50, 100, 250];
+const PRESET_AMOUNTS = [50, 100, 150, 200];
 
 export const DonationPage = () => {
   const { t } = useTranslation();
@@ -92,7 +93,11 @@ export const DonationPage = () => {
 
       <ContentWrapper>
         <MainSection>
-          <CampaignHero>
+          <CampaignHero
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+          >
             <HeroImage $hasImage={!!campaign.featuredImageUrl}>
               {campaign.featuredImageUrl ? (
                 <img src={campaign.featuredImageUrl} alt={campaign.title || campaign.name} />
@@ -117,7 +122,11 @@ export const DonationPage = () => {
             </HeroContent>
           </CampaignHero>
 
-          <FormCard>
+          <FormCard
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.2 }}
+          >
             <FormTitle>{t('donation.selectAmount')}</FormTitle>
 
             <AmountGrid>
@@ -128,6 +137,16 @@ export const DonationPage = () => {
                   $selected={amount === String(preset)}
                   $index={index}
                   onClick={() => handlePresetClick(preset)}
+                  whileHover={{ scale: 1.05, y: -4 }}
+                  whileTap={{ scale: 0.98 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    type: 'spring',
+                    stiffness: 300,
+                    damping: 20,
+                    delay: index * 0.05,
+                  }}
                 >
                   <AmountValue>${preset}</AmountValue>
                 </AmountButton>
@@ -135,7 +154,7 @@ export const DonationPage = () => {
             </AmountGrid>
 
             <CustomAmountSection>
-              <CustomAmountLabel>Or enter custom amount</CustomAmountLabel>
+              <CustomAmountLabel>Enter Here</CustomAmountLabel>
               <CustomAmountInput>
                 <CurrencyPrefix>$</CurrencyPrefix>
                 <AmountField
@@ -184,7 +203,11 @@ export const DonationPage = () => {
         </MainSection>
 
         <SideSection>
-          <SummaryCard>
+          <SummaryCard
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.4, delay: 0.3 }}
+          >
             <SummaryHeader>
               <SummaryIcon>&#128176;</SummaryIcon>
               <SummaryTitle>{t('donation.summary')}</SummaryTitle>
@@ -210,6 +233,8 @@ export const DonationPage = () => {
               type="button"
               onClick={handleContinue}
               disabled={!amount || Number(amount) <= 0}
+              whileHover={{ scale: 1.02, y: -2 }}
+              whileTap={{ scale: 0.98 }}
             >
               {t('donation.continueToPayment')}
               <ButtonArrow>&rarr;</ButtonArrow>
@@ -229,11 +254,6 @@ export const DonationPage = () => {
 const fadeIn = keyframes`
   from { opacity: 0; transform: translateY(0.625rem); }
   to { opacity: 1; transform: translateY(0); }
-`;
-
-const pulse = keyframes`
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
 `;
 
 const spin = keyframes`
@@ -328,7 +348,7 @@ const MainSection = styled.div`
   gap: 1.5rem;
 `;
 
-const CampaignHero = styled.div`
+const CampaignHero = styled(motion.div)`
   background: white;
   border-radius: 1rem;
   overflow: hidden;
@@ -418,20 +438,29 @@ const GoalText = styled.span`
   color: ${({ theme }) => theme.colors.text.secondary};
 `;
 
-const FormCard = styled.div`
+const FormCard = styled(motion.div)`
   background: white;
   border-radius: 1rem;
   padding: 2rem;
   box-shadow:
     0 4px 6px -1px rgba(0, 0, 0, 0.1),
     0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+
+  &:hover {
+    box-shadow:
+      0 10px 15px -3px rgba(0, 0, 0, 0.1),
+      0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
 `;
 
 const FormTitle = styled.h3`
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: 1.5rem;
+  font-weight: 700;
   color: ${({ theme }) => theme.colors.text.primary};
-  margin: 0 0 1.25rem 0;
+  margin: 0 0 1.5rem 0;
+  line-height: 1.3;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
 `;
 
 const AmountGrid = styled.div`
@@ -445,7 +474,7 @@ const AmountGrid = styled.div`
   }
 `;
 
-const AmountButton = styled.button<{ $selected: boolean; $index: number }>`
+const AmountButton = styled(motion.button)<{ $selected: boolean; $index: number }>`
   padding: 1.25rem 1rem;
   border: 2px solid
     ${({ $selected, theme }) => ($selected ? theme.colors.primary.main : theme.colors.border.light)};
@@ -453,21 +482,13 @@ const AmountButton = styled.button<{ $selected: boolean; $index: number }>`
   background: ${({ $selected, theme }) => ($selected ? theme.colors.primary.light : 'white')};
   cursor: pointer;
   transition: all 0.2s ease;
-  animation: ${fadeIn} 0.3s ease;
-  animation-delay: ${({ $index }) => $index * 0.05}s;
-  animation-fill-mode: both;
+  box-shadow: ${({ $selected }) =>
+    $selected ? '0 8px 16px rgba(0, 160, 196, 0.2)' : '0 2px 4px rgba(0, 0, 0, 0.05)'};
 
   &:hover {
     border-color: ${({ theme }) => theme.colors.primary.main};
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 160, 196, 0.15);
+    box-shadow: 0 8px 20px rgba(0, 160, 196, 0.25);
   }
-
-  ${({ $selected }) =>
-    $selected &&
-    css`
-      animation: ${pulse} 0.3s ease;
-    `}
 `;
 
 const AmountValue = styled.span`
@@ -625,7 +646,7 @@ const SideSection = styled.div`
   }
 `;
 
-const SummaryCard = styled.div`
+const SummaryCard = styled(motion.div)`
   background: white;
   border-radius: 1rem;
   padding: 1.5rem;
@@ -690,7 +711,7 @@ const TotalValue = styled.span<{ $hasValue: boolean }>`
     $hasValue ? theme.colors.text.primary : theme.colors.text.tertiary};
 `;
 
-const ContinueButton = styled.button`
+const ContinueButton = styled(motion.button)`
   width: 100%;
   padding: 1rem 1.5rem;
   background: ${({ theme }) => theme.colors.primary.main};
@@ -709,8 +730,7 @@ const ContinueButton = styled.button`
 
   &:hover:not(:disabled) {
     background: ${({ theme }) => theme.colors.primary.hover};
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 160, 196, 0.3);
+    box-shadow: 0 6px 16px rgba(0, 160, 196, 0.35);
   }
 
   &:disabled {

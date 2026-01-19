@@ -1,7 +1,8 @@
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { useTranslation } from 'react-i18next';
+import { motion } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
 import { createDonation } from '../api/donations';
 
@@ -27,6 +28,11 @@ export const PaymentPage = () => {
   const [cardholderName, setCardholderName] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [coverFees, setCoverFees] = useState(false);
+  const [isRecurring, setIsRecurring] = useState(false);
+  const [recurringFrequency, setRecurringFrequency] = useState('monthly');
+  const [emailReceipt, setEmailReceipt] = useState(true);
+  const [transactionId, setTransactionId] = useState('');
 
   const formatCurrency = (value: number) => {
     return new Intl.NumberFormat('en-US', {
@@ -34,6 +40,28 @@ export const PaymentPage = () => {
       currency: 'USD',
     }).format(value);
   };
+
+  const calculateTransactionFee = (amount: number) => {
+    return amount * 0.029 + 0.5;
+  };
+
+  const calculateTotal = () => {
+    const base = state?.amount || 0;
+    const fee = coverFees ? calculateTransactionFee(base) : 0;
+    return base + fee;
+  };
+
+  const generateTransactionId = () => {
+    const timestamp = Date.now().toString(36);
+    const random = Math.random().toString(36).substring(2, 10);
+    return `TXN-${timestamp}-${random}`.toUpperCase();
+  };
+
+  useEffect(() => {
+    if (state?.amount) {
+      setTransactionId(generateTransactionId());
+    }
+  }, []);
 
   const formatCardNumber = (value: string) => {
     const cleaned = value.replace(/\D/g, '');
@@ -201,6 +229,94 @@ export const PaymentPage = () => {
                 </InputGroup>
               </InputRow>
 
+              <PaymentOptionsSection>
+                <SectionLabel>Payment Options</SectionLabel>
+
+                <CheckboxGroup>
+                  <Checkbox as={motion.div} whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.99 }}>
+                    <CheckboxInput
+                      type="checkbox"
+                      id="coverFees"
+                      checked={coverFees}
+                      onChange={(e) => setCoverFees(e.target.checked)}
+                    />
+                    <CheckboxLabel htmlFor="coverFees">
+                      <CheckboxText>Cover Transaction Fees</CheckboxText>
+                      <CheckboxSubtext>
+                        Add {formatCurrency(calculateTransactionFee(state?.amount || 0))} to help
+                        cover processing costs (2.9% + $0.50)
+                      </CheckboxSubtext>
+                    </CheckboxLabel>
+                    <CheckboxIconWrapper
+                      as={motion.div}
+                      animate={{ scale: coverFees ? 1 : 0, opacity: coverFees ? 1 : 0 }}
+                      transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                    >
+                      &#10003;
+                    </CheckboxIconWrapper>
+                  </Checkbox>
+
+                  <Checkbox as={motion.div} whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.99 }}>
+                    <CheckboxInput
+                      type="checkbox"
+                      id="isRecurring"
+                      checked={isRecurring}
+                      onChange={(e) => setIsRecurring(e.target.checked)}
+                    />
+                    <CheckboxLabel htmlFor="isRecurring">
+                      <CheckboxText>Recurring Transaction</CheckboxText>
+                      {isRecurring && (
+                        <RecurringDropdown
+                          as={motion.select}
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: 'auto' }}
+                          exit={{ opacity: 0, height: 0 }}
+                          value={recurringFrequency}
+                          onChange={(e) => setRecurringFrequency(e.target.value)}
+                        >
+                          <option value="weekly">Weekly</option>
+                          <option value="monthly">Monthly</option>
+                          <option value="quarterly">Quarterly</option>
+                          <option value="yearly">Yearly</option>
+                        </RecurringDropdown>
+                      )}
+                    </CheckboxLabel>
+                    <CheckboxIconWrapper
+                      as={motion.div}
+                      animate={{ scale: isRecurring ? 1 : 0, opacity: isRecurring ? 1 : 0 }}
+                      transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                    >
+                      &#10003;
+                    </CheckboxIconWrapper>
+                  </Checkbox>
+
+                  <Checkbox as={motion.div} whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.99 }}>
+                    <CheckboxInput
+                      type="checkbox"
+                      id="emailReceipt"
+                      checked={emailReceipt}
+                      onChange={(e) => setEmailReceipt(e.target.checked)}
+                    />
+                    <CheckboxLabel htmlFor="emailReceipt">
+                      <CheckboxText>Email Me A Receipt</CheckboxText>
+                      <CheckboxSubtext>Send confirmation to your email address</CheckboxSubtext>
+                    </CheckboxLabel>
+                    <CheckboxIconWrapper
+                      as={motion.div}
+                      animate={{ scale: emailReceipt ? 1 : 0, opacity: emailReceipt ? 1 : 0 }}
+                      transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                    >
+                      &#10003;
+                    </CheckboxIconWrapper>
+                  </Checkbox>
+                </CheckboxGroup>
+
+                <TransactionIdDisplay>
+                  <TransactionIdLabel>Transaction ID</TransactionIdLabel>
+                  <TransactionIdValue>{transactionId}</TransactionIdValue>
+                </TransactionIdDisplay>
+              </PaymentOptionsSection>
+
               <SecurityBadges>
                 <Badge>
                   <BadgeIcon>&#128274;</BadgeIcon>
@@ -241,16 +357,30 @@ export const PaymentPage = () => {
                 <SummaryLabel>{t('donation.donationAmount')}</SummaryLabel>
                 <SummaryValue>{formatCurrency(state.amount)}</SummaryValue>
               </SummaryRow>
+              {coverFees && (
+                <SummaryRow>
+                  <SummaryLabel>Transaction Fees</SummaryLabel>
+                  <SummaryValue>
+                    {formatCurrency(calculateTransactionFee(state.amount))}
+                  </SummaryValue>
+                </SummaryRow>
+              )}
               {state.isAnonymous && (
                 <SummaryRow>
                   <SummaryLabel>Anonymous donation</SummaryLabel>
                   <SummaryBadge>&#10003;</SummaryBadge>
                 </SummaryRow>
               )}
+              {isRecurring && (
+                <SummaryRow>
+                  <SummaryLabel>Recurring {recurringFrequency}</SummaryLabel>
+                  <SummaryBadge>&#10003;</SummaryBadge>
+                </SummaryRow>
+              )}
               <SummaryDivider />
               <TotalRow>
                 <TotalLabel>{t('donation.total')}</TotalLabel>
-                <TotalValue>{formatCurrency(state.amount)}</TotalValue>
+                <TotalValue>{formatCurrency(calculateTotal())}</TotalValue>
               </TotalRow>
             </SummaryContent>
           </SummaryCard>
@@ -772,4 +902,115 @@ const BackLink = styled.button`
   &:hover {
     opacity: 0.8;
   }
+`;
+
+const PaymentOptionsSection = styled.div`
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background: ${({ theme }) => theme.colors.background.page};
+  border-radius: 0.75rem;
+`;
+
+const SectionLabel = styled.h3`
+  font-size: 1rem;
+  font-weight: 600;
+  color: ${({ theme }) => theme.colors.text.primary};
+  margin: 0 0 1rem 0;
+`;
+
+const CheckboxGroup = styled.div`
+  display: flex;
+  gap: 0.75rem;
+  flex-direction: column;
+  margin-bottom: 1.5rem;
+`;
+
+const Checkbox = styled.div`
+  position: relative;
+  display: flex;
+  gap: 0.75rem;
+  padding: 1rem;
+  border: 2px solid ${({ theme }) => theme.colors.border.light};
+  border-radius: 0.75rem;
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    border-color: ${({ theme }) => theme.colors.primary.main};
+    box-shadow: 0 2px 8px rgba(0, 160, 196, 0.1);
+  }
+`;
+
+const CheckboxInput = styled.input`
+  width: 1.25rem;
+  height: 1.25rem;
+  cursor: pointer;
+  accent-color: ${({ theme }) => theme.colors.primary.main};
+  flex-shrink: 0;
+  margin-top: 0.125rem;
+`;
+
+const CheckboxLabel = styled.label`
+  flex: 1;
+  cursor: pointer;
+`;
+
+const CheckboxText = styled.div`
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: ${({ theme }) => theme.colors.text.primary};
+  margin-bottom: 0.25rem;
+`;
+
+const CheckboxSubtext = styled.div`
+  font-size: 0.8125rem;
+  color: ${({ theme }) => theme.colors.text.secondary};
+  line-height: 1.4;
+`;
+
+const CheckboxIconWrapper = styled.div`
+  color: ${({ theme }) => theme.colors.primary.main};
+  font-size: 1.25rem;
+  font-weight: 700;
+  flex-shrink: 0;
+`;
+
+const RecurringDropdown = styled.select`
+  margin-top: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  border: 2px solid ${({ theme }) => theme.colors.border.light};
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  background: white;
+  color: ${({ theme }) => theme.colors.text.primary};
+  cursor: pointer;
+  outline: none;
+
+  &:focus {
+    border-color: ${({ theme }) => theme.colors.primary.main};
+  }
+`;
+
+const TransactionIdDisplay = styled.div`
+  padding: 0.75rem 1rem;
+  border: 1px dashed ${({ theme }) => theme.colors.border.light};
+  border-radius: 0.5rem;
+  background: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const TransactionIdLabel = styled.span`
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: ${({ theme }) => theme.colors.text.secondary};
+`;
+
+const TransactionIdValue = styled.span`
+  font-size: 0.8125rem;
+  font-family: 'Courier New', monospace;
+  color: ${({ theme }) => theme.colors.text.primary};
+  font-weight: 500;
 `;

@@ -6,6 +6,8 @@ import { CampaignDetailPage } from '../pages/CampaignDetailPage';
 import { DonationPage } from '../pages/DonationPage';
 import { PaymentPage } from '../pages/PaymentPage';
 import { DonationConfirmationPage } from '../pages/DonationConfirmationPage';
+import { HistoryPage } from '../pages/HistoryPage';
+import { MessagesPage } from '../pages/MessagesPage';
 import { ProtectedRoute } from '../components/ProtectedRoute';
 
 export const router = createBrowserRouter([
@@ -54,6 +56,22 @@ export const router = createBrowserRouter([
     element: (
       <ProtectedRoute>
         <DonationConfirmationPage />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/history',
+    element: (
+      <ProtectedRoute>
+        <HistoryPage />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/messages',
+    element: (
+      <ProtectedRoute>
+        <MessagesPage />
       </ProtectedRoute>
     ),
   },

@@ -5,19 +5,28 @@ import { AuthProvider } from './context/AuthContext';
 import { ThemeProvider } from './context/ThemeContext';
 import { FeatureFlagsProvider } from './context/FeatureFlagsContext';
 import { FeatureFlagDevTools } from './components/FeatureFlagDevTools';
-import { router } from './router';
+import { router } from './router/index';
 import './i18n';
 
-const root = createRoot(document.getElementById('root')!);
-root.render(
-  <StrictMode>
-    <FeatureFlagsProvider>
-      <ThemeProvider>
-        <AuthProvider>
-          <RouterProvider router={router} />
-          <FeatureFlagDevTools />
-        </AuthProvider>
-      </ThemeProvider>
-    </FeatureFlagsProvider>
-  </StrictMode>
-);
+const enableMocks = async () => {
+  if (import.meta.env.DEV) {
+    const { worker } = await import('./mocks/browser');
+    await worker.start();
+  }
+};
+
+enableMocks().then(() => {
+  const root = createRoot(document.getElementById('root')!);
+  root.render(
+    <StrictMode>
+      <FeatureFlagsProvider>
+        <ThemeProvider>
+          <AuthProvider>
+            <RouterProvider router={router} />
+            <FeatureFlagDevTools />
+          </AuthProvider>
+        </ThemeProvider>
+      </FeatureFlagsProvider>
+    </StrictMode>
+  );
+});

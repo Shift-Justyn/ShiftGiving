@@ -2,6 +2,7 @@ import { useParams, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { useTranslation } from 'react-i18next';
+import { motion } from 'framer-motion';
 import { getDonationById } from '../api/donations';
 import { Donation } from '../api/types';
 import { FeatureFlag } from '../components/FeatureFlag';
@@ -44,6 +45,45 @@ export const DonationConfirmationPage = () => {
     });
   };
 
+  const shareToSocial = (platform: string) => {
+    if (!donation) return;
+    const text = `I just donated ${formatCurrency(donation.amount)} to help make a difference!`;
+    const urls: Record<string, string> = {
+      twitter: `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`,
+      facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`,
+      linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}`,
+      instagram: window.location.href,
+    };
+    if (urls[platform] && platform !== 'instagram') {
+      window.open(urls[platform], '_blank', 'width=600,height=400');
+    }
+  };
+
+  const downloadReceipt = () => {
+    if (!donation) return;
+    const receiptContent = generateReceiptContent();
+    const blob = new Blob([receiptContent], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `donation-receipt-${donation.id.substring(0, 8)}.txt`;
+    link.click();
+    URL.revokeObjectURL(url);
+  };
+
+  const generateReceiptContent = () => {
+    if (!donation) return '';
+    return (
+      `DONATION RECEIPT\n\n` +
+      `Transaction ID: ${donation.id.substring(0, 8).toUpperCase()}\n` +
+      `Amount: ${formatCurrency(donation.amount)}\n` +
+      `Date: ${formatDate(donation.createdAt)}\n` +
+      `Status: ${donation.status.toUpperCase()}\n` +
+      `Payment Method: ${donation.paymentMethod || 'Card'}\n\n` +
+      `Thank you for your generosity!\n`
+    );
+  };
+
   if (loading) {
     return (
       <LoadingContainer>
@@ -78,9 +118,16 @@ export const DonationConfirmationPage = () => {
           </ConfettiContainer>
 
           <SuccessIconWrapper>
-            <SuccessIcon>
-              <CheckMark>&#10003;</CheckMark>
-            </SuccessIcon>
+            <motion.div
+              initial={{ scale: 0, rotate: -180 }}
+              animate={{ scale: 1, rotate: 0 }}
+              transition={{ duration: 0.6, ease: 'easeOut' }}
+              style={{ width: '100%', height: '100%' }}
+            >
+              <SuccessIcon>
+                <CheckMark>&#10003;</CheckMark>
+              </SuccessIcon>
+            </motion.div>
             <PulseRing />
           </SuccessIconWrapper>
 
@@ -129,20 +176,26 @@ export const DonationConfirmationPage = () => {
           </DetailsCard>
 
           <ActionsSection>
-            <PrimaryLink to="/">{t('donation.backToCampaigns')}</PrimaryLink>
+            <ButtonGroup>
+              <PrimaryButton onClick={downloadReceipt}>Download Receipt</PrimaryButton>
+              <PrimaryLink to="/">{t('donation.backToCampaigns')}</PrimaryLink>
+            </ButtonGroup>
           </ActionsSection>
 
           <FeatureFlag name="SOCIAL_SHARING">
             <ShareSection>
               <ShareText>Share your support</ShareText>
               <ShareButtons>
-                <ShareButton $platform="twitter">
-                  <span>&#128038;</span>
+                <ShareButton $platform="twitter" onClick={() => shareToSocial('twitter')}>
+                  <span>𝕏</span>
                 </ShareButton>
-                <ShareButton $platform="facebook">
+                <ShareButton $platform="facebook" onClick={() => shareToSocial('facebook')}>
                   <span>f</span>
                 </ShareButton>
-                <ShareButton $platform="linkedin">
+                <ShareButton $platform="instagram" onClick={() => shareToSocial('instagram')}>
+                  <span>📷</span>
+                </ShareButton>
+                <ShareButton $platform="linkedin" onClick={() => shareToSocial('linkedin')}>
                   <span>in</span>
                 </ShareButton>
               </ShareButtons>
@@ -189,6 +242,10 @@ const spin = keyframes`
 const Container = styled.div`
   min-height: 100vh;
   background: linear-gradient(180deg, #e8f8fb 0%, #ffffff 50%, #f0f9fb 100%);
+
+  @media print {
+    background: white;
+  }
 `;
 
 const Header = styled.header`
@@ -238,6 +295,12 @@ const SuccessCard = styled.div`
   text-align: center;
   position: relative;
   overflow: hidden;
+
+  @media print {
+    box-shadow: none;
+    border: 1px solid #e5e7eb;
+    page-break-inside: avoid;
+  }
 `;
 
 const ConfettiContainer = styled.div`
@@ -407,6 +470,35 @@ const ActionsSection = styled.div`
   margin-bottom: 1.5rem;
 `;
 
+const ButtonGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+`;
+
+const PrimaryButton = styled.button`
+  padding: 1rem 2.5rem;
+  background: ${({ theme }) => theme.colors.primary.main};
+  color: white;
+  border: none;
+  border-radius: 2rem;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: ${({ theme }) => theme.colors.primary.hover};
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 160, 196, 0.3);
+  }
+
+  @media print {
+    display: none;
+  }
+`;
+
 const PrimaryLink = styled(Link)`
   display: inline-block;
   padding: 1rem 2.5rem;
@@ -423,6 +515,10 @@ const PrimaryLink = styled(Link)`
     background: ${({ theme }) => theme.colors.primary.hover};
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 160, 196, 0.3);
+  }
+
+  @media print {
+    display: none;
   }
 `;
 
@@ -458,9 +554,11 @@ const ShareButton = styled.button<{ $platform: string }>`
   background: ${({ $platform }) => {
     switch ($platform) {
       case 'twitter':
-        return '#1da1f2';
+        return '#000000';
       case 'facebook':
         return '#4267b2';
+      case 'instagram':
+        return '#e4405f';
       case 'linkedin':
         return '#0077b5';
       default:
@@ -472,6 +570,10 @@ const ShareButton = styled.button<{ $platform: string }>`
   &:hover {
     transform: scale(1.1);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  @media print {
+    display: none;
   }
 `;
 
@@ -485,6 +587,12 @@ const ThankYouNote = styled.div`
   margin-top: 1.5rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   animation: ${fadeIn} 0.6s ease 0.3s both;
+
+  @media print {
+    box-shadow: none;
+    border: 1px solid #e5e7eb;
+    page-break-inside: avoid;
+  }
 `;
 
 const NoteIcon = styled.span`

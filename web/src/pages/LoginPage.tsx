@@ -2,10 +2,9 @@ import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import styled from 'styled-components';
+import { AuthLayout, SocialLoginButtons } from '../components/auth';
 import {
-  FormContainer,
-  FormCard,
-  FormTitle,
   Form,
   Input,
   InputGroup,
@@ -19,6 +18,53 @@ import {
 const validateEmail = (email: string): boolean => {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 };
+
+const Card = styled.div`
+  background: #ffffff;
+  border-radius: 0.5rem;
+  padding: 2.5rem;
+  box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 26rem;
+`;
+
+const Title = styled.h1`
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #1f2937;
+  text-align: center;
+  margin: 0 0 2rem 0;
+`;
+
+const StyledInput = styled(Input)`
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  color: #1f2937;
+
+  &::placeholder {
+    color: #9ca3af;
+  }
+
+  &:focus {
+    border-color: ${(props) => props.theme.colors.primary.main};
+  }
+`;
+
+const StyledInputLabel = styled(InputLabel)`
+  color: #374151;
+`;
+
+const StyledButton = styled(Button)`
+  background: ${(props) => props.theme.colors.primary.main};
+
+  &:hover:not(:disabled) {
+    background: ${(props) => props.theme.colors.primary.hover};
+  }
+`;
+
+const StyledFormFooter = styled(FormFooter)`
+  color: #6b7280;
+`;
 
 export const LoginPage = () => {
   const { t } = useTranslation();
@@ -56,14 +102,14 @@ export const LoginPage = () => {
   };
 
   return (
-    <FormContainer>
-      <FormCard>
-        <FormTitle>{t('auth.welcomeBack')}</FormTitle>
+    <AuthLayout>
+      <Card>
+        <Title>Log In</Title>
         <Form onSubmit={handleLogin}>
           {error && <ErrorMessage>{error}</ErrorMessage>}
           <InputGroup>
-            <InputLabel htmlFor="email">{t('auth.email')}</InputLabel>
-            <Input
+            <StyledInputLabel htmlFor="email">{t('auth.email')}</StyledInputLabel>
+            <StyledInput
               id="email"
               type="email"
               placeholder={t('auth.emailPlaceholder')}
@@ -74,8 +120,8 @@ export const LoginPage = () => {
             />
           </InputGroup>
           <InputGroup>
-            <InputLabel htmlFor="password">{t('auth.password')}</InputLabel>
-            <Input
+            <StyledInputLabel htmlFor="password">{t('auth.password')}</StyledInputLabel>
+            <StyledInput
               id="password"
               type="password"
               placeholder={t('auth.passwordPlaceholder')}
@@ -85,14 +131,15 @@ export const LoginPage = () => {
               required
             />
           </InputGroup>
-          <Button type="submit" $loading={loading} disabled={loading}>
-            {loading ? t('auth.signingIn') : t('auth.login')}
-          </Button>
+          <StyledButton type="submit" $loading={loading} disabled={loading}>
+            {loading ? t('auth.signingIn') : 'Continue'}
+          </StyledButton>
         </Form>
-        <FormFooter>
+        <SocialLoginButtons disabled={loading} />
+        <StyledFormFooter>
           {t('auth.noAccount')} <FormLink to="/register">{t('auth.createOne')}</FormLink>
-        </FormFooter>
-      </FormCard>
-    </FormContainer>
+        </StyledFormFooter>
+      </Card>
+    </AuthLayout>
   );
 };

@@ -5,18 +5,23 @@ This document defines the architecture and implementation plan for the React web
 ## Current State
 
 ### What's Implemented
-- `index.js` - Basic React entry point with "Hello World"
-- Webpack 5 configuration
-- Jest + Playwright testing setup
-- Basic project structure
+- React 19 with TypeScript
+- **Vite** - Build tool and dev server (migrated from Webpack)
+- Jest + Playwright testing setup (73 tests passing)
+- react-router-dom v7 routing
+- styled-components theming (light/dark modes)
+- react-i18next internationalization
+- **Feature Flags System** - Toggle features in non-production
+- AuthContext - JWT authentication with localStorage persistence
+- ThemeContext - Dark/light mode with system preference detection
+- FeatureFlagsContext - Runtime feature toggles for dev/QA
+- API client with typed endpoints
+- Pages: Login, Register, Home, Campaign Detail, Donation, Payment, Confirmation
 
-### What's Missing
-- All screens from Figma
-- State management
-- API integration
-- Routing
-- Styling system
-- Authentication
+### What's Remaining
+- Organization dashboard screens from Figma
+- Analytics charts
+- Message/story management
 
 ---
 
@@ -50,8 +55,9 @@ web/
 │   │   └── useAnalytics.ts          # Analytics data hook
 │   │
 │   ├── context/
-│   │   ├── AuthContext.tsx          # Auth provider
-│   │   └── ThemeContext.tsx         # Theme provider
+│   │   ├── AuthContext.tsx          # Auth provider (JWT, localStorage)
+│   │   ├── ThemeContext.tsx         # Theme provider (light/dark)
+│   │   └── FeatureFlagsContext.tsx  # Feature flags for dev/QA
 │   │
 │   ├── types/
 │   │   ├── user.ts                  # User types
@@ -683,49 +689,74 @@ npm test -- --coverage
 
 ## Build Configuration
 
-### Update webpack.config.js
+### Vite Configuration (vite.config.ts)
 
-```javascript
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+The project uses Vite for fast development and optimized production builds.
 
-module.exports = {
-  entry: './src/index.tsx',
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: '[name].[contenthash].js',
-    publicPath: '/',
-  },
+```typescript
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import path from 'path';
+
+export default defineConfig({
+  plugins: [react()],
   resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.jsx'],
     alias: {
-      '@': path.resolve(__dirname, 'src'),
+      '@': path.resolve(__dirname, './src'),
     },
   },
-  module: {
-    rules: [
-      {
-        test: /\.(ts|tsx)$/,
-        use: 'babel-loader',
-        exclude: /node_modules/,
-      },
-      {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
-      },
-    ],
-  },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: './public/index.html',
-    }),
-  ],
-  devServer: {
-    historyApiFallback: true,
+  server: {
     port: 8080,
-    hot: true,
+    open: true,
   },
+  build: {
+    outDir: 'dist',
+    sourcemap: true,
+  },
+});
+```
+
+### Environment Variables
+
+Vite uses `import.meta.env` instead of `process.env`:
+
+```typescript
+// Check production mode
+if (import.meta.env.PROD) {
+  // Production code
+}
+
+// Custom env vars (prefix with VITE_)
+const apiUrl = import.meta.env.VITE_API_URL;
+```
+
+### Feature Flags
+
+Feature flags are defined in `src/config/featureFlags.ts`:
+
+```typescript
+export type FeatureFlagName =
+  | 'RECURRING_DONATIONS'
+  | 'SOCIAL_SHARING'
+  | 'EMAIL_NOTIFICATIONS';
+
+export const DEFAULT_FLAGS: Record<FeatureFlagName, boolean> = {
+  RECURRING_DONATIONS: false,
+  SOCIAL_SHARING: true,
+  EMAIL_NOTIFICATIONS: true,
 };
+```
+
+Usage:
+```tsx
+// Declarative
+<FeatureFlag name="SOCIAL_SHARING">
+  <SocialButtons />
+</FeatureFlag>
+
+// Imperative
+const { isEnabled } = useFeatureFlags();
+if (isEnabled('RECURRING_DONATIONS')) { ... }
 ```
 
 ---

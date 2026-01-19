@@ -4,34 +4,63 @@ import { Campaign } from '../../api/types';
 
 interface CampaignCardProps {
   campaign: Campaign;
+  onClick?: () => void;
 }
 
-const Card = styled.div`
-  min-width: 20rem;
-  max-width: 20rem;
+const Card = styled.div<{ $clickable?: boolean }>`
+  width: 16rem;
   background: ${(props) => props.theme.colors.background.card};
   border-radius: 0.75rem;
   overflow: hidden;
-  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s;
+  box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.08);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    background 0.3s ease;
+  cursor: ${(props) => (props.$clickable ? 'pointer' : 'default')};
 
   &:hover {
-    transform: translateY(-0.25rem);
+    transform: ${(props) => (props.$clickable ? 'translateY(-0.25rem)' : 'none')};
+    box-shadow: ${(props) =>
+      props.$clickable
+        ? '0 0.5rem 1.5rem rgba(0, 160, 196, 0.2)'
+        : '0 0.125rem 0.5rem rgba(0, 0, 0, 0.08)'};
+    background: ${(props) =>
+      props.$clickable
+        ? `linear-gradient(to bottom, ${props.theme.colors.background.card}, rgba(0, 160, 196, 0.02))`
+        : props.theme.colors.background.card};
   }
 
-  @media (max-width: 48rem) {
-    min-width: 100%;
-    max-width: 100%;
+  @media (min-width: 48rem) {
+    width: 100%;
   }
+`;
+
+const ImageContainer = styled.div`
+  position: relative;
+  width: 100%;
+  height: 10rem;
 `;
 
 const Image = styled.div<{ $imageUrl?: string }>`
   width: 100%;
-  height: 12rem;
+  height: 100%;
   background: ${(props) =>
     props.$imageUrl ? `url(${props.$imageUrl})` : props.theme.colors.border.light};
   background-size: cover;
   background-position: center;
+`;
+
+const AmountBadge = styled.div`
+  position: absolute;
+  bottom: 0.75rem;
+  left: 0.75rem;
+  background: ${(props) => props.theme.colors.primary.main};
+  color: ${(props) => props.theme.colors.text.inverse};
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 600;
 `;
 
 const Content = styled.div`
@@ -111,13 +140,16 @@ const formatCurrency = (amount: number): string => {
   return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(amount);
 };
 
-export const CampaignCard = ({ campaign }: CampaignCardProps) => {
+export const CampaignCard = ({ campaign, onClick }: CampaignCardProps) => {
   const { t } = useTranslation();
   const progressPercentage = calculateProgress(campaign.raisedAmount, campaign.goalAmount);
 
   return (
-    <Card>
-      <Image $imageUrl={campaign.featuredImageUrl || undefined} />
+    <Card $clickable={!!onClick} onClick={onClick}>
+      <ImageContainer>
+        <Image $imageUrl={campaign.featuredImageUrl || undefined} />
+        <AmountBadge>{formatCurrency(campaign.raisedAmount)}</AmountBadge>
+      </ImageContainer>
       <Content>
         <Title>{campaign.title}</Title>
         <Description>{campaign.shortDescription}</Description>

@@ -1,4 +1,5 @@
 import { render, screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { PaymentPage } from '../PaymentPage';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from '../../context/AuthContext';
@@ -80,6 +81,83 @@ describe('PaymentPage', () => {
 
     await waitFor(() => {
       expect(screen.getByRole('button', { name: /complete donation/i })).toBeInTheDocument();
+    });
+  });
+
+  it('has cover transaction fees checkbox', async () => {
+    renderPaymentPage();
+
+    await waitFor(() => {
+      expect(screen.getByLabelText(/cover transaction fees/i)).toBeInTheDocument();
+    });
+  });
+
+  it('displays transaction fee amount', async () => {
+    renderPaymentPage();
+
+    await waitFor(() => {
+      expect(screen.getByText(/\$3\.40/)).toBeInTheDocument();
+    });
+  });
+
+  it('has recurring transaction checkbox', async () => {
+    renderPaymentPage();
+
+    await waitFor(() => {
+      expect(screen.getByLabelText(/recurring transaction/i)).toBeInTheDocument();
+    });
+  });
+
+  it('has email receipt checkbox', async () => {
+    renderPaymentPage();
+
+    await waitFor(() => {
+      expect(screen.getByLabelText(/email me a receipt/i)).toBeInTheDocument();
+    });
+  });
+
+  it('displays transaction ID', async () => {
+    renderPaymentPage();
+
+    await waitFor(() => {
+      expect(screen.getByText(/transaction id/i)).toBeInTheDocument();
+    });
+  });
+
+  it('updates total when cover fees checkbox is toggled', async () => {
+    const user = userEvent.setup();
+    renderPaymentPage();
+
+    await waitFor(() => {
+      expect(screen.getAllByText('$100.00').length).toBeGreaterThan(0);
+    });
+
+    const checkbox = screen.getByLabelText(/cover transaction fees/i);
+    await user.click(checkbox);
+
+    await waitFor(() => {
+      expect(screen.getByText('$103.40')).toBeInTheDocument();
+    });
+  });
+
+  it('shows recurring dropdown when recurring checkbox is checked', async () => {
+    const user = userEvent.setup();
+    renderPaymentPage();
+
+    const checkbox = await screen.findByLabelText(/recurring transaction/i);
+    await user.click(checkbox);
+
+    await waitFor(() => {
+      expect(screen.getByRole('combobox')).toBeInTheDocument();
+    });
+  });
+
+  it('email receipt checkbox is checked by default', async () => {
+    renderPaymentPage();
+
+    await waitFor(() => {
+      const checkbox = screen.getByLabelText(/email me a receipt/i) as HTMLInputElement;
+      expect(checkbox.checked).toBe(true);
     });
   });
 });

@@ -14,8 +14,12 @@ beforeEach(() => {
   mockCampaignsApi.getOrganizations.mockResolvedValue([]);
 });
 
+afterEach(() => {
+  jest.clearAllMocks();
+});
+
 describe('HomePage', () => {
-  it('renders welcome heading', () => {
+  it('renders greeting for guest user', async () => {
     render(
       <BrowserRouter>
         <ThemeProvider>
@@ -26,6 +30,62 @@ describe('HomePage', () => {
       </BrowserRouter>
     );
 
-    expect(screen.getByText('Welcome to Shift Giving')).toBeInTheDocument();
+    expect(screen.getByText('Hello, Guest')).toBeInTheDocument();
+  });
+
+  it('renders campaigns section', async () => {
+    render(
+      <BrowserRouter>
+        <ThemeProvider>
+          <AuthProvider>
+            <HomePage />
+          </AuthProvider>
+        </ThemeProvider>
+      </BrowserRouter>
+    );
+
+    expect(screen.getByText('Campaigns')).toBeInTheDocument();
+  });
+
+  it('renders organizations section', async () => {
+    render(
+      <BrowserRouter>
+        <ThemeProvider>
+          <AuthProvider>
+            <HomePage />
+          </AuthProvider>
+        </ThemeProvider>
+      </BrowserRouter>
+    );
+
+    expect(screen.getByText('Organizations')).toBeInTheDocument();
+  });
+
+  it('renders bottom navigation', async () => {
+    render(
+      <BrowserRouter>
+        <ThemeProvider>
+          <AuthProvider>
+            <HomePage />
+          </AuthProvider>
+        </ThemeProvider>
+      </BrowserRouter>
+    );
+
+    expect(screen.getByText('Home')).toBeInTheDocument();
+  });
+
+  it('renders search placeholder', async () => {
+    render(
+      <BrowserRouter>
+        <ThemeProvider>
+          <AuthProvider>
+            <HomePage />
+          </AuthProvider>
+        </ThemeProvider>
+      </BrowserRouter>
+    );
+
+    expect(screen.getByPlaceholderText('Search for a charity or nonprofit')).toBeInTheDocument();
   });
 });

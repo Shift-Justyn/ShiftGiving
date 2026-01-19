@@ -38,7 +38,7 @@ jobs:
       - name: "Setup .NET SDK"
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '8.x'
+          dotnet-version: '10.x'
 
       - name: "Restore dependencies"
         run: dotnet restore
@@ -50,12 +50,16 @@ jobs:
         working-directory: api/ShiftGiving
 
       - name: "Run the API in background for testing"
+        env:
+          JWT_SECRET: "test-secret-key-for-ci-minimum-32-characters-long"
+          DATABASE_URL: "postgresql://shiftgiving:shiftgiving@localhost:5432/shiftgiving"
+          ASPNETCORE_ENVIRONMENT: "Testing"
         run: |
           ASPNETCORE_URLS=http://localhost:5237 ./out/ShiftGiving &
           echo "API_SERVER_PID=$!" >> $GITHUB_ENV
           echo "API started with PID: $!"
           echo "Waiting for API to be ready..."
-          timeout 60s bash -c 'until curl --silent --fail http://localhost:5237; do echo "Waiting for API..."; sleep 2; done' || { echo "API did not start in time!"; exit 1; }
+          timeout 60s bash -c 'until curl --silent --fail http://localhost:5237/health; do echo "Waiting for API..."; sleep 2; done' || { echo "API did not start in time!"; exit 1; }
           echo "API is up!"
         working-directory: api/ShiftGiving
 
@@ -124,7 +128,7 @@ jobs:
       - name: "Setup .NET SDK for Web Test API dependency"
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '8.x'
+          dotnet-version: '10.x'
 
       - name: Download API Artifact
         uses: actions/download-artifact@v4
@@ -138,6 +142,10 @@ jobs:
 
       - name: "Run the API in background for Web Test"
         id: start_api_server_for_web
+        env:
+          JWT_SECRET: "test-secret-key-for-ci-minimum-32-characters-long"
+          DATABASE_URL: "postgresql://shiftgiving:shiftgiving@localhost:5432/shiftgiving"
+          ASPNETCORE_ENVIRONMENT: "Testing"
         run: |
           ASPNETCORE_URLS=http://localhost:5237 ./out/ShiftGiving &
           echo "API_SERVER_PID_FOR_WEB=$!" >> $GITHUB_ENV
@@ -235,7 +243,7 @@ jobs:
       - name: "Setup .NET SDK for iOS Test API dependency"
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '8.x'
+          dotnet-version: '10.x'
 
       - name: "Restore API dependencies for iOS Test"
         run: dotnet restore
@@ -243,6 +251,10 @@ jobs:
 
       - name: "Run the API in background for iOS Test"
         id: start_api_server_for_ios
+        env:
+          JWT_SECRET: "test-secret-key-for-ci-minimum-32-characters-long"
+          DATABASE_URL: "postgresql://shiftgiving:shiftgiving@localhost:5432/shiftgiving"
+          ASPNETCORE_ENVIRONMENT: "Testing"
         run: |
           dotnet run --configuration Release --urls "http://localhost:5237" &
           echo "API_SERVER_PID_FOR_IOS=$!" >> $GITHUB_ENV
@@ -375,7 +387,7 @@ jobs:
       - name: "Setup .NET SDK for Android Test API dependency"
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '8.x'
+          dotnet-version: '10.x'
 
       - name: Download API Artifact
         uses: actions/download-artifact@v4
@@ -389,6 +401,10 @@ jobs:
 
       - name: "Run the API in background for Android Test"
         id: start_api_server_for_android
+        env:
+          JWT_SECRET: "test-secret-key-for-ci-minimum-32-characters-long"
+          DATABASE_URL: "postgresql://shiftgiving:shiftgiving@localhost:5432/shiftgiving"
+          ASPNETCORE_ENVIRONMENT: "Testing"
         run: |
           ASPNETCORE_URLS=http://localhost:5237 ./out/ShiftGiving &
           echo "API_SERVER_PID_FOR_ANDROID=$!" >> $GITHUB_ENV

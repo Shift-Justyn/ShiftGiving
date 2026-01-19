@@ -2,7 +2,31 @@
 
 Shift Giving is a full-stack donation platform that enables users to make donations to organization campaigns.
 
-## Current Status
+## Current Status (January 2026)
+
+### Web App - Completed Phases
+
+| Phase | Features | Status |
+|-------|----------|--------|
+| Phase 1 | Project setup, API models, authentication | Complete |
+| Phase 2 | Home screen, campaign/org cards, navigation | Complete |
+| Phase 3 | Donation flow (amount, payment, confirmation) | Complete |
+| Phase 4 | History screen with donation tracking | Complete |
+| Phase 5 | Messages/notifications screen | Complete |
+
+### Web App Pages
+
+| Route | Page | Features |
+|-------|------|----------|
+| `/login` | LoginPage | JWT authentication |
+| `/register` | RegisterPage | User registration |
+| `/` | HomePage | Campaigns, orgs, animations |
+| `/campaigns/:id` | CampaignDetailPage | Full campaign details |
+| `/campaigns/:id/donate` | DonationPage | Amount selection ($50-$200, custom) |
+| `/campaigns/:id/donate/payment` | PaymentPage | Card input, fees, recurring |
+| `/donations/:id/confirmation` | DonationConfirmationPage | Receipt, share, download |
+| `/history` | HistoryPage | Donation history, search, export |
+| `/messages` | MessagesPage | Notifications, unread indicators |
 
 ### Working Features
 
@@ -11,33 +35,40 @@ Shift Giving is a full-stack donation platform that enables users to make donati
 | API | Health endpoint | Working |
 | API | User authentication (register/login) | Working |
 | API | JWT token generation | Working |
-| API | Campaign listing | Working |
-| API | Organization listing | Working |
+| API | Campaign/Organization listing | Working |
 | API | CORS for local development | Working |
 | Database | PostgreSQL with Docker | Working |
 | Database | Seeded test data | Working |
-| Web | Login/Register pages | Working |
-| Web | Protected routes | Working |
-| Web | Home page with campaigns | Working |
-| Web | Campaign detail page | Working |
-| Web | Organization cards | Working |
+| Web | All 9 pages listed above | Working |
+| Web | Dark/Light mode theming | Working |
+| Web | Internationalization (i18n) | Working |
+| Web | Feature flags system | Working |
+| Web | Framer-motion animations | Working |
+| Web | Mock data service (MSW) | Working |
 | Mobile | App structure | Built |
-| Mobile | API integration | Configured |
+| Native (Expo) | Scaffolded with Tamagui | In Progress |
 
 ### Test Accounts
 
-All test accounts use password: `Password123!`
+**For API/Database** (password: `Password123!`):
 
 | Account | Email | Role |
 |---------|-------|------|
 | Donor | donor@test.com | Individual donor |
 | Hope Foundation Admin | admin.hope@test.com | Organization admin |
-| Green Earth Admin | admin.green@test.com | Organization admin |
+
+**For Mock Data Service** (password: `password123`):
+
+| Account | Email | Role |
+|---------|-------|------|
+| Donor | donor@example.com | Individual donor |
+| Org Admin | orgadmin@example.com | Organization admin |
+| Site Admin | siteadmin@example.com | Platform admin |
 
 ## Tech Stack
 
 - **API**: .NET 10, ASP.NET Core (Minimal API)
-- **Web**: React 19, Webpack 5, TypeScript
+- **Web**: React 19, Vite, TypeScript
 - **Mobile**: Flutter 3.27.x+, Dart 3.6.1+
 - **Infrastructure**: Terraform, AWS (ECS, S3, CloudFront, RDS)
 
@@ -173,8 +204,10 @@ Verify with: `curl http://localhost:5237/health`
 cd web
 nvm use                 # Use Node version from .nvmrc
 npm install             # Install dependencies
-npm start               # Run dev server on http://localhost:8080
-npm run build           # Production build
+npm start               # Run Vite dev server on http://localhost:8080
+npm run dev             # Alias for npm start
+npm run build           # Vite production build
+npm run preview         # Preview production build
 npm test                # Run Jest unit tests
 npm run e2e             # Run Playwright e2e tests
 ```
@@ -273,10 +306,19 @@ dotnet test --filter "Category=Integration"  # Integration tests only
 
 ```bash
 cd web
-npm test                # Unit tests (Jest)
-npm run e2e             # End-to-end tests (Playwright)
-./run_tests.sh          # Run all tests via script
+npm test                              # Unit tests (Jest) - 18 test files
+npm test -- --watchAll=false          # Run once without watch mode
+npm test -- --testPathPattern=HomePage  # Run specific test file
+npm run e2e                           # End-to-end tests (Playwright)
+./run_tests.sh                        # Run all tests via script
 ```
+
+**Jest test files (18 total):**
+
+- API: `auth.test.ts`, `campaigns.test.ts`, `client.test.ts`, `donations.test.ts`
+- Components: `CampaignCard.test.tsx`, `OrganizationCard.test.tsx`, `BottomNavigation.test.tsx`, `FeatureFlag.test.tsx`
+- Context: `AuthContext.test.tsx`, `FeatureFlagsContext.test.tsx`
+- Pages: `HomePage.test.tsx`, `DonationPage.test.tsx`, `PaymentPage.test.tsx`, `DonationConfirmationPage.test.tsx`, `HistoryPage.test.tsx`, `MessagesPage.test.tsx`, `PaymentPage.helpers.test.tsx`
 
 **Playwright E2E tests include:**
 
@@ -376,11 +418,13 @@ nvm use              # Switch to correct version
 ├── api/                    # .NET 10 backend API
 │   ├── ShiftGiving/        # Main API project
 │   └── ShiftGiving.Tests/  # API unit tests
-├── web/                    # React frontend
+├── web/                    # React frontend (Vite)
 │   ├── src/                # Source files
 │   │   ├── api/            # API client and types
 │   │   ├── components/     # React components
-│   │   ├── context/        # React context (Auth)
+│   │   ├── config/         # Feature flags configuration
+│   │   ├── context/        # React context (Auth, Theme, FeatureFlags)
+│   │   ├── i18n/           # Internationalization
 │   │   └── pages/          # Page components
 │   └── e2eTests/           # Playwright e2e tests
 ├── mobile/                 # Flutter mobile app

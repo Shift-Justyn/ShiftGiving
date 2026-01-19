@@ -40,14 +40,25 @@
   },
   "home": {
     "welcome": "Welcome to Shift Giving",
+    "greeting": "Hello, {{name}}",
+    "updates": "There are {{count}} updates in your community",
+    "searchPlaceholder": "Search for a charity or nonprofit",
+    "campaigns": "Campaigns",
     "featuredCampaigns": "Featured Campaigns",
     "organizations": "Organizations",
+    "seeAll": "See All",
     "loadingCampaigns": "Loading campaigns...",
     "loadingOrganizations": "Loading organizations...",
     "noCampaigns": "No featured campaigns available",
     "noOrganizations": "No organizations available",
     "failedLoadCampaigns": "Failed to load campaigns",
     "failedLoadOrganizations": "Failed to load organizations"
+  },
+  "nav": {
+    "home": "Home",
+    "donate": "Donate",
+    "history": "History",
+    "messages": "Messages"
   },
   "campaign": {
     "goal": "Goal",
@@ -66,7 +77,7 @@
   "donation": {
     "amount": "Amount",
     "customAmount": "Custom amount",
-    "selectAmount": "Select an amount",
+    "selectAmount": "How much do you want to donate?",
     "paymentMethod": "Payment Method",
     "cardNumber": "Card Number",
     "expiryDate": "Expiry Date",
@@ -112,5 +123,11 @@
     "dateShort": "MM/DD/YYYY",
     "dateLong": "MMMM D, YYYY",
     "time": "h:mm A"
+  },
+  "messages": {
+    "title": "Messages",
+    "empty": "No messages yet",
+    "emptyDescription": "When organizations send updates, you'll see them here",
+    "refresh": "Refresh"
   }
 }

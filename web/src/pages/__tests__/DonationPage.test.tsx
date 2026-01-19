@@ -61,7 +61,7 @@ describe('DonationPage', () => {
     renderDonationPage();
 
     await waitFor(() => {
-      expect(screen.getByRole('button', { name: '$25' })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: '$50' })).toBeInTheDocument();
     });
   });
 
@@ -107,6 +107,54 @@ describe('DonationPage', () => {
 
     await waitFor(() => {
       expect(screen.getByRole('button', { name: /continue to payment/i })).toBeInTheDocument();
+    });
+  });
+
+  it('displays preset amount of $50', async () => {
+    renderDonationPage();
+
+    await waitFor(() => {
+      expect(screen.getByRole('button', { name: '$50' })).toBeInTheDocument();
+    });
+  });
+
+  it('displays preset amount of $100', async () => {
+    renderDonationPage();
+
+    await waitFor(() => {
+      expect(screen.getByRole('button', { name: '$100' })).toBeInTheDocument();
+    });
+  });
+
+  it('displays preset amount of $150', async () => {
+    renderDonationPage();
+
+    await waitFor(() => {
+      expect(screen.getByRole('button', { name: '$150' })).toBeInTheDocument();
+    });
+  });
+
+  it('displays preset amount of $200', async () => {
+    renderDonationPage();
+
+    await waitFor(() => {
+      expect(screen.getByRole('button', { name: '$200' })).toBeInTheDocument();
+    });
+  });
+
+  it('displays Enter Here label for custom amount', async () => {
+    renderDonationPage();
+
+    await waitFor(() => {
+      expect(screen.getByText('Enter Here')).toBeInTheDocument();
+    });
+  });
+
+  it('displays question about donation amount', async () => {
+    renderDonationPage();
+
+    await waitFor(() => {
+      expect(screen.getByText('How much do you want to donate?')).toBeInTheDocument();
     });
   });
 });
