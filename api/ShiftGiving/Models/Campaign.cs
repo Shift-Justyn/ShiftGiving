@@ -10,6 +10,7 @@ public class Campaign
     public decimal GoalAmount { get; set; }
     public decimal RaisedAmount { get; set; }
     public CampaignStatus Status { get; set; } = CampaignStatus.Draft;
+    public CampaignCategory Category { get; set; }
     public DateOnly StartDate { get; set; }
     public DateOnly EndDate { get; set; }
     public string? FeaturedImageUrl { get; set; }
@@ -35,4 +36,16 @@ public enum CampaignStatus
     ClosingSoon,
     Completed,
     Cancelled
+}
+
+public enum CampaignCategory
+{
+    Education,
+    Health,
+    Environment,
+    Humanitarian,
+    Community,
+    Animals,
+    Arts,
+    Religious
 }

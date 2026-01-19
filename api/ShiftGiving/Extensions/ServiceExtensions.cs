@@ -25,15 +25,18 @@ public static class ServiceExtensions
         services.AddScoped<CampaignService>();
         services.AddScoped<OrganizationService>();
         services.AddScoped<DonationService>();
+        services.AddScoped<NotificationService>();
         services.AddScoped<IPaymentService, StripePaymentService>();
         return services;
     }
 
     public static IServiceCollection AddJwtAuthentication(this IServiceCollection services, IConfiguration configuration)
     {
-        var jwtSecret = configuration["Jwt:Secret"] ?? throw new InvalidOperationException("JWT secret not configured");
-        var jwtIssuer = configuration["Jwt:Issuer"];
-        var jwtAudience = configuration["Jwt:Audience"];
+        var jwtSecret = configuration["Jwt:Secret"]
+            ?? Environment.GetEnvironmentVariable("JWT_SECRET")
+            ?? throw new InvalidOperationException("JWT secret not configured");
+        var jwtIssuer = configuration["Jwt:Issuer"] ?? "ShiftGiving";
+        var jwtAudience = configuration["Jwt:Audience"] ?? "ShiftGiving";
 
         services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(options => ConfigureJwtBearer(options, jwtSecret, jwtIssuer, jwtAudience));

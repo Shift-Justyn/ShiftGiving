@@ -6,7 +6,14 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDatabase(builder.Configuration, builder.Environment);
 builder.Services.AddApplicationServices();
 builder.Services.AddJwtAuthentication(builder.Configuration);
-builder.Services.AddHealthChecksWithDatabase();
+if (builder.Environment.EnvironmentName != "Testing")
+{
+    builder.Services.AddHealthChecksWithDatabase();
+}
+else
+{
+    builder.Services.AddHealthChecks();
+}
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("Development", policy =>
@@ -34,6 +41,7 @@ app.MapAuthEndpoints();
 app.MapCampaignEndpoints();
 app.MapOrganizationEndpoints();
 app.MapDonationEndpoints();
+app.MapNotificationEndpoints();
 
 app.Run();
 

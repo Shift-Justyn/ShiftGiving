@@ -25,5 +25,8 @@ public class User
 public enum UserType
 {
     Individual,
-    OrganizationAdmin
+    OrganizationAdmin,
+    SiteAdmin,
+    MarketingAdmin,
+    Coordinator
 }

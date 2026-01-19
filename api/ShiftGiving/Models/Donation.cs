@@ -13,6 +13,10 @@ public class Donation
     public bool IsAnonymous { get; set; }
     public string? DonorMessage { get; set; }
     public bool ReceiptSent { get; set; }
+    public decimal TransactionFee { get; set; }
+    public decimal PlatformFee { get; set; }
+    public bool DonorCoversFees { get; set; }
+    public decimal NetAmount { get; set; }
     public DateTime CreatedAt { get; set; }
     public DateTime UpdatedAt { get; set; }
 

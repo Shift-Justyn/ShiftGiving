@@ -32,4 +32,32 @@ public class DonationTests
         var donation = new Donation();
         Assert.Equal(0m, donation.Amount);
     }
+
+    [Fact]
+    public void DefaultTransactionFee_IsZero()
+    {
+        var donation = new Donation();
+        Assert.Equal(0m, donation.TransactionFee);
+    }
+
+    [Fact]
+    public void DefaultPlatformFee_IsZero()
+    {
+        var donation = new Donation();
+        Assert.Equal(0m, donation.PlatformFee);
+    }
+
+    [Fact]
+    public void DefaultDonorCoversFees_IsFalse()
+    {
+        var donation = new Donation();
+        Assert.False(donation.DonorCoversFees);
+    }
+
+    [Fact]
+    public void DefaultNetAmount_IsZero()
+    {
+        var donation = new Donation();
+        Assert.Equal(0m, donation.NetAmount);
+    }
 }

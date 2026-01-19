@@ -20,6 +20,8 @@ public class ShiftGivingDbContext : DbContext
     public DbSet<UserOrganizationLink> UserOrganizationLinks { get; set; }
     public DbSet<PaymentMethod> PaymentMethods { get; set; }
     public DbSet<AuditLog> AuditLogs { get; set; }
+    public DbSet<Notification> Notifications { get; set; }
+    public DbSet<Payout> Payouts { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -33,6 +35,8 @@ public class ShiftGivingDbContext : DbContext
         ConfigureUserOrganizationLinkEntity(modelBuilder);
         ConfigurePaymentMethodEntity(modelBuilder);
         ConfigureAuditLogEntity(modelBuilder);
+        ConfigureNotificationEntity(modelBuilder);
+        ConfigurePayoutEntity(modelBuilder);
     }
 
     private void ConfigureUserEntity(ModelBuilder builder)
@@ -117,6 +121,7 @@ public class ShiftGivingDbContext : DbContext
                     v => ConvertCampaignStatusToDb(v),
                     v => ConvertDbToCampaignStatus(v))
                 .HasDefaultValue(CampaignStatus.Draft);
+            entity.Property(e => e.Category).HasColumnName("category").HasMaxLength(20).IsRequired().HasConversion<string>();
             entity.Property(e => e.StartDate).HasColumnName("start_date").IsRequired();
             entity.Property(e => e.EndDate).HasColumnName("end_date").IsRequired();
             entity.Property(e => e.FeaturedImageUrl).HasColumnName("featured_image_url").HasMaxLength(500);
@@ -201,6 +206,10 @@ public class ShiftGivingDbContext : DbContext
             entity.Property(e => e.IsAnonymous).HasColumnName("is_anonymous").HasDefaultValue(false);
             entity.Property(e => e.DonorMessage).HasColumnName("donor_message").HasColumnType("text");
             entity.Property(e => e.ReceiptSent).HasColumnName("receipt_sent").HasDefaultValue(false);
+            entity.Property(e => e.TransactionFee).HasColumnName("transaction_fee").HasPrecision(12, 2).HasDefaultValue(0);
+            entity.Property(e => e.PlatformFee).HasColumnName("platform_fee").HasPrecision(12, 2).HasDefaultValue(0);
+            entity.Property(e => e.DonorCoversFees).HasColumnName("donor_covers_fees").HasDefaultValue(false);
+            entity.Property(e => e.NetAmount).HasColumnName("net_amount").HasPrecision(12, 2).HasDefaultValue(0);
             entity.Property(e => e.CreatedAt).HasColumnName("created_at").HasDefaultValueSql("NOW()");
             entity.Property(e => e.UpdatedAt).HasColumnName("updated_at").HasDefaultValueSql("NOW()");
 
@@ -364,6 +373,9 @@ public class ShiftGivingDbContext : DbContext
         {
             UserType.Individual => "individual",
             UserType.OrganizationAdmin => "organization_admin",
+            UserType.SiteAdmin => "site_admin",
+            UserType.MarketingAdmin => "marketing_admin",
+            UserType.Coordinator => "coordinator",
             _ => "individual"
         };
     }
@@ -374,7 +386,63 @@ public class ShiftGivingDbContext : DbContext
         {
             "individual" => UserType.Individual,
             "organization_admin" => UserType.OrganizationAdmin,
+            "site_admin" => UserType.SiteAdmin,
+            "marketing_admin" => UserType.MarketingAdmin,
+            "coordinator" => UserType.Coordinator,
             _ => UserType.Individual
         };
+    }
+
+    private void ConfigureNotificationEntity(ModelBuilder builder)
+    {
+        builder.Entity<Notification>(entity =>
+        {
+            entity.ToTable("notifications");
+            entity.HasKey(e => e.Id);
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.UserId).HasColumnName("user_id").IsRequired();
+            entity.Property(e => e.Title).HasColumnName("title").HasMaxLength(255).IsRequired();
+            entity.Property(e => e.Body).HasColumnName("body").HasColumnType("text").IsRequired();
+            entity.Property(e => e.Type).HasColumnName("type").HasMaxLength(20).IsRequired().HasConversion<string>();
+            entity.Property(e => e.IsRead).HasColumnName("is_read").HasDefaultValue(false);
+            entity.Property(e => e.Data).HasColumnName("data").HasColumnType("text");
+            entity.Property(e => e.CreatedAt).HasColumnName("created_at").HasDefaultValueSql("NOW()");
+            entity.Property(e => e.ReadAt).HasColumnName("read_at");
+
+            entity.HasIndex(e => e.UserId).HasDatabaseName("idx_notifications_user");
+            entity.HasIndex(e => e.Type).HasDatabaseName("idx_notifications_type");
+            entity.HasIndex(e => e.IsRead).HasDatabaseName("idx_notifications_is_read");
+
+            entity.HasOne(e => e.User)
+                .WithMany()
+                .HasForeignKey(e => e.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
+        });
+    }
+
+    private void ConfigurePayoutEntity(ModelBuilder builder)
+    {
+        builder.Entity<Payout>(entity =>
+        {
+            entity.ToTable("payouts");
+            entity.HasKey(e => e.Id);
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.OrganizationId).HasColumnName("organization_id").IsRequired();
+            entity.Property(e => e.Amount).HasColumnName("amount").HasPrecision(12, 2).IsRequired();
+            entity.Property(e => e.Status).HasColumnName("status").HasMaxLength(20).IsRequired().HasConversion<string>();
+            entity.Property(e => e.ScheduledDate).HasColumnName("scheduled_date").IsRequired();
+            entity.Property(e => e.CompletedDate).HasColumnName("completed_date");
+            entity.Property(e => e.TransactionReference).HasColumnName("transaction_reference").HasMaxLength(255);
+            entity.Property(e => e.CreatedAt).HasColumnName("created_at").HasDefaultValueSql("NOW()");
+
+            entity.HasIndex(e => e.OrganizationId).HasDatabaseName("idx_payouts_organization");
+            entity.HasIndex(e => e.Status).HasDatabaseName("idx_payouts_status");
+            entity.HasIndex(e => e.ScheduledDate).HasDatabaseName("idx_payouts_scheduled_date");
+
+            entity.HasOne(e => e.Organization)
+                .WithMany()
+                .HasForeignKey(e => e.OrganizationId)
+                .OnDelete(DeleteBehavior.Restrict);
+        });
     }
 }
