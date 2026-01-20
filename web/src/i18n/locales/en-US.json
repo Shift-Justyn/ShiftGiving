@@ -54,6 +54,14 @@
     "failedLoadCampaigns": "Failed to load campaigns",
     "failedLoadOrganizations": "Failed to load organizations"
   },
+  "sidebar": {
+    "discover": "Discover Campaigns",
+    "createCampaign": "Create Campaign",
+    "myImpact": "My Impact",
+    "history": "History",
+    "messages": "Messages",
+    "settings": "Settings"
+  },
   "nav": {
     "home": "Home",
     "donate": "Donate",
