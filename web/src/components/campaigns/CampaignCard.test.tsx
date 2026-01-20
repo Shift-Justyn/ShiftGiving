@@ -19,6 +19,8 @@ const mockCampaign: Campaign = {
     logoUrl: 'https://example.com/logo.jpg',
   },
   endDate: '2025-12-31',
+  category: 'Education',
+  location: 'Chicago, IL',
 };
 
 const renderWithTheme = (component: React.ReactElement) => {
@@ -40,22 +42,22 @@ describe('CampaignCard', () => {
     ).toBeInTheDocument();
   });
 
-  it('displays organization name', () => {
+  it('displays campaign category', () => {
     renderWithTheme(<CampaignCard campaign={mockCampaign} />);
 
-    expect(screen.getByText('Education Foundation')).toBeInTheDocument();
+    expect(screen.getByText('Education')).toBeInTheDocument();
   });
 
-  it('displays raised amount as currency', () => {
+  it('displays campaign location', () => {
     renderWithTheme(<CampaignCard campaign={mockCampaign} />);
 
-    expect(screen.getAllByText('$25,000.00')).toHaveLength(2);
+    expect(screen.getByText('Chicago, IL')).toBeInTheDocument();
   });
 
-  it('displays goal amount as currency with label', () => {
+  it('displays funding progress percentage', () => {
     renderWithTheme(<CampaignCard campaign={mockCampaign} />);
 
-    expect(screen.getByText(/\$50,000\.00/)).toBeInTheDocument();
+    expect(screen.getByText('50%')).toBeInTheDocument();
   });
 
   it('calls onClick handler when clicked', async () => {

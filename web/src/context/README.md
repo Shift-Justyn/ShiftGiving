@@ -124,11 +124,7 @@ import { useTheme } from './context/ThemeContext';
 function ThemeToggle() {
   const { theme, toggleTheme, isDark } = useTheme();
 
-  return (
-    <button onClick={toggleTheme}>
-      {isDark ? 'Switch to Light' : 'Switch to Dark'}
-    </button>
-  );
+  return <button onClick={toggleTheme}>{isDark ? 'Switch to Light' : 'Switch to Dark'}</button>;
 }
 ```
 
@@ -161,11 +157,11 @@ function App() {
 
 ### Available Flags
 
-| Flag | Default | Description |
-|------|---------|-------------|
-| `RECURRING_DONATIONS` | `false` | Enable recurring donation option |
-| `SOCIAL_SHARING` | `true` | Enable social share buttons |
-| `EMAIL_NOTIFICATIONS` | `true` | Enable email notification preferences |
+| Flag                  | Default | Description                           |
+| --------------------- | ------- | ------------------------------------- |
+| `RECURRING_DONATIONS` | `false` | Enable recurring donation option      |
+| `SOCIAL_SHARING`      | `true`  | Enable social share buttons           |
+| `EMAIL_NOTIFICATIONS` | `true`  | Enable email notification preferences |
 
 ### Using the useFeatureFlags Hook
 
@@ -217,6 +213,7 @@ function DonationConfirmation() {
 ### Dev Tools
 
 In development/QA environments, a floating "FF" button appears in the bottom-right corner. Click it to:
+
 - View all feature flags
 - Toggle flags on/off
 - Reset to default values
@@ -226,6 +223,7 @@ Flag overrides persist in localStorage.
 ### Production Behavior
 
 In production (`import.meta.env.PROD === true`):
+
 - Flags use default values only
 - `toggleFlag()` is disabled
 - Dev tools panel is hidden
@@ -242,7 +240,7 @@ export type FeatureFlagName =
   | 'RECURRING_DONATIONS'
   | 'SOCIAL_SHARING'
   | 'EMAIL_NOTIFICATIONS'
-  | 'YOUR_NEW_FLAG';  // Add here
+  | 'YOUR_NEW_FLAG'; // Add here
 ```
 
 2. Set the default value:
@@ -252,7 +250,7 @@ export const DEFAULT_FLAGS: Record<FeatureFlagName, boolean> = {
   RECURRING_DONATIONS: false,
   SOCIAL_SHARING: true,
   EMAIL_NOTIFICATIONS: true,
-  YOUR_NEW_FLAG: false,  // Add here
+  YOUR_NEW_FLAG: false, // Add here
 };
 ```
 
@@ -263,7 +261,7 @@ export const FLAG_DESCRIPTIONS: Record<FeatureFlagName, string> = {
   RECURRING_DONATIONS: 'Enable recurring donation option',
   SOCIAL_SHARING: 'Enable social share buttons on confirmation',
   EMAIL_NOTIFICATIONS: 'Enable email notification preferences',
-  YOUR_NEW_FLAG: 'Description of your new flag',  // Add here
+  YOUR_NEW_FLAG: 'Description of your new flag', // Add here
 };
 ```
 

@@ -25,6 +25,21 @@ export interface AuthRegisterRequest {
   lastName: string;
 }
 
+export interface MediaAsset {
+  id: string;
+  name: string;
+  url: string;
+  type: 'image' | 'video';
+  size?: string;
+  createdAt: string;
+}
+
+export interface MediaGalleryItem {
+  type: string;
+  url: string;
+  caption?: string;
+}
+
 export interface CampaignQueryParams {
   page?: number;
   pageSize?: number;
@@ -48,6 +63,9 @@ export interface Campaign {
   featuredImageUrl: string | null;
   organization: CampaignOrganization;
   endDate: string;
+  category?: string;
+  location?: string;
+  mediaGallery?: MediaGalleryItem[];
 }
 
 export interface CampaignOrganizationDetail {
@@ -71,6 +89,7 @@ export interface CampaignDetail {
   featuredImageUrl: string | null;
   videoUrl: string | null;
   organization: CampaignOrganizationDetail;
+  mediaGallery?: MediaGalleryItem[];
 }
 
 export interface Organization {
@@ -79,6 +98,9 @@ export interface Organization {
   description: string | null;
   logoUrl: string | null;
   campaignCount: number;
+  latitude?: number;
+  longitude?: number;
+  category?: string;
 }
 
 export interface ApiError {

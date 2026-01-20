@@ -1,4 +1,12 @@
-import { AuthUser, Campaign, CampaignDetail, Organization, Donation } from '../api/types';
+import {
+  AuthUser,
+  Campaign,
+  CampaignDetail,
+  Organization,
+  Donation,
+  MediaAsset,
+  MediaGalleryItem,
+} from '../api/types';
 
 const users: Record<string, AuthUser & { password: string }> = {
   'donor@example.com': {
@@ -7,7 +15,8 @@ const users: Record<string, AuthUser & { password: string }> = {
     firstName: 'Sarah',
     lastName: 'Johnson',
     userType: 'Donor',
-    avatarUrl: null,
+    avatarUrl:
+      'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&h=150&fit=crop&crop=face&auto=format',
     password: 'password123',
   },
   'orgadmin@example.com': {
@@ -16,7 +25,8 @@ const users: Record<string, AuthUser & { password: string }> = {
     firstName: 'Michael',
     lastName: 'Chen',
     userType: 'OrganizationAdmin',
-    avatarUrl: null,
+    avatarUrl:
+      'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face&auto=format',
     password: 'password123',
   },
   'siteadmin@example.com': {
@@ -25,7 +35,8 @@ const users: Record<string, AuthUser & { password: string }> = {
     firstName: 'Jennifer',
     lastName: 'Williams',
     userType: 'SiteAdmin',
-    avatarUrl: null,
+    avatarUrl:
+      'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face&auto=format',
     password: 'password123',
   },
 };
@@ -37,6 +48,9 @@ const organizations: Organization[] = [
     description: 'Dedicated to rescuing and rehoming abandoned animals. 501(c)(3) nonprofit.',
     logoUrl: null,
     campaignCount: 2,
+    latitude: 45.5152,
+    longitude: -122.6784,
+    category: 'Animals',
   },
   {
     id: 'org-2',
@@ -44,6 +58,9 @@ const organizations: Organization[] = [
     description: 'Faith-based organization serving the local community. 501(c)(3) nonprofit.',
     logoUrl: null,
     campaignCount: 2,
+    latitude: 30.2672,
+    longitude: -97.7431,
+    category: 'Community',
   },
   {
     id: 'org-3',
@@ -51,6 +68,9 @@ const organizations: Organization[] = [
     description: 'Fighting food insecurity and hunger in our community. 501(c)(3) nonprofit.',
     logoUrl: null,
     campaignCount: 2,
+    latitude: 47.6062,
+    longitude: -122.3321,
+    category: 'Community',
   },
   {
     id: 'org-4',
@@ -58,6 +78,9 @@ const organizations: Organization[] = [
     description: 'Empowering youth through education and mentorship. 501(c)(3) nonprofit.',
     logoUrl: null,
     campaignCount: 2,
+    latitude: 41.8781,
+    longitude: -87.6298,
+    category: 'Education',
   },
   {
     id: 'org-5',
@@ -65,6 +88,9 @@ const organizations: Organization[] = [
     description: 'Providing emergency aid to disaster-affected communities. 501(c)(3) nonprofit.',
     logoUrl: null,
     campaignCount: 2,
+    latitude: 25.7617,
+    longitude: -80.1918,
+    category: 'Health',
   },
 ];
 
@@ -83,6 +109,8 @@ const campaigns: Campaign[] = [
       logoUrl: null,
     },
     endDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(),
+    category: 'Animals',
+    location: 'Portland, OR',
   },
   {
     id: 'campaign-2',
@@ -98,6 +126,8 @@ const campaigns: Campaign[] = [
       logoUrl: null,
     },
     endDate: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000).toISOString(),
+    category: 'Animals',
+    location: 'Portland, OR',
   },
   {
     id: 'campaign-3',
@@ -113,6 +143,8 @@ const campaigns: Campaign[] = [
       logoUrl: null,
     },
     endDate: new Date(Date.now() + 45 * 24 * 60 * 60 * 1000).toISOString(),
+    category: 'Community',
+    location: 'Austin, TX',
   },
   {
     id: 'campaign-4',
@@ -128,6 +160,8 @@ const campaigns: Campaign[] = [
       logoUrl: null,
     },
     endDate: new Date(Date.now() + 10 * 24 * 60 * 60 * 1000).toISOString(),
+    category: 'Education',
+    location: 'Chicago, IL',
   },
   {
     id: 'campaign-5',
@@ -143,6 +177,8 @@ const campaigns: Campaign[] = [
       logoUrl: null,
     },
     endDate: new Date(Date.now() + 20 * 24 * 60 * 60 * 1000).toISOString(),
+    category: 'Community',
+    location: 'Seattle, WA',
   },
   {
     id: 'campaign-6',
@@ -158,6 +194,8 @@ const campaigns: Campaign[] = [
       logoUrl: null,
     },
     endDate: new Date(Date.now() + 60 * 24 * 60 * 60 * 1000).toISOString(),
+    category: 'Health',
+    location: 'Miami, FL',
   },
   {
     id: 'campaign-7',
@@ -173,6 +211,8 @@ const campaigns: Campaign[] = [
       logoUrl: null,
     },
     endDate: new Date(Date.now() + 6 * 24 * 60 * 60 * 1000).toISOString(),
+    category: 'Education',
+    location: 'Chicago, IL',
   },
   {
     id: 'campaign-8',
@@ -188,6 +228,8 @@ const campaigns: Campaign[] = [
       logoUrl: null,
     },
     endDate: new Date(Date.now() + 35 * 24 * 60 * 60 * 1000).toISOString(),
+    category: 'Environment',
+    location: 'Seattle, WA',
   },
 ];
 
@@ -212,6 +254,18 @@ const campaignDetails: Record<string, CampaignDetail> = {
       logoUrl: null,
       description: 'Dedicated to rescuing and rehoming abandoned animals. 501(c)(3) nonprofit.',
     },
+    mediaGallery: [
+      {
+        type: 'image',
+        url: 'https://images.unsplash.com/photo-1450778869180-41d0601e046e?w=800',
+        caption: 'Animals receiving care at our current facility',
+      },
+      {
+        type: 'image',
+        url: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=800',
+        caption: 'Dedicated volunteers working with rescue animals',
+      },
+    ],
   },
   'campaign-2': {
     id: 'campaign-2',
@@ -233,6 +287,13 @@ const campaignDetails: Record<string, CampaignDetail> = {
       logoUrl: null,
       description: 'Dedicated to rescuing and rehoming abandoned animals. 501(c)(3) nonprofit.',
     },
+    mediaGallery: [
+      {
+        type: 'image',
+        url: 'https://images.unsplash.com/photo-1450778869180-41d0601e046e?w=800',
+        caption: 'Providing warmth and comfort to animals during winter',
+      },
+    ],
   },
   'campaign-3': {
     id: 'campaign-3',
@@ -254,6 +315,18 @@ const campaignDetails: Record<string, CampaignDetail> = {
       logoUrl: null,
       description: 'Faith-based organization serving the local community. 501(c)(3) nonprofit.',
     },
+    mediaGallery: [
+      {
+        type: 'image',
+        url: 'https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=800',
+        caption: 'Volunteers serving meals at our community kitchen',
+      },
+      {
+        type: 'image',
+        url: 'https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=800',
+        caption: 'Community members coming together for support',
+      },
+    ],
   },
   'campaign-4': {
     id: 'campaign-4',
@@ -296,6 +369,23 @@ const campaignDetails: Record<string, CampaignDetail> = {
       logoUrl: null,
       description: 'Fighting food insecurity and hunger in our community. 501(c)(3) nonprofit.',
     },
+    mediaGallery: [
+      {
+        type: 'image',
+        url: 'https://images.unsplash.com/photo-1593113598332-cd288d649433?w=800',
+        caption: 'Volunteers packing food boxes for families in need',
+      },
+      {
+        type: 'image',
+        url: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=800',
+        caption: 'Our team distributing food to community members',
+      },
+      {
+        type: 'image',
+        url: 'https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=800',
+        caption: 'Fresh produce from our community gardens',
+      },
+    ],
   },
   'campaign-6': {
     id: 'campaign-6',
@@ -317,6 +407,13 @@ const campaignDetails: Record<string, CampaignDetail> = {
       logoUrl: null,
       description: 'Providing emergency aid to disaster-affected communities. 501(c)(3) nonprofit.',
     },
+    mediaGallery: [
+      {
+        type: 'image',
+        url: 'https://images.unsplash.com/photo-1584515933487-779824d29309?w=800',
+        caption: 'Medical supplies ready for disaster response deployment',
+      },
+    ],
   },
   'campaign-7': {
     id: 'campaign-7',
@@ -338,6 +435,13 @@ const campaignDetails: Record<string, CampaignDetail> = {
       logoUrl: null,
       description: 'Empowering youth through education and mentorship. 501(c)(3) nonprofit.',
     },
+    mediaGallery: [
+      {
+        type: 'image',
+        url: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800',
+        caption: 'Students learning coding skills at our bootcamp',
+      },
+    ],
   },
   'campaign-8': {
     id: 'campaign-8',
@@ -359,8 +463,105 @@ const campaignDetails: Record<string, CampaignDetail> = {
       logoUrl: null,
       description: 'Fighting food insecurity and hunger in our community. 501(c)(3) nonprofit.',
     },
+    mediaGallery: [
+      {
+        type: 'image',
+        url: 'https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=800',
+        caption: 'Fresh vegetables growing in our community gardens',
+      },
+      {
+        type: 'image',
+        url: 'https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=800',
+        caption: 'Volunteers working together in the garden',
+      },
+    ],
   },
 };
+
+const mediaAssets: MediaAsset[] = [
+  {
+    id: 'media-1',
+    name: 'Charity Volunteers',
+    url: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=800',
+    type: 'image',
+    size: '2.4 MB',
+    createdAt: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString(),
+  },
+  {
+    id: 'media-2',
+    name: 'Donation Collection',
+    url: 'https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=800',
+    type: 'image',
+    size: '1.8 MB',
+    createdAt: new Date(Date.now() - 25 * 24 * 60 * 60 * 1000).toISOString(),
+  },
+  {
+    id: 'media-3',
+    name: 'Community Support',
+    url: 'https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=800',
+    type: 'image',
+    size: '3.1 MB',
+    createdAt: new Date(Date.now() - 20 * 24 * 60 * 60 * 1000).toISOString(),
+  },
+  {
+    id: 'media-4',
+    name: 'Food Distribution',
+    url: 'https://images.unsplash.com/photo-1593113598332-cd288d649433?w=800',
+    type: 'image',
+    size: '2.7 MB',
+    createdAt: new Date(Date.now() - 15 * 24 * 60 * 60 * 1000).toISOString(),
+  },
+  {
+    id: 'media-5',
+    name: 'Animal Rescue',
+    url: 'https://images.unsplash.com/photo-1450778869180-41d0601e046e?w=800',
+    type: 'image',
+    size: '2.2 MB',
+    createdAt: new Date(Date.now() - 10 * 24 * 60 * 60 * 1000).toISOString(),
+  },
+  {
+    id: 'media-6',
+    name: 'Youth Education',
+    url: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800',
+    type: 'image',
+    size: '1.9 MB',
+    createdAt: new Date(Date.now() - 8 * 24 * 60 * 60 * 1000).toISOString(),
+  },
+  {
+    id: 'media-7',
+    name: 'Medical Relief',
+    url: 'https://images.unsplash.com/photo-1584515933487-779824d29309?w=800',
+    type: 'image',
+    size: '2.5 MB',
+    createdAt: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString(),
+  },
+  {
+    id: 'media-8',
+    name: 'Community Garden',
+    url: 'https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=800',
+    type: 'image',
+    size: '3.3 MB',
+    createdAt: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000).toISOString(),
+  },
+];
+
+const sampleGallery: MediaGalleryItem[] = [
+  {
+    type: 'image',
+    url: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=800',
+    caption: 'Our dedicated volunteers making a difference in the community',
+  },
+  {
+    type: 'image',
+    url: 'https://images.unsplash.com/photo-1593113598332-cd288d649433?w=800',
+    caption: 'Distributing essential supplies to families in need',
+  },
+  {
+    type: 'image',
+    url: 'https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=800',
+    caption: 'Community members coming together to support each other',
+  },
+];
 
 const donations: Donation[] = [
   {
@@ -563,4 +764,4 @@ const donations: Donation[] = [
   },
 ];
 
-export { users, organizations, campaigns, campaignDetails, donations };
+export { users, organizations, campaigns, campaignDetails, donations, mediaAssets, sampleGallery };

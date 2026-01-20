@@ -1,5 +1,5 @@
 import { http, HttpResponse } from 'msw';
-import { users, organizations, campaigns, campaignDetails, donations } from './data';
+import { users, organizations, campaigns, campaignDetails, donations, mediaAssets } from './data';
 import {
   AuthLoginResponse,
   Campaign,
@@ -9,6 +9,7 @@ import {
   DonationListItem,
   DonationSummary,
   AuthUser,
+  MediaAsset,
 } from '../api/types';
 
 const API_BASE_URL = 'http://localhost:5237';
@@ -206,5 +207,122 @@ export const handlers = [
     }
 
     return HttpResponse.json(wrapResponse<Donation>(donation));
+  }),
+
+  http.get(`${API_BASE_URL}/api/media`, () => {
+    return HttpResponse.json(wrapResponse<MediaAsset[]>(mediaAssets));
+  }),
+
+  http.post(`${API_BASE_URL}/api/media/upload`, async () => {
+    await new Promise((resolve) => setTimeout(resolve, 1500));
+
+    const newAsset: MediaAsset = {
+      id: `media-${Date.now()}`,
+      name: 'Uploaded Image',
+      url: 'https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=800',
+      type: 'image',
+      size: '2.1 MB',
+      createdAt: new Date().toISOString(),
+    };
+
+    return HttpResponse.json(wrapResponse<MediaAsset>(newAsset));
+  }),
+
+  http.post(`${API_BASE_URL}/api/media/generate`, async () => {
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+
+    const generatedAsset: MediaAsset = {
+      id: `media-${Date.now()}`,
+      name: 'AI Generated Image',
+      url: 'https://images.unsplash.com/photo-1593113598332-cd288d649433?w=800',
+      type: 'image',
+      size: '2.8 MB',
+      createdAt: new Date().toISOString(),
+    };
+
+    return HttpResponse.json(wrapResponse<MediaAsset>(generatedAsset));
+  }),
+
+  http.delete(`${API_BASE_URL}/api/media/:id`, ({ params }) => {
+    const asset = mediaAssets.find((m) => m.id === params.id);
+    if (!asset) {
+      return HttpResponse.json(wrapError('NOT_FOUND', 'Media asset not found'), { status: 404 });
+    }
+
+    return HttpResponse.json(wrapResponse<null>(null));
+  }),
+
+  http.post(`${API_BASE_URL}/api/ai/generate-image`, async ({ request }) => {
+    const body = (await request.json()) as { prompt: string; originalPrompt: string };
+
+    await new Promise((resolve) => setTimeout(resolve, 3000));
+
+    const mockImages = [
+      'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1792',
+      'https://images.unsplash.com/photo-1593113598332-cd288d649433?w=1792',
+      'https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=1792',
+      'https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=1792',
+      'https://images.unsplash.com/photo-1450778869180-41d0601e046e?w=1792',
+      'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1792',
+    ];
+
+    const randomImage = mockImages[Math.floor(Math.random() * mockImages.length)];
+
+    return HttpResponse.json(
+      wrapResponse({
+        url: randomImage,
+        prompt: body.prompt,
+        revisedPrompt: body.prompt,
+      })
+    );
+  }),
+
+  http.post(`${API_BASE_URL}/api/ai/enhance-text`, async ({ request }) => {
+    const body = (await request.json()) as {
+      text: string;
+      field: string;
+      action: string;
+    };
+
+    await new Promise((resolve) => setTimeout(resolve, 1500));
+
+    const enhancedTexts: Record<string, Record<string, string>> = {
+      fix_grammar: {
+        description: body.text,
+        teaser: body.text,
+        story: body.text,
+      },
+      improve: {
+        description: `${body.text} Our dedicated team works tirelessly to make a difference.`,
+        teaser: `${body.text} Join us in creating lasting change in our community.`,
+        story: `${body.text}\n\nEvery contribution helps us reach more families and create lasting impact in our community. Together, we can build a brighter future.`,
+      },
+      rewrite: {
+        description: 'Making a difference, one donation at a time. Join our mission today.',
+        teaser:
+          'Your generosity transforms lives. See the impact of community-driven change and become part of something bigger.',
+        story:
+          'Every day, countless families face challenges that seem insurmountable. But with your support, we provide hope, resources, and a path forward. Our dedicated volunteers and staff work around the clock to ensure every donation reaches those who need it most.',
+      },
+      tone: {
+        description: body.text,
+        teaser: body.text,
+        story: body.text,
+      },
+      expand: {
+        description: body.text,
+        teaser: body.text,
+        story: `${body.text}\n\nOur impact extends far beyond numbers. Each statistic represents a real person, a real family, a real story of transformation. When you donate, you become part of this story.\n\nLast year alone, we served over 5,000 families, distributed 50,000 meals, and provided essential resources to those in need. But we know there is more work to be done.`,
+      },
+    };
+
+    const enhanced = enhancedTexts[body.action]?.[body.field] || body.text;
+
+    return HttpResponse.json(
+      wrapResponse({
+        text: enhanced,
+        originalText: body.text,
+      })
+    );
   }),
 ];

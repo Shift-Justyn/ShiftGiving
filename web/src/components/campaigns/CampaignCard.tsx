@@ -20,6 +20,9 @@ const categoryColors: Record<string, string> = {
 const Card = styled.div<{ $clickable?: boolean }>`
   width: 100%;
   max-width: 22rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
   background: ${(props) => props.theme.colors.background.card};
   border-radius: 0.75rem;
   overflow: hidden;
@@ -113,6 +116,9 @@ const HeartButton = styled.button<{ $liked: boolean }>`
 
 const Content = styled.div`
   padding: 1.25rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 `;
 
 const Title = styled.h3`
@@ -121,6 +127,7 @@ const Title = styled.h3`
   font-weight: 700;
   color: ${(props) => props.theme.colors.text.primary};
   line-height: 1.4;
+  min-height: 3.15rem;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -132,19 +139,22 @@ const Description = styled.p`
   font-size: 0.875rem;
   color: ${(props) => props.theme.colors.text.secondary};
   line-height: 1.5;
+  min-height: 2.625rem;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 `;
 
-const LocationText = styled.div`
+const LocationText = styled.div<{ $visible?: boolean }>`
   display: flex;
   align-items: center;
   gap: 0.375rem;
   font-size: 0.75rem;
   color: ${(props) => props.theme.colors.text.tertiary};
   margin-bottom: 0.75rem;
+  min-height: 1.125rem;
+  visibility: ${(props) => (props.$visible === false ? 'hidden' : 'visible')};
 
   svg {
     width: 0.875rem;
@@ -177,6 +187,7 @@ const ReadStoryLink = styled.button`
 `;
 
 const ProgressSection = styled.div`
+  margin-top: auto;
   margin-bottom: 1rem;
   padding-top: 1rem;
   border-top: 0.0625rem solid ${(props) => props.theme.colors.border.light};
@@ -319,12 +330,10 @@ export const CampaignCard = ({ campaign, onClick }: CampaignCardProps) => {
       <Content>
         <Title>{campaign.title}</Title>
         <Description>{campaign.shortDescription}</Description>
-        {campaign.location && (
-          <LocationText>
-            <MapPin />
-            {campaign.location}
-          </LocationText>
-        )}
+        <LocationText $visible={!!campaign.location}>
+          <MapPin />
+          {campaign.location || '\u00A0'}
+        </LocationText>
         <ReadStoryLink onClick={handleStoryClick}>
           <BookOpen />
           Read Full Story

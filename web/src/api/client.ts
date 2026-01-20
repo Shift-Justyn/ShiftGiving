@@ -77,3 +77,34 @@ export const getWithAuth = async <T>(
   });
   return handleResponse<T>(response);
 };
+
+export const postMultipart = async <T>(
+  path: string,
+  formData: FormData,
+  token?: string
+): Promise<T> => {
+  const url = buildUrl(path);
+  const headers: Record<string, string> = {};
+  if (token) {
+    headers['Authorization'] = `Bearer ${token}`;
+  }
+  const response = await fetch(url, {
+    method: 'POST',
+    headers,
+    body: formData,
+  });
+  return handleResponse<T>(response);
+};
+
+export const del = async <T>(path: string, token?: string): Promise<T> => {
+  const url = buildUrl(path);
+  const headers: Record<string, string> = {};
+  if (token) {
+    headers['Authorization'] = `Bearer ${token}`;
+  }
+  const response = await fetch(url, {
+    method: 'DELETE',
+    headers,
+  });
+  return handleResponse<T>(response);
+};

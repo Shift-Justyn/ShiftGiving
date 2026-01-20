@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { getCampaignById } from '../api/campaigns';
 import { CampaignDetail } from '../api/types';
 import { BottomNavigation } from '../components/navigation/BottomNavigation';
+import { MediaGallery } from '../components/media/MediaGallery';
 
 export const CampaignDetailPage = () => {
   const { id } = useParams<{ id: string }>();
@@ -146,6 +147,13 @@ export const CampaignDetailPage = () => {
             </svg>
           </SocialIcon>
         </SocialSection>
+
+        {campaign.mediaGallery && campaign.mediaGallery.length > 0 && (
+          <GallerySection>
+            <GallerySectionTitle>{t('campaign.gallery')}</GallerySectionTitle>
+            <MediaGallery images={campaign.mediaGallery} />
+          </GallerySection>
+        )}
       </ContentSection>
 
       <DonateButtonContainer>
@@ -358,6 +366,23 @@ const SocialIcon = styled.a`
 
   &:hover {
     color: ${(props) => props.theme.colors.primary.main};
+  }
+`;
+
+const GallerySection = styled.div`
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid ${(props) => props.theme.colors.border.light};
+`;
+
+const GallerySectionTitle = styled.h2`
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: ${(props) => props.theme.colors.text.primary};
+  margin: 0 0 1.5rem 0;
+
+  @media (min-width: 48rem) {
+    font-size: 1.5rem;
   }
 `;
 

@@ -116,6 +116,13 @@ const Avatar = styled.div`
   font-weight: 600;
   font-size: 0.875rem;
   flex-shrink: 0;
+  overflow: hidden;
+`;
+
+const AvatarImage = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 `;
 
 const UserInfo = styled.div`
@@ -422,7 +429,13 @@ export const Sidebar = () => {
 
         <UserSection>
           <UserProfile>
-            <Avatar>{userInitials}</Avatar>
+            <Avatar>
+              {user?.avatarUrl ? (
+                <AvatarImage src={user.avatarUrl} alt={userName} />
+              ) : (
+                userInitials
+              )}
+            </Avatar>
             <UserInfo>
               <UserName>{userName}</UserName>
               <UserBadge>{userType}</UserBadge>

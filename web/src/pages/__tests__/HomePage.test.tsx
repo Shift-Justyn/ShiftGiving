@@ -19,7 +19,7 @@ afterEach(() => {
 });
 
 describe('HomePage', () => {
-  it('renders greeting for guest user', async () => {
+  it('renders featured campaigns header', async () => {
     render(
       <BrowserRouter>
         <ThemeProvider>
@@ -30,7 +30,7 @@ describe('HomePage', () => {
       </BrowserRouter>
     );
 
-    expect(screen.getByText('Hello, Guest')).toBeInTheDocument();
+    expect(screen.getByText('Featured Campaigns')).toBeInTheDocument();
   });
 
   it('renders campaigns section', async () => {
@@ -58,7 +58,7 @@ describe('HomePage', () => {
       </BrowserRouter>
     );
 
-    expect(screen.getByText('Organizations')).toBeInTheDocument();
+    expect(screen.getAllByText('Organizations').length).toBeGreaterThan(0);
   });
 
   it('renders bottom navigation', async () => {
