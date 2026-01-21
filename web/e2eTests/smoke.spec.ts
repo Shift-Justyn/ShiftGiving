@@ -5,10 +5,10 @@ test('homepage loads successfully', async ({ page }) => {
   expect(response?.status()).toBe(200);
 });
 
-test('homepage displays hello world text', async ({ page }) => {
+test('homepage displays welcome text', async ({ page }) => {
   await page.goto('/');
   const content = await page.textContent('body');
-  expect(content).toContain('Hello World');
+  expect(content).toContain('Welcome');
 });
 
 test('homepage has no console errors', async ({ page }) => {

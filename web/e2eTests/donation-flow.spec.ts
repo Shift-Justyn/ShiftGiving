@@ -14,7 +14,7 @@ test.describe('Donation Flow Happy Path', () => {
   });
 
   test('user can log in successfully', async ({ page }) => {
-    await expect(page.locator('text=Welcome to Shift Giving')).toBeVisible();
+    await expect(page.locator('text=Welcome back')).toBeVisible();
   });
 
   test('user can navigate to campaign detail page', async ({ page }) => {

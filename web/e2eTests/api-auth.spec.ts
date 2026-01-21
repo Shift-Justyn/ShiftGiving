@@ -8,7 +8,10 @@ test('register creates new user', async ({ request }) => {
     data: {
       email: `test${timestamp}@example.com`,
       password: 'SecurePass123!',
-      name: 'Test User',
+      firstName: 'Test',
+      lastName: 'User',
+      dateOfBirth: '1990-01-15',
+      userType: 'individual',
     },
   });
   expect(response.status()).toBe(201);
@@ -20,7 +23,10 @@ test('login returns token for valid credentials', async ({ request }) => {
     data: {
       email: `test${timestamp}@example.com`,
       password: 'SecurePass123!',
-      name: 'Test User',
+      firstName: 'Test',
+      lastName: 'User',
+      dateOfBirth: '1990-01-15',
+      userType: 'individual',
     },
   });
   const response = await request.post(`${API_BASE}/api/auth/login`, {

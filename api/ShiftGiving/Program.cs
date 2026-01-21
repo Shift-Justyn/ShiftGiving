@@ -1,3 +1,4 @@
+using ShiftGiving.Data;
 using ShiftGiving.Endpoints;
 using ShiftGiving.Extensions;
 
@@ -18,7 +19,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("Development", policy =>
     {
-        policy.WithOrigins("http://localhost:8080", "http://localhost:3000")
+        policy.WithOrigins("http://localhost:8080", "http://localhost:3000", "http://localhost:5500")
             .AllowAnyHeader()
             .AllowAnyMethod()
             .AllowCredentials();
@@ -28,7 +29,14 @@ builder.ConfigureProductionUrls();
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
+if (app.Environment.EnvironmentName == "Testing")
+{
+    using var scope = app.Services.CreateScope();
+    var db = scope.ServiceProvider.GetRequiredService<ShiftGivingDbContext>();
+    TestDataSeeder.SeedTestData(db);
+}
+
+if (app.Environment.IsDevelopment() || app.Environment.EnvironmentName == "Testing")
 {
     app.UseCors("Development");
 }
