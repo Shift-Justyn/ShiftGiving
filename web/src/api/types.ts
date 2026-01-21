@@ -103,6 +103,15 @@ export interface Organization {
   category?: string;
 }
 
+export interface AuthRefreshRequest {
+  refreshToken: string;
+}
+
+export interface AuthRefreshResponse {
+  token: string;
+  refreshToken: string;
+}
+
 export interface ApiError {
   message: string;
   statusCode: number;

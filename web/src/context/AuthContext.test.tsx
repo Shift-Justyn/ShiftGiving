@@ -1,10 +1,16 @@
 import { renderHook, act, waitFor } from '@testing-library/react';
 import { AuthProvider, useAuth } from './AuthContext';
 import * as authApi from '../api/auth';
+import * as client from '../api/client';
 
 jest.mock('../api/auth');
+jest.mock('../api/client', () => ({
+  ...jest.requireActual('../api/client'),
+  setTokenRefreshCallback: jest.fn(),
+}));
 
 const mockAuthApi = authApi as jest.Mocked<typeof authApi>;
+const _mockClient = client as jest.Mocked<typeof client>;
 
 const wrapper = ({ children }: { children: React.ReactNode }) => (
   <AuthProvider>{children}</AuthProvider>
@@ -346,6 +352,7 @@ describe('AuthContext logout', () => {
 describe('AuthContext persistence', () => {
   test('restores token from localStorage on mount', async () => {
     localStorage.setItem('auth_token', 'stored-token');
+    localStorage.setItem('refresh_token', 'stored-refresh');
     localStorage.setItem('user_id', 'stored-user-id');
 
     const { result } = renderHook(() => useAuth(), { wrapper });
@@ -357,6 +364,7 @@ describe('AuthContext persistence', () => {
 
   test('restores userId from localStorage on mount', async () => {
     localStorage.setItem('auth_token', 'stored-token');
+    localStorage.setItem('refresh_token', 'stored-refresh');
     localStorage.setItem('user_id', 'stored-user-id');
 
     const { result } = renderHook(() => useAuth(), { wrapper });
@@ -368,6 +376,7 @@ describe('AuthContext persistence', () => {
 
   test('sets isAuthenticated to true when restored', async () => {
     localStorage.setItem('auth_token', 'stored-token');
+    localStorage.setItem('refresh_token', 'stored-refresh');
     localStorage.setItem('user_id', 'stored-user-id');
 
     const { result } = renderHook(() => useAuth(), { wrapper });

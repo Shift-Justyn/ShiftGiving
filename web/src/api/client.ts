@@ -18,6 +18,12 @@ export class HttpError extends Error {
   }
 }
 
+let tokenRefreshCallback: (() => Promise<string | null>) | null = null;
+
+export const setTokenRefreshCallback = (callback: () => Promise<string | null>): void => {
+  tokenRefreshCallback = callback;
+};
+
 const buildUrl = (path: string, params?: Record<string, string | number | boolean>): string => {
   const url = new URL(`${BASE_URL}${path}`);
   if (params) {
@@ -28,8 +34,14 @@ const buildUrl = (path: string, params?: Record<string, string | number | boolea
   return url.toString();
 };
 
-const handleResponse = async <T>(response: Response): Promise<T> => {
+const handleResponse = async <T>(
+  response: Response,
+  shouldRetryOn401: boolean = true
+): Promise<T> => {
   if (!response.ok) {
+    if (response.status === 401 && shouldRetryOn401 && tokenRefreshCallback) {
+      throw new HttpError(401, 'Unauthorized');
+    }
     const error: ApiError = await response.json().catch(() => ({
       message: 'Request failed',
       statusCode: response.status,
@@ -58,12 +70,28 @@ export const post = async <T>(path: string, body: unknown, token?: string): Prom
   if (token) {
     headers['Authorization'] = `Bearer ${token}`;
   }
-  const response = await fetch(url, {
-    method: 'POST',
-    headers,
-    body: JSON.stringify(body),
-  });
-  return handleResponse<T>(response);
+  try {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify(body),
+    });
+    return await handleResponse<T>(response);
+  } catch (error) {
+    if (error instanceof HttpError && error.statusCode === 401 && token && tokenRefreshCallback) {
+      const newToken = await tokenRefreshCallback();
+      if (newToken) {
+        headers['Authorization'] = `Bearer ${newToken}`;
+        const retryResponse = await fetch(url, {
+          method: 'POST',
+          headers,
+          body: JSON.stringify(body),
+        });
+        return await handleResponse<T>(retryResponse, false);
+      }
+    }
+    throw error;
+  }
 };
 
 export const getWithAuth = async <T>(
@@ -72,10 +100,23 @@ export const getWithAuth = async <T>(
   params?: Record<string, string | number | boolean>
 ): Promise<T> => {
   const url = buildUrl(path, params);
-  const response = await fetch(url, {
-    headers: { Authorization: `Bearer ${token}` },
-  });
-  return handleResponse<T>(response);
+  try {
+    const response = await fetch(url, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    return await handleResponse<T>(response);
+  } catch (error) {
+    if (error instanceof HttpError && error.statusCode === 401 && tokenRefreshCallback) {
+      const newToken = await tokenRefreshCallback();
+      if (newToken) {
+        const retryResponse = await fetch(url, {
+          headers: { Authorization: `Bearer ${newToken}` },
+        });
+        return await handleResponse<T>(retryResponse, false);
+      }
+    }
+    throw error;
+  }
 };
 
 export const postMultipart = async <T>(
@@ -88,12 +129,28 @@ export const postMultipart = async <T>(
   if (token) {
     headers['Authorization'] = `Bearer ${token}`;
   }
-  const response = await fetch(url, {
-    method: 'POST',
-    headers,
-    body: formData,
-  });
-  return handleResponse<T>(response);
+  try {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers,
+      body: formData,
+    });
+    return await handleResponse<T>(response);
+  } catch (error) {
+    if (error instanceof HttpError && error.statusCode === 401 && token && tokenRefreshCallback) {
+      const newToken = await tokenRefreshCallback();
+      if (newToken) {
+        headers['Authorization'] = `Bearer ${newToken}`;
+        const retryResponse = await fetch(url, {
+          method: 'POST',
+          headers,
+          body: formData,
+        });
+        return await handleResponse<T>(retryResponse, false);
+      }
+    }
+    throw error;
+  }
 };
 
 export const del = async <T>(path: string, token?: string): Promise<T> => {
@@ -102,9 +159,24 @@ export const del = async <T>(path: string, token?: string): Promise<T> => {
   if (token) {
     headers['Authorization'] = `Bearer ${token}`;
   }
-  const response = await fetch(url, {
-    method: 'DELETE',
-    headers,
-  });
-  return handleResponse<T>(response);
+  try {
+    const response = await fetch(url, {
+      method: 'DELETE',
+      headers,
+    });
+    return await handleResponse<T>(response);
+  } catch (error) {
+    if (error instanceof HttpError && error.statusCode === 401 && token && tokenRefreshCallback) {
+      const newToken = await tokenRefreshCallback();
+      if (newToken) {
+        headers['Authorization'] = `Bearer ${newToken}`;
+        const retryResponse = await fetch(url, {
+          method: 'DELETE',
+          headers,
+        });
+        return await handleResponse<T>(retryResponse, false);
+      }
+    }
+    throw error;
+  }
 };

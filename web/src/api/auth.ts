@@ -1,5 +1,11 @@
 import { post } from './client';
-import { AuthLoginRequest, AuthLoginResponse, AuthRegisterRequest } from './types';
+import {
+  AuthLoginRequest,
+  AuthLoginResponse,
+  AuthRegisterRequest,
+  AuthRefreshRequest,
+  AuthRefreshResponse,
+} from './types';
 
 export const login = (credentials: AuthLoginRequest): Promise<AuthLoginResponse> => {
   return post<AuthLoginResponse>('/api/auth/login', credentials);
@@ -7,4 +13,8 @@ export const login = (credentials: AuthLoginRequest): Promise<AuthLoginResponse>
 
 export const register = (userData: AuthRegisterRequest): Promise<void> => {
   return post<void>('/api/auth/register', userData);
+};
+
+export const refreshToken = (request: AuthRefreshRequest): Promise<AuthRefreshResponse> => {
+  return post<AuthRefreshResponse>('/api/auth/refresh', request);
 };
