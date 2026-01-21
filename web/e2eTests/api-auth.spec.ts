@@ -36,7 +36,7 @@ test('login returns token for valid credentials', async ({ request }) => {
     },
   });
   const body = await response.json();
-  expect(body.token).toBeDefined();
+  expect(body.data?.token).toBeDefined();
 });
 
 test('login returns 401 for invalid credentials', async ({ request }) => {
