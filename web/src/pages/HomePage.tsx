@@ -340,6 +340,7 @@ export const HomePage = () => {
     status: 'All',
     goalRange: 'Any',
   });
+  const [_basketItems, setBasketItems] = useState<{ campaign: Campaign; amount: number }[]>([]);
 
   const filteredCampaigns = useMemo(() => {
     return filterCampaigns(campaigns, filters);
@@ -374,8 +375,23 @@ export const HomePage = () => {
     }
   };
 
-  const handleCampaignClick = (campaignId: string): void => {
-    navigate(`/campaigns/${campaignId}`);
+  const handleAddToBasket = (campaign: Campaign, amount: number): void => {
+    setBasketItems((prev) => {
+      const existingIndex = prev.findIndex((item) => item.campaign.id === campaign.id);
+      if (existingIndex >= 0) {
+        const updated = [...prev];
+        updated[existingIndex] = { campaign, amount: updated[existingIndex].amount + amount };
+        return updated;
+      }
+      return [...prev, { campaign, amount }];
+    });
+  };
+
+  const handleCampaignMarkerClick = (campaign: Campaign): void => {
+    const element = document.getElementById(`campaign-${campaign.id}`);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
   };
 
   return (
@@ -440,7 +456,9 @@ export const HomePage = () => {
           <Section>
             <CampaignMap
               organizations={organizations}
+              campaigns={campaigns}
               onMarkerClick={(orgId) => navigate(`/organizations/${orgId}`)}
+              onCampaignMarkerClick={handleCampaignMarkerClick}
             />
           </Section>
 
@@ -479,6 +497,7 @@ export const HomePage = () => {
                   {filteredCampaigns.map((campaign, index) => (
                     <motion.div
                       key={campaign.id}
+                      id={`campaign-${campaign.id}`}
                       variants={{
                         hidden: { opacity: 0, y: 20 },
                         visible: {
@@ -497,7 +516,8 @@ export const HomePage = () => {
                     >
                       <CampaignCard
                         campaign={campaign}
-                        onClick={() => handleCampaignClick(campaign.id)}
+                        onClick={() => {}}
+                        onAddToBasket={handleAddToBasket}
                       />
                     </motion.div>
                   ))}

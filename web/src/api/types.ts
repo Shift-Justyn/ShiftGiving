@@ -66,6 +66,9 @@ export interface Campaign {
   category?: string;
   location?: string;
   mediaGallery?: MediaGalleryItem[];
+  unitLabel?: string;
+  unitPrice?: number;
+  impactLabel?: string;
 }
 
 export interface CampaignOrganizationDetail {

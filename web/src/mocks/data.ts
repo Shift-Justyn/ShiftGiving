@@ -128,6 +128,9 @@ const campaigns: Campaign[] = [
     endDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(),
     category: 'Animals',
     location: 'Portland, OR',
+    unitLabel: 'Help One Pet',
+    unitPrice: 25,
+    impactLabel: 'Animals Helped',
   },
   {
     id: 'campaign-2',
@@ -145,6 +148,9 @@ const campaigns: Campaign[] = [
     endDate: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000).toISOString(),
     category: 'Animals',
     location: 'Portland, OR',
+    unitLabel: 'Warming Station',
+    unitPrice: 75,
+    impactLabel: 'Pets Helped',
   },
   {
     id: 'campaign-3',
@@ -162,6 +168,9 @@ const campaigns: Campaign[] = [
     endDate: new Date(Date.now() + 45 * 24 * 60 * 60 * 1000).toISOString(),
     category: 'Community',
     location: 'Austin, TX',
+    unitLabel: 'Help 5 People',
+    unitPrice: 25,
+    impactLabel: 'Families Helped',
   },
   {
     id: 'campaign-4',
@@ -179,6 +188,9 @@ const campaigns: Campaign[] = [
     endDate: new Date(Date.now() + 10 * 24 * 60 * 60 * 1000).toISOString(),
     category: 'Education',
     location: 'Chicago, IL',
+    unitLabel: 'Help 10 Kids',
+    unitPrice: 50,
+    impactLabel: 'Youth Helped',
   },
   {
     id: 'campaign-5',
@@ -196,6 +208,9 @@ const campaigns: Campaign[] = [
     endDate: new Date(Date.now() + 20 * 24 * 60 * 60 * 1000).toISOString(),
     category: 'Community',
     location: 'Seattle, WA',
+    unitLabel: 'Feed a Family',
+    unitPrice: 35,
+    impactLabel: 'Families Fed',
   },
   {
     id: 'campaign-6',
