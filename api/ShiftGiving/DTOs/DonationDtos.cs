@@ -25,6 +25,8 @@ public class DonationResponse
     public bool ReceiptSent { get; set; }
     public DateTime CreatedAt { get; set; }
     public DateTime UpdatedAt { get; set; }
+    public string? CampaignTitle { get; set; }
+    public string? OrganizationName { get; set; }
 }
 
 public class DonationListResponse

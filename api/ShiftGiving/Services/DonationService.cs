@@ -100,12 +100,12 @@ public class DonationService
 
     private async Task<List<DonationResponse>> ExecuteDonationQuery(IQueryable<Donation> query, int page, int pageSize)
     {
-        return await query
+        var donations = await query
             .OrderByDescending(d => d.CreatedAt)
             .Skip((page - 1) * pageSize)
             .Take(pageSize)
-            .Select(d => MapToDonationResponse(d))
             .ToListAsync();
+        return donations.Select(MapToDonationResponse).ToList();
     }
 
     private async Task<DonationResponse> FetchDonationWithDetails(Guid id)
@@ -134,7 +134,9 @@ public class DonationService
             DonorMessage = d.DonorMessage,
             ReceiptSent = d.ReceiptSent,
             CreatedAt = d.CreatedAt,
-            UpdatedAt = d.UpdatedAt
+            UpdatedAt = d.UpdatedAt,
+            CampaignTitle = d.Campaign?.Title,
+            OrganizationName = d.Organization?.Name
         };
     }
 
