@@ -2,7 +2,7 @@
 
 ## Overview
 
-Successfully implemented the complete end-to-end donation experience for the Shift Giving Expo/React Native app, following TDD principles and the Carbon-inspired design system.
+Successfully implemented the complete end-to-end donation experience for the GivingApp Expo/React Native app, following TDD principles and the Carbon-inspired design system.
 
 ## Deliverables
 

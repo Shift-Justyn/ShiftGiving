@@ -4,7 +4,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
 import { useTranslation } from 'react-i18next';
-import { ShiftGivingLogo } from './common/ShiftGivingLogo';
+import { GivingAppLogo } from './common/ShiftGivingLogo';
 
 const SidebarContainer = styled(motion.div)<{ $isMobile: boolean; $isOpen: boolean }>`
   position: ${(props) => (props.$isMobile ? 'fixed' : 'relative')};
@@ -417,8 +417,10 @@ export const Sidebar = () => {
 
       <SidebarContainer $isMobile={isMobile} $isOpen={isOpen}>
         <LogoSection onClick={() => navigate('/')}>
-          <ShiftGivingLogo size={36} color="white" />
-          <LogoText>Shift Giving</LogoText>
+          <GivingAppLogo size={36} color="white" />
+          <LogoText>
+            <strong>Giving</strong>App
+          </LogoText>
         </LogoSection>
 
         <UserSection>

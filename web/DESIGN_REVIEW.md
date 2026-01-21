@@ -1,4 +1,4 @@
-# Shift Giving Design Review & Implementation Plan
+# GivingApp Design Review & Implementation Plan
 
 **Last Updated:** January 2026
 **Status:** Phase 1 Complete - Ready for Reassessment
@@ -7,8 +7,8 @@
 
 ## Overview
 
-This document tracks the design polish initiative comparing the current Shift Giving web implementation against:
-1. Figma designs in `/docs/ShiftGivesFigma/`
+This document tracks the design polish initiative comparing the current GivingApp web implementation against:
+1. Figma designs in `/docs/GivingAppFigma/`
 2. CarbonOffset reference app in `/Users/justynmiller/Desktop/Projects/CarbonOffset`
 3. Apple Human Interface Guidelines (HIG)
 

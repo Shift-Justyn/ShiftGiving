@@ -1,6 +1,6 @@
 # Animation Implementation Guide
 
-This document describes all animations and visual polish added to the ShiftGiving native app using Moti and React Native Reanimated.
+This document describes all animations and visual polish added to the GivingApp native app using Moti and React Native Reanimated.
 
 ## Architecture
 

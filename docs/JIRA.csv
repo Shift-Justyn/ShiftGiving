@@ -1,0 +1,1762 @@
+﻿Summary,Issue key,Issue id,Issue Type,Status,Project key,Project name,Project type,Project lead,Project lead id,Project description,Priority,Resolution,Assignee,Assignee Id,Reporter,Reporter Id,Creator,Creator Id,Created,Updated,Last Viewed,Resolved,Due date,Votes,Labels,Description,Environment,Watchers,Watchers,Watchers,Watchers Id,Watchers Id,Watchers Id,Original estimate,Remaining Estimate,Time Spent,Work Ratio,Σ Original Estimate,Σ Remaining Estimate,Σ Time Spent,Security Level,Inward issue link (Blocks),Inward issue link (Blocks),Outward issue link (Blocks),Outward issue link (Blocks),Inward issue link (Cloners),Outward issue link (Cloners),Inward issue link (Issue split),Outward issue link (Issue split),Outward issue link (Issue split),Inward issue link (Relates),Outward issue link (Relates),Attachment,Attachment,Custom field (Acceptance Criteria),Custom field (Acceptance Criteria),Custom field (Actual Results),Custom field (Affected services),Custom field (Approvals),Custom field (Basecamp Link),Custom field (Browser),Custom field (Category),Custom field (Change completion date),Custom field (Change reason),Custom field (Change risk),Custom field (Change start date),Custom field (Change type),Custom field (Checklist Progress),Custom field (Checklist Progress %),Custom field (Checklist Text (view-only)),Custom field (Client Name/ EPA ID),Custom field (Component),Custom field (Customer Request Type),Custom field (Description),Custom field (Description),Custom field (Development),Custom field (ESP Job),Custom field (Effort),Custom field (Env),Custom field (Epic Color),Custom field (Epic Name),Custom field (Epic Status),Custom field (Expected Results),Custom field (Fix Version),Custom field (Flagged),Custom field (Focus Areas),Custom field (Goals),Custom field (Hours estimate),Custom field (Impact),Custom field (Issue color),Custom field (Job number),Custom field (Locked forms),Custom field (Navigate Product),Custom field (Open forms),Custom field (Platform),Custom field (Platform),Custom field (Pre Conditions),Custom field (Project overview key),Custom field (Project overview status),Custom field (Rank),Custom field (Request language),Custom field (Request participants),Satisfaction rating,Custom field (Satisfaction date),Custom field (Sentiment),Custom field (Silent Partner Job Number),Custom field (Silent Partner Number),Custom field (Silent Partner Number),Sprint,Custom field (Start date),Custom field (Story Points),Custom field (Story point estimate),Custom field (Submitted forms),Custom field (Target end),Custom field (Target start),Custom field (Team),Custom field (Test Steps),Custom field (Time to first response),Custom field (Time to resolution),Custom field (Total forms),Custom field (Vulnerability),Custom field ([CHART] Date of First Response),Custom field ([CHART] Time in Status),Comment,Comment,Comment,Comment,Comment,Parent,Parent key,Parent summary,Status Category,Status Category Changed
+Configure CD Job for QA Web and API in GitHub Actions,GIV-172,68243,Task,Done,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,Done,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,04/Jun/25 12:43 AM,16/Jun/25 9:30 AM,,15/Jun/25 1:09 AM,,0,,"*Technical Statement:* The Shift Giving application should be configured for Continuous Deployment for the QA environment.
+
+*Acceptance Criteria:*
+
+* Add a job to GitHub Actions for deployment of the Shift Giving Web and API applications to the QA environment
+
+*Engineer Notes:*
+
+* This job should occur after the existing build and test jobs",,Travis Smith,,,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@1b3cd00d,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i04i73:,,,,,,,,,,,,,,,,,,,,,,,12119_*:*_1_*:*_951929035_*|*_12121_*:*_1_*:*_0,,,,,,,,,Done,15/Jun/25 1:09 AM
+Establish QA Environment,GIV-171,68242,Task,Done,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,Done,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,04/Jun/25 12:42 AM,15/Jun/25 1:08 AM,,15/Jun/25 1:08 AM,,0,,"*Technical Statement:* Infrastructure needs to be stood up and configured to support a QA environment for the Shift Giving platform.
+
+*Acceptance Criteria:*
+
+* Establish QA environment infrastructure for the Shift Giving API application
+* Establish QA environment infrastructure for the Shift Giving Web application",,Travis Smith,,,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@1d0e86a9,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i04i6v:,,,,,,,,,,,,,,,,,,,,,,,12119_*:*_1_*:*_120616027_*|*_12120_*:*_1_*:*_0,,,,,,,,,Done,15/Jun/25 1:08 AM
+Establish Branching Strategy,GIV-170,68241,Task,Done,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,Done,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,04/Jun/25 12:32 AM,04/Jun/25 12:37 AM,,04/Jun/25 12:35 AM,,0,,"*Value Statement:* As an Engineer, I want to establish a branching strategy for this project so that the team has a clear understanding of how Continuous Integration and Continuous Deployment is expected to be handled.
+
+*Acceptance Criteria:*
+
+* A Branching Strategy is established
+* The Branching Strategy is documented and big and visible",,Travis Smith,,,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@6cb77186,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i04gfq:w,,,,,,,,,,,,,,,,,,,,,,2025-06-04 05:35:01.453,12119_*:*_1_*:*_168115_*|*_12121_*:*_1_*:*_0,04/Jun/25 12:35 AM;712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c;The Branching Strategy has been established at [https://github.com/shiftdsm/shift-giving/wiki/Branching-Strategy|https://github.com/shiftdsm/shift-giving/wiki/Branching-Strategy] .,,,,,,,,Done,04/Jun/25 12:35 AM
+Setup Acceptance Automated Testing for the API,GIV-169,66524,Task,Done,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,Done,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,02/Apr/25 10:26 AM,04/Jun/25 12:00 AM,,04/Jun/25 12:00 AM,,0,,"*Value Statement:* As an Engineer, I want to have the ability to create automated acceptance tests for the API application so that I have fast feedback on whether my code is working correctly.
+
+*Acceptance Criteria:*
+
+* Acceptance automated tests are able to be ran for the API app
+* The ReadME has instructions for running the automated tests.",,Travis Smith,,,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@4b930d09,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i04gfq:v,,,,,,,,,,,,,,,,,,,,,,,12119_*:*_1_*:*_5405605363_*|*_12121_*:*_1_*:*_0,,,,,,,,,Done,04/Jun/25 12:00 AM
+Setup Unit/Integration Automated Testing for the API,GIV-168,66523,Task,Done,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,Done,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,02/Apr/25 10:25 AM,04/Jun/25 12:00 AM,,04/Jun/25 12:00 AM,,0,,"*Value Statement:* As an Engineer, I want to have the ability to create automated unit/integration tests for the API application so that I have fast feedback on whether my code is working correctly.
+
+*Acceptance Criteria:*
+
+* Unit and Integration automated tests are able to be ran for the API app
+* The ReadME has instructions for running the automated tests.",,Travis Smith,,,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@1e2b569f,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i04gfq:r,,,,,,,,,,,,,,,,,,,,,,,12119_*:*_1_*:*_5405654592_*|*_12121_*:*_1_*:*_0,,,,,,,,,Done,04/Jun/25 12:00 AM
+Setup Acceptance Automated Testing for Web,GIV-167,66522,Task,Done,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,Done,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,02/Apr/25 10:25 AM,04/Jun/25 12:00 AM,,04/Jun/25 12:00 AM,,0,,"*Value Statement:* As an Engineer, I want to have the ability to create automated acceptance tests for the Web application so that I have fast feedback on whether my code is working correctly.
+
+*Acceptance Criteria:*
+
+* Acceptance automated tests are able to be ran for the Web app
+* The ReadME has instructions for running the automated tests.",,Travis Smith,,,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@35bd7370,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i04gfq:i,,,,,,,,,,,,,,,,,,,,,,,12119_*:*_1_*:*_5405697927_*|*_12121_*:*_1_*:*_0,,,,,,,,,Done,04/Jun/25 12:00 AM
+Setup Unit/Integration Automated Testing for Web,GIV-166,66521,Task,Done,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,Done,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,02/Apr/25 10:24 AM,03/Jun/25 11:59 PM,,03/Jun/25 11:59 PM,,0,,"*Value Statement:* As an Engineer, I want to have the ability to create automated unit/integration tests for the Web application so that I have fast feedback on whether my code is working correctly.
+
+*Acceptance Criteria:*
+
+* Unit and Integration automated tests are able to be ran for the Web app
+* The ReadME has instructions for running the automated tests.",,Travis Smith,,,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@16fab5c,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i04gfq:,,,,,,,,,,,,,,,,,,,,,,,12119_*:*_1_*:*_5405735386_*|*_12121_*:*_1_*:*_0,,,,,,,,,Done,03/Jun/25 11:59 PM
+Setup Acceptance Automated Testing for Mobile,GIV-165,66520,Task,Done,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,Done,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,02/Apr/25 10:22 AM,03/Jun/25 11:59 PM,,03/Jun/25 11:59 PM,,0,,"*Value Statement:* As an Engineer, I want to have the ability to create automated acceptance tests for the Mobile application so that I have fast feedback on whether my code is working correctly.
+
+*Acceptance Criteria:*
+
+* Acceptance automated tests are able to be ran for the Mobile apps
+* The ReadME has instructions for running the automated tests.",,Travis Smith,,,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@77e07b20,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i04gfp:,,,,,,,,,,,,,,,,,,,,,,,12119_*:*_1_*:*_5405820958_*|*_12121_*:*_1_*:*_0,,,,,,,,,Done,03/Jun/25 11:59 PM
+Setup Unit/Integration Automated Testing for Mobile,GIV-164,66519,Task,Done,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,Done,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,02/Apr/25 10:21 AM,03/Jun/25 11:59 PM,,03/Jun/25 11:59 PM,,0,,"*Value Statement:* As an Engineer, I want to have the ability to create automated unit/integration tests for the Mobile application so that I have fast feedback on whether my code is working correctly.
+
+*Acceptance Criteria:*
+
+* Unit and Integration automated tests are able to be ran for the Mobile apps
+* The ReadME has instructions for running the automated tests.",,Travis Smith,,,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@1ca79fce,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i04gfn:,,,,,,,,,,,,,,,,,,,,,,,12119_*:*_1_*:*_5405877924_*|*_12121_*:*_1_*:*_0,,,,,,,,,Done,03/Jun/25 11:59 PM
+Mobile App Splash Screen,GIV-163,66518,Story,Done,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,Done,,,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,02/Apr/25 9:46 AM,02/Apr/25 10:14 AM,,02/Apr/25 10:14 AM,,0,,"*Value Statement:* As a Donor, I want to see a splash screen on the mobile app during loading of the app so that I have smooth transition into the app when it’s loading.
+
+*Acceptance Criteria:*
+
+* When loading the mobile app, the splash screen is displayed for a short period",,Travis Smith,,,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@3c9af6c4,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i04gfr:,,,,,,,,,,,,,,,,,,,,,,,12119_*:*_1_*:*_1658353_*|*_12121_*:*_1_*:*_0,,,,,,,,,Done,02/Apr/25 10:14 AM
+Develop Web and Mobile App for Shift Giving using AI-Generated agent for support,GIV-162,64506,Task,Done,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,Done,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,Eric Rowley,557058:fdf7b1a0-0c4f-477b-a7c5-557ca367f143,Eric Rowley,557058:fdf7b1a0-0c4f-477b-a7c5-557ca367f143,13/Jan/25 9:06 AM,01/Apr/25 3:15 PM,18/Jan/26 4:23 PM,04/Feb/25 2:04 PM,,0,,"h1. *Description:*
+
+This task involves developing the front-end and basic back-end functionality for the Shift Giving web and mobile applications, leveraging AI code generation tools to accelerate development. We will use [AI Tool Name - e.g., GitHub Copilot, Tabnine, Amazon CodeWhisperer] to generate code based on our existing wireframes and backlog. The focus will be on creating a functional and user-friendly interface that aligns with the Shift Giving project goals.
+
+h1. *User Acceptance Testing (UAT):*
+
+* *Functionality:*
+** Users can successfully navigate through all screens and sections of the app.
+** Users can input data into forms and the data is correctly saved and/or processed (e.g., user registration, donation forms).
+** Users can interact with all interactive elements (buttons, links, etc.) as expected.
+** The app functions correctly across different browsers and devices (responsive design).
+* *Usability:*
+** The app's interface is intuitive and easy to understand.
+** The app's design is consistent with the provided wireframes and branding guidelines.
+** The app provides clear instructions and feedback to the user.
+* *Performance:*
+** The app loads quickly and performs smoothly.
+** There are no noticeable bugs or errors.
+
+*Engineering Details:*
+
+# *Environment Setup:*
+#* Set up development environment with necessary tools and frameworks (e.g., React, Node.js, relevant mobile development framework).
+#* Integrate the chosen AI code generation tool into the IDE.
+# *Front-End Development:*
+#* Use the provided wireframes and backlog to define the app's structure and functionality.
+#* Leverage the AI code generation tool to generate code for UI components, layouts, and basic interactions.
+#* Refine and customize the generated code to meet specific design requirements and ensure code quality.
+#* Implement responsive design to ensure compatibility across different devices.
+# *Back-End Development (Basic):*
+#* Set up basic back-end functionality for handling user input and data persistence (e.g., using Firebase, a simple Node.js server).
+#* Utilize AI code generation to assist with basic API endpoint creation and data handling logic.
+#* Ensure secure handling of user data.
+# *Testing:*
+#* Conduct thorough unit and integration testing to identify and fix any bugs or errors.
+#* Perform cross-browser and cross-device testing to ensure compatibility.
+# *Code Review:*
+#* Submit code for review by a senior engineer to ensure code quality and adherence to best practices.
+
+*Additional Notes:*
+
+* This is actually from Eric
+** Feel free to leverage whatever AI tool. We’ll start with ChatGPT but if that doesn’t work we can figure out CoPilot, Amazon CodeWhiperer, etc. 
+** Team level ChatGPT account in 1 pass 
+* The AI code generation tool should be used as an aid to accelerate development, not as a replacement for critical thinking and problem-solving.
+* Generated code must be thoroughly reviewed and tested to ensure quality and security.
+* This card focuses on the initial development of the web and mobile apps. Future cards will address more advanced features and functionalities.
+
+*Attachments:*
+
+* Wireframes - [https://www.figma.com/design/zuM410y2TiuwtbvyyZJvUP/Shift-Gives?node-id=773-30&p=f&t=S0cV7ZSzAGy4fPng-0|https://www.figma.com/design/zuM410y2TiuwtbvyyZJvUP/Shift-Gives?node-id=773-30&p=f&t=S0cV7ZSzAGy4fPng-0|smart-link]  
+* Backlog - [https://shiftinteractive.atlassian.net/jira/software/projects/GIV/boards/195/backlog|https://shiftinteractive.atlassian.net/jira/software/projects/GIV/boards/195/backlog|smart-link] ",,Eric Rowley,Travis Smith,,557058:fdf7b1a0-0c4f-477b-a7c5-557ca367f143,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@2b6963dc,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|hzzzzr:,,,,,,,,,On Deck - Ready to Work,,,,,,,,,,,,,2025-02-02 18:49:25.768,12119_*:*_1_*:*_1918681712_*|*_12121_*:*_1_*:*_0,"29/Jan/25 2:36 PM;557058:fdf7b1a0-0c4f-477b-a7c5-557ca367f143;This came across my desk the other day
+
+[https://replit.com/|https://replit.com/|smart-link] ","29/Jan/25 3:22 PM;557058:fdf7b1a0-0c4f-477b-a7c5-557ca367f143;[https://github.com/jeremychone/rust-devai|https://github.com/jeremychone/rust-devai|smart-link]  
+
+
+
+Another tool that seems promising  ","02/Feb/25 12:49 PM;712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c;I evaluated [Replit.com|http://Replit.com]. The initial response I got from Replit was the following:
+
+”I notice you're looking to build a complex multi-platform application with several technologies that are currently not supported in our environment (Flutter, Next.js, .NET, Docker, AWS/Terraform).
+
+Instead, I can help you build a fully-functional donation platform using our supported stack:
+
+* Frontend: React with modern UI components
+* Backend: Express.js API
+* Database: PostgreSQL
+* Authentication and payment processing integration”
+
+Do to the limitations of the model, I would not find it very useful.","04/Feb/25 2:04 PM;712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c;The results of my testing is the following: [https://docs.google.com/document/d/14CY1dMfb4Sol2kB6xM1JnH5YXHApBz2-_JBHs0Nh0q4/edit?tab=t.0|https://docs.google.com/document/d/14CY1dMfb4Sol2kB6xM1JnH5YXHApBz2-_JBHs0Nh0q4/edit?tab=t.0|smart-link] 
+
+I have come to the conclusion that there isn’t a whole lot that can be accomplished with AI tools without a comprehensive involvement with an Engineer using AI tools as an assistant.",,,,,Done,04/Feb/25 2:04 PM
+"When an account is created, generate a shift giving code for that organization",GIV-161,63404,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,10/Jul/24 2:33 PM,02/Apr/25 10:10 AM,,,,0,archive,,,Brian Healy,,,6090022a7a30960069da652e,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@75cafbc0,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i045in:,,,,,,,,,Archived,,,,,,,,,,,,,,,,,,,,63307,GIV-141,User Login,To Do,10/Jul/24 2:33 PM
+Delete Account,GIV-159,63400,Story,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,10/Jul/24 2:15 PM,02/Apr/25 10:04 AM,,,,0,archive,,,Brian Healy,,,6090022a7a30960069da652e,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@2deccb31,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i045if:,,,,,,,,,Archived,,,,,,,,,,,,,,,,,,,,63306,GIV-140,User Mgmt/Profile,To Do,10/Jul/24 2:15 PM
+"As a donor user, I want to be able to see all campaigns",GIV-158,63388,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,10/Jul/24 10:45 AM,02/Apr/25 10:10 AM,,,,0,archive,,,Brian Healy,,,6090022a7a30960069da652e,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@2eaecf1e,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i045ov:,,,,,,,,,Archived,,,16.0,,,,,,,,,,,,,,,,,62477,GIV-21,Browse Campaigns,To Do,10/Jul/24 10:45 AM
+"As a donor user, I want to be able to see all campaigns of my organizations",GIV-157,63387,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,10/Jul/24 10:44 AM,02/Apr/25 10:10 AM,,,,0,archive,,,Brian Healy,,,6090022a7a30960069da652e,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@12869c2e,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i045on:,,,,,,,,,Archived,,,16.0,,,,,,,,,,,,,,,,,63308,GIV-142,User Subscriptions,To Do,10/Jul/24 10:44 AM
+"As a donor user, I want to see a feed of campaigns and new posts on my home page",GIV-156,63386,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,10/Jul/24 10:41 AM,02/Apr/25 10:10 AM,,,,0,archive,"
+
+!image-20240710-154220.png|width=297,height=625,alt=""image-20240710-154220.png""!",,Brian Healy,,,6090022a7a30960069da652e,,,,,,,,,,,,,,,,,,,,,,10/Jul/24 10:42 AM;ug:41e1805d-70db-4e54-8216-b8f87062b0c1;image-20240710-154220.png;https://shiftinteractive.atlassian.net/rest/api/3/attachment/content/45547,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@125fe8fd,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i045of:,,,,,,,,,Archived,,,24.0,,,,,,,,,,,,,,,,,63306,GIV-140,User Mgmt/Profile,To Do,10/Jul/24 10:42 AM
+"As an org user, I want to manage my account",GIV-155,63385,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,10/Jul/24 10:38 AM,02/Apr/25 10:10 AM,,,,0,archive,,,Brian Healy,,,6090022a7a30960069da652e,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@61423a12,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i045lj:,,,,,,,,,Archived,,,24.0,,,,,,,,,,,,,,,,,63305,GIV-139,Org Mgmt/Profile,To Do,10/Jul/24 10:38 AM
+Production Environment Setup,GIV-154,63384,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,10/Jul/24 10:35 AM,02/Apr/25 10:10 AM,,,,0,archive,,,Brian Healy,,,6090022a7a30960069da652e,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@7f621d5e,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i0474z:,,,,,,,,,Archived,,,90.0,,,,,,,,,,,,,,,,,62565,GIV-46,Prod environment,To Do,10/Jul/24 10:35 AM
+"As an org user, I want to be able to view my posts for a campaign",GIV-153,63383,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,10/Jul/24 10:30 AM,02/Apr/25 10:10 AM,,,,0,archive,"
+
+!image-20240710-153127.png|width=921,height=679,alt=""image-20240710-153127.png""!
+
+*Assumptions*
+
+# We aren’t editing posts",,Brian Healy,,,6090022a7a30960069da652e,,,64800,64800,,0%,64800,64800,,,,,,,,,,,,,,10/Jul/24 10:31 AM;ug:41e1805d-70db-4e54-8216-b8f87062b0c1;image-20240710-153127.png;https://shiftinteractive.atlassian.net/rest/api/3/attachment/content/45546,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@3877d6e2,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i045tb:,,,,,,,,,Archived,,,18.0,,,,,,,,,,,,,,,,,62482,GIV-26,Manage Campaign,To Do,10/Jul/24 10:30 AM
+SMS Notifications Worker,GIV-152,63382,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,10/Jul/24 10:27 AM,02/Apr/25 10:07 AM,,,,0,archive,This will be a worker that receives SMS notifications and sends them out via twilio or something,,Brian Healy,,,6090022a7a30960069da652e,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@3aea43ab,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i045pz:,,,,,,,,,Archived,,,24.0,,,,,,,,,,,,,,,,,,,,To Do,10/Jul/24 10:27 AM
+Email Notifications Worker,GIV-151,63381,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,10/Jul/24 10:27 AM,02/Apr/25 10:07 AM,,,,0,archive,This will be a worker that received email notifications and sends them out via sendgrid or something,,Brian Healy,,,6090022a7a30960069da652e,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@59239db8,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i045pr:,,,,,,,,,Archived,,,24.0,,,,,,,,,,,,,,,,,,,,To Do,10/Jul/24 10:27 AM
+Messaging Triggers,GIV-150,63380,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,10/Jul/24 10:23 AM,02/Apr/25 10:07 AM,,,,0,archive,"Create event hooks for donor user actions like campaign donation, org donation, joining an organization, etc.
+
+
+
+-This includes potential email, sms, or push notifications for all of the above",,Brian Healy,,,6090022a7a30960069da652e,,,288000,288000,,0%,288000,288000,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@7a84c3bb,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i045jj:,,,,,,,,,Archived,,,80.0,,,,,,,,,,,,,,,,,,,,To Do,10/Jul/24 10:23 AM
+Organization Dashboard,GIV-149,63379,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,10/Jul/24 10:19 AM,02/Apr/25 10:10 AM,,,,0,archive,"
+
+!image-20240710-152014.png|width=832,height=669,alt=""image-20240710-152014.png""!",,Brian Healy,,,6090022a7a30960069da652e,,,,,,,,,,,,,,,,,,,,,,10/Jul/24 10:20 AM;ug:41e1805d-70db-4e54-8216-b8f87062b0c1;image-20240710-152014.png;https://shiftinteractive.atlassian.net/rest/api/3/attachment/content/45545,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@659fd54c,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i045jb:,,,,,,,,,Archived,,,32.0,,,,,,,,,,,,,,,,,63305,GIV-139,Org Mgmt/Profile,To Do,10/Jul/24 10:19 AM
+Organization Landing Page on Web App,GIV-148,63378,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,10/Jul/24 10:15 AM,02/Apr/25 10:10 AM,,,,0,archive,"
+
+!image-20240710-151547.png|width=416,height=798,alt=""image-20240710-151547.png""!",,Brian Healy,,,6090022a7a30960069da652e,,,,,,,,,,,,,,,,,,,,,,10/Jul/24 10:15 AM;ug:41e1805d-70db-4e54-8216-b8f87062b0c1;image-20240710-151547.png;https://shiftinteractive.atlassian.net/rest/api/3/attachment/content/45544,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@53247a09,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i045jz:,,,,,,,,,Archived,,,32.0,,,,,,,,,,,,,,,,,63305,GIV-139,Org Mgmt/Profile,To Do,10/Jul/24 10:15 AM
+Backend Push Notifications: Setup notifications in Ruby App,GIV-147,63331,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,28/Jun/24 1:16 PM,02/Apr/25 10:07 AM,,,,0,archive,"Store FCM Token in our DB
+
+Frontend: Process and display notifications
+
+Backend: Setup notifications in Ruby app
+
+when notifications are fired send them to the proper tokens/people
+
+
+
+*Technical Implementation*
+
+# Add FCM token in User table in DB
+# Add a controller for Push Notifications
+## ",,Brian Healy,,,6090022a7a30960069da652e,,,,,,,,,,,,,,,,,GIV-89,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@442b40a,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i04767:,,,,,,,,,Archived,,,,,,,,,,,,,,,,,,,,,,,To Do,28/Jun/24 1:16 PM
+Front-End Push Notifications: Display and Process,GIV-146,63330,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,28/Jun/24 1:16 PM,02/Apr/25 10:07 AM,,,,0,archive,"Store FCM Token in our DB
+
+Frontend: Process and display notifications
+
+Backend: Setup notifications in Ruby app
+
+when notifications are fired send them to the proper tokens/people
+
+
+
+*Technical Implementation*
+
+# Add FCM token in User table in DB",,Brian Healy,,,6090022a7a30960069da652e,,,,,,,,,,,,,,,,,GIV-89,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@57d7be31,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i0476f:,,,,,,,,,Archived,,,,,,,,,,,,,,,,,,,,,,,To Do,28/Jun/24 1:16 PM
+"As a user, I should be able to reset password",GIV-145,63322,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,27/Jun/24 11:42 AM,02/Apr/25 10:10 AM,,,,0,archive,"Use Devise!
+
+*Workflow*
+
+# As a user, I need to be able to reset my password
+# On the log-in screen, if I select “Forgot Password?”, I can enter my email
+# An email is sent to me that allows me to click a link to reset my password
+# I enter my password, a password confirmation, and I hit “reset”
+
+*Technical Implementation*
+
+# Add forgot password link
+# Add page to enter email for password reset
+# Add page to enter password reset
+
+*Acceptance Criteria*
+
+# I can hit forgot my password, enter my email, and be taken to the reset password screen where I can successfully reset my password
+# ",,Brian Healy,,,6090022a7a30960069da652e,,,21600,21600,,0%,21600,21600,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@3607b39a,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i045kf:,,,,,,,,,Archived,,,6.0,,,,,,,,,,,,,,,,,63307,GIV-141,User Login,To Do,27/Jun/24 11:42 AM
+Next Phase UI/UX,GIV-144,63310,Epic,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,cliff.thompson,619bfad9657a050070750d97,cliff.thompson,619bfad9657a050070750d97,26/Jun/24 12:45 PM,02/Apr/25 10:07 AM,,,,0,archive,,,cliff.thompson,,,619bfad9657a050070750d97,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@32ad5e1e,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,purple,,,,,,,,,,0|i045dj:,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,To Do,26/Jun/24 12:45 PM
+Super Admin,GIV-143,63309,Epic,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,cliff.thompson,619bfad9657a050070750d97,cliff.thompson,619bfad9657a050070750d97,26/Jun/24 12:16 PM,02/Apr/25 10:07 AM,,,,0,archive,,,cliff.thompson,,,619bfad9657a050070750d97,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@5146c200,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,purple,,,,,,,,,,0|i0468f:,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,To Do,26/Jun/24 12:16 PM
+User Subscriptions,GIV-142,63308,Epic,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,cliff.thompson,619bfad9657a050070750d97,cliff.thompson,619bfad9657a050070750d97,26/Jun/24 12:12 PM,02/Apr/25 10:07 AM,,,,0,archive,,,cliff.thompson,,,619bfad9657a050070750d97,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@49a993dd,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,purple,,,,,,,,,,0|i0467j:,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,To Do,26/Jun/24 12:12 PM
+User Login,GIV-141,63307,Epic,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,cliff.thompson,619bfad9657a050070750d97,cliff.thompson,619bfad9657a050070750d97,26/Jun/24 12:11 PM,02/Apr/25 10:07 AM,,,,0,archive,,,cliff.thompson,,,619bfad9657a050070750d97,,,,,,,50400,50400,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@26a6e44d,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,purple,,,,,,,,,,0|i045dz:,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,To Do,26/Jun/24 12:11 PM
+User Mgmt/Profile,GIV-140,63306,Epic,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,cliff.thompson,619bfad9657a050070750d97,cliff.thompson,619bfad9657a050070750d97,cliff.thompson,619bfad9657a050070750d97,26/Jun/24 12:10 PM,02/Apr/25 10:07 AM,,,,0,archive,"mobile specific donor view
+
+Notifications Mgmt
+Subscriptions Mgmt
+
+Account Settings
+
+Security",,cliff.thompson,,,619bfad9657a050070750d97,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@3b8ad576,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,purple,,,,,,,,,,0|i04687:,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,To Do,26/Jun/24 12:10 PM
+Org Mgmt/Profile,GIV-139,63305,Epic,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,cliff.thompson,619bfad9657a050070750d97,cliff.thompson,619bfad9657a050070750d97,26/Jun/24 12:09 PM,02/Apr/25 10:07 AM,,,,0,archive,"Display a tabbed/swipable view of the Organization profile with 
+
+About
+Active Campaigns
+Published Posts
+_Recent public donations_
+",,cliff.thompson,,,619bfad9657a050070750d97,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@2f3bb3c6,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,purple,,,,,,,,,,0|i0467z:,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,To Do,26/Jun/24 12:09 PM
+Setup Staging Distribution Pipeline in Google Play,GIV-137,63290,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,24/Jun/24 4:12 PM,02/Apr/25 10:10 AM,,,,0,archive,"*Technical Statement:* In order to support deploying the React Native application for Android for the Staging environment, we need to create a distribution pipeline in Google Play.
+
+*Acceptance Criteria:*
+
+* A distribution pipeline exists for the Staging version of the mobile app",,Travis Smith,,,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@56dd3c0a,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i04752:zzzy,,,,,,,,,Archived,,,2.0,,,,,,,,,,,,,,,,,62450,GIV-12,MVP staging environment,To Do,24/Jun/24 4:12 PM
+Configure FCM for Staging Android Mobile App,GIV-136,63289,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,24/Jun/24 4:03 PM,02/Apr/25 10:10 AM,,,,0,archive,"*Technical Statement:* In order to support automated push notifications for the Android mobile app in the staging environment, the FCM account will be setup to support the Shift-Giving Android app.
+
+*Acceptance Criteria:*
+
+* The Android mobile app is able to receive push notifications from FCM for the Staging environment
+
+*Engineer Notes:*
+
+* Register Android App
+* Import JSON file
+* Config/Keys
+* React Native Firebase messaging SDK
+* Request permission for push notifications on initial app load
+* Store FCM Token",,Travis Smith,,,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@6f2b479e,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i04752:zzzzv,,,,,,,,,Archived,,,6.0,,,,,,,,,,,,,,,,,62450,GIV-12,MVP staging environment,To Do,24/Jun/24 4:03 PM
+Setup FCM,GIV-135,63288,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,24/Jun/24 4:01 PM,02/Apr/25 10:10 AM,,,,0,archive,"*Technical Statement:* In order to support automated push notifications, a Firebase Cloud Messaging account will be utilized for the Shift-Giving application.
+
+*Acceptance Criteria:*
+
+* An FCM account will be identified for use with the Shift-Giving application
+
+*Engineer Notes:*
+
+* Check with the Infrastructure team to determine if a new FCM account needs to be created or an existing account can be utilized",,Travis Smith,,,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@24ec23d4,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i04752:zzzzi,,,,,,,,,Archived,,,1.0,,,,,,,,,,,,,,,,,62450,GIV-12,MVP staging environment,To Do,24/Jun/24 4:01 PM
+Configure CD Job for QA Mobile Apps in GitHub Actions and Fastlane,GIV-134,63287,Task,In Progress,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,24/Jun/24 3:56 PM,16/Jun/25 9:30 AM,,,,0,,"*Technical Statement:* In order to support Continuous Deployment of the Shift Giving mobile app to QA testers, the QA Shift Giving mobile app will be automatically deployed through GitHub Actions using Fastlane.
+
+*Acceptance Criteria:*
+
+* GitHub Actions will deploy the QA Shift Giving iOS mobile apps through Fastlane",,Travis Smith,,,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@6ce8e1b9,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i04i7b:,,,,,,,,,Archived,,,12.0,,,,,,,,,,,,,,,,,,,,In Progress,15/Jun/25 1:14 AM
+Configure Testflight for Staging,GIV-133,63286,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,24/Jun/24 3:52 PM,02/Apr/25 10:10 AM,,,,0,archive,"*Technical Statement:* In order to support manually testing the iOS Mobile App with Test Users, the Staging iOS Mobile App will deployed to Testflight.
+
+*Acceptance Criteria:*
+
+* The staging version of the iOS mobile app is deployed to Testflight
+* The staging version of the iOS mobile app is able to be downloaded by Testflight users
+
+*Engineer Notes:*
+
+* Add necessary IDs and keys into app
+* App signing for IOS
+* Getting deploys/builds working",,Travis Smith,,,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@1bb95c7d,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i04752:zzzr,,,,,,,,,Archived,,,4.0,,,,,,,,,,,,,,,,,62450,GIV-12,MVP staging environment,To Do,24/Jun/24 3:52 PM
+Setup Staging Distribution Pipeline in App Store Connect,GIV-132,63285,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,24/Jun/24 3:43 PM,02/Apr/25 10:10 AM,,,,0,archive,"*Technical Statement:* In order to support deploying the React Native application for iOS for the Staging environment, we need to create a distribution pipeline in App Store Connect.
+
+*Acceptance Criteria:*
+
+* A distribution pipeline exists for the Staging version of the mobile app",,Travis Smith,,,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@556ca91b,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i04752:zzz,,,,,,,,,Archived,,,2.0,,,,,,,,,,,,,,,,,62450,GIV-12,MVP staging environment,To Do,24/Jun/24 3:43 PM
+Configure Buddy to Deploy Docker Container to ECR for Staging,GIV-131,63284,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,24/Jun/24 3:17 PM,02/Apr/25 10:10 AM,,,,0,archive,"*Technical Statement:* In order to support deploying the Rails Web Application for the Staging Environment, an action will be created in the Buddy staging pipeline to deploy the docker file to the AWS ECR instance.
+
+*Acceptance Criteria:*
+
+* An action exists for the Buddy staging pipeline in the Shift-Giving project that pushes the dockerfile for the Rails Web Application to the ECR instance",,Travis Smith,,,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,,14400,14400,,0%,14400,14400,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@176d4c33,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i04752:zzx,,,,,,,,,Archived,,,4.0,,,,,,,,,,,,,,,,,62450,GIV-12,MVP staging environment,To Do,24/Jun/24 3:17 PM
+Configure AWS ECR for Staging Rails Web Application,GIV-130,63283,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,24/Jun/24 3:15 PM,02/Apr/25 10:07 AM,,,,0,archive,"*Technical Statement:* In order to support deploying the Rails Web Application for the Staging Environment, an AWS ECR resource needs to be created for Rails docker container.
+
+*Acceptance Criteria:*
+
+* An AWS Elastic Container Registry resource exists for storing the Rails docker container for the Staging environment",,Travis Smith,,,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@795f64ee,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i04752:zv,,,,,,,,,Archived,,,1.0,,,,,,,,,,,,,,,,,62450,GIV-12,MVP staging environment,To Do,24/Jun/24 3:15 PM
+Configure AWS ELB for Staging Rails Web Application,GIV-129,63282,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,24/Jun/24 3:13 PM,02/Apr/25 10:07 AM,,,,0,archive,"*Technical Statement:* In order to support reaching the AWS ECS Web Application for the Staging Environment, an Elastic Load Balancer resource will be created in AWS.
+
+*Acceptance Criteria:*
+
+* An Elastic Load Balancer resource should exist in AWS for the Staging ECS Rails Web Application
+* This ELB should be created through Terraform",,Travis Smith,,,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,,21600,21600,,0%,21600,21600,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@33d2fbc4,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i04752:zy,,,,,,,,,Archived,,,6.0,,,,,,,,,,,,,,,,,62450,GIV-12,MVP staging environment,To Do,24/Jun/24 3:13 PM
+Configure Cloudflare for the Staging URL,GIV-128,63281,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,24/Jun/24 3:11 PM,02/Apr/25 10:07 AM,,,,0,archive,"*Technical Statement:* In order to support DNS routing for the Staging URL of the Shift-Giving web application, a DNS route will be created in Cloudflare.
+
+*Acceptance Criteria:*
+
+* A DNS route will exist in Cloudflare for the Shift-Giving Staging URL that points to the AWS Load Balancer for the Staging site",,Travis Smith,,,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@3267947,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i04752:zzr,,,,,,,,,Archived,,,2.0,,,,,,,,,,,,,,,,,62450,GIV-12,MVP staging environment,To Do,24/Jun/24 3:11 PM
+Setup SSL Certificate for Staging Web Application,GIV-127,63280,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,24/Jun/24 3:10 PM,02/Apr/25 10:07 AM,,,,0,archive,"*Technical Statement:* In order to support deploying the Staging environment Shift-Giving Web Application, an SSL certificate will be created.
+
+*Acceptance Criteria:*
+
+* An SSL certificate will be generated to be used for the Shift-Giving staging URL",,Travis Smith,,,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@64b61474,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i04752:zzi,,,,,,,,,Archived,,,5.0,,,,,,,,,,,,,,,,,62450,GIV-12,MVP staging environment,To Do,24/Jun/24 3:10 PM
+Configure AWS ECS for Staging Rails Web Application,GIV-126,63279,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,24/Jun/24 3:05 PM,02/Apr/25 10:07 AM,,,,0,archive,"*Technical Statement:* In order to support deploying the Rails Web Application for the Staging Environment, an AWS ECS resource needs to be created for Rails docker container.
+
+*Acceptance Criteria:*
+
+* An AWS ECS resource exists for running the Rails docker container for the Staging environment",,Travis Smith,,,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,,7200,7200,,0%,7200,7200,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@7ef7907c,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i04752:zx,,,,,,,,,Archived,,,2.0,,,,,,,,,,,,,,,,,62450,GIV-12,MVP staging environment,To Do,24/Jun/24 3:05 PM
+Docker Container for Rails Web Application,GIV-125,63278,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,24/Jun/24 3:02 PM,02/Apr/25 10:07 AM,,,,0,archive,"*Technical Statement:* In order to support deploying the Rails Web Application, a docker container will need to be created for running the Rails Web Application.
+
+*Acceptance Criteria:*
+
+* A docker container exists for running the Rails Web Application locally
+* Documentation exists in the ReadMe for how to start up the docker container",,Travis Smith,,,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,,14400,14400,,0%,14400,14400,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@31f903a6,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i04752:zr,,,,,,,,,Archived,,,4.0,,,,,,,,,,,,,,,,,62450,GIV-12,MVP staging environment,To Do,24/Jun/24 3:02 PM
+Configure AWS RDS for Staging Postgres Database,GIV-124,63277,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,24/Jun/24 2:58 PM,02/Apr/25 10:07 AM,,,,0,archive,"*Technical Statement:* In order to support storing data in a database for the Staging environment, a database will need to be configured in AWS RDS.
+
+*Acceptance Criteria:*
+
+* A Postgres database instance should be configured in RDS through Terraform for the Staging environment
+* Automated backups should be configured
+* Maintenance Schedule should be configured
+* Logging to Cloudwatch should be configured
+* Database Deletion protection should be turned on
+* Encryption should be enabled",,Travis Smith,,,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,,3600,3600,,0%,3600,3600,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@1a5a89f,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i04752:zi,,,,,,,,,Archived,,,1.0,,,,,,,,,,,,,,,,,62450,GIV-12,MVP staging environment,To Do,24/Jun/24 2:58 PM
+Identify Branching Strategy,GIV-123,63276,Task,Done,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,Done,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,24/Jun/24 2:52 PM,02/Apr/25 10:07 AM,,04/Feb/25 2:14 PM,,0,archive,"*Technical Statement:* In order to support build, test, and deployment pipelines, a branching strategy will need to be determined.
+
+*Acceptance Criteria:*
+
+* A branching strategy is determined and documented so that it is available to all engineers",,Travis Smith,,,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,,3600,3600,,0%,3600,3600,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@57e7c8e3,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|hzzzzq:v,,,,,,,,,On Deck - Ready to Work,,,1.0,,,,,,,,,,,12119_*:*_1_*:*_19441315749_*|*_12121_*:*_1_*:*_0,,,,,,62450,GIV-12,MVP staging environment,Done,04/Feb/25 2:14 PM
+Configure CI Build/Test Job in GitHub Actions,GIV-122,63275,Task,Done,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,Done,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,24/Jun/24 2:48 PM,05/Jun/25 10:12 AM,,05/Jun/25 10:12 AM,,0,,"*Technical Statement:* In order to support building and testing changes made within the Shift-Giving repository, a build/test pipeline will need to be created.
+
+*Acceptance Criteria:*
+
+* A build and test pipeline should exist in GitHub Actions for the Shift-Giving project",,Travis Smith,,,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,,7200,7200,,0%,7200,7200,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@1551c613,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i04gfq:x,,,,,,,,,Archived,,,2.0,,,,,,,,,,,12119_*:*_1_*:*_29763553382_*|*_12120_*:*_1_*:*_0,,,,,,,,,Done,05/Jun/25 10:12 AM
+Add Integration/Unit Automated Test Library/Framework to Flutter Application,GIV-121,63274,Task,Done,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,Done,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,24/Jun/24 2:45 PM,02/Apr/25 10:07 AM,,04/Feb/25 2:13 PM,,0,archive,"*Technical Statement:* In order to support creating automated integration/unit tests, a library/framework will need to setup for the Flutter Application.
+
+*Acceptance Criteria:*
+
+* A library/framework will exist for creating and executing automated integration/unit tests in the Flutter Application",,Travis Smith,,,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,,3600,3600,,0%,3600,3600,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@7316ead8,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|hzzzzq:r,,,,,,,,,On Deck - Ready to Work,,,1.0,,,,,,,,,,,12119_*:*_1_*:*_19441673358_*|*_12121_*:*_1_*:*_0,,,,,,62450,GIV-12,MVP staging environment,Done,04/Feb/25 2:13 PM
+Add Flutter Application to Repository,GIV-117,63269,Task,Done,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,Done,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,24/Jun/24 2:12 PM,02/Apr/25 10:07 AM,,04/Feb/25 2:12 PM,,0,archive,"*Technical Statement:* In order to support starting development on the Flutter application, a Flutter Mobile Application needs to exist in Shift-Giving repository.
+
+*Acceptance Criteria:*
+
+* A boilerplate Flutter project should exist in the Shift-Giving repository
+
+*Engineer Notes:*
+
+* Since the Shift-Giving repository is meant to be a mono-repository, the Flutter project should exist within a sub-directory from the root of the repository using a tech-agnostic directory name
+** It is suggested to use something like “ui”",,Travis Smith,,,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,,7200,7200,,0%,7200,7200,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@20535426,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|hzzzzq:i,,,,,,,,,On Deck - Ready to Work,,,2.0,,,,,,,,,,,12119_*:*_1_*:*_19443586389_*|*_12121_*:*_1_*:*_0,,,,,,62450,GIV-12,MVP staging environment,Done,04/Feb/25 2:12 PM
+Add .Net API to Repository,GIV-116,63268,Task,Done,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,Done,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,24/Jun/24 2:08 PM,02/Apr/25 10:07 AM,,04/Feb/25 2:11 PM,,0,archive,"*Acceptance Criteria:*
+
+* A boilerplate .Net project should exist in the Shift-Giving repository
+
+*Engineer Notes:*
+
+* Since the Shift-Giving repository is meant to be a mono-repository, the .Net project should exist within a sub-directory from the root of the repository using a tech-agnostic directory name
+** It is suggested to use something like “api” or “webapp”",,Travis Smith,,,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,,7200,7200,,0%,7200,7200,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@a388b4a,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|hzzzzq:,,,,,,,,,On Deck - Ready to Work,,,2.0,,,,,,,,,,,12119_*:*_1_*:*_19443815232_*|*_12121_*:*_1_*:*_0,,,,,,62450,GIV-12,MVP staging environment,Done,04/Feb/25 2:11 PM
+Set up Jumpstart Multitenancy,GIV-115,63267,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,24/Jun/24 1:44 PM,02/Apr/25 10:10 AM,,,,0,archive,"*Acceptance Criteria*
+
+# I can log in as an admin account user
+
+[https://jumpstartrails.com/docs/installation|https://jumpstartrails.com/docs/installation|smart-link] ",,Brian Healy,,,6090022a7a30960069da652e,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@288e7536,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i045tj:,,,,,,,,,Archived,,,8.0,,,,,,,,,,,,,,,,,63306,GIV-140,User Mgmt/Profile,To Do,24/Jun/24 1:44 PM
+"As a donor user, I want to see a feed of posts",GIV-114,63266,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,24/Jun/24 1:33 PM,02/Apr/25 10:10 AM,,,,0,archive,,,Brian Healy,,,6090022a7a30960069da652e,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@2a5111a6,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i045jr:,,,,,,,,,Archived,,,,,,,,,,,,,,,,,,,,63308,GIV-142,User Subscriptions,To Do,24/Jun/24 1:33 PM
+Setup Staging Pipeline in Buddy,GIV-113,63265,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,24/Jun/24 1:21 PM,02/Apr/25 10:07 AM,,,,0,archive,"*Technical Statement:* In order to support deploying the Rails Web Application for the Staging Environment, a pipeline will be created in Buddy for staging.
+
+*Acceptance Criteria:*
+
+* A pipeline will exist in the Shift-Giving project in Buddy for the Staging environment",,Brian Healy,,,6090022a7a30960069da652e,,,10800,10800,,0%,10800,10800,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@3bf22750,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i04752:zzv,,,,,,,,,Archived,,,3.0,,,,,,,,,,,,,,,,,62450,GIV-12,MVP staging environment,To Do,24/Jun/24 1:21 PM
+Configure Mailgun for Staging Environment,GIV-112,63264,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,24/Jun/24 1:20 PM,02/Apr/25 10:07 AM,,,,0,archive,"*Technical Statement:* In order to support sending emails for the Staging environment, the Mailgun project for Shift-Giving will be configured.
+
+*Acceptance Criteria:*
+
+* The Mailgun project for Shift-Giving will be configured to support a Staging environment",,Brian Healy,,,6090022a7a30960069da652e,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@35030681,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i045yf:,,,,,,,,,Archived,,,3.0,,,,,,,,,,,,,,,,,62450,GIV-12,MVP staging environment,To Do,24/Jun/24 1:20 PM
+"As a donor user, I want to be able to see campaign page with a list of previous posts",GIV-111,62750,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,12/Jun/24 1:41 PM,02/Apr/25 10:10 AM,,,,0,archive,,,Brian Healy,,,6090022a7a30960069da652e,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@101995e7,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i0461j:,,,,,,,,,Archived,,,,,,,,,,,,,,,,,,,,62483,GIV-27,Publish Post,To Do,12/Jun/24 1:41 PM
+"As an org user, I want to be able edit a post",GIV-110,62749,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,12/Jun/24 1:38 PM,02/Apr/25 10:10 AM,,,,0,archive,No push!,,Brian Healy,,,6090022a7a30960069da652e,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@687ce4f1,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i0463b:,,,,,,,,,Archived,,,,,,,,,,,,,,,,,,,,62483,GIV-27,Publish Post,To Do,12/Jun/24 1:38 PM
+Org profile - as viewed by donor visiting,GIV-109,62748,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,cliff.thompson,619bfad9657a050070750d97,cliff.thompson,619bfad9657a050070750d97,12/Jun/24 1:27 PM,02/Apr/25 10:10 AM,,,,0,archive,,,cliff.thompson,,,619bfad9657a050070750d97,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@3efde580,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,purple,,,,,,,,,,0|i0461r:,,,,,,,,,Archived,,,,,,,,,,,,,,,,,,,,62428,GIV-2,MVP UI/UX,To Do,12/Jun/24 1:27 PM
+"As an org admin, I want to be able to create/update my organization profile",GIV-108,62747,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,12/Jun/24 1:27 PM,02/Apr/25 10:10 AM,,,,0,archive,"
+
+!Screenshot 2024-06-24 at 1.51.04 PM.png|width=388,height=830,alt=""Screenshot 2024-06-24 at 1.51.04 PM.png""!
+
+
+
+*Workflow*
+
+As an organization, I want to be able to create or update an organization profile.
+
+# I can upload an organization photo
+# I can fill out top-level description with a text box for mission statement, mission statement description
+# I can fill out subsections for cause/cause description (organization profile objectives) and add as many subsections as I want (?)
+
+*Technical Implementation*
+
+# Headers need to be length-restricted (60?)
+# Descriptions need to be restricted (280)
+
+*Acceptance Criteria*
+
+# As an org user, when I update my profile, the values are saved to the DB in the appropriate tables
+
+*Assumptions*
+
+# The organization table exists
+# Organization “organization_profile_objectives” table exists
+
+*Note:* Find an intuitive vernacular for this whole thing",,Brian Healy,,,6090022a7a30960069da652e,,,,,,,,,,,,,,,,,,,,,,24/Jun/24 2:02 PM;ug:41e1805d-70db-4e54-8216-b8f87062b0c1;Screenshot 2024-06-24 at 1.51.04 PM.png;https://shiftinteractive.atlassian.net/rest/api/3/attachment/content/45464,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@6ab7e52,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i045o7:,,,,,,,,,Archived,,,8.0,,,,,,,,,,,,24/Jun/24 2:01 PM;6090022a7a30960069da652e;[~accountid:619bfad9657a050070750d97] Do orgs need to fill out their profile before the sign-up is finished so an org profile displays like the one in the figma?,,,,,63305,GIV-139,Org Mgmt/Profile,To Do,12/Jun/24 1:27 PM
+User flow - Sign-up via SG code,GIV-107,62746,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,cliff.thompson,619bfad9657a050070750d97,cliff.thompson,619bfad9657a050070750d97,12/Jun/24 1:22 PM,02/Apr/25 10:10 AM,,,,0,archive,"Create a user flow that details out the step-by-step of the code sign-up process.
+
+* Does the code gate sign-up? (if you don’t have a code you can’t join)
+* Should there be a generic sign-up option that you can trigger your own code to 1 or more default orgs?
+* What does it look like to invite users/generate codes from org perspective?",,cliff.thompson,,,619bfad9657a050070750d97,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@643e31c1,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,purple,,,,,,,,,,0|i04627:,,,,,,,,,Archived,,,,,,,,,,,,,,,,,,,,62428,GIV-2,MVP UI/UX,To Do,12/Jun/24 1:22 PM
+"As a donor user, I want to be able to add new organizations after I have already signed up for the app",GIV-106,62745,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,12/Jun/24 1:20 PM,02/Apr/25 10:10 AM,,,,0,archive,I can enter a code or scan a QR code to add an additional organization to my account.,,Brian Healy,,,6090022a7a30960069da652e,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@678e8daa,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i045j3:,,,,,,,,,Archived,,,24.0,,,,,,,,,,,,,,,,,63308,GIV-142,User Subscriptions,To Do,12/Jun/24 1:20 PM
+Setup App Store Connect,GIV-105,62680,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,05/Jun/24 2:48 PM,02/Apr/25 10:10 AM,,,,0,archive,"*Technical Statement:* In order to support deploying the iOS mobile app for the Shift-Giving project, an App Store Connect account will be utilized.
+
+*Acceptance Criteria:*
+
+* An App Store Connect account will be identified to be used for the Shift-Giving mobile app
+* All engineers will have access to view and modify the App Store Connect account
+
+*Engineer Notes:*
+
+* Check with the Infrastructure team if a new App Store Connect account needs to be created or an existing account can be utilized",,Brian Healy,,,6090022a7a30960069da652e,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@7c885815,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i04752:zzy,,,,,,,,,Archived,,,1.0,,,,,,,,,,,,,,,,,62450,GIV-12,MVP staging environment,To Do,05/Jun/24 2:48 PM
+"As an org admin, I need to be able to see users associated with my organization and grant them permissions",GIV-104,62679,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,05/Jun/24 2:43 PM,02/Apr/25 10:10 AM,,,,0,archive,,,Brian Healy,,,6090022a7a30960069da652e,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@683aa838,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i045nj:,,,,,,,,,Archived,,,,,,,,,,,,,,,,,,,,63305,GIV-139,Org Mgmt/Profile,To Do,05/Jun/24 2:43 PM
+"As a new user, I want to be able to sign up as an org member",GIV-103,62678,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,05/Jun/24 2:41 PM,02/Apr/25 10:10 AM,,,,0,archive,,,Brian Healy,,,6090022a7a30960069da652e,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@127d2d64,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i0462f:,,,,,,,,,Archived,,,,,,,,,,,,,,,,,,,,62442,GIV-4,Org Sign-up,To Do,05/Jun/24 2:41 PM
+Push Notification Worker (Donations),GIV-102,62677,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,05/Jun/24 2:12 PM,02/Apr/25 10:10 AM,,,,0,archive,"*Workflow*
+
+As a user, I want to receive a push notification when I make a donation that thanks me for making a donation.",,Brian Healy,cliff.thompson,,6090022a7a30960069da652e,619bfad9657a050070750d97,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@7399e0b,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i0475z:,,,,,,,,,Archived,,,,,,,,,,,,,2024-06-05 19:34:42.164,,05/Jun/24 2:19 PM;6090022a7a30960069da652e;[~accountid:619bfad9657a050070750d97] Is this in MVP?,"05/Jun/24 2:34 PM;619bfad9657a050070750d97;[~accountid:6090022a7a30960069da652e] I know that [~accountid:712020:e5c987ec-8ffa-4aa4-8e9c-6c4e8e24719f] wants to see Push on MVP for sure - I think it is reasonable to discuss whether we need this specific scenario to be supported, or just the capability in general demonstrated in another way, like general Campaign/Post notifications. 
+
+In my personal opinion, an email thank you would be more valuable than a push in this specific scenario, but I think it’s reasonable to want both if we want to give them a little instant gratification. 
+
+I’m thinking… as a donor I just completed the transaction on mobile, so do I want an immediate Thank you message on the same device which loops back to a different place in the app? or would I rather just keep doing whatever I’m doing and have that in my email inbox with a link to my overall donor history? I’m leaning to the latter personally. ",,,,62580,GIV-58,Push notifications,To Do,05/Jun/24 2:12 PM
+Push Notification Worker (Posts),GIV-101,62675,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,05/Jun/24 1:52 PM,02/Apr/25 10:10 AM,,,,0,archive,"*Technical Implementation*
+
+# Add the FCM Token field to the Users table. 
+## After the push notification permission is accepted by the user, add this token to the DB for that user
+# Given a campaign ID and Notification object { title, message, data }, we need a push notification worker to find users that have donated to that campaign that have notifications enabled to send a push notification to
+# Trigger push notifications to FCM
+
+*Acceptance Criteria*
+
+# The worker is sending out push notifications for the data we are passing manually.
+
+*Assumptions*
+
+# Users have accepted/allowed push notifications
+# Our DB has stored FCM token
+# We have setup our React native app already in FCM
+# Sidekiq post schedule job is implemented",,Brian Healy,,,6090022a7a30960069da652e,,,,,,,,,,,,,GIV-63,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@1f7678e2,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i045p3:,,,,,,,,,Archived,,,40.0,,,,,,,,,,,,,,,,,62580,GIV-58,Push notifications,To Do,05/Jun/24 1:52 PM
+"As an org user, I want to be able to set groups for push notifications when I create a post",GIV-100,62674,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,05/Jun/24 1:45 PM,02/Apr/25 10:10 AM,,,,0,archive,,,Brian Healy,,,6090022a7a30960069da652e,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@10d1332,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i04633:,,,,,,,,,Archived,,,,,,,,,,,,,,,,,,,,62483,GIV-27,Publish Post,To Do,05/Jun/24 1:45 PM
+"As a donor user, I want to receive a push notification when a campaign publishes a post",GIV-99,62673,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,05/Jun/24 1:38 PM,02/Apr/25 10:10 AM,,,,0,archive,,,Brian Healy,,,6090022a7a30960069da652e,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@50f280d,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i0463j:,,,,,,,,,Archived,,,,,,,,,,,,,,,,,,,,62483,GIV-27,Publish Post,To Do,05/Jun/24 1:38 PM
+"As a donor user, I want to see ""Share to Social"" options on campaign posts I recieve",GIV-98,62671,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,05/Jun/24 1:33 PM,02/Apr/25 10:10 AM,,,,0,archive,"*Assumption*
+
+# For starters, we are just adding the share to social buttons to the bottom of campaign posts that donors view",,Brian Healy,,,6090022a7a30960069da652e,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@19732f38,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i045pj:,,,,,,,,,Archived,,,4.0,,,,,,,,,,,,,,,,,62483,GIV-27,Publish Post,To Do,05/Jun/24 1:33 PM
+"As an org user, I want to be able to schedule a post for later",GIV-97,62670,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,05/Jun/24 1:24 PM,02/Apr/25 10:10 AM,,,,0,archive,"*Workflow*
+
+# As a user, I want to be able to schedule a post for later and have that post publish at the scheduled time.
+# In the Post creation, when we create a post scheduled for later, the published flag will be set to false.
+
+*Technical Details*
+
+# Dispatch Sidekiq job for publishing the post at the scheduled time. This can update a published flag on the post.
+
+*Assumption*
+
+# Not notifying, not push notifications",,Brian Healy,,,6090022a7a30960069da652e,,,,,,,,,,,GIV-40,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@10b9f747,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i045t3:,,,,,,,,,Archived,,,16.0,,,,,,,,,,,,,,,,,62483,GIV-27,Publish Post,To Do,05/Jun/24 1:24 PM
+"As an org user, I want to upload multiple photos",GIV-96,62669,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,05/Jun/24 1:16 PM,02/Apr/25 10:10 AM,,,,0,archive,,,Brian Healy,,,6090022a7a30960069da652e,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@17025029,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i045lz:,,,,,,,,,Archived,,,,,,,,,,,,,,,,,,,,62483,GIV-27,Publish Post,To Do,05/Jun/24 1:16 PM
+"As a shift Admin, I want to include videos in posts",GIV-95,62668,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,05/Jun/24 12:11 PM,02/Apr/25 10:10 AM,,,,0,archive,,,Brian Healy,,,6090022a7a30960069da652e,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@45673950,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i046lz:,,,,,,,,,Archived,,,,,,,,,,,,,,,,,,,,63309,GIV-143,Super Admin,To Do,05/Jun/24 12:11 PM
+"As a shift Admin, I want to be able to upload one or more photos to a post",GIV-94,62667,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,05/Jun/24 12:11 PM,02/Apr/25 10:10 AM,,,,0,archive,,,Brian Healy,,,6090022a7a30960069da652e,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@2842186f,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i046lr:,,,,,,,,,Archived,,,,,,,,,,,,,,,,,,,,63309,GIV-143,Super Admin,To Do,05/Jun/24 12:11 PM
+"As a shift Admin, I want to make posts for a campaign",GIV-93,62666,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,05/Jun/24 12:10 PM,02/Apr/25 10:10 AM,,,,0,archive,,,Brian Healy,,,6090022a7a30960069da652e,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@4cfdcd58,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i046lj:,,,,,,,,,Archived,,,,,,,,,,,,,,,,,,,,63309,GIV-143,Super Admin,To Do,05/Jun/24 12:10 PM
+"As a Shift admin, I want to see donations for a campaign",GIV-92,62665,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,05/Jun/24 12:10 PM,02/Apr/25 10:10 AM,,,,0,archive,,,Brian Healy,,,6090022a7a30960069da652e,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@75e7c3a1,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i046lb:,,,,,,,,,Archived,,,,,,,,,,,,,,,,,,,,63309,GIV-143,Super Admin,To Do,05/Jun/24 12:10 PM
+"As a Shift Admin, I want to start a campaign",GIV-91,62664,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,05/Jun/24 12:08 PM,02/Apr/25 10:10 AM,,,,0,archive,"As an shift admin, I want to start a campaign so that users can donate to it.
+
+After starting my campaign, it should be public and available for users to donate to (?)
+
+
+
+!Screenshot 2024-06-05 at 11.50.47 AM-20240605-165053.png|width=684,height=494,alt=""Screenshot 2024-06-05 at 11.50.47 AM-20240605-165053.png""!
+
+
+
+*Workflow*
+
+# As a campaign admin, I can navigate to a campaign page where there is an option to “Create a campaign”.
+# Choosing to “Create campaign” takes me through a story design wizard where I can
+##  Create Title / Purpose
+## Select Beneficiary (Is this a list or text?)
+## Set Giving Goal
+##* Org can manually modify the goal amount to reflect offline donations
+## Set Start date (scheduled start)
+## Start button (immediate start)
+## End button (immediate end)
+## End date (scheduled end)
+Custom Messaging (v2)
+## Set Thank You message text (per donation)
+## Set Thank you message text (end of campaign)
+
+*Acceptance Criteria*
+
+The campaign is created in the database?",,Brian Healy,,,6090022a7a30960069da652e,,,,,,,,,,,,,,,,,,,,,,05/Jun/24 12:09 PM;ug:41e1805d-70db-4e54-8216-b8f87062b0c1;Screenshot 2024-06-05 at 11.50.47 AM-20240605-165053.png;https://shiftinteractive.atlassian.net/rest/api/3/attachment/content/45350,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@44658382,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i046m7:,,,,,,,,,Archived,,,40.0,,,,,,,,,,,,,,,,,63309,GIV-143,Super Admin,To Do,05/Jun/24 12:08 PM
+Multi-tenancy approaches,GIV-90,62659,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,05/Jun/24 8:35 AM,02/Apr/25 10:07 AM,,,,0,archive,"[https://www.kolide.com/blog/kolide-s-30-line-rails-multi-tenant-strategy|https://www.kolide.com/blog/kolide-s-30-line-rails-multi-tenant-strategy|smart-link] 
+
+[https://jumpstartrails.com/docs/multitenancy|https://jumpstartrails.com/docs/multitenancy|smart-link] 
+
+[https://www.reddit.com/r/rails/comments/18gw6ry/multitenancy_in_rails/|https://www.reddit.com/r/rails/comments/18gw6ry/multitenancy_in_rails/|smart-link] ",,Brian Healy,,,6090022a7a30960069da652e,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@696e6715,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i0476n:,,,,,,,,,Archived,,,,,,,,,,,,,,,,,,,,,,,To Do,05/Jun/24 8:35 AM
+Add FCM Token to User Table,GIV-89,62656,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,04/Jun/24 11:52 AM,02/Apr/25 10:10 AM,,,,0,archive,"Store FCM Token in our DB
+
+Frontend: Process and display notifications
+
+Backend: Setup notifications in Ruby app
+
+when notifications are fired send them to the proper tokens/people
+
+
+
+*Technical Implementation*
+
+# Add FCM token in User table in DB",,Brian Healy,,,6090022a7a30960069da652e,,,,,,,,,,,,,,,,,,GIV-146,GIV-147,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@52415f51,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i0475r:,,,,,,,,,Archived,,,,,,,,,,,,,,,,,,,,62580,GIV-58,Push notifications,To Do,04/Jun/24 11:52 AM
+Site Admin,GIV-88,62655,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,04/Jun/24 11:35 AM,02/Apr/25 10:10 AM,,,,0,archive,,,Brian Healy,,,6090022a7a30960069da652e,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@35f0cd2d,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i045kv:,,,,,,,,,Archived,,,,,,,,,,,,,,,,,,,,63309,GIV-143,Super Admin,To Do,04/Jun/24 11:35 AM
+"As a user, I should be able to manage my saved payment methods from the payment page",GIV-87,62653,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,04/Jun/24 10:27 AM,02/Apr/25 10:10 AM,,,,0,archive,"
+
+!Screenshot 2024-06-28 at 1.08.48 PM-20240628-180854.png|width=446,height=465,alt=""Screenshot 2024-06-28 at 1.08.48 PM-20240628-180854.png""!
+
+
+
+*Workflow*
+
+# As a user, I want to be able to manage my saved payment method so I can pay with a different method.
+# During checkout, if I have a saved payment method, it will display in a box with an edit icon.
+# If I click edit, I can enable new payment method fields and will be allowed to enter another payment method and have the option to save it.
+
+*Acceptance Criteria*
+
+# I can go through the checkout process with a new payment method after clicking the edit button on my saved payment.
+
+*Assumptions*
+
+# Saved payments are completed
+# There is a way in [Authorize.net|http://Authorize.net] to remove payment profile IDs
+
+*Technical Implementation*
+
+On the Payment page, there will be an edit icon that should revert the fields to editable fields and allow the user to enter a new payment method. When a user saves with this new payment method, should they choose to save it, it should become their new saved payment method. 
+
+
+
+*Questions*
+
+In [Authorize.Net|http://Authorize.Net], do we need to remove the other payment method to only have one saved and not have it automatically save more? Or will this require saving a payment method token?
+
+
+
+--We need to track payment profile Ids in the user",,Brian Healy,,,6090022a7a30960069da652e,,,,,,,,,,,,,,,,,,,,,,28/Jun/24 1:10 PM;ug:41e1805d-70db-4e54-8216-b8f87062b0c1;Screenshot 2024-06-28 at 1.08.48 PM-20240628-180854.png;https://shiftinteractive.atlassian.net/rest/api/3/attachment/content/45498,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@58bc8229,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,Impediment,,,,,,,,,,,,,,,0|i045rr:,,,,,,,,,Archived,,,8.0,,,,,,,,,,,,,,,,,62446,GIV-8,Accept Donation,To Do,04/Jun/24 10:27 AM
+"As a user, I should be able to select from several saved payment methods",GIV-86,62651,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,04/Jun/24 9:21 AM,02/Apr/25 10:10 AM,,,,0,archive,"*Workflow*
+
+# As a user, after checking out, but before the transaction is processed, I should be presented a prompt for saving my payment information for a faster checkout.
+# After the transaction has finished, if I make another donation, I should see a redacted version of my most recently saved payment information pre-populated in the payment section.
+## *If I have multiple payment methods saved, I should be able to click on my saved payment method to open a list of saved payment methods, and be able to choose between which payment method on file I want to use.*
+# I should be able to click donate and have the selected saved payment method charged.
+
+*Technical Implementation*
+
+# We need to add a call to [Get Customer Payment Profile List|https://developer.authorize.net/api/reference/index.html#customer-profiles-get-customer-payment-profile-list] to retrieve a list of Customer Payment Profiles. We can order the list by the CustomerPaymentProfileId field desc to get the most recent payment profile from the top.
+# We need to display the first customer payment profile if it exists
+# Instead of processing a transaction how we normally do, we should use the endpoint to [charge a customer profile|https://developer.authorize.net/api/reference/index.html#payment-transactions-charge-a-customer-profile]. It’s important we pass the payment profile we want to use as part of the request body so it charges the correct payment method on file.
+
+– We need to add payment methods to the customer profile when the user opts to use a new payment method instead of one already saved
+
+* We need to allow a selection from multiple payment methods that populate based on customer profile id
+
+*Assumptions*
+
+# Customer Profile Id is being saved somewhere
+# One payment method can already successfully be saved and reused
+# We are going to have all our [Authorize.net|http://Authorize.net] interaction on donate",,Brian Healy,,,6090022a7a30960069da652e,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@46837d71,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i045rz:,,,,,,,,,Archived,,,16.0,,,,,,,,,,,,,,,,,62446,GIV-8,Accept Donation,To Do,04/Jun/24 9:21 AM
+"As a user, I should be able to save a new payment method for a single donation",GIV-85,62649,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,04/Jun/24 9:09 AM,02/Apr/25 10:10 AM,,,,0,archive,"*Workflow*
+
+# As a user, after checking out, but before the transaction is processed, I should be able to check a box that says “Save payment information” for a faster checkout.
+# After the transaction has finished, if I make another donation, I should see a redacted version of my most recently saved payment information pre-populated in the payment section.
+## If I have multiple payment methods saved, I should be able to click on my saved payment method to open a list of saved payment methods, and be able to choose between which payment method on file I want to use.
+# I should be able to click donate and have the selected saved payment method charged.
+
+*Technical Details*
+
+# After the payment flow from [https://shiftinteractive.atlassian.net/browse/GIV-30|https://shiftinteractive.atlassian.net/browse/GIV-30|smart-link], we need to create a customer profile in [Authorize.net|https://developer.authorize.net/api/reference/index.html#customer-profiles-create-a-customer-profile-from-a-transaction] from a transaction. This should also save the payment information on that transaction.
+# We need to add a call to [Get Customer Payment Profile List|https://developer.authorize.net/api/reference/index.html#customer-profiles-get-customer-payment-profile-list] to retrieve a list of Customer Payment Profiles. We can order the list by the CustomerPaymentProfileId field desc to get the most recent payment profile from the top.
+# We need to display the first customer payment profile if it exists
+# Instead of processing a transaction how we normally do, we should use the endpoint to [charge a customer profile|https://developer.authorize.net/api/reference/index.html#payment-transactions-charge-a-customer-profile]. It’s important we pass the payment profile we want to use as part of the request body so it charges the correct payment method on file.
+
+[--We need to call Create a customer from a transaction if the user selects “Save” for their card information|https://developer.authorize.net/api/reference/index.html#customer-profiles-create-a-customer-profile-from-a-transaction]
+
+– We need to save the customer profile ID in our DB!
+
+*Acceptance Criteria*
+
+# After I save one payment method, I should be able to see that method for selection on my next donation.
+
+*Assumptions*
+
+# For this card, we will only be concerned with handling a single saved payment method",,Brian Healy,,,6090022a7a30960069da652e,,,,,,,,,,,,,GIV-84,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@2de8cb20,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i045r3:,,,,,,,,,Archived,,,16.0,,,,,,,,,,,,,,,,,62446,GIV-8,Accept Donation,To Do,04/Jun/24 9:09 AM
+"As a user, I should be able to make a single donation to a campaign with a saved payment method",GIV-84,62647,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,03/Jun/24 2:46 PM,02/Apr/25 10:10 AM,,,,0,archive,"As a user, when I click donate, I should be able to select an amount and enter payment details to donate to an organization so I can support them to the degree I want.
+
+!image-20240524-141743.png|width=770,height=532,alt=""image-20240524-141743.png""!
+
+*Workflow*
+
+# As a user, when navigate to the donate page from a campaign, I should be presented with a form that has the following options:
+## An amount with presets of “50”, “100”, “150” and “200”
+# After I select an amount, I should be redirected to a payment page that contains a form collecting the following information:
+## Amount confirmation
+## Payment Details (Handled by payment processor?”
+## Submit
+# If there is a saved method (we check for the payment method token that we’ve saved), we want to auto-populate details with the saved payment method that has the newest customerpaymentprofileId from the [Authorize.net|http://Authorize.net] response.
+# You can click on the payment method to view a list of payment methods which will be retrieved from /getCustomerProfile [authorize.net|http://authorize.net] endpoint.",,Brian Healy,,,6090022a7a30960069da652e,,,,,,,,,,,GIV-85,,,,,,GIV-30,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@36c64d01,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i045rb:,,,,,,,,,Archived,,,12.0,,,,,,,,,,,,,,,,,62446,GIV-8,Accept Donation,To Do,03/Jun/24 2:46 PM
+"As a user, I should be able to end a subscription I've started",GIV-83,62646,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,03/Jun/24 2:43 PM,02/Apr/25 10:10 AM,,,,0,archive,"
+
+
+
+*Assumptions*
+
+# There is an account management page to add this to
+# Payment stuff is basically all done
+# Subscriptions can be started and we have the subscription Id",,Brian Healy,,,6090022a7a30960069da652e,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@395a4b5f,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i0476v:,,,,,,,,,Archived,,,,,,,,,,,,,,,,,,,,63308,GIV-142,User Subscriptions,To Do,03/Jun/24 2:43 PM
+SPIKE: Security concerns for payment method calls from front-end,GIV-82,62645,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,03/Jun/24 2:38 PM,02/Apr/25 10:10 AM,,,,0,archive,TIME BOX: 8 hours,,Brian Healy,,,6090022a7a30960069da652e,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@3755f449,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i045qf:,,,,,,,,,Archived,,,8.0,,,,,,,,,,,,,,,,,62446,GIV-8,Accept Donation,To Do,03/Jun/24 2:38 PM
+"As an org user, I want to be able to personalize campaign posts",GIV-81,62644,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,03/Jun/24 2:31 PM,02/Apr/25 10:10 AM,,,,0,archive,"As a campaign admin, I want to create posts to update donors or users that can see my organization about upcoming or ongoing campaigns.
+
+!image-20240529-140744.png|width=302,height=615,alt=""image-20240529-140744.png""!
+
+!image-20240529-140859.png|width=751,height=560,alt=""image-20240529-140859.png""!
+
+*Workflow*
+
+# As an org user, I can navigate to a campaign page on the web application.
+# I can create a post for now or schedule a post for later.
+# I am presented with a screen that allows me to 
+#* Add description text
+#* Set ‘include goal/progress graphic' option 
+#* Set push notification options
+#* Set up news feed specific content
+#* Set ‘personalized’ option (including donor info) (yes/no)
+#* Save Post
+# If I select personalization and publish the post, a donor user will see “[Name], [Post]”.
+
+*Assumption*
+
+# We are just prepending the name to the post for now. To allow the name to be replaced within the post, we’d need to add features to the text editor.",,Brian Healy,,,6090022a7a30960069da652e,,,,,,,,,,,,,,,,,GIV-40,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@fd24c7b,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i045lr:,,,,,,,,,Archived,,,2.0,,,,,,,,,,,,,,,,,62482,GIV-26,Manage Campaign,To Do,03/Jun/24 2:31 PM
+"As an org user, I want to preview a campaign post while I am making it",GIV-80,62643,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,03/Jun/24 2:29 PM,02/Apr/25 10:10 AM,,,,0,archive,"As a campaign admin, I want to create posts to update donors or users that can see my organization about upcoming or ongoing campaigns.
+
+
+
+!Screenshot 2024-06-05 at 1.08.02 PM-20240605-180808.png|width=934,height=695,alt=""Screenshot 2024-06-05 at 1.08.02 PM-20240605-180808.png""!
+
+
+
+As a User, I want to see a preview of a post while I fill it out on the make post page.
+
+*Assumptions*
+
+# Text box can take HTML
+
+*Questions*
+
+# How are we handling link? Link setup in the figma is confusing us a little",,Brian Healy,,,6090022a7a30960069da652e,,,,,,,,,,,GIV-40,,,,,,GIV-40,,,,,05/Jun/24 1:18 PM;ug:41e1805d-70db-4e54-8216-b8f87062b0c1;Screenshot 2024-06-05 at 1.08.02 PM-20240605-180808.png;https://shiftinteractive.atlassian.net/rest/api/3/attachment/content/45352,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@597722a0,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i045sv:,,,,,,,,,Archived,,,8.0,,,,,,,,,,,,,,,,,62483,GIV-27,Publish Post,To Do,03/Jun/24 2:29 PM
+Goal progress bar,GIV-79,62642,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,03/Jun/24 2:22 PM,02/Apr/25 10:10 AM,,,,0,archive,"
+
+!Screenshot 2024-06-28 at 1.12.00 PM-20240628-181206.png|width=385,height=130,alt=""Screenshot 2024-06-28 at 1.12.00 PM-20240628-181206.png""!
+
+Blocked by figma designs - once figma is done we should build this component to that specification
+
+*Technical Implementation*
+
+# The bar displays a percentage - amount raised / goal amount
+# The amount raised is displayed above the bar",,Brian Healy,,,6090022a7a30960069da652e,,,,,,,,,,,,,GIV-40,,,,,,,,,28/Jun/24 1:13 PM;ug:41e1805d-70db-4e54-8216-b8f87062b0c1;Screenshot 2024-06-28 at 1.12.00 PM-20240628-181206.png;https://shiftinteractive.atlassian.net/rest/api/3/attachment/content/45499,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@6dd10ad6,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,Impediment,,,,,,,,,,,,,,,0|i045kn:,,,,,,,,,Archived,,,4.0,,,,,,,,,,,,,,,,,62483,GIV-27,Publish Post,To Do,03/Jun/24 2:22 PM
+Configure AWS S3 for Staging Photo Storage,GIV-78,62641,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,03/Jun/24 2:20 PM,02/Apr/25 10:07 AM,,,,0,archive,"*Technical Statement:* In order to support storage of photos, an S3 bucket will need to exist in AWS for the Staging environment.
+
+*Acceptance Criteria:*
+
+* An S3 bucket exists in AWS for the staging environment",,Brian Healy,,,6090022a7a30960069da652e,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@7cc2cacf,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,Impediment,,,,,,,,,,,,,,,0|i045yn:,,,,,,,,,Archived,,,,,,,,,,,,,,,,,,,,62450,GIV-12,MVP staging environment,To Do,03/Jun/24 2:20 PM
+"As a user, whose campaigns should we be seeing?",GIV-77,62640,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,03/Jun/24 2:08 PM,02/Apr/25 10:10 AM,,,,0,archive,,,Brian Healy,,,6090022a7a30960069da652e,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@1563a4a4,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i0461b:,,,,,,,,,Archived,,,,,,,,,,,,,,,,,,,,63308,GIV-142,User Subscriptions,To Do,03/Jun/24 2:08 PM
+"As a user, I should be able to sign in",GIV-76,62639,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,03/Jun/24 2:06 PM,02/Apr/25 10:10 AM,,,,0,archive,"Use devise!
+
+* Make sure this automatically handles password resets/etc",,Brian Healy,,,6090022a7a30960069da652e,,,28800,28800,,0%,28800,28800,,,,,GIV-28,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@50e83d5c,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i045k7:,,,,,,,,,Archived,,,8.0,,,,,,,,,,,,,,,,,63307,GIV-141,User Login,To Do,03/Jun/24 2:06 PM
+"As a user, I should be able to make a recurring donation to a campaign",GIV-75,62638,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,03/Jun/24 1:57 PM,02/Apr/25 10:10 AM,,,,0,archive,"As a user, when I click donate, I should be able to select an amount and enter payment details to donate to an organization so I can support them to the degree I want.
+
+!image-20240524-141743.png|width=770,height=532,alt=""image-20240524-141743.png""!
+
+*Workflow*
+
+# As a user, when navigate to the donate page, I should be presented with a form that has the following options:
+## An amount with presets of “50”, “100”, “150” and “200”
+# After I select an amount, I should be redirected to a payment page that contains a form collecting the following information:
+## Amount confirmation
+## Payment Details (Handled by payment processor?”
+## Submit
+# Upon a successful donation, I am presented with a confirmation/Thank You notification (push?)
+# If there as an error with my payment, I am presented with a alert informing me that my payment did not successfully complete.
+
+*Technical Implementation*
+
+# If a user is creating a subscription with a new payment method, use the create subscription endpoint. Otherwise, use the create subscription from customer profile endpoint (also using the returned payment info id)
+# When setting up a recurring donation, we need to get the subscription id
+# One user can have only one subscription per campaign
+
+Outstanding questions:
+
+# We’ll be using [Authorize.net|https://developer.authorize.net/api/reference/index.html#recurring-billing] for payments",,Brian Healy,,,6090022a7a30960069da652e,,,,,,,,,,,GIV-30,,,,,,GIV-30,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@592105ab,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i045nr:,,,,,,,,,Archived,,,12.0,,,,,,,,,,,,"24/Jun/24 2:59 PM;6090022a7a30960069da652e;[~accountid:619bfad9657a050070750d97] How long would a campaign be? Are we having subscriptions to campaigns or to organizations? Are campaigns long enough to warrant a whole subscription feature? And if the donations are to organizations and not campaigns, I think that’s a little different of a workflow than Ehren and I understood",,,,,62446,GIV-8,Accept Donation,To Do,03/Jun/24 1:57 PM
+"As a user, I want to verify my email",GIV-74,62632,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,31/May/24 9:36 AM,02/Apr/25 10:10 AM,,,,0,archive,"When I click an email verification link, I am informed that my email has been verified and the verification flag on my account is set to true",,Brian Healy,,,6090022a7a30960069da652e,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@4af0aa7e,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i045lb:,,,,,,,,,Archived,,,8.0,,,,,,,,,,,,,,,,,63306,GIV-140,User Mgmt/Profile,To Do,31/May/24 9:36 AM
+"As a donor user, I want to manage my account",GIV-73,62631,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,31/May/24 9:36 AM,02/Apr/25 10:10 AM,,,,0,archive,"
+
+!image-20240710-150406.png|width=316,height=680,alt=""image-20240710-150406.png""!
+
+
+
+*Workflow*
+
+As a donor user, I should be able to navigate to an account section where I can edit my account details.
+Screenshot 2024-07-10 at 9.08.33 AM
+
+
+On the account page, I should be able to edit
+
+# My email address
+# My password
+# My notifications setting
+## I should be able to select options for
+### Email Notifications
+### SMS Notifications
+### Push Notifications
+# My payment method
+## If I select “Change my payment method”, I should be able to see my current payment methods and delete and add new ones
+
+*Acceptance Criteria*
+
+# I can edit the above fields in the workflow and save them, and they are persisted.
+# The styling of the page adheres to the Figma design
+# I can see and edit recurring payments too
+# Password reset has a confirmation box and also requires entering old password",,Brian Healy,,,6090022a7a30960069da652e,,,,,,,,,,,,,,,,,,,,,,10/Jul/24 10:04 AM;ug:41e1805d-70db-4e54-8216-b8f87062b0c1;image-20240710-150406.png;https://shiftinteractive.atlassian.net/rest/api/3/attachment/content/45543,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@1e6e1a,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i045l3:,,,,,,,,,Archived,,,50.0,,,,,,,,,,,,,,,,,63306,GIV-140,User Mgmt/Profile,To Do,31/May/24 9:36 AM
+"As an org admin, I want to grant users in my org permissions to manage campaigns",GIV-72,62630,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,31/May/24 9:33 AM,02/Apr/25 10:10 AM,,,,0,archive,"Outstanding questions:
+
+What permissions? How granular does granting permissions need to be or can it be totally role-based? Can I add a user to my org without granting permissions?",,Brian Healy,,,6090022a7a30960069da652e,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@3fa58cff,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i0462v:,,,,,,,,,Archived,,,,,,,,,,,,,,,,,,,,63305,GIV-139,Org Mgmt/Profile,To Do,31/May/24 9:33 AM
+"As an org admin, I want to add users to my org",GIV-71,62629,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,31/May/24 9:33 AM,02/Apr/25 10:10 AM,,,,0,archive,,,Brian Healy,,,6090022a7a30960069da652e,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@6264a6c6,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i0462n:,,,,,,,,,Archived,,,,,,,,,,,,,,,,,,,,63305,GIV-139,Org Mgmt/Profile,To Do,31/May/24 9:33 AM
+"As a user, I should receive an email confirmation upon a completing a donation",GIV-70,62626,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,31/May/24 9:07 AM,02/Apr/25 10:10 AM,,,,0,archive,"As a user, when I complete a donation I should receive a confirmation email with a tax receipt so that I can keep it for my records.
+
+*Workflow*
+
+# As a user, I make a donation to a campaign.
+# I receive an email informing me the payment has processed successfully and containing a tax receipt for my charitable donation.
+
+Outstanding questions: Using Sendgrid?
+
+*Technical Implementation Details*
+
+# After-save hook for a transaction that triggers an email
+
+*Acceptance Criteria*
+
+# The email sends with some sort of info about the transaction
+
+*Assumptions*
+
+# The content of the email doesn’t really matter at this point, just getting it sending",,Brian Healy,,,6090022a7a30960069da652e,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@7f739b3d,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,Impediment,,,,,,,,,,,,,,,0|i045rj:,,,,,,,,,Archived,,,8.0,,,,,,,,,,,,24/Jun/24 2:43 PM;6090022a7a30960069da652e;[~accountid:619bfad9657a050070750d97] What does this receipt look like?,,,,,62446,GIV-8,Accept Donation,To Do,31/May/24 9:07 AM
+"As an donor user, I want to be able to sign up using my apple account",GIV-69,62601,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,29/May/24 2:45 PM,02/Apr/25 10:10 AM,,,,0,archive,"!lPARshk6m_nImiXMIB2CQ4G9XKLRnzryCOlo6D3PURisoit8kvzHm_OuZ4Ix0fQeAbmCZ5C2FJDropfEf5Z4kBaZkpM2yLyioX_uy60NTVITT9SeaPOsRr2ct0ZroPlRXREj2d08NgN7z5N-0zmvEjk|width=100%!
+
+!0V7DCX7nqYx5lxEek5dJY8fEnHS9N4NejrQB-BcLS6t8JNEBhHQiCVNxwbAek3wL36BJkOLGeLOdjp1QnP_9YIcMDc7jzMly6oacs1E7nL9SlsMAt6SB7oEb6MFMAY8MBMgoiXeD5--Oy_pDdmmzyYY|width=700,height=1148!
+
+*Workflow*
+
+# As a new user, after I download the app, I am taken to the Sign-Up page and given the following options for signing up:
+## Join as an Individual
+### If I select “Join as Indivudal” and “Sign in using Apple”, I am redirected to Apple’s sign-in portal
+### I authenticate myself in Apple.
+#### If it is my first time signing in, I am then redirected to the Indivudal Sign Up page
+#### If it is not my first time signing in, I am redirected to my home page.
+## Join as a Charity
+# On the Donor Sign Up page, I am prompted to enter the following options:
+
+* First name
+* Last name
+* Email address
+
+# After I enter all this information and click “Continue”, an account is created.",,Brian Healy,,,6090022a7a30960069da652e,,,,,,,,,,,,,,,,,GIV-67,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@6fb25f1b,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i045mn:,,,,,,,,,Archived,,,,,,,,,,,,,,,,,,,,62444,GIV-6,Donor Sign-up,To Do,29/May/24 2:45 PM
+"As a donor user, I want to be able to sign up using my google account",GIV-68,62600,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,29/May/24 2:44 PM,02/Apr/25 10:10 AM,,,,0,archive,"!lPARshk6m_nImiXMIB2CQ4G9XKLRnzryCOlo6D3PURisoit8kvzHm_OuZ4Ix0fQeAbmCZ5C2FJDropfEf5Z4kBaZkpM2yLyioX_uy60NTVITT9SeaPOsRr2ct0ZroPlRXREj2d08NgN7z5N-0zmvEjk|width=100%!
+
+!0V7DCX7nqYx5lxEek5dJY8fEnHS9N4NejrQB-BcLS6t8JNEBhHQiCVNxwbAek3wL36BJkOLGeLOdjp1QnP_9YIcMDc7jzMly6oacs1E7nL9SlsMAt6SB7oEb6MFMAY8MBMgoiXeD5--Oy_pDdmmzyYY|width=700,height=1148!
+
+*Workflow*
+
+# As a new user, after I download the app, I am taken to the Sign-Up page and given the following options for signing up:
+## Join as an Individual
+### If I select “Join as Individual” and “Sign in using google”, I am redirected to google’s sign-in portal
+### I authenticate myself in google.
+#### If it is my first time signing in, I am then redirected to the Individual Sign Up page
+#### If it is not my first time signing in, I am redirected to my home page.
+## Join as a Charity
+# On the Donor Sign Up page, I am prompted to enter the following options:
+
+* First name
+* Last name
+* Email address
+
+# After I enter all this information and click “Continue”, an account is created.",,Brian Healy,,,6090022a7a30960069da652e,,,,,,,,,,,,,,,,,GIV-66,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@36ce3649,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i045mf:,,,,,,,,,Archived,,,,,,,,,,,,,,,,,,,,62444,GIV-6,Donor Sign-up,To Do,29/May/24 2:44 PM
+"As an org user, I want to be able to sign up using my apple account",GIV-67,62593,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,29/May/24 12:23 PM,02/Apr/25 10:10 AM,,,,0,archive,"
+
+!lPARshk6m_nImiXMIB2CQ4G9XKLRnzryCOlo6D3PURisoit8kvzHm_OuZ4Ix0fQeAbmCZ5C2FJDropfEf5Z4kBaZkpM2yLyioX_uy60NTVITT9SeaPOsRr2ct0ZroPlRXREj2d08NgN7z5N-0zmvEjk|width=100%!
+
+!0V7DCX7nqYx5lxEek5dJY8fEnHS9N4NejrQB-BcLS6t8JNEBhHQiCVNxwbAek3wL36BJkOLGeLOdjp1QnP_9YIcMDc7jzMly6oacs1E7nL9SlsMAt6SB7oEb6MFMAY8MBMgoiXeD5--Oy_pDdmmzyYY|width=700,height=1148!
+
+*Workflow*
+
+# As a new user, after I download the app, I am taken to the Sign-Up page and given the following options for signing up:
+## Join as an Individual
+## Join as a Charity
+### If I select “Join as a Charity” and “Sign in using Apple”, I am redirected to Apple’s sign-in portal
+#### I authenticate myself in Apple.
+##### If it is my first time signing in, I am then redirected to the Chairty Sign Up page
+##### If it is not my first time signing in, I am redirected to my home page.
+# On the Charity Sign Up page, I am prompted to enter the following options:
+
+* Org Name
+* Owner First name
+* Owner Last name
+* Email address
+* Nonprofit EIN
+** nine-digit tax ID number that IRS assigns to nonprofits, charities, organizations, and businesses in the following format: XX-XXXXXXX
+
+# After I enter all this information and click “Continue”, an account is created.",,Brian Healy,,,6090022a7a30960069da652e,,,,,,,,,,,,,,,,,,GIV-69,,,,29/May/24 12:24 PM;ug:41e1805d-70db-4e54-8216-b8f87062b0c1;0V7DCX7nqYx5lxEek5dJY8fEnHS9N4NejrQB-BcLS6t8JNEBhHQiCVNxwbAek3wL36BJkOLGeLOdjp1QnP_9YIcMDc7jzMly6oacs1E7nL9SlsMAt6SB7oEb6MFMAY8MBMgoiXeD5--Oy_pDdmmzyYY;https://shiftinteractive.atlassian.net/rest/api/3/attachment/content/45312,29/May/24 12:24 PM;ug:41e1805d-70db-4e54-8216-b8f87062b0c1;lPARshk6m_nImiXMIB2CQ4G9XKLRnzryCOlo6D3PURisoit8kvzHm_OuZ4Ix0fQeAbmCZ5C2FJDropfEf5Z4kBaZkpM2yLyioX_uy60NTVITT9SeaPOsRr2ct0ZroPlRXREj2d08NgN7z5N-0zmvEjk;https://shiftinteractive.atlassian.net/rest/api/3/attachment/content/45313,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@55335358,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i045nb:,,,,,,,,,Archived,,,,,,,,,,,,,,,,,,,,62442,GIV-4,Org Sign-up,To Do,29/May/24 12:23 PM
+"As an org user, I want to be able to sign in using my google account",GIV-66,62592,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,29/May/24 12:12 PM,02/Apr/25 10:10 AM,,,,0,archive,"
+
+!lPARshk6m_nImiXMIB2CQ4G9XKLRnzryCOlo6D3PURisoit8kvzHm_OuZ4Ix0fQeAbmCZ5C2FJDropfEf5Z4kBaZkpM2yLyioX_uy60NTVITT9SeaPOsRr2ct0ZroPlRXREj2d08NgN7z5N-0zmvEjk|width=100%!
+
+!0V7DCX7nqYx5lxEek5dJY8fEnHS9N4NejrQB-BcLS6t8JNEBhHQiCVNxwbAek3wL36BJkOLGeLOdjp1QnP_9YIcMDc7jzMly6oacs1E7nL9SlsMAt6SB7oEb6MFMAY8MBMgoiXeD5--Oy_pDdmmzyYY|width=700,height=1148!
+
+*Workflow*
+
+# As a new user, after I download the app, I am taken to the Sign-Up page and given the following options for signing up:
+## Join as an Individual
+## Join as a Charity
+### If I select “Join as a Charity” and “Sign in using google”, I am redirected to google’s sign-in portal
+#### I authenticate myself in google.
+##### If it is my first time signing in, I am then redirected to the Chairty Sign Up page
+##### If it is not my first time signing in, I am redirected to my home page.
+# On the Charity Sign Up page, I am prompted to enter the following options:
+
+* Org Name
+* Owner First name
+* Owner Last name
+* Email address
+* Nonprofit EIN
+** nine-digit tax ID number that IRS assigns to nonprofits, charities, organizations, and businesses in the following format: XX-XXXXXXX
+
+# After I enter all this information and click “Continue”, an account is created.",,Brian Healy,,,6090022a7a30960069da652e,,,,,,,,,,,,,,,,,,GIV-68,,,,29/May/24 12:14 PM;ug:41e1805d-70db-4e54-8216-b8f87062b0c1;0V7DCX7nqYx5lxEek5dJY8fEnHS9N4NejrQB-BcLS6t8JNEBhHQiCVNxwbAek3wL36BJkOLGeLOdjp1QnP_9YIcMDc7jzMly6oacs1E7nL9SlsMAt6SB7oEb6MFMAY8MBMgoiXeD5--Oy_pDdmmzyYY;https://shiftinteractive.atlassian.net/rest/api/3/attachment/content/45310,29/May/24 12:14 PM;ug:41e1805d-70db-4e54-8216-b8f87062b0c1;lPARshk6m_nImiXMIB2CQ4G9XKLRnzryCOlo6D3PURisoit8kvzHm_OuZ4Ix0fQeAbmCZ5C2FJDropfEf5Z4kBaZkpM2yLyioX_uy60NTVITT9SeaPOsRr2ct0ZroPlRXREj2d08NgN7z5N-0zmvEjk;https://shiftinteractive.atlassian.net/rest/api/3/attachment/content/45311,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@107b9bb,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i045n3:,,,,,,,,,Archived,,,,,,,,,,,,,,,,,,,,62442,GIV-4,Org Sign-up,To Do,29/May/24 12:12 PM
+"As a donor user, I want to be able to sign up",GIV-65,62591,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,29/May/24 11:14 AM,02/Apr/25 10:10 AM,,,,0,archive,"
+
+
+
+!Screenshot 2024-06-05 at 2.20.21 PM-20240605-192026.png|width=855,height=520,alt=""Screenshot 2024-06-05 at 2.20.21 PM-20240605-192026.png""!
+
+
+
+*Workflow*
+
+# As a new user, I navigate to the app and am prompted to enter an organization code to sign up.
+# Once I enter the organization code, and it is verified, I am taken to a sign-up form and given the following options for signing up:
+## Join as an Individual
+### If I select “Join as Individual” and enter my email, I am taken the charity sign-up page upon signing up
+## Join as Charity
+# On the Charity Sign Up page, I am prompted to enter the following options:
+
+* First name
+* Last name
+* Email address
+* Password (Do we want a password confirm?)
+* Date of Birth
+
+# After I enter all this information and click “Continue”, an account is created that is associated with the company ID of the code",,Brian Healy,,,6090022a7a30960069da652e,,,,,,,,,,,,,,,,,,,,,,05/Jun/24 2:21 PM;ug:41e1805d-70db-4e54-8216-b8f87062b0c1;Screenshot 2024-06-05 at 2.20.21 PM-20240605-192026.png;https://shiftinteractive.atlassian.net/rest/api/3/attachment/content/45356,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@611041c6,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i045tz:,,,,,,,,,Archived,,,12.0,,,,,,,,,,,,,,,,,62444,GIV-6,Donor Sign-up,To Do,29/May/24 11:14 AM
+"As an org user, I want to be able to upload one photo to a post",GIV-64,62588,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,29/May/24 10:46 AM,02/Apr/25 10:10 AM,,,,0,archive,"*Infrastructure*
+
+# Active Storage setup
+
+*Story*
+
+As an org user, I want to upload one or multiple photos to a post so I can use visual media to tell a story.
+
+
+
+!image-20240529-154805.png|width=751,height=560,alt=""image-20240529-154805.png""!
+
+
+
+*Workflow*
+
+# In the page for creating a campaign post, I have the option to “Upload Photos” and can upload one or as many photos as I want.
+
+*Outstanding questions*
+
+# Should I be able to display these photos in the body of the post, or choose if they are displayed above or below?
+# Will we host photos or will we find a 3rd part service?
+## Costs?
+# Will we auto-size photos uploaded to work with mobile?
+
+*Assumptions*
+
+Let’s say we’re storing photos in S3 bucket for the MVP. We’re capping it at one photo and restricting the placing to above the post.
+
+*Technical implementation*
+
+# Images DB table that stores file name/blob data/time stamps etc. - See GreekHouse Chefs for example",,Brian Healy,,,6090022a7a30960069da652e,,,,,,,,,,,,,GIV-40,,,,,,,,,29/May/24 10:56 AM;ug:41e1805d-70db-4e54-8216-b8f87062b0c1;image-20240529-154805.png;https://shiftinteractive.atlassian.net/rest/api/3/attachment/content/45307,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@6ed7675b,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,Impediment,,,,,,,,,,,,,,,0|i045sn:,,,,,,,,,Archived,,,16.0,,,,,,,,,,,,,,,,,62483,GIV-27,Publish Post,To Do,29/May/24 10:46 AM
+"As an org user, I want to be able to set push notification options for a campaign post",GIV-63,62587,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,29/May/24 10:40 AM,02/Apr/25 10:10 AM,,,,0,archive,"As an org user, I want to be able to set push notification options for a campaign post so I can send push notifications to users apps to increase engagement.
+
+
+
+*Workflow*
+
+# When creating a post, I am presented with an option to “Send push notification” that has the following sub-options:
+## Send push notification
+### If the box is unchecked, a push notification will not be sent
+### If the box is checked, a push notification will be sent
+# If I select “Send push notification”, I am presented with the following options for recipients:
+## Campaign Donors
+## Org subscribers
+
+Does this include email?
+
+*Technical Implementation*
+
+# Adding the fields on front-end, and adding the push notification on the backend
+# The sidekiq job needs to be updated to dispatch the Push Notification Worker for Posts - we need to give the post and the campaign id for the push notification.
+
+*Acceptance Criteria*
+
+# Push notifications are being sent with the proper title, message, and at the correct time to the correct users.
+
+*Assumptions*
+
+# In the initial implementation, this will only go out to the people that have currently donated",,Brian Healy,cliff.thompson,Rose Leaven,6090022a7a30960069da652e,619bfad9657a050070750d97,712020:d8b5c3ac-638f-4cda-98f8-20599a612efd,,,,,,,,,GIV-30,GIV-101,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@403140f8,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i045pb:,,,,,,,,,Archived,,,32.0,,,,,,,,,,2024-06-05 18:58:03.834,,"05/Jun/24 1:44 PM;6090022a7a30960069da652e;[~accountid:619bfad9657a050070750d97] Who would be able to see push notifications? Just people who have donated to the campaign, or “Subscribers?” If the Giving codes people use to sign up are associated with an org, we can send to them, but otherwise we don’t have a great idea of subscribers or how we determine who can see what campaigns or get what notifications","05/Jun/24 1:58 PM;619bfad9657a050070750d97;To me it makes sense that in the initial MVP version that donors are enrolled  by default for notifications to all campaigns that one of their subscribed org runs. 
+
+however I do think we’ll need to have something to allow individuals to opt-in/opt-out on specific campaign notifications in addition to managing overall notification prefs in the future.
+
+ [~accountid:712020:e5c987ec-8ffa-4aa4-8e9c-6c4e8e24719f] or [~accountid:712020:d8b5c3ac-638f-4cda-98f8-20599a612efd] may have some opinions to add here","05/Jun/24 2:14 PM;712020:d8b5c3ac-638f-4cda-98f8-20599a612efd;Yes, [~accountid:619bfad9657a050070750d97] you said it exactly.  It makes the most sense for users ( in this case the donors), to receive notifications for any campaigns associated with one of their subscribed organizations.  This way donors can see any urgent call to actions associated with their organization, and receive status updates on the organization's campaigns. 
+
+From there, like you said, they should (eventually) be able to opt in/out of different campaigns. Maybe they only want to receive updates on a campaign they donate to for example, or they want to receive notifications to a campaign they subscribe to, or they only want to receive notifications for urgent call to actions, etc. 
+",,,62580,GIV-58,Push notifications,To Do,29/May/24 10:40 AM
+"As an org user, I want to be able to set ""Share to social"" options when I make a post",GIV-62,62586,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,29/May/24 10:34 AM,02/Apr/25 10:10 AM,,,,0,archive,"As a user, when I create a post, I want to be able to set “Share to social” options
+
+* Set ‘share to social’ options
+** Can they integrate current social media platforms?
+** API fees for existing platforms
+
+!3hzaQmBKgBXtIy6xYVxTsws4UI7-9qMoYs8Skm8hb33xsPsfukQblSXG75_qiXg7IEmpCYzFTAkrcJ6gv3JvnIsyd37q5XOt3unHwEpGeMw6MdbQAs2j-pkPbdS_cv4v9catlWJhWvfCndxkadMx7vQ|width=628,height=1366!",,Brian Healy,,,6090022a7a30960069da652e,,,,,,,,,,,,,,,,,,,,,,29/May/24 10:38 AM;ug:41e1805d-70db-4e54-8216-b8f87062b0c1;3hzaQmBKgBXtIy6xYVxTsws4UI7-9qMoYs8Skm8hb33xsPsfukQblSXG75_qiXg7IEmpCYzFTAkrcJ6gv3JvnIsyd37q5XOt3unHwEpGeMw6MdbQAs2j-pkPbdS_cv4v9catlWJhWvfCndxkadMx7vQ;https://shiftinteractive.atlassian.net/rest/api/3/attachment/content/45306,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@2963b0b3,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,Impediment,,,,,,,,,,,,,,,0|i045mv:,,,,,,,,,Archived,,,,,,,,,,,,,,,,,,,,62483,GIV-27,Publish Post,To Do,29/May/24 10:34 AM
+"As an org user, I want to include videos in posts",GIV-61,62585,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,29/May/24 10:28 AM,02/Apr/25 10:10 AM,,,,0,archive,"*Workflow*
+
+# As an org user, I want to be able to include a link to an uploaded video in a post.
+
+As an org user, when creating a post for a campaign, I want to be able to upload video to that post that
+
+* supports a wide variety of formats, qualities
+
+*Unknowns:*
+
+* Store on our site, or always off-site?
+* Use a 3rd party service for storing/compression?
+* Costs?
+* Limits on storage space per organization",,Brian Healy,,,6090022a7a30960069da652e,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@60b770c9,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,Impediment,,,,,,,,,,,,,,,0|i045m7:,,,,,,,,,Archived,,,,,,,,,,,,,,,,,,,,62483,GIV-27,Publish Post,To Do,29/May/24 10:28 AM
+I want to be able to sign up as a new org,GIV-60,62582,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,29/May/24 10:18 AM,02/Apr/25 10:10 AM,,,,0,archive,"!image-20240605-193354.png|width=870,height=643,alt=""image-20240605-193354.png""!
+
+
+
+*Workflow*
+
+# As a user, I navigate to the web page and am prompted for an org code or given the option to sign up as a new charity. 
+## If I select “Join as a new Charity” and enter my email, I am taken the charity sign-up page upon signing up
+# On the Charity Sign Up page, I am prompted to enter the following options:
+
+* Owner First name
+* Owner Last name
+* Business Name
+* Email address
+* Phone Number
+* Social Secutiy Number/Tax Id Number - ENCRYPTED!
+** nine-digit tax ID number that IRS assigns to nonprofits, charities, organizations, and businesses in the following format: XX-XXXXXXX
+* Mailing Address
+* Apartment/Suite Number
+* City
+* State
+* Zip
+* Password
+* Password Confirmation
+* Date Of Birth
+
+# After I enter all this information and click “Continue”, an organization is created, as well as an account for which that user is the admin",,Brian Healy,,,6090022a7a30960069da652e,,,,,,,,,,,,,,,,,,,,,,05/Jun/24 2:33 PM;ug:41e1805d-70db-4e54-8216-b8f87062b0c1;image-20240605-193354.png;https://shiftinteractive.atlassian.net/rest/api/3/attachment/content/45357,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@405380d9,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i045tr:,,,,,,,,,Archived,,,24.0,,,,,,,,,,,,,,,,,62442,GIV-4,Org Sign-up,To Do,29/May/24 10:18 AM
+"As a user, I want to be able to scan and track receipts for charitable donations",GIV-59,62581,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,29/May/24 10:08 AM,02/Apr/25 10:10 AM,,,,0,archive,,,Brian Healy,,,6090022a7a30960069da652e,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@5fd685f5,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i0461z:,,,,,,,,,Archived,,,,,,,,,,,,,,,,,,,,62449,GIV-11,Display Donor Giving History,To Do,29/May/24 10:08 AM
+Push notifications,GIV-58,62580,Epic,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,cliff.thompson,619bfad9657a050070750d97,cliff.thompson,619bfad9657a050070750d97,29/May/24 10:00 AM,02/Apr/25 10:07 AM,,,,0,archive,,,cliff.thompson,,,619bfad9657a050070750d97,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@4f2fc659,,,,,,,,,,0.0,,,,,,,{},,,,ghx-label-2,,,,,,,,,,dark_yellow,,,,,,,,,,0|i0467r:,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,To Do,29/May/24 10:00 AM
+Mobile App Support,GIV-57,62579,Epic,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,cliff.thompson,619bfad9657a050070750d97,cliff.thompson,619bfad9657a050070750d97,29/May/24 10:00 AM,02/Apr/25 10:07 AM,,,,0,archive,,,cliff.thompson,,,619bfad9657a050070750d97,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@1df677c2,,,,,,,,,,0.0,,,,,,,{},,,,ghx-label-2,,,,,,,,,,dark_yellow,,,,,,,,,,0|i0467b:,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,To Do,29/May/24 10:00 AM
+"As a user, I want to receive push notifications",GIV-56,62576,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,29/May/24 9:30 AM,02/Apr/25 10:10 AM,,,,0,archive,"As a user, I want to receive push notifications about campaigns I can donate to or have donated to be aware of campaign goals.
+
+
+
+!image-20240529-143642.png|width=302,height=615,alt=""image-20240529-143642.png""!
+
+*Workflow*
+
+# As a user, when a campaign admin publishes a message for which push notifications is enabled, I receive a push notification on my phone of the title (or message?) of that post
+
+Push notifications for:
+
+-Post published
+
+-Campaign is created by org
+
+-Custom message reminders
+
+-Campaign updates - goal percentage
+
+-recurring donation reminder
+
+-donation thank you
+
+-campaign end thank you",,Brian Healy,,,6090022a7a30960069da652e,,,,,,,,,,,,,,,,,,,,GIV-17,,29/May/24 9:38 AM;ug:41e1805d-70db-4e54-8216-b8f87062b0c1;image-20240529-143642.png;https://shiftinteractive.atlassian.net/rest/api/3/attachment/content/45304,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@4c50a9ad,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,Impediment,,,,,,,,,,,,,,,0|i0463r:,,,,,,,,,Archived,,,,,,,,,,,,,,,,,,,,62580,GIV-58,Push notifications,To Do,29/May/24 9:30 AM
+Setup/Configure Cloudflare for Production,GIV-55,62574,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,cliff.thompson,619bfad9657a050070750d97,cliff.thompson,619bfad9657a050070750d97,29/May/24 9:09 AM,02/Apr/25 10:10 AM,,,,0,archive,,,cliff.thompson,,,619bfad9657a050070750d97,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@70ae0ac0,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,purple,,,,,,,,,,0|i04752:zzzzzz,,,,,,,,,Archived,,,,,,,,,,,,,,,,,,,,62565,GIV-46,Prod environment,To Do,29/May/24 9:09 AM
+Setup/Configure APNs for Production,GIV-54,62573,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,cliff.thompson,619bfad9657a050070750d97,cliff.thompson,619bfad9657a050070750d97,29/May/24 9:09 AM,02/Apr/25 10:10 AM,,,,0,archive,,,cliff.thompson,,,619bfad9657a050070750d97,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@418211a7,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,purple,,,,,,,,,,0|i04752:zzzzzy,,,,,,,,,Archived,,,,,,,,,,,,,,,,,,,,62565,GIV-46,Prod environment,To Do,29/May/24 9:09 AM
+Setup/Configure FCM for Production,GIV-53,62572,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,cliff.thompson,619bfad9657a050070750d97,cliff.thompson,619bfad9657a050070750d97,29/May/24 9:09 AM,02/Apr/25 10:10 AM,,,,0,archive,,,cliff.thompson,,,619bfad9657a050070750d97,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@3e327552,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,purple,,,,,,,,,,0|i04752:zzzzzx,,,,,,,,,Archived,,,,,,,,,,,,,,,,,,,,62565,GIV-46,Prod environment,To Do,29/May/24 9:09 AM
+Setup/Configure Mailgun for Production,GIV-52,62571,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,cliff.thompson,619bfad9657a050070750d97,cliff.thompson,619bfad9657a050070750d97,29/May/24 9:08 AM,02/Apr/25 10:10 AM,,,,0,archive,,,cliff.thompson,,,619bfad9657a050070750d97,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@6bbb1d34,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,purple,,,,,,,,,,0|i04752:zzzzzv,,,,,,,,,Archived,,,,,,,,,,,,,,,,,,,,62565,GIV-46,Prod environment,To Do,29/May/24 9:09 AM
+Setup/Configure Google Play for Production,GIV-51,62570,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,cliff.thompson,619bfad9657a050070750d97,cliff.thompson,619bfad9657a050070750d97,29/May/24 9:08 AM,02/Apr/25 10:10 AM,,,,0,archive,,,cliff.thompson,,,619bfad9657a050070750d97,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@3f2736a,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,purple,,,,,,,,,,0|i04752:zzzzzr,,,,,,,,,Archived,,,,,,,,,,,,,,,,,,,,62565,GIV-46,Prod environment,To Do,29/May/24 9:08 AM
+Setup/Configure Testflight for Production,GIV-50,62569,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,cliff.thompson,619bfad9657a050070750d97,cliff.thompson,619bfad9657a050070750d97,29/May/24 9:08 AM,02/Apr/25 10:10 AM,,,,0,archive,,,cliff.thompson,,,619bfad9657a050070750d97,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@12ec7015,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,purple,,,,,,,,,,0|i04752:zzzzzi,,,,,,,,,Archived,,,,,,,,,,,,,,,,,,,,62565,GIV-46,Prod environment,To Do,29/May/24 9:08 AM
+Setup/Configure Buddy for Production,GIV-49,62568,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,cliff.thompson,619bfad9657a050070750d97,cliff.thompson,619bfad9657a050070750d97,29/May/24 9:08 AM,02/Apr/25 10:10 AM,,,,0,archive,,,cliff.thompson,,,619bfad9657a050070750d97,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@39344681,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,purple,,,,,,,,,,0|i04752:zzzzz,,,,,,,,,Archived,,,,,,,,,,,,,,,,,,,,62565,GIV-46,Prod environment,To Do,29/May/24 9:08 AM
+Setup/Configure Terraform for Production,GIV-48,62567,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,cliff.thompson,619bfad9657a050070750d97,cliff.thompson,619bfad9657a050070750d97,29/May/24 9:08 AM,02/Apr/25 10:10 AM,,,,0,archive,,,cliff.thompson,,,619bfad9657a050070750d97,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@425955a3,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,purple,,,,,,,,,,0|i04752:zzzzy,,,,,,,,,Archived,,,,,,,,,,,,,,,,,,,,62565,GIV-46,Prod environment,To Do,29/May/24 9:08 AM
+Setup/Configure AWS for Production,GIV-47,62566,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,cliff.thompson,619bfad9657a050070750d97,cliff.thompson,619bfad9657a050070750d97,29/May/24 9:08 AM,02/Apr/25 10:10 AM,,,,0,archive,,,cliff.thompson,,,619bfad9657a050070750d97,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@2ba44766,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,purple,,,,,,,,,,0|i04752:zzzzx,,,,,,,,,Archived,,,,,,,,,,,,,,,,,,,,62565,GIV-46,Prod environment,To Do,29/May/24 9:08 AM
+Prod environment,GIV-46,62565,Epic,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,cliff.thompson,619bfad9657a050070750d97,cliff.thompson,619bfad9657a050070750d97,29/May/24 9:07 AM,02/Apr/25 10:07 AM,,,,0,archive,,,cliff.thompson,,,619bfad9657a050070750d97,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@68475e13,,,,,,,,,,0.0,,,,,,,{},,,,ghx-label-14,,,,,,,,,,dark_orange,,,,,,,,,,0|i04693:,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,To Do,29/May/24 9:07 AM
+Setup Cloudflare,GIV-45,62564,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,cliff.thompson,619bfad9657a050070750d97,cliff.thompson,619bfad9657a050070750d97,29/May/24 9:06 AM,02/Apr/25 10:07 AM,,,,0,archive,"*Technical Statement:* In order to support DNS routing and monitoring, a Cloudflare project will be created for the Shift-Giving application.
+
+*Acceptance Criteria:*
+
+* A project should exist in Cloudflare for the Shift-Giving application
+* All engineers will have access to view and modify the Cloudflare settings for the Shift-Giving application",,cliff.thompson,,,619bfad9657a050070750d97,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@73dc1ea7,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,purple,,,,,,,,,,0|i04752:zz,,,,,,,,,Archived,,,1.0,,,,,,,,,,,,,,,,,62450,GIV-12,MVP staging environment,To Do,29/May/24 9:06 AM
+Configure FCM for Staging iOS Mobile App,GIV-43,62562,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,cliff.thompson,619bfad9657a050070750d97,cliff.thompson,619bfad9657a050070750d97,29/May/24 9:06 AM,02/Apr/25 10:10 AM,,,,0,archive,"*Technical Statement:* In order to support automated push notifications for the iOS mobile app in the staging environment, the FCM account will be setup to support the Shift-Giving iOS app.
+
+*Acceptance Criteria:*
+
+* The iOS mobile app is able to receive push notifications from FCM for the Staging environment
+
+*Engineer Notes:*
+
+* Register iOS App
+* Import JSON file
+* Config/Keys
+* React Native Firebase messaging SDK
+* Request permission for push notifications on initial app load
+* Store FCM Token",,cliff.thompson,,,619bfad9657a050070750d97,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@7ba0b83d,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,purple,,,,,,,,,,0|i04752:zzzzr,,,,,,,,,Archived,,,6.0,,,,,,,,,,,,,,,,,62450,GIV-12,MVP staging environment,To Do,29/May/24 9:06 AM
+Setup Mailgun,GIV-42,62561,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,cliff.thompson,619bfad9657a050070750d97,cliff.thompson,619bfad9657a050070750d97,29/May/24 9:06 AM,02/Apr/25 10:07 AM,,,,0,archive,"*Technical Statement:* In order to support sending emails, a Mailgun account will be created for the Shift-Giving project.
+
+*Acceptance Criteria:*
+
+* A Mailgun project exists for the Shift-Giving application
+* All engineers have access to view and modify the Mailgun project",,cliff.thompson,,,619bfad9657a050070750d97,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@a53f050,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,purple,,,,,,,,,,0|i045y7:,,,,,,,,,Archived,,,1.0,,,,,,,,,,,,,,,,,62450,GIV-12,MVP staging environment,To Do,29/May/24 9:06 AM
+Setup Google Play,GIV-41,62560,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,cliff.thompson,619bfad9657a050070750d97,cliff.thompson,619bfad9657a050070750d97,29/May/24 9:05 AM,02/Apr/25 10:10 AM,,,,0,archive,"*Technical Statement:* In order to support deploying the Android mobile app for the Shift-Giving project, an Google Play account will be utilized.
+
+*Acceptance Criteria:*
+
+* An Google Play account will be identified to be used for the Shift-Giving mobile app
+* All engineers will have access to view and modify the Google Play account
+
+*Engineer Notes:*
+
+* Check with the Infrastructure team if a new Google Play account needs to be created or an existing account can be utilized",,cliff.thompson,,,619bfad9657a050070750d97,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@5ac885a3,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,purple,,,,,,,,,,0|i04752:zzzx,,,,,,,,,Archived,,,1.0,,,,,,,,,,,,,,,,,62450,GIV-12,MVP staging environment,To Do,29/May/24 9:05 AM
+"As an org user, I want to make posts for a campaign",GIV-40,62559,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,29/May/24 9:05 AM,02/Apr/25 10:10 AM,,,,0,archive,"As a campaign admin, I want to create posts to update donors or users that can see my organization about upcoming or ongoing campaigns.
+
+!image-20240529-140744.png|width=302,height=615,alt=""image-20240529-140744.png""!
+
+
+
+!Screenshot 2024-06-05 at 1.08.02 PM-20240605-180808.png|width=934,height=695,alt=""Screenshot 2024-06-05 at 1.08.02 PM-20240605-180808.png""!
+
+
+
+*Workflow*
+
+# As an org user, I can navigate to a campaign page on the web application.
+# I can create a post for now or schedule a post for later. If I post for now, the created post record will have a published flag we need to ensure is true.
+# I am presented with a screen that allows me to 
+#* Add description text
+#* Set ‘include goal/progress graphic' option 
+#* Set push notification options
+#* Set up news feed specific content
+#* Set ‘personalized’ option (including donor info) (yes/no)
+#* Preview Post
+#* Save Post
+# I can fill out the form and send out a message that users will receive in app and via push notification and via email (depending on which options are selected).
+
+*Assumption*
+
+# No photo upload
+# No push notification
+# No video
+# No share to social
+# Goal progress bar component is done
+# No news feed specific
+# No personalization
+# Not scheduled for later",,Brian Healy,,,6090022a7a30960069da652e,,,,,,,,,,,GIV-64,GIV-79,GIV-80,GIV-97,,,,GIV-80,GIV-81,,,05/Jun/24 1:08 PM;ug:41e1805d-70db-4e54-8216-b8f87062b0c1;Screenshot 2024-06-05 at 1.08.02 PM-20240605-180808.png;https://shiftinteractive.atlassian.net/rest/api/3/attachment/content/45351,29/May/24 9:26 AM;ug:41e1805d-70db-4e54-8216-b8f87062b0c1;image-20240529-140744.png;https://shiftinteractive.atlassian.net/rest/api/3/attachment/content/45303,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@393a815a,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,Impediment,,,,,,,,,,,,,,,0|i045sf:,,,,,,,,,Archived,,,24.0,,,,,,,,,,,,"29/May/24 9:29 AM;6090022a7a30960069da652e;[~accountid:619bfad9657a050070750d97] For this card, we need the options for Type and Media. Also, is there going to be a specific page for sending out push notifications or will it fall under this one? 
+
+
+
+Edit: Nevermind, I found this info in the swag 👍 ",03/Jun/24 2:26 PM;6090022a7a30960069da652e;What does set up news feed specific content mean?,"03/Jun/24 2:29 PM;6090022a7a30960069da652e;Issue split into:
+|GIV-80|As an org user, I want to preview a campaign post while I am making it|
+","03/Jun/24 2:31 PM;6090022a7a30960069da652e;Issue split into:
+|GIV-81|As an org user, I want to be able to personalize campaign posts|
+",12/Jun/24 1:37 PM;6090022a7a30960069da652e;This should always be plain text so users can’t link back to their own websites and bypass our donations,62483,GIV-27,Publish Post,To Do,29/May/24 9:05 AM
+Setup Testflight,GIV-39,62558,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,cliff.thompson,619bfad9657a050070750d97,cliff.thompson,619bfad9657a050070750d97,29/May/24 9:05 AM,02/Apr/25 10:10 AM,,,,0,archive,"*Technical Statement:* In order to support deploying the iOS Mobile App to Test  Users, a Testflight account will be created with App Store Connect.
+
+*Acceptance Criteria:*
+
+* A Testflight account will be setup that is integrated with App Store Connect",,cliff.thompson,,,619bfad9657a050070750d97,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@429e8609,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,purple,,,,,,,,,,0|i04752:zzzi,,,,,,,,,Archived,,,2.0,,,,,,,,,,,,,,,,,62450,GIV-12,MVP staging environment,To Do,29/May/24 9:05 AM
+Setup Terraform,GIV-37,62556,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,cliff.thompson,619bfad9657a050070750d97,cliff.thompson,619bfad9657a050070750d97,29/May/24 9:05 AM,02/Apr/25 10:07 AM,,,,0,archive,"*Technical Statement:* In order to support creating infrastructure through code in AWS, a Terraform project needs to be created.
+
+*Acceptance Criteria:*
+
+* A Terraform project exists in Terraform Cloud for the Shift-Giving repository
+* Terraform has access to manage resources in the AWS account for the Shift-Giving repository
+* All engineers have access to Terraform Cloud and the ability to modify the Shift-Giving project
+
+*Engineer Notes:*
+
+* Since the Shift-Giving repository is meant to be a mono-repository, the infrastructure changes should exist within a sub-directory from the root of the repository using a tech-agnostic directory name
+** It is suggested to use something like “infrastructure”",,cliff.thompson,,,619bfad9657a050070750d97,,,10800,10800,,0%,10800,10800,,,GIV-36,GIV-34,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@4a020036,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,purple,,,,,,,,,,0|i04752:i,,,,,,,,,Archived,,,4.0,,,,,,,,,,,,,,,,,62450,GIV-12,MVP staging environment,To Do,29/May/24 9:05 AM
+Setup AWS Account,GIV-36,62555,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,cliff.thompson,619bfad9657a050070750d97,cliff.thompson,619bfad9657a050070750d97,29/May/24 9:05 AM,02/Apr/25 10:07 AM,,,,0,archive,"*Technical Statement:* In order to support starting to configure infrastructure, an AWS account should exist for the Shift-Giving project.
+
+*Acceptance Criteria:*
+
+* An AWS account exists that is to be used for the Shift-Giving infrastructure
+* All engineers have access to view and modify the AWS account resources
+
+*Engineer Notes:*
+
+* Check with the Infrastructure Team if a new AWS account needs to exist or if an existing one can be used",,cliff.thompson,,,619bfad9657a050070750d97,,,,,,,,,,,,,GIV-37,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@16e809a1,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,purple,,,,,,,,,,0|i04752:,,,,,,,,,Archived,,,4.0,,,,,,,,,,,,,,,,,62450,GIV-12,MVP staging environment,To Do,29/May/24 9:05 AM
+Setup Shift-Giving Repository,GIV-34,62553,Task,Done,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,Done,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,cliff.thompson,619bfad9657a050070750d97,cliff.thompson,619bfad9657a050070750d97,29/May/24 9:04 AM,02/Apr/25 10:07 AM,,04/Feb/25 2:07 PM,,0,archive,"*Technical Statement:* In order to support version control for the Shift-Giving project, a GitHub repository should exist.
+
+*Acceptance Criteria:*
+
+* A Shift-Giving repository exists in GitHub under the Shift Interactive organization
+* All engineers should have access to see and manage the repository
+
+*Engineer Notes:*
+
+* Only one repository should exist to be utilized as a mono-repository for the frontends and backend of the application
+** This includes mobile-apps
+* No actual tech stacks need to be added for the card; should just be boilerplate",,cliff.thompson,,,619bfad9657a050070750d97,,,3600,3600,,0%,3600,3600,,,,,GIV-37,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@41e0b5ba,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,purple,,,,,,,,,,0|hzzzzp:,,,,,,,,,On Deck - Ready to Work,,,1.0,,,,,,,,,,,12119_*:*_1_*:*_21708166543_*|*_12121_*:*_1_*:*_0,,,,,,62450,GIV-12,MVP staging environment,Done,04/Feb/25 2:07 PM
+"As an org user, I want to recieve/see received donations",GIV-33,62542,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,24/May/24 2:41 PM,02/Apr/25 10:10 AM,,,,0,archive,"As an org user, I want to be able to review received donations to a campaign I’ve created so I can track who has given, similar to the history page for a donor user:
+
+!image-20240531-142547.png|width=357,height=744,alt=""image-20240531-142547.png""!
+
+*Workflow*
+
+# From the campaign page (?), I select “Donations” and can view a list of donations made to my campaign.
+
+*Assumptions*
+
+# Should this searchable? No.
+# Should I be able to click into an individual donation? No.
+# Donations table exists and are being saved.",,Brian Healy,,,6090022a7a30960069da652e,,,,,,,,,,,,,,,,,,,,,,31/May/24 9:25 AM;ug:41e1805d-70db-4e54-8216-b8f87062b0c1;image-20240531-142547.png;https://shiftinteractive.atlassian.net/rest/api/3/attachment/content/45337,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@4e348be1,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,Impediment,,,,,,,,,,,,,,,0|i045q7:,,,,,,,,,Archived,,,6.0,,,,,,,,,,,,,,,,,62449,GIV-11,Display Donor Giving History,To Do,24/May/24 2:41 PM
+"As a org admin, I want to start a campaign",GIV-32,62541,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,24/May/24 2:40 PM,02/Apr/25 10:10 AM,,,,0,archive,"As an org admin, I want to start a campaign so that users can donate to it.
+
+After starting my campaign, it should be public and available for users to donate to (?)
+
+
+
+!Screenshot 2024-06-05 at 11.50.47 AM-20240605-165053.png|width=684,height=494,alt=""Screenshot 2024-06-05 at 11.50.47 AM-20240605-165053.png""!
+
+
+
+*Workflow*
+
+# As a campaign admin, I can navigate to a campaign page where there is an option to “Create a campaign”.
+# Choosing to “Create campaign” takes me through a story design wizard where I can
+##  Create Title / Purpose
+## Select Beneficiary (Is this a list or text?)
+## Set Giving Goal
+##* Org can manually modify the goal amount to reflect offline donations
+## Set Start date (scheduled start)
+## Start button (immediate start)
+## End button (immediate end)
+## End date (scheduled end)
+Custom Messaging (v2)
+## Set Thank You message text (per donation)
+## Set Thank you message text (end of campaign)
+
+*Acceptance Criteria*
+
+The campaign is created in the database?",,Brian Healy,,,6090022a7a30960069da652e,,,,,,,,,,,,,GIV-28,,,,,,,,,05/Jun/24 12:07 PM;ug:41e1805d-70db-4e54-8216-b8f87062b0c1;Screenshot 2024-06-05 at 11.50.47 AM-20240605-165053.png;https://shiftinteractive.atlassian.net/rest/api/3/attachment/content/45349,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@14ed2afa,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i045s7:,,,,,,,,,Archived,,,40.0,,,,,,,,,,,,,,,,,62482,GIV-26,Manage Campaign,To Do,24/May/24 2:40 PM
+Infrastructure Setup,GIV-31,62539,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,24/May/24 11:59 AM,02/Apr/25 10:07 AM,,,,0,archive,Card to be broken out and maybe will be its own dedicated sprint. TODO: Get details of infrastructure conversations from WAG estimate documentation.,,Brian Healy,,,6090022a7a30960069da652e,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@6e7fe9bd,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i0474v:,,,,,,,,,Archived,,,,,,,,,,,,,,,,,,,,,,,To Do,24/May/24 11:59 AM
+"As a user, I should be able to make a single donation to a campaign with a new payment method",GIV-30,62538,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,24/May/24 9:15 AM,02/Apr/25 10:10 AM,,,,0,archive,"As a user, when I click donate, I should be able to select an amount and enter payment details to donate to an organization so I can support them to the degree I want.
+
+!image-20240524-141743.png|width=770,height=532,alt=""image-20240524-141743.png""!
+
+*Workflow*
+
+# As a user, when navigate to the donate page from a campaign, I should be presented with a form that has the following options:
+## An amount with presets of “50”, “100”, “150” and “200”
+# After I select an amount, I should be redirected to a payment page that contains a form collecting the following information:
+## Amount confirmation
+## Payment Details (Handled by payment processor?”
+## Submit
+# Upon a successful donation, I am presented with a confirmation/Thank You notification
+# If there as an error with my payment, I am presented with a alert informing me that my payment did not successfully complete.
+# Once donation is completed, we need to save the record of the donation, including donorId, amount, campaignId.
+
+Outstanding questions:
+
+# We’ll be using [Authorize.net|https://developer.authorize.net/api/reference/index.html#recurring-billing] for payments
+
+*Assumptions*
+
+# There are org users, donor users, and campaigns.
+# This is a single one time payment using a new payment method
+
+*Technical Approach*
+
+# User fills out form and we use [Authorize Credit Card and Capture Previously Authorized Amount|https://developer.authorize.net/api/reference/index.html#payment-transactions-charge-a-credit-card] card endpoint to execute a transaction.
+
+*Testing*
+
+# Testing with a test payment method?",,Brian Healy,,,6090022a7a30960069da652e,,,,,,,,,,,,,GIV-75,GIV-63,,,,GIV-75,GIV-84,,,24/May/24 9:20 AM;ug:41e1805d-70db-4e54-8216-b8f87062b0c1;image-20240524-141743.png;https://shiftinteractive.atlassian.net/rest/api/3/attachment/content/45290,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@67e84aec,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,Impediment,,,,,,,,,,,,,,,0|i045qv:,,,,,,,,,Archived,,,40.0,,,,,,,,,,,,,,,,,62446,GIV-8,Accept Donation,To Do,24/May/24 9:15 AM
+"As a donor user, I should be able to visit an organization profile?",GIV-29,62537,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,24/May/24 9:09 AM,02/Apr/25 10:10 AM,,,,0,archive,"As a user, I should be able to visit an organization profile so I can see their mission statement and donate.
+
+
+
+!Screenshot 2024-06-24 at 1.51.04 PM.png|width=388,height=830,alt=""Screenshot 2024-06-24 at 1.51.04 PM.png""!
+
+
+
+*Workflow*
+
+# As a user, I should be able to click a profile from the organization list in Giv-28 to arrive at an organization page with a summary so I can read their mission statement and see their active campaigns.
+
+*Acceptance Criteria*
+
+# The organization profile picture displays
+# The summary/mission statement displays
+# A list of active campaigns displays
+
+*Assumptions*
+
+# We will display a list of active campaigns at the bottom of this section so users can click into them and donate.
+# There is no reusable component for a list of campaigns.
+# The campaign about me/summary info already exists in the DB",,Brian Healy,,,6090022a7a30960069da652e,,,,,,,,,,,,,,,,,,,,,,24/Jun/24 1:52 PM;ug:41e1805d-70db-4e54-8216-b8f87062b0c1;Screenshot 2024-06-24 at 1.51.04 PM.png;https://shiftinteractive.atlassian.net/rest/api/3/attachment/content/45463,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@15941d41,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,Impediment,,,,,,,,,,,,,,,0|i045nz:,,,,,,,,,Archived,,,8.0,,,,,,,,,,,,"24/Jun/24 1:50 PM;6090022a7a30960069da652e;[~accountid:619bfad9657a050070750d97] When you navigate to the bottom of an organization profile screen, do you see a list of their campaigns or do you just see the “About” summary of the campaign?",,,,,63305,GIV-139,Org Mgmt/Profile,To Do,24/May/24 9:09 AM
+"As a user, I should be able to see a list of active campaigns",GIV-28,62536,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,24/May/24 8:58 AM,02/Apr/25 10:10 AM,,,,0,archive,"As a user, I should be able to view a list of campaigns from organizations I belong to so I can find places to donate to.
+
+!image-20240524-140137.png|width=242,height=519,alt=""image-20240524-140137.png""!
+
+*Workflow*
+
+# As a user, when I navigate to the donate page, I should be able to see a list of organizations I can donate to.
+
+*Assumptions:*
+
+# No images in campaign list",,Brian Healy,,,6090022a7a30960069da652e,,,,,,,,,,,GIV-76,GIV-32,,,,,,,,,,24/May/24 9:05 AM;ug:41e1805d-70db-4e54-8216-b8f87062b0c1;image-20240524-140137.png;https://shiftinteractive.atlassian.net/rest/api/3/attachment/content/45287,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@264693a1,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i045qn:,,,,,,,,,Archived,,,16.0,,,,,,,,,,,,,,,,,62477,GIV-21,Browse Campaigns,To Do,24/May/24 8:58 AM
+Publish Post,GIV-27,62483,Epic,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,20/May/24 10:44 AM,02/Apr/25 10:07 AM,,,,0,archive,"*Value Story:* As an organization, we want to be able to create posts so that we can broadcast news and opportunities for donations from donors to support our work and cause.
+
+*Acceptance Criteria:*
+
+* When viewing an existing campaign, organizations are able to view/create posts for the specific campaign
+* When creating a post, a description should be captured
+* The option of adding photos to the post should exist
+* The option to include a goal and progress graphic should exist
+* The option to share to specific social media sites should exist
+* The option to create a push notification should exist
+* The ability to preview the post should exist
+
+*Technical Details:*
+
+* Integration with social media sites will need to be determined
+* Storage of photos will need to determined
+* Handling push notifications will need to be determined
+* Viewing/creating posts will only be able to completed on the web application
+
+*Assumptions:*
+
+* Posts will be able to be created, but not modified
+* Posts will be able to be deleted from the campaign, but push notifications and social media sites will not be changed
+
+*Design Details:*
+[https://www.figma.com/design/zuM410y2TiuwtbvyyZJvUP/Shift-Gives?node-id=773-30&t=d5RViIr1MmI4Q1p6-0|https://www.figma.com/design/zuM410y2TiuwtbvyyZJvUP/Shift-Gives?node-id=773-30&t=d5RViIr1MmI4Q1p6-0|smart-link] ",,cliff.thompson,Travis Smith,,619bfad9657a050070750d97,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,,,,,,,,,,,,,,GIV-26,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@a0b232f,,,,,,,,,,0.0,,,,,,,{},,,,ghx-label-4,,,,,,,,,,dark_blue,,,,,,,,,,0|i04647:,,,,,,,,,,,,,,,,,,,,,,2024-06-27 19:50:07.795,,27/Jun/24 2:50 PM;619bfad9657a050070750d97;Allow donor-only targeted posts? Idea for creating some special content for supporters of a campaign. ,,,,,,,,To Do,20/May/24 10:44 AM
+Manage Campaign,GIV-26,62482,Epic,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,20/May/24 10:41 AM,02/Apr/25 10:07 AM,,,,0,archive,"*Value Story:* As an organization, we want to be able to manage existing campaigns so that we can keep opportunities for donations up to date.
+
+*Acceptance Criteria:*
+
+* When viewing a list of their existing campaigns, organizations are able to view/edit existing campaigns
+* The following information should be able to be updated during the process of editing a campaign:
+** Title
+** Purpose/Description
+** Goal amount
+** Start date of campaign
+** End date of campaign
+** Donation thank you message
+** Campaign thank you message
+* The option to start/end the campaign should exist
+
+*Technical Details:*
+
+* Managing campaigns will only be able to completed on the web application
+
+*Design Details:*
+[https://www.figma.com/design/zuM410y2TiuwtbvyyZJvUP/Shift-Gives?node-id=773-30&t=d5RViIr1MmI4Q1p6-0|https://www.figma.com/design/zuM410y2TiuwtbvyyZJvUP/Shift-Gives?node-id=773-30&t=d5RViIr1MmI4Q1p6-0|smart-link] ",,Travis Smith,,,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,,,,,,64800,64800,,,,,,,GIV-27,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@686cc898,,,,,,,,,,0.0,,,,,,,{},,,,ghx-label-4,,,,,,,,,,dark_blue,,,,,,,,,,0|i04673:,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,To Do,20/May/24 10:41 AM
+Browse Campaigns,GIV-21,62477,Epic,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,20/May/24 10:11 AM,02/Apr/25 10:07 AM,,,,0,archive,"*Value Story:* As an donor, I want the ability to browse organization campaigns so that I can determine which campaigns I have interest in donating to.
+
+*Acceptance Criteria:*
+
+* After logging into the application, donors should see campaign feeds that relate to the donor
+** A campaign feed should exist for recommended campaigns based on previous donations made
+** A campaign feed should exist campaigns for companies that local to the donor
+* When visiting the donate page, a list organization campaigns will 
+
+*Technical Details:*
+
+* 
+
+*Design Details:*
+[https://www.figma.com/design/zuM410y2TiuwtbvyyZJvUP/Shift-Gives?node-id=773-30&t=d5RViIr1MmI4Q1p6-0|https://www.figma.com/design/zuM410y2TiuwtbvyyZJvUP/Shift-Gives?node-id=773-30&t=d5RViIr1MmI4Q1p6-0|smart-link] ",,Travis Smith,,,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@28e0a7f9,,,,,,,,,,0.0,,,,,,,{},,,,ghx-label-13,,,,,,,,,,dark_green,,,,,,,,,,0|i0466v:,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,To Do,20/May/24 10:11 AM
+Evaluate need for component library or custom components ,GIV-18,62461,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,chris.johnson,6423639c67102fc717c21f97,cliff.thompson,619bfad9657a050070750d97,cliff.thompson,619bfad9657a050070750d97,15/May/24 3:38 PM,02/Apr/25 10:10 AM,,,,0,archive,Evaluate whether we need a component library or custom component approach.,,cliff.thompson,,,619bfad9657a050070750d97,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@6ce4c817,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,purple,,,,,,,,,,0|i0464f:,,,,,,,,,Archived,,,,,,,,,,,,,,,,,,,,62428,GIV-2,MVP UI/UX,To Do,15/May/24 3:38 PM
+Push Notifications research,GIV-17,62460,Task,Done,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,Done,ehren.fox,60d9d4117d016900700bbaab,cliff.thompson,619bfad9657a050070750d97,cliff.thompson,619bfad9657a050070750d97,15/May/24 3:31 PM,02/Apr/25 10:06 AM,,11/Jun/24 12:15 PM,,0,archive,"Form an initial recommendation for Push notification strategy. 
+
+*Native push in React Native*- 
+
+Firebase CM
+APNS
+(can look at Greekhouse Chefs example)
+
+*SMS*?",,cliff.thompson,ehren.fox,,619bfad9657a050070750d97,60d9d4117d016900700bbaab,,,,,,,,,,,,,,,,,,,,GIV-56,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@29676f7e,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,purple,,,,,,,,,,0|hzzzzn:,,,,,,,,,On Deck - Ready to Work,,,,,,,,,,,,,2024-05-22 18:25:52.866,12119_*:*_1_*:*_2321044748_*|*_12121_*:*_1_*:*_0,"22/May/24 1:25 PM;60d9d4117d016900700bbaab;h3. 1. Firebase Cloud Messaging (FCM)
+
+* Supports both Android and iOS.
+* Easy integration with React Native.
+* Provides analytics and insights.
+* Supports various types of messages
+* Can create custom audiences for targeted notifications using analytics
+** Less robust than OneSignal
+** More complex setup than OneSignal
+* Ability to deliver Web Push Notifications
+* Free
+* Experience at Shift working with it
+
+*References:*
+
+* [Firebase Cloud Messaging|https://firebase.google.com/docs/cloud-messaging]
+* [React Native Firebase FCM|https://rnfirebase.io/]
+* [Firebase Analytics Audiences|https://firebase.google.com/docs/analytics]
+
+h3. 2. OneSignal
+
+* Supports both iOS and Android.
+* Specialized service for messaging.
+** Noted for it’s ease of use
+** Mobile push, web push, in-app messaging, email, and SMS
+* React Native SDK out of the box
+* Ability for advanced segmentation and targeting.
+** Demographics/behaviors/preferences/device/platform
+* Rich media notifications and analytics.
+* Ability to deliver Web Push Notifications
+* User-friendly dashboard for managing notifications
+* Free tier limitations.
+** Unlimited push notifications to a maximum of 10,000 subscribers at once
+** 6 audience segments, 2 data tags
+* Learning curve
+* Dependency on a third-party service.
+
+*References:*
+
+* [OneSignal Documentation|https://documentation.onesignal.com/docs/react-native-sdk-setup]
+* [OneSignal Segments|https://documentation.onesignal.com/docs/segmentation]
+* [OneSignal vs. FCM|https://www.linkedin.com/pulse/onesignal-vs-firebase-fcm-mostafa-morsy-x5bxc/]
+
+h3. 4. Expo Push Notifications (if using Expo)
+
+* Supports both iOS and Android.
+* Simplifies setup and management.
+* Requires Expo's managed workflow.
+* Less control compared to FCM or OneSignal.
+* Limited segmentation and targeting (would require integration with another service, like Firebase)
+
+*References:*
+
+* [Expo Push Notifications|https://docs.expo.dev/push-notifications/overview/]
+
+h3. 4. React Native Push Notifications Library
+
+* Supports both iOS and Android.
+* Simplifies the integration of FCM and APNS.
+* Offers local and scheduled notifications.
+* Currently used in GHC
+* Outdated repo (last release was 2021)
+* Does not offer segmentation/targeting (custom logic in backend required to implement)
+
+*References:*
+
+* [React Native Push Notifications|https://github.com/zo0r/react-native-push-notification]",,,,,62427,GIV-1,Technical Discovery,Done,11/Jun/24 12:15 PM
+Choose a payment provider,GIV-16,62459,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,Brian Healy,6090022a7a30960069da652e,cliff.thompson,619bfad9657a050070750d97,cliff.thompson,619bfad9657a050070750d97,15/May/24 3:13 PM,02/Apr/25 10:06 AM,,,,0,archive,"What’s an acceptable fee structure?
+What features are critical to our service? 
+
+
+* Stripe - assumed too expensive
+* Vizypay - ?
+* Square
+* Paypal
+* Apple Pay/Google Pay
+* 
+
+AC: 
+Evaluate cost and capability of payment system options. Present discovery findings to the Shift Giving team so a final selection can be locked in. 
+
+
+
+Have been looking into alternatives, captured in [this WIP spreadsheet.|https://docs.google.com/spreadsheets/d/10hSqevj9QT8knqIdfAhnlZWmSif-fy_1/edit#gid=1993570804] ",,Brian Healy,cliff.thompson,,6090022a7a30960069da652e,619bfad9657a050070750d97,,,,,,,,,,,,,,,,,,,,,22/May/24 11:34 AM;ug:41e1805d-70db-4e54-8216-b8f87062b0c1;Payment Services Research.pdf;https://shiftinteractive.atlassian.net/rest/api/3/attachment/content/45281,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@5716cf4c,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,purple,,,,,,,,,,0|i0475b:,,,,,,,,,Archived,,,,,,,,,,,,,2024-05-22 19:27:11.543,,"22/May/24 1:38 PM;619bfad9657a050070750d97;{quote}Spoke with JM a bit on this today - Apogee was something we used in Yestaurants and he mentioned they might give us a better rate. We can vet this option.
+
+
+A few partners of Apogee - 
+
+We are reseller partners with [http://Authorize.net|http://Authorize.net|smart-link] , USAEpay, NMI, ChargeAnywhere, IPOS, Eprocessing Network and Accept Blue.{quote}",22/May/24 2:27 PM;6090022a7a30960069da652e;[~accountid:619bfad9657a050070750d97] So would we get access to one of the reseller partners APIs through Apogee then? I would need to know how to evaluate the docs,,,,62427,GIV-1,Technical Discovery,To Do,15/May/24 3:13 PM
+Donor,GIV-15,62458,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,15/May/24 1:45 PM,02/Apr/25 10:07 AM,,,,0,archive,,,Brian Healy,,,6090022a7a30960069da652e,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@77592da5,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i04753:,,,,,,,,,Archived,,,,,,,,,,,,,,,,,,,,,,,To Do,15/May/24 1:45 PM
+Tech Stack,GIV-14,62457,Task,Done,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,Done,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,15/May/24 1:43 PM,02/Apr/25 10:06 AM,,11/Jun/24 12:16 PM,,0,archive,"React Native, Ruby On Rails, Postgres?",,Brian Healy,,,6090022a7a30960069da652e,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@32ee4aaf,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|hzzzw7:,,,,,,,,,On Deck - Ready to Work,,,,,,,,,,,,,,12119_*:*_1_*:*_2327572324_*|*_12121_*:*_1_*:*_0,,,,,,62427,GIV-1,Technical Discovery,Done,11/Jun/24 12:16 PM
+Recommendation Engine,GIV-13,62456,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,Brian Healy,6090022a7a30960069da652e,Brian Healy,6090022a7a30960069da652e,15/May/24 1:42 PM,02/Apr/25 10:06 AM,,,,0,archive,"Possiblities:
+
+* Use a library or service: [Recommendify|https://github.com/asmuth/recommendify], [https://recommendifyapp.com/|https://recommendifyapp.com/|smart-link], [Predictor|https://github.com/nyagato-00/predictor], [https://github.com/ankane/disco|https://github.com/ankane/disco|smart-link]
+** Cons: Some of these operate based on a ratings system
+** Some have less control over specific recommendations
+** Cost
+** Not proprietary (if this matters)
+* Build a recommendation system
+** Use a learning model or matrix factorization to construct our own recommendation engine
+*** Cons: Difficult to manage or customize (i.e. eliminating or preventing single entries from being recommended in specific circumstances)
+** Build a simple recommendation engine based on user’s location and specific rules defined by app admin
+*** Whitelisted companies to be recommended
+*** Allows more control
+*** CONS:
+**** Less automated
+**** More implementation for an admin portal",,Brian Healy,,,6090022a7a30960069da652e,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@18050839,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,,,,,,,,,,,0|i0464v:,,,,,,,,,Archived,,,,,,,,,,,,,,,,,,,,62427,GIV-1,Technical Discovery,To Do,15/May/24 1:42 PM
+MVP staging environment,GIV-12,62450,Epic,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,cliff.thompson,619bfad9657a050070750d97,cliff.thompson,619bfad9657a050070750d97,13/May/24 2:39 PM,02/Apr/25 10:10 AM,,,,0,archive,"Mono-repository
+
+
+
+Environments
+
+
+
+* Production
+* Staging
+
+
+
+Application Architecture
+
+
+
+* Mobile Apps (Used by Donors)
+** React Native
+*** iOS
+*** Android
+* Web Application (Used by Organizations/Administrators)
+** Ruby on Rails
+* API (Used by Web Application/Mobile Apps)
+** Ruby on Rails
+* Database (Used by API)
+** Postgres
+
+
+
+AWS
+
+
+
+* ECS
+* ECR
+* RDS
+
+
+
+Terraform - Infrastructure as Code
+
+Buddy - Deployment Pipelines
+
+CircleCI - Build and Test Pipelines
+
+Mailgun - Sending Emails
+
+FCM/APNs - Sending Pushing Notifications (iOS/Android)
+
+Cloudflare - Configure DNS",,cliff.thompson,,,619bfad9657a050070750d97,,,,,,,108000,108000,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@178b5c6a,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,purple,,,,,,,,,,0|i045dr:,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,To Do,13/May/24 2:39 PM
+Display Donor Giving History,GIV-11,62449,Epic,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,cliff.thompson,619bfad9657a050070750d97,cliff.thompson,619bfad9657a050070750d97,13/May/24 2:25 PM,02/Apr/25 10:07 AM,,,,0,archive,"As a donor, I want to 
+
+* see a list of contributions I’ve made through all-time history.
+*  select individual donations to view a transaction receipt I can download/print for tax purposes. 
+
+[https://www.irs.gov/charities-non-profits/charitable-organizations/charitable-contributions-written-acknowledgments|https://www.irs.gov/charities-non-profits/charitable-organizations/charitable-contributions-written-acknowledgments|smart-link] ",,cliff.thompson,,,619bfad9657a050070750d97,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@1781bb4d,,,,,,,,,,0.0,,,,,,,{},,,,ghx-label-13,,,,,,,,,,dark_green,,,,,,,,,,0|i0468v:,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,To Do,13/May/24 2:25 PM
+Campaign Admin,GIV-10,62448,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,cliff.thompson,619bfad9657a050070750d97,cliff.thompson,619bfad9657a050070750d97,13/May/24 2:24 PM,02/Apr/25 10:10 AM,,,,0,archive,"[https://shiftinteractive.atlassian.net/browse/GIV-9|https://shiftinteractive.atlassian.net/browse/GIV-9|smart-link] 
+
+*Manage Campaigns*
+
+As a Campaign Admin, I want to
+
+* Create a 501(3)(c) organization in the app to start my donation campaign
+* Add/edit organization members to help manage my campaigns and upload content/updates/storytelling material
+* Send push notifications with donation drive and campaign updates to donors and potential/previous donors",,cliff.thompson,,,619bfad9657a050070750d97,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@78fefff5,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,purple,,,,,,,,,,0|i0464n:,,,,,,,,,Archived,,,,,,,,,,,,,,,,,,,,62428,GIV-2,MVP UI/UX,To Do,13/May/24 2:24 PM
+Campaign Admin,GIV-9,62447,Epic,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,cliff.thompson,619bfad9657a050070750d97,cliff.thompson,619bfad9657a050070750d97,13/May/24 2:23 PM,02/Apr/25 10:07 AM,,,,0,archive,"*Admin*
+
+* Campaign List
+** nested Post List per campaign
+* Archive Campaign
+* Hide/Remove post
+* _Post/Campaign Anayltics (later Epic)_
+* 
+
+*View Campaign Detail*
+
+* Campaign Title
+* Beneficiary
+* Total raised
+* % of goal
+* List of donations/donors
+** Messaging summary
+** Recognition sent?
+* _Post/Campaign Anayltics (later Epic)_
+
+
+
+!image-20240513-194632.png|width=662,height=468,alt=""image-20240513-194632.png""!",,cliff.thompson,,,619bfad9657a050070750d97,,,,,,,,,,,,,,,,,,,,,,13/May/24 2:46 PM;ug:3b7432ec-ea7f-422b-84e8-9424fef7ba47;image-20240513-194632.png;https://shiftinteractive.atlassian.net/rest/api/3/attachment/content/45254,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@72364e6a,,,,,,,,,,0.0,,,,,,,{},,,,ghx-label-4,,,,,,,,,,dark_blue,,,,,,,,,,0|i0468n:,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,To Do,13/May/24 2:23 PM
+Accept Donation,GIV-8,62446,Epic,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,cliff.thompson,619bfad9657a050070750d97,cliff.thompson,619bfad9657a050070750d97,13/May/24 1:53 PM,02/Apr/25 10:07 AM,,,,0,archive,"*Description:* 
+As a donor interacting with a campaign post, I can complete a one-time payment donation to a specific beneficiary or cause. 
+
+* Select amount
+* Confirm amount
+* Submit donation
+* Donation confirmation
+** Thank you message
+
+*Acceptance Criteria:*
+
+* When on an organization’s campaign page, the donor should have the ability to donate to the organization using a credit/debit card
+* When a donation is completed, the donor should receive a receipt via email
+* The donor should have the ability to turn on/off the ability to receive a receipt via email
+* The donor should have the ability to make the donation on a recurring basis or just one-time
+* The donor should have the ability to turn on/off the option to cover the transaction fees for the donation
+
+*Technical Details:*
+
+* A payment processor will need to be utilized
+* Donations will only be able to be completed via the Mobile apps
+
+!image-20240513-190307.png|width=328,height=719,alt=""image-20240513-190307.png""!
+
+!image-20240513-190527.png|width=324,height=692,alt=""image-20240513-190527.png""!",,cliff.thompson,,,619bfad9657a050070750d97,,,,,,,,,,,,,,,,,,,,,,13/May/24 2:05 PM;ug:3b7432ec-ea7f-422b-84e8-9424fef7ba47;image-20240513-190307.png;https://shiftinteractive.atlassian.net/rest/api/3/attachment/content/45249,13/May/24 2:05 PM;ug:3b7432ec-ea7f-422b-84e8-9424fef7ba47;image-20240513-190527.png;https://shiftinteractive.atlassian.net/rest/api/3/attachment/content/45250,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@70390aff,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,purple,,,,,,,,,,0|i045ev:,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,To Do,13/May/24 1:53 PM
+Publish Simple Campaign,GIV-7,62445,Epic,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,cliff.thompson,619bfad9657a050070750d97,cliff.thompson,619bfad9657a050070750d97,cliff.thompson,619bfad9657a050070750d97,13/May/24 1:40 PM,02/Apr/25 10:07 AM,,,,0,archive,"A Simple Campaign is a series of Posts set up by an Org and grouped by a common purpose. A campaign includes the ability to create, edit, schedule and publish - both the campaign & the individual posts. 
+
+A Donor will be able to see posts iwith a call to action to donate to the campaign via their main news feed and via pushed messages.
+
+*Campaign*
+
+* Title / purpose defined by text field
+* Beneficiary - defined by text field
+* Goal - defined by text field
+* Start date (scheduled start)
+* Start button (immediate start)
+* End date (scheduled end)
+* End button (immediate end)
+* User can define Thank You message text (per donation)
+* User can define Thank you message text (end of campaign) 
+
+*Post*
+
+* upload one or multiple photos to a post
+* add description text
+* set ‘include goal/progress graphic' option (later?)
+* set push notification options
+* set ‘share to social’ options
+
+!image-20240513-185710.png|width=1079,height=748,alt=""image-20240513-185710.png""!
+
+!image-20240513-185728.png|width=214,height=482,alt=""image-20240513-185728.png""!",,cliff.thompson,,,619bfad9657a050070750d97,,,,,,,,,,,,,,,,,,,,,,13/May/24 2:24 PM;ug:3b7432ec-ea7f-422b-84e8-9424fef7ba47;image-20240513-185710.png;https://shiftinteractive.atlassian.net/rest/api/3/attachment/content/45252,13/May/24 2:24 PM;ug:3b7432ec-ea7f-422b-84e8-9424fef7ba47;image-20240513-185728.png;https://shiftinteractive.atlassian.net/rest/api/3/attachment/content/45251,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@6340ce3e,,,,,,,,,,0.0,,,,,,,{},,,,ghx-label-4,,,,,,,,,,dark_blue,,,,,,,,,,0|i045en:,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,To Do,13/May/24 1:40 PM
+Donor Sign-up,GIV-6,62444,Epic,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,cliff.thompson,619bfad9657a050070750d97,cliff.thompson,619bfad9657a050070750d97,13/May/24 1:39 PM,02/Apr/25 10:07 AM,,,,0,archive,"Efficient (<2 min) sign-up for individuals
+
+* First Name
+* Last Name
+* Email address
+* Phone number
+* Set Password",,cliff.thompson,,,619bfad9657a050070750d97,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@5ba9e1f5,,,,,,,,,,0.0,,,,,,,{},,,,ghx-label-6,,,,,,,,,,green,,,,,,,,,,0|i045ef:,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,To Do,13/May/24 1:39 PM
+Upload logo,GIV-5,62443,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,cliff.thompson,619bfad9657a050070750d97,cliff.thompson,619bfad9657a050070750d97,13/May/24 1:25 PM,02/Apr/25 10:10 AM,,,,0,archive,,,cliff.thompson,,,619bfad9657a050070750d97,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@6e62976d,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,purple,,,,,,,,,,0|i0463z:,,,,,,,,,Archived,,,,,,,,,,,,,,,,,,,,62442,GIV-4,Org Sign-up,To Do,13/May/24 1:25 PM
+Org Sign-up,GIV-4,62442,Epic,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,cliff.thompson,619bfad9657a050070750d97,cliff.thompson,619bfad9657a050070750d97,13/May/24 1:24 PM,02/Apr/25 10:07 AM,,,,0,archive,"Efficient (<5 min) sign-up for 501(c)3 orgs 
+
+* Org Name
+* Owner First name
+* Owner Last name
+* Upload logo
+* Email address
+* About our Org
+* Nonprofit EIN 
+** nine-digit tax ID number that IRS assigns to nonprofits, charities, organizations, and businesses in the following format: XX-XXXXXXX
+
+
+
+
+
+!image-20240515-204734.png|width=216,height=260,alt=""image-20240515-204734.png""!
+
+
+
+!image-20240515-204721.png|width=181,height=267,alt=""image-20240515-204721.png""!",,cliff.thompson,,,619bfad9657a050070750d97,,,,,,,,,,,,,,,,,,,,,,15/May/24 3:47 PM;ug:3b7432ec-ea7f-422b-84e8-9424fef7ba47;image-20240515-204721.png;https://shiftinteractive.atlassian.net/rest/api/3/attachment/content/45259,15/May/24 3:47 PM;ug:3b7432ec-ea7f-422b-84e8-9424fef7ba47;image-20240515-204734.png;https://shiftinteractive.atlassian.net/rest/api/3/attachment/content/45260,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@abf83be,,,,,,,,,,0.0,,,,,,,{},,,,ghx-label-10,,,,,,,,,,blue,,,,,,,,,,0|i045e7:,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,To Do,13/May/24 1:24 PM
+Choose a video library,GIV-3,62441,Task,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,cliff.thompson,619bfad9657a050070750d97,cliff.thompson,619bfad9657a050070750d97,13/May/24 1:24 PM,02/Apr/25 10:06 AM,,,,0,archive,"Video:
+
+Bunny: [https://docs.bunny.net/reference/api-overview|https://docs.bunny.net/reference/api-overview|smart-link]
+
+* Transcoding
+* Storage
+* Video Player
+
+api.video: [https://api.video/|https://api.video/|smart-link]
+
+* Transcoding
+* CDN and Storage
+* Analytics
+* Cost: .000285 per minute of video stored, .0017 per minute video delivered
+
+CloudFlare: [https://www.cloudflare.com/products/cloudflare-stream/|https://www.cloudflare.com/products/cloudflare-stream/|smart-link] ",,cliff.thompson,Matt Gerst,,619bfad9657a050070750d97,5b7f207fcd0cc72a612ca362,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@77f8cd41,,,,,,,,,,0.0,,,,,,,{},,,,,,,,,,,,,,purple,,,,,,,,,,0|i0475j:,,,,,,,,,Archived,,,,,,,,,,,,,2024-05-15 19:47:01.536,,"15/May/24 2:47 PM;5b7f207fcd0cc72a612ca362;We use Wistia as our library on Navigate: [https://wistia.com/|https://wistia.com/|smart-link] 
+It’s worked well for those use cases, but I wasn’t part of the initial evaluation.",,,,,62427,GIV-1,Technical Discovery,To Do,13/May/24 1:24 PM
+MVP UI/UX,GIV-2,62428,Epic,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,cliff.thompson,619bfad9657a050070750d97,cliff.thompson,619bfad9657a050070750d97,10/May/24 10:13 AM,02/Apr/25 10:07 AM,,,,0,archive,"Starting designs and mockups to inform front-end estimation
+
++Identified June 4 by dev team:+ 
+
+{quote}*Donations - Mobile*
+
+Checking out with a saved payment method
+
+Saving a a payment method after a transaction
+
+Adding a payment method outside of a transaction
+
+Selecting from a list of saved payment methods
+
+Manage/End recurring donations
+
+
+
+*Campaigns and Posts - Web App*
+
+-Starting a campaign
+
+-Title/Purpose
+
+-Selecting Beneficiary
+
+-Organization Posts versus Campaign Posts
+
+-Set Giving Goal
+
+-Set Thank You Message Text (per donation)
+
+-Set Thank You Message Text (end of campaign)
+
+-Start Date
+
+-End Date
+
+-Start button
+
+-End button
+
+
+
+*Account Management*
+
+-Maybe we have notification/payment management here?
+
+
+
+*Posts - Web App*
+
+Post screen with fields
+
+-Add description text
+
+-Include goal/progress graphic
+
+-Set push notification options
+
+-Set up news feed specific content
+
+-Set ‘personalized option’
+
+-Preview Post
+
+-Save Post{quote}
+
+{quote}*Organization Profile - Mobile*
+
+-Mission Statement
+
+-Photo
+
+-Active Campaigns/Recent Posts?
+
+-Opt out of notifications from this campaign{quote}
+
+{quote}*Campaign Posts - Mobile*
+
+-Photo
+
+-Title
+
+-Text
+
+-Opt out of notifications for this campaign? Or should this be on campaign screen, or both?
+
+
+
+Questions: 
+
+-What do we mean by news feed specific content? 
+
+-What does personalization look like? 
+
+-What does the preview look like? 
+
+-What does photo upload, management, formatting look like for a post?
+
+
+
+*Components*
+
+Goal/Progress bar graphic
+
+
+
+*Org Donation History*
+
+View list of donations for a campaign
+
+Questions: Are the donations searchable?
+
+
+
+*View a specific Donation*
+
+-Date
+
+-Amount
+
+-Recurring?
+
+-First Name
+
+-Last Name
+
+Questions: What fields?
+
+
+
+
+
+
+
+*Donor Donations History*
+
+View a single donation
+
+Questions: We have a figma for a donor viewing a history of their own donations, but what happened if they click into one?
+
+{quote}",,cliff.thompson,,,619bfad9657a050070750d97,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@24b75e53,,,,,,,,,,0.0,,,,,,,{},,,,ghx-label-10,,,,,,,,,,blue,,,,,,,,,,0|i045db:,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,To Do,10/May/24 10:13 AM
+Technical Discovery,GIV-1,62427,Epic,To Do,GIV,Shift Giving,software,Travis Smith,712020:74eee8f4-6806-4c68-a5ec-bb0d05e20f1c,,Lowest,,,,cliff.thompson,619bfad9657a050070750d97,cliff.thompson,619bfad9657a050070750d97,10/May/24 10:13 AM,02/Apr/25 10:06 AM,,,,0,archive,"Research and evaluation of potential architecture, integrations, etc. ",,cliff.thompson,,,619bfad9657a050070750d97,,,,,,,,,,,,,,,,,,,,,,,,,,,,com.atlassian.servicedesk.plugins.approvals.internal.customfield.ApprovalsCFValue@603e7a8b,,,,,,,,,,0.0,,,,,,,{},,,,ghx-label-4,,,,,,,,,,dark_blue,,,,,,,,,,0|i045d3:,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,To Do,10/May/24 10:13 AM

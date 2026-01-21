@@ -1,4 +1,4 @@
-# Mobile Architecture - ShiftGiving Flutter App
+# Mobile Architecture - GivingApp Flutter App
 
 This document defines the architecture and implementation plan for the Flutter mobile application.
 

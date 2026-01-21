@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { ShiftGivingLogo } from './common/ShiftGivingLogo';
+import { GivingAppLogo } from './common/ShiftGivingLogo';
 
 interface LogoProps {
   variant?: 'light' | 'dark';
@@ -45,9 +45,9 @@ export const Logo = ({ variant = 'light', size = 'medium' }: LogoProps) => {
 
   return (
     <LogoContainer $size={size}>
-      <ShiftGivingLogo size={getLogoSize(size)} color={iconColor} />
+      <GivingAppLogo size={getLogoSize(size)} color={iconColor} />
       <LogoText $variant={variant} $size={size}>
-        ShiftGiving
+        <strong>Giving</strong>App
       </LogoText>
     </LogoContainer>
   );

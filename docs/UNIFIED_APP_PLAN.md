@@ -1,8 +1,8 @@
-# ShiftGiving Unified App Plan
+# GivingApp Unified App Plan
 
 ## Overview
 
-This document outlines the plan to rebuild ShiftGiving as a unified cross-platform application using React Native + Expo + Tamagui, targeting iOS, Android, and Web from a single codebase.
+This document outlines the plan to rebuild GivingApp as a unified cross-platform application using React Native + Expo + Tamagui, targeting iOS, Android, and Web from a single codebase.
 
 **Decision Date:** January 2025
 **Status:** Planning Phase
@@ -422,7 +422,7 @@ Used in: Grid view, featured campaigns
 
 ### Phase 1: Project Setup (Week 1)
 - [ ] Create new Expo project with TypeScript
-- [ ] Configure Tamagui with ShiftGiving theme
+- [ ] Configure Tamagui with GivingApp theme
 - [ ] Set up Expo Router navigation structure
 - [ ] Configure TanStack Query
 - [ ] Set up development environment (simulators, web)
@@ -663,7 +663,7 @@ D. Corporate (Future - not MVP)
 ### Branding
 
 - **Logo:** Two hearts logo (as seen in Figma)
-- **Name:** "Shift Giving" for now
+- **Name:** "GivingApp" for now
 - **Note:** Platform may be white-labeled in the future (design for configurability)
 
 ---
@@ -680,7 +680,7 @@ D. Corporate (Future - not MVP)
   - `client/src/pages/dashboard.tsx` - Layout patterns
 
 ### Figma Designs
-- **Location:** `/ShiftGivesFigma/`
+- **Location:** `/GivingAppFigma/`
 - **Key screens:**
   - `Home.png` - Mobile home screen
   - `Homepage.jpg` - Auth flow (login)

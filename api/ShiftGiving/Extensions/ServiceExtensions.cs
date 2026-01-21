@@ -36,8 +36,8 @@ public static class ServiceExtensions
         var jwtSecret = configuration["Jwt:Secret"]
             ?? Environment.GetEnvironmentVariable("JWT_SECRET")
             ?? throw new InvalidOperationException("JWT secret not configured");
-        var jwtIssuer = configuration["Jwt:Issuer"] ?? "ShiftGiving";
-        var jwtAudience = configuration["Jwt:Audience"] ?? "ShiftGiving";
+        var jwtIssuer = configuration["Jwt:Issuer"] ?? "GivingApp";
+        var jwtAudience = configuration["Jwt:Audience"] ?? "GivingApp";
 
         services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(options => ConfigureJwtBearer(options, jwtSecret, jwtIssuer, jwtAudience));

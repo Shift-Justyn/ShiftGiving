@@ -1,4 +1,4 @@
-# Shift Giving - Current Status (January 2026)
+# GivingApp - Current Status (January 2026)
 
 ## Strategic Direction
 
@@ -22,7 +22,7 @@ See [EXPO_IMPLEMENTATION_PLAN.md](EXPO_IMPLEMENTATION_PLAN.md) for detailed phas
 **Tasks**:
 1. Create Expo project with TypeScript template
 2. Install dependencies (Expo Router, Tamagui, TanStack Query, Zustand)
-3. Configure Tamagui with ShiftGiving theme tokens (teal palette)
+3. Configure Tamagui with GivingApp theme tokens (teal palette)
 4. Set up Expo Router with (auth) and (tabs) groups
 5. Port API client from web/src/api/client.ts (replace localStorage with SecureStore)
 6. Port TypeScript types from web/src/api/types.ts
@@ -98,5 +98,5 @@ ls -la native/
 cd native && npm test
 
 # Run API tests
-cd api/ShiftGiving.Tests && dotnet test
+cd api/GivingApp.Tests && dotnet test
 ```

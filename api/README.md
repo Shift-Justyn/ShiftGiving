@@ -1,10 +1,10 @@
-# Shift Giving - API
+# GivingApp - API
 
-This is an API application for the Shift Giving platform to support donations to organization campaigns.
+This is an API application for the GivingApp platform to support donations to organization campaigns.
 
 ## Running the Application Locally
 
-1. Navigate to the `ShiftGiving` directory
+1. Navigate to the `GivingApp` directory
 2. Run `dotnet run`
 3. Open http://localhost:5237 in a browser
 

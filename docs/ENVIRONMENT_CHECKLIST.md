@@ -52,13 +52,13 @@ Use this checklist to verify your local development environment is properly conf
 
 - [ ] **Verify database connection**
   ```bash
-  docker exec -it shiftgiving-postgres psql -U shiftgiving -d shiftgiving -c "\dt"
+  docker exec -it givingapp-postgres psql -U givingapp -d givingapp -c "\dt"
   # Should list all tables
   ```
 
 - [ ] **Verify seed data loaded**
   ```bash
-  docker exec -it shiftgiving-postgres psql -U shiftgiving -d shiftgiving -c "SELECT COUNT(*) FROM users;"
+  docker exec -it givingapp-postgres psql -U givingapp -d givingapp -c "SELECT COUNT(*) FROM users;"
   # Should show 3 users
   ```
 
@@ -71,7 +71,7 @@ Use this checklist to verify your local development environment is properly conf
 
 - [ ] **Update DATABASE_URL in .env**
   ```
-  DATABASE_URL=postgresql://shiftgiving:shiftgiving_local_dev@localhost:5432/shiftgiving
+  DATABASE_URL=postgresql://givingapp:givingapp_local_dev@localhost:5432/givingapp
   ```
 
 - [ ] **Generate SESSION_SECRET**
@@ -84,7 +84,7 @@ Use this checklist to verify your local development environment is properly conf
 
 - [ ] **Navigate to API directory**
   ```bash
-  cd api/ShiftGiving
+  cd api/GivingApp
   ```
 
 - [ ] **Restore dependencies**
@@ -101,14 +101,14 @@ Use this checklist to verify your local development environment is properly conf
 
 - [ ] **Run tests**
   ```bash
-  cd ../ShiftGiving.Tests
+  cd ../GivingApp.Tests
   dotnet test
   # All tests should pass
   ```
 
 - [ ] **Start the API**
   ```bash
-  cd ../ShiftGiving
+  cd ../GivingApp
   dotnet run
   # API should start on http://localhost:5237
   ```

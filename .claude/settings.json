@@ -74,8 +74,6 @@
       "Bash(PORT=*)"
     ],
     "deny": [
-      "Bash(git commit*)",
-      "Bash(git push*)",
       "Bash(git reset --hard*)",
       "Bash(git clean -fd*)",
       "Bash(git branch -D*)",

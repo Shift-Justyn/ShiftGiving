@@ -2,7 +2,7 @@
 
 ## Overview
 
-React Router has been successfully configured for the Shift Giving web application with authentication guards and TypeScript support.
+React Router has been successfully configured for the GivingApp web application with authentication guards and TypeScript support.
 
 ## Structure
 

@@ -1,4 +1,4 @@
-# Local Database Setup - ShiftGiving
+# Local Database Setup - GivingApp
 
 This guide explains how to set up and manage the local PostgreSQL database for development.
 
@@ -17,7 +17,7 @@ This guide explains how to set up and manage the local PostgreSQL database for d
 
 This will:
 - Start PostgreSQL 16 in a Docker container
-- Create the `shiftgiving` database
+- Create the `givingapp` database
 - Apply the schema and seed data automatically
 - Wait for the database to be healthy
 
@@ -28,12 +28,12 @@ Use these connection details in your API configuration:
 ```
 Host: localhost
 Port: 5432
-Database: shiftgiving
-Username: shiftgiving
-Password: shiftgiving_local_dev
+Database: givingapp
+Username: givingapp
+Password: givingapp_local_dev
 
 Connection String:
-postgresql://shiftgiving:shiftgiving_local_dev@localhost:5432/shiftgiving
+postgresql://givingapp:givingapp_local_dev@localhost:5432/givingapp
 ```
 
 ### 3. Stop the Database
@@ -138,7 +138,7 @@ Key tables:
 ### Using psql CLI
 
 ```bash
-docker exec -it shiftgiving-postgres psql -U shiftgiving -d shiftgiving
+docker exec -it givingapp-postgres psql -U givingapp -d givingapp
 ```
 
 ### Using a GUI Tool
@@ -196,12 +196,12 @@ Or manually:
 
 ```bash
 docker compose down -v
-docker volume rm shift-giving_postgres_data
+docker volume rm giving-app_postgres_data
 ```
 
 ## Updating Seed Data
 
-Edit `/api/ShiftGiving/Data/seed_data.sql` and restart the database with `--fresh`:
+Edit `/api/GivingApp/Data/seed_data.sql` and restart the database with `--fresh`:
 
 ```bash
 ./scripts/start_local_db.sh --fresh

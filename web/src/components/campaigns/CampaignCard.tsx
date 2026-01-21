@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Campaign } from '../../api/types';
 import { MapPin, BookOpen, ArrowRight, Heart } from 'lucide-react';
 import { useState } from 'react';
-import { ShiftGivingLogo } from '../common/ShiftGivingLogo';
+import { GivingAppLogo } from '../common/ShiftGivingLogo';
 
 interface CampaignCardProps {
   campaign: Campaign;
@@ -324,7 +324,7 @@ export const CampaignCard = ({ campaign, onClick }: CampaignCardProps) => {
           <CategoryBadge $color={categoryColor}>{campaign.category}</CategoryBadge>
         )}
         <HeartButton $liked={isLiked} onClick={handleHeartClick}>
-          <ShiftGivingLogo
+          <GivingAppLogo
             size={18}
             color={isLiked ? '#EF4444' : '#00A0C4'}
             backColor={isLiked ? 'rgba(239, 68, 68, 0.3)' : 'rgba(0, 160, 196, 0.3)'}

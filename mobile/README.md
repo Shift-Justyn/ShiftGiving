@@ -1,6 +1,6 @@
-# Shift Giving - Mobile App
+# GivingApp - Mobile App
 
-This is a mobile application for the Shift Giving platform to support donations to organization campaigns.
+This is a mobile application for the GivingApp platform to support donations to organization campaigns.
 
 ## Setting Up Your Local Environment
 

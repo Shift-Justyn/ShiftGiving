@@ -1,2 +1,2 @@
 export { GlassCard } from './GlassCard';
-export { ShiftGivingLogo } from './ShiftGivingLogo';
+export { GivingAppLogo } from './ShiftGivingLogo';

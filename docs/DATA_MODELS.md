@@ -1,6 +1,6 @@
-# Data Models - ShiftGiving
+# Data Models - GivingApp
 
-This document defines the database schema and entity relationships for ShiftGiving.
+This document defines the database schema and entity relationships for GivingApp.
 
 ## Database Overview
 
@@ -449,7 +449,7 @@ CREATE INDEX idx_audit_log_created ON audit_log(created_at);
 ## Migration Strategy
 
 1. All schema changes via migration scripts only
-2. Migrations stored in `/api/ShiftGiving/Migrations/`
+2. Migrations stored in `/api/GivingApp/Migrations/`
 3. Use Entity Framework Core migrations:
    ```bash
    dotnet ef migrations add MigrationName
@@ -466,7 +466,7 @@ For local development, seed data includes:
 - 5 campaigns
 - 10 sample donations
 
-Seed script: `/api/ShiftGiving/Data/SeedData.cs`
+Seed script: `/api/GivingApp/Data/SeedData.cs`
 
 ---
 

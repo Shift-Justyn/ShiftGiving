@@ -1,6 +1,6 @@
-# Shift Giving - Web App
+# GivingApp - Web App
 
-React web application for the Shift Giving donation platform.
+React web application for the GivingApp donation platform.
 
 ## Tech Stack
 

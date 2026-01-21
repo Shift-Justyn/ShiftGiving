@@ -1,4 +1,4 @@
-# ShiftGiving: Expo + React Native + Tamagui Implementation Plan
+# GivingApp: Expo + React Native + Tamagui Implementation Plan
 
 ## Overview
 
@@ -61,7 +61,7 @@ Consolidate React web + Flutter mobile into a single Expo/React Native codebase 
 **Tasks:**
 1. Create Expo project with TypeScript template
 2. Install dependencies (Expo Router, Tamagui, TanStack Query, Zustand)
-3. Configure Tamagui with ShiftGiving theme tokens (teal palette from Figma)
+3. Configure Tamagui with GivingApp theme tokens (teal palette from Figma)
 4. Set up Expo Router with (auth) and (tabs) groups
 5. Port API client from [web/src/api/client.ts](web/src/api/client.ts) - replace localStorage with SecureStore
 6. Port TypeScript types from [web/src/api/types.ts](web/src/api/types.ts)
@@ -345,7 +345,7 @@ native/
 
 ### API Updates (Modify Existing)
 ```
-api/ShiftGiving/
+api/GivingApp/
 ├── Models/
 │   ├── User.cs                 # Add new UserType values
 │   ├── Notification.cs         # NEW: Push notification model

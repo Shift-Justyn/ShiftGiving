@@ -1,10 +1,10 @@
-# CLAUDE.md - Shift Giving
+# CLAUDE.md - GivingApp
 
 This document provides context for AI assistants working on this codebase.
 
 ## Project Overview
 
-Shift Giving is a full-stack donation platform that enables users to make donations to organization campaigns. The platform consists of:
+GivingApp is a full-stack donation platform that enables users to make donations to organization campaigns. The platform consists of:
 
 - **Web Application**: React-based frontend
 - **Mobile Application**: Flutter-based iOS and Android app
@@ -15,7 +15,7 @@ Shift Giving is a full-stack donation platform that enables users to make donati
 
 | Component | Technology | Location |
 |-----------|------------|----------|
-| API | .NET 10, ASP.NET Core | `/api/ShiftGiving/` |
+| API | .NET 10, ASP.NET Core | `/api/GivingApp/` |
 | Web | React 19, Vite, TypeScript | `/web/` |
 | Mobile | Flutter 3.27.x+, Dart 3.6.1+ | `/mobile/` |
 | Infrastructure | Terraform, AWS | `/infrastructure/` |
@@ -24,10 +24,10 @@ Shift Giving is a full-stack donation platform that enables users to make donati
 ## Directory Structure
 
 ```
-/shift-giving/
+/giving-app/
 ├── api/                    # .NET 10 backend API
-│   ├── ShiftGiving/        # Main API project
-│   └── ShiftGiving.Tests/  # API unit tests
+│   ├── GivingApp/        # Main API project
+│   └── GivingApp.Tests/  # API unit tests
 ├── web/                    # React frontend
 │   ├── src/                # Source files
 │   └── e2e/                # Playwright e2e tests
@@ -36,7 +36,7 @@ Shift Giving is a full-stack donation platform that enables users to make donati
 │   └── integration_test/   # Integration tests
 ├── infrastructure/         # Terraform IaC
 │   └── modules/            # Terraform modules (vpc, ecs, s3)
-└── ShiftGivesFigma/        # Design assets from Figma
+└── GivingAppFigma/        # Design assets from Figma
 ```
 
 ---
@@ -169,7 +169,7 @@ These standards govern all AI-assisted development on this project.
 | Monorepo structure | Aligned | Single repo with api/, web/, mobile/, infrastructure/ |
 | Jest for JS testing | Aligned | Jest 29.7.0 configured |
 | Playwright for e2e | Aligned | Playwright 1.52.0 configured |
-| xUnit for .NET | Aligned | xUnit in ShiftGiving.Tests |
+| xUnit for .NET | Aligned | xUnit in GivingApp.Tests |
 | Terraform modules | Aligned | Modular structure in infrastructure/ |
 | GitHub Actions | Aligned | CI/CD pipeline configured |
 | AWS ECS/S3/CloudFront | Aligned | Terraform modules for all three |
@@ -282,7 +282,7 @@ The web app includes MSW (Mock Service Worker) for offline development:
 
 ### API (.NET)
 ```bash
-cd api/ShiftGiving
+cd api/GivingApp
 dotnet restore           # Restore dependencies
 dotnet build            # Build the project
 dotnet run              # Run on http://localhost:5237
@@ -344,7 +344,7 @@ The GitHub Actions workflow (`.github/workflows/build_test_deploy.yml`) runs:
 
 ## Design Assets
 
-Figma exports are stored in `/ShiftGivesFigma/` including:
+Figma exports are stored in `/GivingAppFigma/` including:
 - Homepage designs
 - Campaign Dashboard screens
 - Donation flows
@@ -354,7 +354,7 @@ Figma exports are stored in `/ShiftGivesFigma/` including:
 
 ## Key Configuration Files
 
-- `/api/ShiftGiving/appsettings.json` - API configuration
+- `/api/GivingApp/appsettings.json` - API configuration
 - `/web/vite.config.ts` - Vite bundler config
 - `/mobile/pubspec.yaml` - Flutter dependencies
 - `/infrastructure/main.tf` - Terraform main config
@@ -378,7 +378,7 @@ This project was originally developed by Travis. Justin Miller is now the owner 
 ### GitHub
 
 - **Account**: Shift-Justyn
-- **Repository**: ShiftGiving (to be created)
+- **Repository**: GivingApp (to be created)
 - **Protocol**: HTTPS
 - **Scopes**: gist, read:org, repo, workflow
 
@@ -413,7 +413,7 @@ git config --global user.email "justyn@justyn.com"
 
 ```bash
 # Database (Required)
-DATABASE_URL=postgresql://user:password@host:5432/shiftgiving?sslmode=require
+DATABASE_URL=postgresql://user:password@host:5432/givingapp?sslmode=require
 
 # Session (Required)
 SESSION_SECRET=<generate with: openssl rand -hex 32>
@@ -433,7 +433,7 @@ build:
     build:
       - dotnet publish -c Release -o out
 run:
-  command: dotnet out/ShiftGiving.dll
+  command: dotnet out/GivingApp.dll
   network:
     port: 80
   env:
@@ -451,7 +451,7 @@ aws sts get-caller-identity
 gh auth status
 
 # Health check (after deployment)
-curl -s https://shiftgiving.justyn.app/health | jq .
+curl -s https://givingapp.justyn.app/health | jq .
 ```
 
 ### GitHub Actions Secrets Required

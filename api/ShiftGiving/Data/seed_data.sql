@@ -1,4 +1,4 @@
--- ShiftGiving Local Development Seed Data
+-- GivingApp Local Development Seed Data
 -- This script seeds the database with test data for local development
 
 -- Create tables

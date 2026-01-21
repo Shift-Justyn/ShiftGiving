@@ -1,6 +1,6 @@
-# Shift Giving
+# GivingApp
 
-Shift Giving is a full-stack donation platform that enables users to make donations to organization campaigns.
+GivingApp is a full-stack donation platform that enables users to make donations to organization campaigns.
 
 ## Current Status (January 2026)
 
@@ -143,9 +143,9 @@ Start the local PostgreSQL database with Docker:
 
 This starts PostgreSQL 16 with seeded test data. Connection details:
 - Host: `localhost:5432`
-- Database: `shiftgiving`
-- Username: `shiftgiving`
-- Password: `shiftgiving_local_dev`
+- Database: `givingapp`
+- Username: `givingapp`
+- Password: `givingapp_local_dev`
 
 Test accounts (all use password `Password123!`):
 - Donor: `donor@test.com`
@@ -167,7 +167,7 @@ To start fresh (recreate database):
 ### API (.NET)
 
 ```bash
-cd api/ShiftGiving
+cd api/GivingApp
 dotnet restore           # Restore dependencies
 dotnet build            # Build the project
 ```
@@ -177,7 +177,7 @@ dotnet build            # Build the project
 After starting the PostgreSQL database, run these commands to create the database schema:
 
 ```bash
-cd api/ShiftGiving
+cd api/GivingApp
 
 # Install EF Core tools (if not already installed)
 dotnet tool install --global dotnet-ef
@@ -192,7 +192,7 @@ dotnet ef database update
 #### Run the API
 
 ```bash
-cd api/ShiftGiving
+cd api/GivingApp
 dotnet run              # Run on http://localhost:5237
 ```
 
@@ -257,7 +257,7 @@ Expected versions:
 ### 1. Start the API
 
 ```bash
-cd api/ShiftGiving
+cd api/GivingApp
 dotnet run
 ```
 
@@ -288,7 +288,7 @@ Select your target device (iOS Simulator or Android Emulator)
 The API has comprehensive test coverage including unit tests and integration tests:
 
 ```bash
-cd api/ShiftGiving.Tests
+cd api/GivingApp.Tests
 dotnet test                           # Run all tests
 dotnet test --filter "Category=Unit"  # Unit tests only
 dotnet test --filter "Category=Integration"  # Integration tests only
@@ -346,7 +346,7 @@ npm test -- --coverage
 
 ### API
 ```bash
-cd api/ShiftGiving.Tests
+cd api/GivingApp.Tests
 dotnet test /p:CollectCoverage=true
 ```
 
@@ -370,7 +370,7 @@ The API follows .NET conventions with xUnit tests.
 
 ## Additional Resources
 
-- **Design Assets**: See `/ShiftGivesFigma/` for Figma exports
+- **Design Assets**: See `/GivingAppFigma/` for Figma exports
 - **Infrastructure**: See `/infrastructure/` for Terraform configurations
 - **CI/CD**: See `.github/workflows/build_test_deploy.yml` for pipeline configuration
 
@@ -414,10 +414,10 @@ nvm use              # Switch to correct version
 ## Project Structure
 
 ```
-/shift-giving/
+/giving-app/
 ├── api/                    # .NET 10 backend API
-│   ├── ShiftGiving/        # Main API project
-│   └── ShiftGiving.Tests/  # API unit tests
+│   ├── GivingApp/        # Main API project
+│   └── GivingApp.Tests/  # API unit tests
 ├── web/                    # React frontend (Vite)
 │   ├── src/                # Source files
 │   │   ├── api/            # API client and types
@@ -434,6 +434,6 @@ nvm use              # Switch to correct version
 │   └── modules/            # Terraform modules
 ├── scripts/                # Setup and utility scripts
 ├── docs/                   # Project documentation
-└── ShiftGivesFigma/        # Design assets
+└── GivingAppFigma/        # Design assets
 ```
 

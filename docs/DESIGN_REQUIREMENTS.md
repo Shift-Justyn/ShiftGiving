@@ -1,4 +1,4 @@
-# ShiftGiving Design Requirements
+# GivingApp Design Requirements
 
 This document captures design requirements and insights gathered from the pitch deck, Figma exports, and historical Jira backlog. It serves as a reference for implementation.
 
@@ -7,7 +7,7 @@ This document captures design requirements and insights gathered from the pitch 
 ## Brand Identity
 
 ### Name & Logo
-- **Current Name:** Shift Giving (may be white-labeled in future)
+- **Current Name:** GivingApp (may be white-labeled in future)
 - **Logo:** Two hearts icon (visible in Figma as the "GiveApp" branding)
 - **Tagline:** "When we give, everyone is blessed"
 
@@ -469,4 +469,4 @@ Based on the Figma designs and pitch deck:
 
 *Document created: January 2026*
 *Last updated: January 2026*
-*Source materials: Shift Giving Pitch Deck.pdf, ShiftGivesFigma/, JIRA.csv*
+*Source materials: GivingApp Pitch Deck.pdf, GivingAppFigma/, JIRA.csv*

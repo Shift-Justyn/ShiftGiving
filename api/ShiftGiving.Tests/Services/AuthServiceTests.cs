@@ -100,8 +100,8 @@ public class AuthServiceTests
         var inMemorySettings = new Dictionary<string, string>
         {
             {"Jwt:Secret", "your-super-secret-key-that-is-at-least-32-characters-long"},
-            {"Jwt:Issuer", "ShiftGiving"},
-            {"Jwt:Audience", "ShiftGiving"}
+            {"Jwt:Issuer", "GivingApp"},
+            {"Jwt:Audience", "GivingApp"}
         };
 
         return new ConfigurationBuilder()

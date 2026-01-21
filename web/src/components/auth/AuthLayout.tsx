@@ -224,13 +224,13 @@ export const AuthLayout = ({ children }: AuthLayoutProps) => {
               Suite 208, Grimes, IA 50111
               <br />
               <br />
-              <a href="mailto:contact@shiftgiving.com">contact@shiftgiving.com</a>
+              <a href="mailto:contact@givingapp.com">contact@givingapp.com</a>
               <br />
               1-515-224-7415
             </ContactInfo>
           </FooterSection>
         </FooterContent>
-        <Copyright>&copy; 2020-2026 ShiftGiving LLC. All rights reserved.</Copyright>
+        <Copyright>&copy; 2020-2026 GivingApp LLC. All rights reserved.</Copyright>
       </Footer>
     </Container>
   );

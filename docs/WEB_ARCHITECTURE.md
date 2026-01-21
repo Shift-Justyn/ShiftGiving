@@ -1,4 +1,4 @@
-# Web Architecture - ShiftGiving React Dashboard
+# Web Architecture - GivingApp React Dashboard
 
 This document defines the architecture and implementation plan for the React web application (organization dashboard).
 

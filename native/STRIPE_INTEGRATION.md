@@ -1,6 +1,6 @@
 # Stripe React Native Integration
 
-This document outlines the Stripe payment integration for the ShiftGiving Expo app.
+This document outlines the Stripe payment integration for the GivingApp Expo app.
 
 ## Overview
 
@@ -28,12 +28,12 @@ Added Stripe plugin and iOS merchant configuration:
 {
   "ios": {
     "supportsTablet": true,
-    "merchant": "merchant.com.shiftgiving"
+    "merchant": "merchant.com.givingapp"
   },
   "plugins": [
     "@stripe/stripe-react-native",
     {
-      "merchantIdentifier": "merchant.com.shiftgiving",
+      "merchantIdentifier": "merchant.com.givingapp",
       "enableGooglePay": true
     }
   ]
@@ -188,7 +188,7 @@ export const DonationScreen = () => {
 
     const initialized = await initializePaymentSheet({
       clientSecret,
-      merchantDisplayName: 'ShiftGiving',
+      merchantDisplayName: 'GivingApp',
     });
 
     if (initialized) {

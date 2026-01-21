@@ -2,7 +2,7 @@
 
 ## Overview
 
-This document provides a comprehensive overview of all animations and visual polish added to the ShiftGiving native app. The implementation follows Carbon Design System principles with subtle, purposeful animations that enhance the user experience without being distracting.
+This document provides a comprehensive overview of all animations and visual polish added to the GivingApp native app. The implementation follows Carbon Design System principles with subtle, purposeful animations that enhance the user experience without being distracting.
 
 ## Completed Implementations
 

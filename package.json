@@ -1,7 +1,7 @@
 {
-  "name": "shift-giving",
+  "name": "giving-app",
   "version": "1.0.0",
-  "description": "Shift Giving is a full-stack donation platform that enables users to make donations to organization campaigns.",
+  "description": "GivingApp is a full-stack donation platform that enables users to make donations to organization campaigns.",
   "private": true,
   "scripts": {
     "test:web": "cd web && npm test",

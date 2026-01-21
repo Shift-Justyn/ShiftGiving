@@ -39,7 +39,7 @@
     "passwordTooShort": "Password must be at least 8 characters"
   },
   "home": {
-    "welcome": "Welcome to Shift Giving",
+    "welcome": "Welcome to GivingApp",
     "greeting": "Hello, {{name}}",
     "updates": "There are {{count}} updates in your community",
     "searchPlaceholder": "Search for a charity or nonprofit",

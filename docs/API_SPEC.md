@@ -1,12 +1,12 @@
-# API Specification - ShiftGiving
+# API Specification - GivingApp
 
-This document defines the REST API endpoints for the ShiftGiving backend.
+This document defines the REST API endpoints for the GivingApp backend.
 
 ## Base URL
 
 - **Local**: `http://localhost:5237/api`
-- **QA**: `https://api-qa.shiftgiving.app/api`
-- **Production**: `https://api.shiftgiving.app/api`
+- **QA**: `https://api-qa.givingapp.app/api`
+- **Production**: `https://api.givingapp.app/api`
 
 ## Authentication
 

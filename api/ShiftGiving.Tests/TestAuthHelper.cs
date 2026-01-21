@@ -19,8 +19,8 @@ public static class TestAuthHelper
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("TestSecretKeyForJWTTokenGenerationThatIsAtLeast32Chars"));
         var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
         var token = new JwtSecurityToken(
-            issuer: "ShiftGiving.Test",
-            audience: "ShiftGiving.Test",
+            issuer: "GivingApp.Test",
+            audience: "GivingApp.Test",
             claims: claims,
             expires: DateTime.UtcNow.AddHours(24),
             signingCredentials: credentials

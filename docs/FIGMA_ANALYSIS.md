@@ -1,10 +1,10 @@
-# Figma Design Analysis - ShiftGiving
+# Figma Design Analysis - GivingApp
 
 This document catalogs all screens from the Figma design exports and maps them to implementation requirements.
 
 ## Application Overview
 
-ShiftGiving (also branded as "GiveApp") is a dual-platform charitable giving application:
+GivingApp (also branded as "GiveApp") is a dual-platform charitable giving application:
 - **Mobile App**: For individual donors to discover campaigns, donate, and track history
 - **Web Dashboard**: For nonprofit organizations to manage campaigns and view analytics
 
@@ -33,14 +33,14 @@ ShiftGiving (also branded as "GiveApp") is a dual-platform charitable giving app
 ## Mobile App Screens (Donor Experience)
 
 ### 1. Splash Screen
-**File**: `Splash.png`, `Splash-1.png`, `Shift Giving Splash.png`
+**File**: `Splash.png`, `Splash-1.png`, `GivingApp Splash.png`
 
 **Purpose**: Initial app launch branding
 
 **Components**:
 - Full-screen teal/blue gradient background
 - Heart logo centered
-- App name "ShiftGiving" or "GiveApp"
+- App name "GivingApp" or "GiveApp"
 
 **Implementation Notes**:
 - 3-second delay before navigation
@@ -388,7 +388,7 @@ Donation {
 ---
 
 ### 15. Donations Table
-**File**: `Shift Giving Dashboard.png`, `Shift Giving Dashboard-1.png`, `Shift Giving Dashboard-2.png`
+**File**: `GivingApp Dashboard.png`, `GivingApp Dashboard-1.png`, `GivingApp Dashboard-2.png`
 
 **Purpose**: View all donations for organization
 
@@ -510,5 +510,5 @@ Set Goal/Dates → Add Media → Publish → View Live
 | Homepage.jpg | Landing/Signup | Web |
 | SaaS Dashboard.png | Org Dashboard | Web |
 | Campaign Dashboard.png | Campaign Mgmt | Web |
-| Shift Giving Dashboard.png | Donations Table | Web |
+| GivingApp Dashboard.png | Donations Table | Web |
 | Create/Edit Campaign.png | Campaign Editor | Web |
