@@ -271,7 +271,7 @@ describe('RegisterPage successful registration', () => {
     mockNavigate.mockClear();
     await user.click(submitButton);
 
-    expect(screen.getByText(/creating account/i)).toBeInTheDocument();
+    expect(screen.getByText(/creating account\.\.\./i)).toBeInTheDocument();
   });
 
   it('disables submit button during registration', async () => {
