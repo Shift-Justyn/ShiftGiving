@@ -13,11 +13,30 @@ const Container = styled.div`
   background: #f9fafb;
 `;
 
+const BackgroundPattern = styled.div`
+  position: absolute;
+  inset: 0;
+  opacity: 0.4;
+  background-image:
+    radial-gradient(circle at 25% 25%, rgba(0, 160, 196, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(0, 160, 196, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+`;
+
 const Header = styled.header`
-  background: ${(props) => props.theme.colors.primary.main};
+  background: linear-gradient(
+    135deg,
+    ${(props) => props.theme.colors.primary.main} 0%,
+    #0088a8 100%
+  );
   padding: 1.25rem 2rem;
   display: flex;
   justify-content: center;
+  box-shadow:
+    0 0.25rem 1rem rgba(0, 0, 0, 0.15),
+    0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 10;
 `;
 
 const Main = styled.main`
@@ -27,6 +46,8 @@ const Main = styled.main`
   align-items: center;
   justify-content: center;
   padding: 3rem 1.5rem;
+  position: relative;
+  overflow: hidden;
 `;
 
 const Footer = styled.footer`
@@ -141,7 +162,10 @@ export const AuthLayout = ({ children }: AuthLayoutProps) => {
       <Header>
         <Logo variant="light" size="medium" />
       </Header>
-      <Main>{children}</Main>
+      <Main>
+        <BackgroundPattern />
+        {children}
+      </Main>
       <Footer>
         <FooterContent>
           <FooterSection>
@@ -206,7 +230,7 @@ export const AuthLayout = ({ children }: AuthLayoutProps) => {
             </ContactInfo>
           </FooterSection>
         </FooterContent>
-        <Copyright>Copyright ShiftGiving</Copyright>
+        <Copyright>&copy; 2020-2026 ShiftGiving LLC. All rights reserved.</Copyright>
       </Footer>
     </Container>
   );

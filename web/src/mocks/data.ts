@@ -9,15 +9,23 @@ import {
 } from '../api/types';
 
 const users: Record<string, AuthUser & { password: string }> = {
+  'justyn@justyn.com': {
+    id: 'user-justyn',
+    email: 'justyn@justyn.com',
+    firstName: 'Justyn',
+    lastName: 'Miller',
+    userType: 'SiteAdmin',
+    avatarUrl: '/images/avatars/avatar-justyn.png',
+    password: 'Password123!',
+  },
   'donor@example.com': {
     id: 'user-1',
     email: 'donor@example.com',
     firstName: 'Sarah',
     lastName: 'Johnson',
     userType: 'Donor',
-    avatarUrl:
-      'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&h=150&fit=crop&crop=face&auto=format',
-    password: 'password123',
+    avatarUrl: '/images/avatars/avatar-sarah.jpg',
+    password: 'Password123!',
   },
   'orgadmin@example.com': {
     id: 'user-2',
@@ -25,9 +33,8 @@ const users: Record<string, AuthUser & { password: string }> = {
     firstName: 'Michael',
     lastName: 'Chen',
     userType: 'OrganizationAdmin',
-    avatarUrl:
-      'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face&auto=format',
-    password: 'password123',
+    avatarUrl: '/images/avatars/avatar-michael.jpg',
+    password: 'Password123!',
   },
   'siteadmin@example.com': {
     id: 'user-3',
@@ -35,9 +42,8 @@ const users: Record<string, AuthUser & { password: string }> = {
     firstName: 'Jennifer',
     lastName: 'Williams',
     userType: 'SiteAdmin',
-    avatarUrl:
-      'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face&auto=format',
-    password: 'password123',
+    avatarUrl: '/images/avatars/avatar-jennifer.jpg',
+    password: 'Password123!',
   },
 };
 
@@ -46,7 +52,7 @@ const organizations: Organization[] = [
     id: 'org-1',
     name: 'Paws Rescue Foundation',
     description: 'Dedicated to rescuing and rehoming abandoned animals. 501(c)(3) nonprofit.',
-    logoUrl: null,
+    logoUrl: '/images/organizations/org-1-paws-rescue-v3.png',
     campaignCount: 2,
     latitude: 45.5152,
     longitude: -122.6784,
@@ -56,7 +62,7 @@ const organizations: Organization[] = [
     id: 'org-2',
     name: 'Grace Community Church',
     description: 'Faith-based organization serving the local community. 501(c)(3) nonprofit.',
-    logoUrl: null,
+    logoUrl: '/images/organizations/org-2-grace-church-v3.jpg',
     campaignCount: 2,
     latitude: 30.2672,
     longitude: -97.7431,
@@ -66,7 +72,7 @@ const organizations: Organization[] = [
     id: 'org-3',
     name: 'City Food Bank',
     description: 'Fighting food insecurity and hunger in our community. 501(c)(3) nonprofit.',
-    logoUrl: null,
+    logoUrl: '/images/organizations/org-3-food-bank-v3.png',
     campaignCount: 2,
     latitude: 47.6062,
     longitude: -122.3321,
@@ -76,7 +82,7 @@ const organizations: Organization[] = [
     id: 'org-4',
     name: 'Future Leaders Youth Program',
     description: 'Empowering youth through education and mentorship. 501(c)(3) nonprofit.',
-    logoUrl: null,
+    logoUrl: '/images/organizations/org-4-future-leaders-v2.png',
     campaignCount: 2,
     latitude: 41.8781,
     longitude: -87.6298,
@@ -86,10 +92,21 @@ const organizations: Organization[] = [
     id: 'org-5',
     name: 'Disaster Relief International',
     description: 'Providing emergency aid to disaster-affected communities. 501(c)(3) nonprofit.',
-    logoUrl: null,
+    logoUrl: '/images/organizations/org-5-disaster-relief.png',
     campaignCount: 2,
     latitude: 25.7617,
     longitude: -80.1918,
+    category: 'Health',
+  },
+  {
+    id: 'org-6',
+    name: 'Cancer Screen Iowa',
+    description:
+      'A statewide public-private partnership dedicated to increasing early cancer detection across Iowa. Early detection saves lives.',
+    logoUrl: '/images/organizations/org-6-cancer-screen-iowa.png',
+    campaignCount: 1,
+    latitude: 41.5868,
+    longitude: -93.625,
     category: 'Health',
   },
 ];
@@ -102,7 +119,7 @@ const campaigns: Campaign[] = [
     goalAmount: 50000,
     raisedAmount: 37500,
     status: 'Active',
-    featuredImageUrl: null,
+    featuredImageUrl: '/images/campaigns/campaign-1-animal-shelter.jpg',
     organization: {
       id: 'org-1',
       name: 'Paws Rescue Foundation',
@@ -119,7 +136,7 @@ const campaigns: Campaign[] = [
     goalAmount: 25000,
     raisedAmount: 18750,
     status: 'Active',
-    featuredImageUrl: null,
+    featuredImageUrl: '/images/campaigns/campaign-2-winter-warming.jpg',
     organization: {
       id: 'org-1',
       name: 'Paws Rescue Foundation',
@@ -136,7 +153,7 @@ const campaigns: Campaign[] = [
     goalAmount: 75000,
     raisedAmount: 52500,
     status: 'Active',
-    featuredImageUrl: null,
+    featuredImageUrl: '/images/campaigns/campaign-3-community-outreach.jpg',
     organization: {
       id: 'org-2',
       name: 'Grace Community Church',
@@ -153,7 +170,7 @@ const campaigns: Campaign[] = [
     goalAmount: 100000,
     raisedAmount: 62000,
     status: 'Active',
-    featuredImageUrl: null,
+    featuredImageUrl: '/images/campaigns/campaign-4-scholarship.jpg',
     organization: {
       id: 'org-4',
       name: 'Future Leaders Youth Program',
@@ -170,7 +187,7 @@ const campaigns: Campaign[] = [
     goalAmount: 150000,
     raisedAmount: 105000,
     status: 'Active',
-    featuredImageUrl: null,
+    featuredImageUrl: '/images/campaigns/campaign-5-food-distribution.jpg',
     organization: {
       id: 'org-3',
       name: 'City Food Bank',
@@ -187,7 +204,7 @@ const campaigns: Campaign[] = [
     goalAmount: 200000,
     raisedAmount: 125000,
     status: 'Active',
-    featuredImageUrl: null,
+    featuredImageUrl: '/images/campaigns/campaign-6-disaster-relief.jpg',
     organization: {
       id: 'org-5',
       name: 'Disaster Relief International',
@@ -204,7 +221,7 @@ const campaigns: Campaign[] = [
     goalAmount: 80000,
     raisedAmount: 56000,
     status: 'Active',
-    featuredImageUrl: null,
+    featuredImageUrl: '/images/campaigns/campaign-7-youth-tech.jpg',
     organization: {
       id: 'org-4',
       name: 'Future Leaders Youth Program',
@@ -221,7 +238,7 @@ const campaigns: Campaign[] = [
     goalAmount: 60000,
     raisedAmount: 48000,
     status: 'Active',
-    featuredImageUrl: null,
+    featuredImageUrl: '/images/campaigns/campaign-8-community-gardens.jpg',
     organization: {
       id: 'org-3',
       name: 'City Food Bank',
@@ -230,6 +247,23 @@ const campaigns: Campaign[] = [
     endDate: new Date(Date.now() + 35 * 24 * 60 * 60 * 1000).toISOString(),
     category: 'Environment',
     location: 'Seattle, WA',
+  },
+  {
+    id: 'campaign-9',
+    title: 'Every Birthday Matters Screening Initiative',
+    shortDescription: 'Fund cancer screening outreach across Iowa communities',
+    goalAmount: 75000,
+    raisedAmount: 42000,
+    status: 'Active',
+    featuredImageUrl: '/images/campaigns/campaign-9-cancer-screening.jpg',
+    organization: {
+      id: 'org-6',
+      name: 'Cancer Screen Iowa',
+      logoUrl: '/images/organizations/org-6-cancer-screen-iowa.png',
+    },
+    endDate: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000).toISOString(),
+    category: 'Health',
+    location: 'Des Moines, IA',
   },
 ];
 
@@ -257,12 +291,12 @@ const campaignDetails: Record<string, CampaignDetail> = {
     mediaGallery: [
       {
         type: 'image',
-        url: 'https://images.unsplash.com/photo-1450778869180-41d0601e046e?w=800',
+        url: '/images/media/gallery-animal-care.jpg',
         caption: 'Animals receiving care at our current facility',
       },
       {
         type: 'image',
-        url: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=800',
+        url: '/images/media/gallery-volunteers.jpg',
         caption: 'Dedicated volunteers working with rescue animals',
       },
     ],
@@ -290,7 +324,7 @@ const campaignDetails: Record<string, CampaignDetail> = {
     mediaGallery: [
       {
         type: 'image',
-        url: 'https://images.unsplash.com/photo-1450778869180-41d0601e046e?w=800',
+        url: '/images/media/gallery-animal-care.jpg',
         caption: 'Providing warmth and comfort to animals during winter',
       },
     ],
@@ -318,12 +352,12 @@ const campaignDetails: Record<string, CampaignDetail> = {
     mediaGallery: [
       {
         type: 'image',
-        url: 'https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=800',
+        url: '/images/media/gallery-community-support.jpg',
         caption: 'Volunteers serving meals at our community kitchen',
       },
       {
         type: 'image',
-        url: 'https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=800',
+        url: '/images/media/gallery-donation-collection.jpg',
         caption: 'Community members coming together for support',
       },
     ],
@@ -372,17 +406,17 @@ const campaignDetails: Record<string, CampaignDetail> = {
     mediaGallery: [
       {
         type: 'image',
-        url: 'https://images.unsplash.com/photo-1593113598332-cd288d649433?w=800',
+        url: '/images/campaigns/campaign-5-food-distribution.jpg',
         caption: 'Volunteers packing food boxes for families in need',
       },
       {
         type: 'image',
-        url: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=800',
+        url: '/images/media/gallery-volunteers.jpg',
         caption: 'Our team distributing food to community members',
       },
       {
         type: 'image',
-        url: 'https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=800',
+        url: '/images/media/gallery-fresh-produce.jpg',
         caption: 'Fresh produce from our community gardens',
       },
     ],
@@ -410,7 +444,7 @@ const campaignDetails: Record<string, CampaignDetail> = {
     mediaGallery: [
       {
         type: 'image',
-        url: 'https://images.unsplash.com/photo-1584515933487-779824d29309?w=800',
+        url: '/images/campaigns/campaign-6-disaster-relief.jpg',
         caption: 'Medical supplies ready for disaster response deployment',
       },
     ],
@@ -438,7 +472,7 @@ const campaignDetails: Record<string, CampaignDetail> = {
     mediaGallery: [
       {
         type: 'image',
-        url: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800',
+        url: '/images/campaigns/campaign-7-youth-tech.jpg',
         caption: 'Students learning coding skills at our bootcamp',
       },
     ],
@@ -466,12 +500,12 @@ const campaignDetails: Record<string, CampaignDetail> = {
     mediaGallery: [
       {
         type: 'image',
-        url: 'https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=800',
+        url: '/images/media/gallery-fresh-produce.jpg',
         caption: 'Fresh vegetables growing in our community gardens',
       },
       {
         type: 'image',
-        url: 'https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=800',
+        url: '/images/media/gallery-community-support.jpg',
         caption: 'Volunteers working together in the garden',
       },
     ],
@@ -482,7 +516,7 @@ const mediaAssets: MediaAsset[] = [
   {
     id: 'media-1',
     name: 'Charity Volunteers',
-    url: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=800',
+    url: '/images/media/gallery-volunteers.jpg',
     type: 'image',
     size: '2.4 MB',
     createdAt: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString(),
@@ -490,7 +524,7 @@ const mediaAssets: MediaAsset[] = [
   {
     id: 'media-2',
     name: 'Donation Collection',
-    url: 'https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=800',
+    url: '/images/media/gallery-donation-collection.jpg',
     type: 'image',
     size: '1.8 MB',
     createdAt: new Date(Date.now() - 25 * 24 * 60 * 60 * 1000).toISOString(),
@@ -498,7 +532,7 @@ const mediaAssets: MediaAsset[] = [
   {
     id: 'media-3',
     name: 'Community Support',
-    url: 'https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=800',
+    url: '/images/media/gallery-community-support.jpg',
     type: 'image',
     size: '3.1 MB',
     createdAt: new Date(Date.now() - 20 * 24 * 60 * 60 * 1000).toISOString(),
@@ -506,7 +540,7 @@ const mediaAssets: MediaAsset[] = [
   {
     id: 'media-4',
     name: 'Food Distribution',
-    url: 'https://images.unsplash.com/photo-1593113598332-cd288d649433?w=800',
+    url: '/images/campaigns/campaign-5-food-distribution.jpg',
     type: 'image',
     size: '2.7 MB',
     createdAt: new Date(Date.now() - 15 * 24 * 60 * 60 * 1000).toISOString(),
@@ -514,7 +548,7 @@ const mediaAssets: MediaAsset[] = [
   {
     id: 'media-5',
     name: 'Animal Rescue',
-    url: 'https://images.unsplash.com/photo-1450778869180-41d0601e046e?w=800',
+    url: '/images/media/gallery-animal-care.jpg',
     type: 'image',
     size: '2.2 MB',
     createdAt: new Date(Date.now() - 10 * 24 * 60 * 60 * 1000).toISOString(),
@@ -522,7 +556,7 @@ const mediaAssets: MediaAsset[] = [
   {
     id: 'media-6',
     name: 'Youth Education',
-    url: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800',
+    url: '/images/campaigns/campaign-7-youth-tech.jpg',
     type: 'image',
     size: '1.9 MB',
     createdAt: new Date(Date.now() - 8 * 24 * 60 * 60 * 1000).toISOString(),
@@ -530,7 +564,7 @@ const mediaAssets: MediaAsset[] = [
   {
     id: 'media-7',
     name: 'Medical Relief',
-    url: 'https://images.unsplash.com/photo-1584515933487-779824d29309?w=800',
+    url: '/images/campaigns/campaign-6-disaster-relief.jpg',
     type: 'image',
     size: '2.5 MB',
     createdAt: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString(),
@@ -538,7 +572,7 @@ const mediaAssets: MediaAsset[] = [
   {
     id: 'media-8',
     name: 'Community Garden',
-    url: 'https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=800',
+    url: '/images/media/gallery-fresh-produce.jpg',
     type: 'image',
     size: '3.3 MB',
     createdAt: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000).toISOString(),
@@ -548,17 +582,17 @@ const mediaAssets: MediaAsset[] = [
 const sampleGallery: MediaGalleryItem[] = [
   {
     type: 'image',
-    url: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=800',
+    url: '/images/media/gallery-volunteers.jpg',
     caption: 'Our dedicated volunteers making a difference in the community',
   },
   {
     type: 'image',
-    url: 'https://images.unsplash.com/photo-1593113598332-cd288d649433?w=800',
+    url: '/images/campaigns/campaign-5-food-distribution.jpg',
     caption: 'Distributing essential supplies to families in need',
   },
   {
     type: 'image',
-    url: 'https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=800',
+    url: '/images/media/gallery-donation-collection.jpg',
     caption: 'Community members coming together to support each other',
   },
 ];

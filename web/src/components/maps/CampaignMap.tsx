@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -9,7 +9,8 @@ interface CampaignMapProps {
   onMarkerClick?: (organizationId: string) => void;
 }
 
-const MapContainer = styled.div`
+const MapWrapper = styled.div`
+  position: relative;
   width: 100%;
   height: 300px;
   border-radius: 0.5rem;
@@ -19,11 +20,39 @@ const MapContainer = styled.div`
   @media (min-width: 768px) {
     height: 400px;
   }
+`;
+
+const MapContainer = styled.div`
+  width: 100%;
+  height: 100%;
 
   .leaflet-container {
     height: 100%;
     width: 100%;
   }
+`;
+
+const ScrollOverlay = styled.div<{ $visible: boolean }>`
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.4);
+  opacity: ${(props) => (props.$visible ? 1 : 0)};
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 1000;
+`;
+
+const ScrollMessage = styled.div`
+  background: rgba(255, 255, 255, 0.95);
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 `;
 
 const CATEGORY_COLORS: Record<string, string> = {
@@ -60,12 +89,18 @@ const createDotIcon = (color: string) => {
 
 export function CampaignMap({ organizations, onMarkerClick }: CampaignMapProps) {
   const mapRef = useRef<HTMLDivElement>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
   const leafletMapRef = useRef<L.Map | null>(null);
+  const [showScrollMessage, setShowScrollMessage] = useState(false);
+  const hideMessageTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const isMac = typeof navigator !== 'undefined' && /Mac|iPod|iPhone|iPad/.test(navigator.platform);
 
   useEffect(() => {
     if (!mapRef.current || leafletMapRef.current) return;
 
-    const map = L.map(mapRef.current).setView([39.8283, -98.5795], 4);
+    const map = L.map(mapRef.current, {
+      scrollWheelZoom: false,
+    }).setView([39.8283, -98.5795], 4);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; OpenStreetMap contributors',
@@ -81,6 +116,51 @@ export function CampaignMap({ organizations, onMarkerClick }: CampaignMapProps) 
       }
     };
   }, []);
+
+  useEffect(() => {
+    const wrapper = wrapperRef.current;
+    if (!wrapper || !leafletMapRef.current) return;
+
+    const map = leafletMapRef.current;
+
+    const handleWheel = (e: WheelEvent) => {
+      const modifierKey = isMac ? e.metaKey : e.ctrlKey;
+
+      if (modifierKey) {
+        map.scrollWheelZoom.enable();
+        if (hideMessageTimeoutRef.current) {
+          clearTimeout(hideMessageTimeoutRef.current);
+        }
+        setShowScrollMessage(false);
+      } else {
+        map.scrollWheelZoom.disable();
+        setShowScrollMessage(true);
+
+        if (hideMessageTimeoutRef.current) {
+          clearTimeout(hideMessageTimeoutRef.current);
+        }
+        hideMessageTimeoutRef.current = setTimeout(() => {
+          setShowScrollMessage(false);
+        }, 1500);
+      }
+    };
+
+    const handleMouseLeave = () => {
+      map.scrollWheelZoom.disable();
+      setShowScrollMessage(false);
+    };
+
+    wrapper.addEventListener('wheel', handleWheel, { passive: true });
+    wrapper.addEventListener('mouseleave', handleMouseLeave);
+
+    return () => {
+      wrapper.removeEventListener('wheel', handleWheel);
+      wrapper.removeEventListener('mouseleave', handleMouseLeave);
+      if (hideMessageTimeoutRef.current) {
+        clearTimeout(hideMessageTimeoutRef.current);
+      }
+    };
+  }, [isMac]);
 
   useEffect(() => {
     if (!leafletMapRef.current) return;
@@ -138,5 +218,14 @@ export function CampaignMap({ organizations, onMarkerClick }: CampaignMapProps) 
     };
   }, [organizations, onMarkerClick]);
 
-  return <MapContainer ref={mapRef} />;
+  const scrollMessage = isMac ? 'Use \u2318 + scroll to zoom' : 'Use Ctrl + scroll to zoom';
+
+  return (
+    <MapWrapper ref={wrapperRef}>
+      <MapContainer ref={mapRef} />
+      <ScrollOverlay $visible={showScrollMessage}>
+        <ScrollMessage>{scrollMessage}</ScrollMessage>
+      </ScrollOverlay>
+    </MapWrapper>
+  );
 }

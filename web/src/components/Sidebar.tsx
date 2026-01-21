@@ -5,7 +5,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
 import { useTranslation } from 'react-i18next';
 import { ShiftGivingLogo } from './common/ShiftGivingLogo';
-import { ThemeToggle } from './ThemeToggle';
 
 const SidebarContainer = styled(motion.div)<{ $isMobile: boolean; $isOpen: boolean }>`
   position: ${(props) => (props.$isMobile ? 'fixed' : 'relative')};
@@ -73,20 +72,31 @@ const HamburgerButton = styled.button`
   }
 `;
 
-const LogoSection = styled.div`
+const LogoSection = styled.button`
   padding: 1.25rem;
   border-bottom: 0.0625rem solid rgba(255, 255, 255, 0.1);
   display: flex;
   align-items: center;
   gap: 0.75rem;
+  background: none;
+  border: none;
+  width: 100%;
+  cursor: pointer;
+  transition: background 0.2s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
 `;
 
 const LogoText = styled.h1`
-  font-size: 1.125rem;
+  font-size: 1.375rem;
   font-weight: 700;
   color: ${(props) => props.theme.colors.text.inverse};
   margin: 0;
   line-height: 1.2;
+  letter-spacing: -0.02em;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 `;
 
 const UserSection = styled.div`
@@ -123,6 +133,7 @@ const AvatarImage = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: top;
 `;
 
 const UserInfo = styled.div`
@@ -138,14 +149,6 @@ const UserName = styled.p`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-`;
-
-const UserBadge = styled.span`
-  font-size: 0.625rem;
-  font-weight: 700;
-  color: rgba(255, 255, 255, 0.8);
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
 `;
 
 const DonorBadge = styled.span`
@@ -195,31 +198,23 @@ const NavItem = styled.button<{ $isActive: boolean }>`
   }
 `;
 
-const SidebarFooter = styled.div`
-  padding: 1rem 0.75rem;
-  border-top: 0.0625rem solid rgba(255, 255, 255, 0.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
 const getInitials = (firstName: string, lastName: string): string => {
   const first = firstName?.charAt(0)?.toUpperCase() || '';
   const last = lastName?.charAt(0)?.toUpperCase() || '';
   return `${first}${last}`;
 };
 
-const getDonorBadge = (email: string): string => {
+const getDonorBadge = (email: string, userType?: string): string => {
+  if (userType === 'SiteAdmin') {
+    return 'SITE ADMIN';
+  }
+  if (userType === 'OrganizationAdmin') {
+    return 'ORG ADMIN';
+  }
   if (email === 'donor@example.com') {
     return 'GENEROUS GIVER';
   }
-  if (email === 'orgadmin@example.com') {
-    return 'COMMUNITY CHAMPION';
-  }
-  if (email === 'siteadmin@example.com') {
-    return 'MONTHLY SUPPORTER';
-  }
-  return 'NEW DONOR';
+  return 'DONOR';
 };
 
 export const Sidebar = () => {
@@ -371,8 +366,7 @@ export const Sidebar = () => {
 
   const userInitials = user ? getInitials(user.firstName, user.lastName) : 'U';
   const userName = user ? `${user.firstName} ${user.lastName}` : 'User';
-  const userType = user?.userType || 'DONOR';
-  const donorBadge = user ? getDonorBadge(user.email) : 'NEW DONOR';
+  const donorBadge = user ? getDonorBadge(user.email, user.userType) : 'DONOR';
 
   return (
     <>
@@ -422,7 +416,7 @@ export const Sidebar = () => {
       </AnimatePresence>
 
       <SidebarContainer $isMobile={isMobile} $isOpen={isOpen}>
-        <LogoSection>
+        <LogoSection onClick={() => navigate('/')}>
           <ShiftGivingLogo size={36} color="white" />
           <LogoText>Shift Giving</LogoText>
         </LogoSection>
@@ -430,15 +424,10 @@ export const Sidebar = () => {
         <UserSection>
           <UserProfile>
             <Avatar>
-              {user?.avatarUrl ? (
-                <AvatarImage src={user.avatarUrl} alt={userName} />
-              ) : (
-                userInitials
-              )}
+              {user?.avatarUrl ? <AvatarImage src={user.avatarUrl} alt={userName} /> : userInitials}
             </Avatar>
             <UserInfo>
               <UserName>{userName}</UserName>
-              <UserBadge>{userType}</UserBadge>
               <DonorBadge>{donorBadge}</DonorBadge>
             </UserInfo>
           </UserProfile>
@@ -456,10 +445,6 @@ export const Sidebar = () => {
             </NavItem>
           ))}
         </NavSection>
-
-        <SidebarFooter>
-          <ThemeToggle variant="sidebar" />
-        </SidebarFooter>
       </SidebarContainer>
     </>
   );

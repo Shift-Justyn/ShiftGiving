@@ -1,7 +1,8 @@
 import styled from 'styled-components';
-import { TrendingUp, Heart, Users, Building2 } from 'lucide-react';
+import { TrendingUp, Users, Building2 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { GlassCard } from '../common/GlassCard';
+import { ShiftGivingLogo } from '../common/ShiftGivingLogo';
 
 interface MetricCardProps {
   icon: React.ReactNode;
@@ -172,7 +173,7 @@ export const MetricsDashboard = ({
       <DashboardContainer>
         <CardWrapper variants={itemVariants}>
           <MetricCardComponent
-            icon={<Heart />}
+            icon={<ShiftGivingLogo size={24} color="#00A0C4" backColor="rgba(0, 160, 196, 0.3)" />}
             label="Total Donated"
             value={formatCurrency(totalDonated)}
             change="+12% this month"

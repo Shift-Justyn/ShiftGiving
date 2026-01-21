@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -16,6 +16,13 @@ import {
   filterCampaigns,
 } from '../components/filters/CampaignFilters';
 import { MetricsDashboard } from '../components/dashboard/MetricsDashboard';
+import { useAuth } from '../context/AuthContext';
+
+const focusGlow = keyframes`
+  0% { box-shadow: 0 0 0 0 rgba(0, 160, 196, 0.4); }
+  70% { box-shadow: 0 0 0 0.25rem rgba(0, 160, 196, 0.1); }
+  100% { box-shadow: 0 0 0 0.25rem rgba(0, 160, 196, 0.1); }
+`;
 
 const PageContainer = styled.div`
   display: flex;
@@ -32,11 +39,6 @@ const MainContent = styled.div`
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
-  margin-left: 0;
-
-  @media (min-width: 48rem) {
-    margin-left: 16rem;
-  }
 
   @media (max-width: 48rem) {
     padding-bottom: 5rem;
@@ -45,8 +47,15 @@ const MainContent = styled.div`
 
 const ContentHeader = styled.div`
   padding: 2rem 2rem 1rem 2rem;
-  background: ${(props) => props.theme.colors.background.card};
+  background: linear-gradient(
+    180deg,
+    ${(props) => props.theme.colors.background.card} 0%,
+    ${(props) => props.theme.colors.background.page} 100%
+  );
   border-bottom: 0.0625rem solid ${(props) => props.theme.colors.border.light};
+  box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.05);
+  position: relative;
+  z-index: 5;
 
   @media (max-width: 48rem) {
     padding: 5rem 1.5rem 1rem 1.5rem;
@@ -63,11 +72,18 @@ const HeaderTop = styled.div`
 const HeaderTitle = styled.h1`
   font-size: 1.5rem;
   font-weight: 700;
-  color: ${(props) => props.theme.colors.text.primary};
+  background: linear-gradient(
+    135deg,
+    ${(props) => props.theme.colors.text.primary} 0%,
+    ${(props) => props.theme.colors.primary.main} 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   margin: 0;
 
   @media (min-width: 48rem) {
-    font-size: 1.75rem;
+    font-size: 2rem;
   }
 `;
 
@@ -82,9 +98,11 @@ const ViewAllLink = styled.button`
   display: flex;
   align-items: center;
   gap: 0.25rem;
+  transition: all 0.2s ease;
 
   &:hover {
     text-decoration: underline;
+    transform: translateX(0.25rem);
   }
 
   svg {
@@ -112,6 +130,13 @@ const SearchBar = styled.div`
   border-radius: 2rem;
   padding: 0.75rem 1.25rem;
   margin-top: 1rem;
+  transition: all 0.2s ease;
+
+  &:focus-within {
+    border-color: ${(props) => props.theme.colors.primary.main};
+    box-shadow: 0 0 0 0.25rem rgba(0, 160, 196, 0.1);
+    animation: ${focusGlow} 0.3s ease;
+  }
 
   svg {
     width: 1.25rem;
@@ -135,11 +160,23 @@ const SearchInput = styled.input`
 `;
 
 const Main = styled.main`
+  position: relative;
+  overflow: hidden;
   padding: 2rem;
 
   @media (max-width: 48rem) {
     padding: 1.5rem;
   }
+`;
+
+const BackgroundPattern = styled.div`
+  position: absolute;
+  inset: 0;
+  opacity: 0.4;
+  background-image:
+    radial-gradient(circle at 25% 25%, rgba(0, 160, 196, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(0, 160, 196, 0.05) 0%, transparent 50%);
+  pointer-events: none;
 `;
 
 const Section = styled.section`
@@ -175,9 +212,11 @@ const SeeAllLink = styled.button`
   display: flex;
   align-items: center;
   gap: 0.25rem;
+  transition: all 0.2s ease;
 
   &:hover {
     text-decoration: underline;
+    transform: translateX(0.25rem);
   }
 
   svg {
@@ -208,6 +247,48 @@ const HorizontalScroll = styled.div`
     grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
     overflow-x: visible;
     padding-bottom: 0;
+  }
+`;
+
+const OrganizationCarousel = styled.div`
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding: 0.5rem 0;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+
+  &::-webkit-scrollbar {
+    height: 0.375rem;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: ${(props) => props.theme.colors.background.page};
+    border-radius: 0.1875rem;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: ${(props) => props.theme.colors.primary.light};
+    border-radius: 0.1875rem;
+
+    &:hover {
+      background: ${(props) => props.theme.colors.primary.main};
+    }
+  }
+
+  > * {
+    scroll-snap-align: start;
+    flex-shrink: 0;
+    width: calc((100% - 2rem) / 3.5);
+    min-width: 8rem;
+  }
+
+  @media (max-width: 48rem) {
+    > * {
+      width: calc((100% - 1.5rem) / 2.5);
+      min-width: 7rem;
+    }
   }
 `;
 
@@ -246,6 +327,7 @@ const containerVariants = {
 export const HomePage = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const { user } = useAuth();
   const [campaigns, setCampaigns] = useState<Campaign[]>([]);
   const [organizations, setOrganizations] = useState<Organization[]>([]);
   const [campaignsLoading, setCampaignsLoading] = useState(true);
@@ -302,7 +384,7 @@ export const HomePage = () => {
       <MainContent>
         <ContentHeader>
           <HeaderTop>
-            <HeaderTitle>{t('home.featuredCampaigns')}</HeaderTitle>
+            <HeaderTitle>Welcome back, {user?.firstName || 'Friend'}</HeaderTitle>
             <ViewAllLink>
               {t('home.viewAll')}
               <svg
@@ -345,6 +427,7 @@ export const HomePage = () => {
         </ContentHeader>
 
         <Main>
+          <BackgroundPattern />
           <Section>
             <MetricsDashboard
               totalDonated={45750}
@@ -450,7 +533,7 @@ export const HomePage = () => {
             )}
             {!orgsLoading && !orgsError && organizations.length > 0 && (
               <motion.div initial="hidden" animate="visible" variants={containerVariants}>
-                <HorizontalScroll>
+                <OrganizationCarousel>
                   {organizations.map((organization, index) => (
                     <motion.div
                       key={organization.id}
@@ -473,7 +556,7 @@ export const HomePage = () => {
                       <OrganizationCard organization={organization} />
                     </motion.div>
                   ))}
-                </HorizontalScroll>
+                </OrganizationCarousel>
               </motion.div>
             )}
           </Section>

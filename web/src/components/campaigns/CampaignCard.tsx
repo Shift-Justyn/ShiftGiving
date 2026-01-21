@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import { Campaign } from '../../api/types';
-import { Heart, MapPin, BookOpen, ArrowRight } from 'lucide-react';
+import { MapPin, BookOpen, ArrowRight, Heart } from 'lucide-react';
 import { useState } from 'react';
+import { ShiftGivingLogo } from '../common/ShiftGivingLogo';
 
 interface CampaignCardProps {
   campaign: Campaign;
@@ -75,42 +76,41 @@ const CategoryBadge = styled.div<{ $color: string }>`
   position: absolute;
   top: 0.75rem;
   left: 0.75rem;
-  background: ${(props) => props.$color}15;
+  background: rgba(255, 255, 255, 0.7);
   color: ${(props) => props.$color};
   backdrop-filter: blur(0.5rem);
   padding: 0.375rem 0.75rem;
   border-radius: 1.25rem;
   font-size: 0.75rem;
   font-weight: 600;
-  border: 0.0625rem solid ${(props) => props.$color}30;
+  border: 0.0625rem solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
 `;
 
 const HeartButton = styled.button<{ $liked: boolean }>`
   position: absolute;
   top: 0.75rem;
   right: 0.75rem;
-  background: ${(props) => (props.$liked ? '#EF4444' : 'rgba(255, 255, 255, 0.9)')};
-  color: ${(props) => (props.$liked ? '#FFFFFF' : '#6B7280')};
+  background: rgba(255, 255, 255, 0.7);
   border: none;
   border-radius: 50%;
-  width: 2rem;
-  height: 2rem;
+  width: 2.25rem;
+  height: 2.25rem;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
 
   &:hover {
     transform: scale(1.1);
-    background: ${(props) => (props.$liked ? '#DC2626' : '#FFFFFF')};
-    color: ${(props) => (props.$liked ? '#FFFFFF' : '#EF4444')};
+    background: rgba(255, 255, 255, 0.9);
   }
 
   svg {
-    width: 1rem;
-    height: 1rem;
-    fill: ${(props) => (props.$liked ? 'currentColor' : 'none')};
+    width: 1.125rem;
+    height: 1.125rem;
   }
 `;
 
@@ -324,7 +324,11 @@ export const CampaignCard = ({ campaign, onClick }: CampaignCardProps) => {
           <CategoryBadge $color={categoryColor}>{campaign.category}</CategoryBadge>
         )}
         <HeartButton $liked={isLiked} onClick={handleHeartClick}>
-          <Heart />
+          <ShiftGivingLogo
+            size={18}
+            color={isLiked ? '#EF4444' : '#00A0C4'}
+            backColor={isLiked ? 'rgba(239, 68, 68, 0.3)' : 'rgba(0, 160, 196, 0.3)'}
+          />
         </HeartButton>
       </ImageContainer>
       <Content>

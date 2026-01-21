@@ -41,11 +41,11 @@ const SocialButton = styled.button`
   width: 100%;
   padding: 0.75rem 1rem;
   background: #ffffff;
-  border: 1px solid ${(props) => props.theme.colors.border.light};
+  border: 1px solid #e5e7eb;
   border-radius: 0.5rem;
   font-size: 0.875rem;
   font-weight: 500;
-  color: ${(props) => props.theme.colors.text.primary};
+  color: #1f2937;
   cursor: pointer;
   transition: all 0.2s;
 

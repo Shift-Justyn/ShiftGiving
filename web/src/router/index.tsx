@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, Outlet } from 'react-router-dom';
 import { HomePage } from '../pages/HomePage';
 import { LoginPage } from '../pages/LoginPage';
 import { RegisterPage } from '../pages/RegisterPage';
@@ -12,94 +12,107 @@ import { MessagesPage } from '../pages/MessagesPage';
 import { ImpactPage } from '../pages/ImpactPage';
 import { SettingsPage } from '../pages/SettingsPage';
 import { ProtectedRoute } from '../components/ProtectedRoute';
+import { ErrorBoundary } from '../components/ErrorBoundary';
+
+const RootLayout = () => <Outlet />;
 
 export const router = createBrowserRouter([
   {
-    path: '/',
-    element: (
-      <ProtectedRoute>
-        <HomePage />
-      </ProtectedRoute>
-    ),
-  },
-  {
-    path: '/login',
-    element: <LoginPage />,
-  },
-  {
-    path: '/register',
-    element: <RegisterPage />,
-  },
-  {
-    path: '/campaigns/create',
-    element: (
-      <ProtectedRoute>
-        <CreateCampaignPage />
-      </ProtectedRoute>
-    ),
-  },
-  {
-    path: '/campaigns/:id',
-    element: (
-      <ProtectedRoute>
-        <CampaignDetailPage />
-      </ProtectedRoute>
-    ),
-  },
-  {
-    path: '/campaigns/:id/donate',
-    element: (
-      <ProtectedRoute>
-        <DonationPage />
-      </ProtectedRoute>
-    ),
-  },
-  {
-    path: '/campaigns/:id/donate/payment',
-    element: (
-      <ProtectedRoute>
-        <PaymentPage />
-      </ProtectedRoute>
-    ),
-  },
-  {
-    path: '/donations/:id/confirmation',
-    element: (
-      <ProtectedRoute>
-        <DonationConfirmationPage />
-      </ProtectedRoute>
-    ),
-  },
-  {
-    path: '/history',
-    element: (
-      <ProtectedRoute>
-        <HistoryPage />
-      </ProtectedRoute>
-    ),
-  },
-  {
-    path: '/messages',
-    element: (
-      <ProtectedRoute>
-        <MessagesPage />
-      </ProtectedRoute>
-    ),
-  },
-  {
-    path: '/impact',
-    element: (
-      <ProtectedRoute>
-        <ImpactPage />
-      </ProtectedRoute>
-    ),
-  },
-  {
-    path: '/settings',
-    element: (
-      <ProtectedRoute>
-        <SettingsPage />
-      </ProtectedRoute>
-    ),
+    element: <RootLayout />,
+    errorElement: <ErrorBoundary />,
+    children: [
+      {
+        path: '/',
+        element: (
+          <ProtectedRoute>
+            <HomePage />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: '/login',
+        element: <LoginPage />,
+      },
+      {
+        path: '/register',
+        element: <RegisterPage />,
+      },
+      {
+        path: '/campaigns/create',
+        element: (
+          <ProtectedRoute>
+            <CreateCampaignPage />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: '/campaigns/:id',
+        element: (
+          <ProtectedRoute>
+            <CampaignDetailPage />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: '/campaigns/:id/donate',
+        element: (
+          <ProtectedRoute>
+            <DonationPage />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: '/campaigns/:id/donate/payment',
+        element: (
+          <ProtectedRoute>
+            <PaymentPage />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: '/donations/:id/confirmation',
+        element: (
+          <ProtectedRoute>
+            <DonationConfirmationPage />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: '/history',
+        element: (
+          <ProtectedRoute>
+            <HistoryPage />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: '/messages',
+        element: (
+          <ProtectedRoute>
+            <MessagesPage />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: '/impact',
+        element: (
+          <ProtectedRoute>
+            <ImpactPage />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: '/settings',
+        element: (
+          <ProtectedRoute>
+            <SettingsPage />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: '*',
+        element: <ErrorBoundary />,
+      },
+    ],
   },
 ]);

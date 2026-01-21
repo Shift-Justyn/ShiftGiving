@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Heart, Users, GraduationCap, Stethoscope, Palette } from 'lucide-react';
 import { Organization } from '../../api/types';
 
 interface OrganizationCardProps {
@@ -7,7 +8,7 @@ interface OrganizationCardProps {
 }
 
 const Card = styled.div<{ $clickable?: boolean }>`
-  width: 10rem;
+  width: 100%;
   background: ${(props) => props.theme.colors.background.card};
   border-radius: 0.75rem;
   overflow: hidden;
@@ -19,7 +20,7 @@ const Card = styled.div<{ $clickable?: boolean }>`
   cursor: ${(props) => (props.$clickable ? 'pointer' : 'default')};
 
   &:hover {
-    transform: ${(props) => (props.$clickable ? 'translateY(-0.25rem)' : 'none')};
+    transform: ${(props) => (props.$clickable ? 'translateY(-0.25rem) scale(1.02)' : 'none')};
     box-shadow: ${(props) =>
       props.$clickable
         ? '0 0.5rem 1.5rem rgba(0, 160, 196, 0.2)'
@@ -29,24 +30,22 @@ const Card = styled.div<{ $clickable?: boolean }>`
         ? `linear-gradient(to bottom, ${props.theme.colors.background.card}, rgba(0, 160, 196, 0.02))`
         : props.theme.colors.background.card};
   }
-
-  @media (min-width: 48rem) {
-    width: 100%;
-  }
 `;
 
 const LogoContainer = styled.div`
   position: relative;
   width: 100%;
-  aspect-ratio: 1;
+  aspect-ratio: 1 / 0.7;
 `;
 
 const Logo = styled.div<{ $logoUrl?: string; $bgColor?: string }>`
   width: 100%;
   height: 100%;
   background: ${(props) =>
-    props.$logoUrl ? `url(${props.$logoUrl})` : props.$bgColor || props.theme.colors.primary.light};
-  background-size: contain;
+    props.$logoUrl
+      ? `url(${props.$logoUrl})`
+      : `linear-gradient(135deg, ${props.theme.colors.primary.light} 0%, ${props.theme.colors.primary.main}40 100%)`};
+  background-size: ${(props) => (props.$logoUrl ? 'cover' : 'contain')};
   background-position: center;
   background-repeat: no-repeat;
   display: flex;
@@ -64,12 +63,37 @@ const AmountBadge = styled.div`
   position: absolute;
   bottom: 0.5rem;
   left: 0.5rem;
-  background: ${(props) => props.theme.colors.primary.main};
+  background: linear-gradient(
+    135deg,
+    ${(props) => props.theme.colors.primary.main} 0%,
+    #007a94 100%
+  );
   color: ${(props) => props.theme.colors.text.inverse};
-  padding: 0.25rem 0.5rem;
-  border-radius: 0.25rem;
-  font-size: 0.625rem;
+  padding: 0.25rem 0.625rem;
+  border-radius: 1rem;
+  font-size: 0.6875rem;
   font-weight: 600;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+`;
+
+const CategoryIcon = styled.div`
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+
+  svg {
+    width: 0.875rem;
+    height: 0.875rem;
+    color: ${(props) => props.theme.colors.primary.main};
+  }
 `;
 
 const Content = styled.div`
@@ -106,6 +130,23 @@ const getInitials = (name: string): string => {
     .slice(0, 2);
 };
 
+const getCategoryIcon = (category?: string) => {
+  switch (category) {
+    case 'Animals':
+      return <Heart />;
+    case 'Community':
+      return <Users />;
+    case 'Education':
+      return <GraduationCap />;
+    case 'Health':
+      return <Stethoscope />;
+    case 'Arts':
+      return <Palette />;
+    default:
+      return <Users />;
+  }
+};
+
 export const OrganizationCard = ({ organization, onClick }: OrganizationCardProps) => {
   const totalRaised = (organization.campaignCount || 0) * 15000;
 
@@ -117,6 +158,7 @@ export const OrganizationCard = ({ organization, onClick }: OrganizationCardProp
             <LogoPlaceholder>{getInitials(organization.name)}</LogoPlaceholder>
           )}
         </Logo>
+        <CategoryIcon>{getCategoryIcon(organization.category)}</CategoryIcon>
         <AmountBadge>{formatCurrency(totalRaised)}</AmountBadge>
       </LogoContainer>
       <Content>

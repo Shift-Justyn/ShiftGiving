@@ -219,7 +219,7 @@ export const handlers = [
     const newAsset: MediaAsset = {
       id: `media-${Date.now()}`,
       name: 'Uploaded Image',
-      url: 'https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=800',
+      url: '/images/media/gallery-donation-collection.jpg',
       type: 'image',
       size: '2.1 MB',
       createdAt: new Date().toISOString(),
@@ -234,7 +234,7 @@ export const handlers = [
     const generatedAsset: MediaAsset = {
       id: `media-${Date.now()}`,
       name: 'AI Generated Image',
-      url: 'https://images.unsplash.com/photo-1593113598332-cd288d649433?w=800',
+      url: '/images/campaigns/campaign-5-food-distribution.jpg',
       type: 'image',
       size: '2.8 MB',
       createdAt: new Date().toISOString(),
@@ -258,12 +258,12 @@ export const handlers = [
     await new Promise((resolve) => setTimeout(resolve, 3000));
 
     const mockImages = [
-      'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1792',
-      'https://images.unsplash.com/photo-1593113598332-cd288d649433?w=1792',
-      'https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=1792',
-      'https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=1792',
-      'https://images.unsplash.com/photo-1450778869180-41d0601e046e?w=1792',
-      'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1792',
+      '/images/media/gallery-volunteers.jpg',
+      '/images/campaigns/campaign-5-food-distribution.jpg',
+      '/images/media/gallery-community-support.jpg',
+      '/images/media/gallery-donation-collection.jpg',
+      '/images/media/gallery-animal-care.jpg',
+      '/images/campaigns/campaign-7-youth-tech.jpg',
     ];
 
     const randomImage = mockImages[Math.floor(Math.random() * mockImages.length)];
