@@ -8,7 +8,7 @@ import { useFeatureFlags } from '../context/FeatureFlagsContext';
 export function SettingsPage() {
   const { user, logout } = useAuth();
   const { mode, toggleTheme } = useTheme();
-  const { flags, setFlag } = useFeatureFlags();
+  const { flags, toggleFlag } = useFeatureFlags();
   const [notifications, setNotifications] = useState({
     email: true,
     push: false,
@@ -133,7 +133,7 @@ export function SettingsPage() {
             </SettingInfo>
             <Switch
               $checked={flags.RECURRING_DONATIONS}
-              onClick={() => setFlag('RECURRING_DONATIONS', !flags.RECURRING_DONATIONS)}
+              onClick={() => toggleFlag('RECURRING_DONATIONS')}
             >
               <SwitchThumb $checked={flags.RECURRING_DONATIONS} />
             </Switch>
@@ -143,10 +143,7 @@ export function SettingsPage() {
               <SettingLabel>Social Sharing</SettingLabel>
               <SettingDescription>Share your donations on social media</SettingDescription>
             </SettingInfo>
-            <Switch
-              $checked={flags.SOCIAL_SHARING}
-              onClick={() => setFlag('SOCIAL_SHARING', !flags.SOCIAL_SHARING)}
-            >
+            <Switch $checked={flags.SOCIAL_SHARING} onClick={() => toggleFlag('SOCIAL_SHARING')}>
               <SwitchThumb $checked={flags.SOCIAL_SHARING} />
             </Switch>
           </SettingRow>
@@ -371,12 +368,15 @@ const Switch = styled.button<{ $checked: boolean }>`
   position: relative;
   width: 3rem;
   height: 1.5rem;
+  min-height: 1.5rem;
+  padding: 0;
   background: ${(props) =>
     props.$checked ? props.theme.colors.primary.main : props.theme.colors.border.medium};
   border: none;
   border-radius: 0.75rem;
   cursor: pointer;
   transition: background 0.2s ease;
+  flex-shrink: 0;
 `;
 
 const SwitchThumb = styled.div<{ $checked: boolean }>`

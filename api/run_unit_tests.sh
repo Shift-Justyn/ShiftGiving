@@ -7,8 +7,8 @@ STEP_DIVIDER="***********************************************"
 echo "$STEP_DIVIDER"
 echo "Running Unit & Integration Tests"
 cd "ShiftGiving.Tests"
-npm run test
+dotnet test --verbosity normal
 cd ../
 
-echo "✅  Unit & Integration Tests have Passed"
+echo "[OK] Unit & Integration Tests have Passed"
 echo ""

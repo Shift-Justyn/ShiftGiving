@@ -19,7 +19,7 @@ afterEach(() => {
 });
 
 describe('HomePage', () => {
-  it('renders featured campaigns header', async () => {
+  it('renders welcome header', async () => {
     render(
       <BrowserRouter>
         <ThemeProvider>
@@ -30,7 +30,7 @@ describe('HomePage', () => {
       </BrowserRouter>
     );
 
-    expect(screen.getByText('Featured Campaigns')).toBeInTheDocument();
+    expect(screen.getByText('Discover campaigns and causes you care about')).toBeInTheDocument();
   });
 
   it('renders campaigns section', async () => {

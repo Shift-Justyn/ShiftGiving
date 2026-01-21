@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { CreateCampaignPage } from '../CreateCampaignPage';
 import { BrowserRouter } from 'react-router-dom';
@@ -68,7 +68,9 @@ const renderCreateCampaignPage = () => {
 
 const getSubmitButton = () => {
   const buttons = screen.getAllByRole('button');
-  return buttons.find((btn) => btn.textContent === 'Create Campaign' || btn.textContent?.includes('Creating Campaign'));
+  return buttons.find(
+    (btn) => btn.textContent === 'Create Campaign' || btn.textContent?.includes('Creating Campaign')
+  );
 };
 
 describe('CreateCampaignPage', () => {
