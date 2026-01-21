@@ -267,6 +267,8 @@ describe('RegisterPage successful registration', () => {
     await user.type(lastNameInput, 'Doe');
     await user.type(emailInput, 'test@example.com');
     await user.type(passwordInput, 'password123');
+
+    mockNavigate.mockClear();
     await user.click(submitButton);
 
     expect(screen.getByText(/creating account/i)).toBeInTheDocument();

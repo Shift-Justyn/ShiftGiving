@@ -12,7 +12,11 @@ public static class ServiceExtensions
     public static IServiceCollection AddDatabase(this IServiceCollection services, IConfiguration configuration, IHostEnvironment environment)
     {
         if (environment.EnvironmentName == "Testing")
+        {
+            services.AddDbContext<ShiftGivingDbContext>(options =>
+                options.UseInMemoryDatabase("TestingDb"));
             return services;
+        }
 
         services.AddDbContext<ShiftGivingDbContext>(options =>
             options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
