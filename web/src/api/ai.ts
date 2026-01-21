@@ -100,10 +100,15 @@ export const TEXT_FIELD_CONFIG = {
   },
 };
 
-export const TEXT_ACTIONS = [
+export const TEXT_ACTIONS: Array<{
+  id: string;
+  label: string;
+  icon: string;
+  storyOnly?: boolean;
+}> = [
   { id: 'fix_grammar', label: 'Fix Grammar', icon: 'check' },
   { id: 'improve', label: 'Improve', icon: 'sparkle' },
   { id: 'rewrite', label: 'Rewrite', icon: 'refresh' },
   { id: 'tone', label: 'Tone', icon: 'voice' },
   { id: 'expand', label: 'Expand', icon: 'expand', storyOnly: true },
-] as const;
+];

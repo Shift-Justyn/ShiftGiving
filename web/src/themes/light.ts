@@ -37,10 +37,14 @@ export const lightTheme: Theme = {
     },
     error: '#ef4444',
     errorLight: '#FEF2F2',
+    errorBackground: '#FEF2F2',
     success: '#10b981',
     successLight: '#ECFDF5',
     warning: '#F59E0B',
     warningLight: '#FFFBEB',
+    surface: '#ffffff',
+    textSecondary: '#6b7280',
+    primaryOpacity10: 'rgba(0, 160, 196, 0.1)',
   },
   fonts: {
     primary:
@@ -76,12 +80,20 @@ export const lightTheme: Theme = {
       weight: 400,
       lineHeight: 1.5,
       letterSpacing: '0',
+      fontSize: '1rem',
     },
     bodySmall: {
       size: '0.875rem',
       weight: 400,
       lineHeight: 1.5,
       letterSpacing: '0',
+    },
+    small: {
+      size: '0.875rem',
+      weight: 400,
+      lineHeight: 1.5,
+      letterSpacing: '0',
+      fontSize: '0.875rem',
     },
     caption: {
       size: '0.75rem',
@@ -94,6 +106,10 @@ export const lightTheme: Theme = {
       weight: 600,
       lineHeight: 1.25,
       letterSpacing: '0.01em',
+    },
+    fontWeights: {
+      medium: 500,
+      semibold: 600,
     },
   },
   spacing: {
@@ -108,6 +124,7 @@ export const lightTheme: Theme = {
     sm: '0 1px 2px rgba(0, 0, 0, 0.05)',
     md: '0 4px 6px rgba(0, 0, 0, 0.07)',
     lg: '0 10px 15px rgba(0, 0, 0, 0.1)',
+    xl: '0 20px 25px -5px rgba(0, 0, 0, 0.1)',
     card: '0 4px 15px rgba(0, 0, 0, 0.05), 0 2px 5px rgba(0, 0, 0, 0.08)',
     cardHover: '0 20px 40px rgba(0, 160, 196, 0.15), 0 8px 16px rgba(0, 0, 0, 0.1)',
   },
@@ -116,6 +133,14 @@ export const lightTheme: Theme = {
     normal: '300ms',
     slow: '500ms',
     easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
+  },
+  transitions: {
+    default: '0.2s ease',
+  },
+  breakpoints: {
+    sm: '640px',
+    md: '768px',
+    lg: '1024px',
   },
   borderRadius: {
     sm: '0.25rem',

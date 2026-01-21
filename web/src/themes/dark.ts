@@ -37,10 +37,14 @@ export const darkTheme: Theme = {
     },
     error: '#f87171',
     errorLight: '#450a0a',
+    errorBackground: '#450a0a',
     success: '#34d399',
     successLight: '#022c22',
     warning: '#FBBF24',
     warningLight: '#451a03',
+    surface: '#1f2937',
+    textSecondary: '#d1d5db',
+    primaryOpacity10: 'rgba(34, 211, 238, 0.1)',
   },
   fonts: {
     primary:
@@ -76,12 +80,20 @@ export const darkTheme: Theme = {
       weight: 400,
       lineHeight: 1.5,
       letterSpacing: '0',
+      fontSize: '1rem',
     },
     bodySmall: {
       size: '0.875rem',
       weight: 400,
       lineHeight: 1.5,
       letterSpacing: '0',
+    },
+    small: {
+      size: '0.875rem',
+      weight: 400,
+      lineHeight: 1.5,
+      letterSpacing: '0',
+      fontSize: '0.875rem',
     },
     caption: {
       size: '0.75rem',
@@ -94,6 +106,10 @@ export const darkTheme: Theme = {
       weight: 600,
       lineHeight: 1.25,
       letterSpacing: '0.01em',
+    },
+    fontWeights: {
+      medium: 500,
+      semibold: 600,
     },
   },
   spacing: {
@@ -108,6 +124,7 @@ export const darkTheme: Theme = {
     sm: '0 1px 2px rgba(0, 0, 0, 0.3)',
     md: '0 4px 6px rgba(0, 0, 0, 0.4)',
     lg: '0 10px 15px rgba(0, 0, 0, 0.5)',
+    xl: '0 20px 25px -5px rgba(0, 0, 0, 0.6)',
     card: '0 4px 15px rgba(0, 0, 0, 0.3), 0 2px 5px rgba(0, 0, 0, 0.2)',
     cardHover: '0 20px 40px rgba(34, 211, 238, 0.15), 0 8px 16px rgba(0, 0, 0, 0.3)',
   },
@@ -116,6 +133,14 @@ export const darkTheme: Theme = {
     normal: '300ms',
     slow: '500ms',
     easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
+  },
+  transitions: {
+    default: '0.2s ease',
+  },
+  breakpoints: {
+    sm: '640px',
+    md: '768px',
+    lg: '1024px',
   },
   borderRadius: {
     sm: '0.25rem',

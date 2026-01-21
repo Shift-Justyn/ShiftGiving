@@ -1,5 +1,5 @@
 export const mockTheme = {
-  mode: 'light',
+  mode: 'light' as const,
   colors: {
     primary: {
       main: '#00a0c4',
@@ -10,10 +10,17 @@ export const mockTheme = {
         end: '#007a94',
       },
     },
+    accent: {
+      orange: '#fb923c',
+      orangeLight: '#fed7aa',
+      pink: '#ec4899',
+      pinkLight: '#fbcfe8',
+    },
     background: {
       page: '#f9fafb',
       card: '#ffffff',
       input: '#ffffff',
+      elevated: '#ffffff',
     },
     text: {
       primary: '#1f2937',
@@ -24,28 +31,98 @@ export const mockTheme = {
     border: {
       light: '#e5e7eb',
       medium: '#d1d5db',
+      focus: '#00a0c4',
     },
     error: '#ef4444',
+    errorLight: '#fecaca',
+    errorBackground: '#fef2f2',
     success: '#10b981',
+    successLight: '#d1fae5',
+    warning: '#f59e0b',
+    warningLight: '#fef3c7',
+    surface: '#ffffff',
+    textSecondary: '#6b7280',
+    primaryOpacity10: 'rgba(0, 160, 196, 0.1)',
   },
   fonts: {
     primary:
       "'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
   },
   typography: {
-    body: { fontSize: '1rem' },
-    small: { fontSize: '0.875rem' },
-    h3: { fontSize: '1.5rem' },
-    h4: { fontSize: '1.25rem' },
+    display: {
+      size: '3rem',
+      weight: 700,
+      lineHeight: 1.2,
+      letterSpacing: '-0.02em',
+    },
+    h1: {
+      size: '2.5rem',
+      weight: 700,
+      lineHeight: 1.2,
+      letterSpacing: '-0.02em',
+    },
+    h2: {
+      size: '2rem',
+      weight: 600,
+      lineHeight: 1.3,
+      letterSpacing: '-0.01em',
+    },
+    h3: {
+      size: '1.5rem',
+      weight: 600,
+      lineHeight: 1.4,
+      letterSpacing: '0',
+    },
+    body: {
+      size: '1rem',
+      weight: 400,
+      lineHeight: 1.5,
+      letterSpacing: '0',
+      fontSize: '1rem',
+    },
+    bodySmall: {
+      size: '0.875rem',
+      weight: 400,
+      lineHeight: 1.5,
+      letterSpacing: '0',
+    },
+    small: {
+      size: '0.875rem',
+      weight: 400,
+      lineHeight: 1.5,
+      letterSpacing: '0',
+      fontSize: '0.875rem',
+    },
+    caption: {
+      size: '0.75rem',
+      weight: 400,
+      lineHeight: 1.4,
+      letterSpacing: '0',
+    },
+    button: {
+      size: '1rem',
+      weight: 600,
+      lineHeight: 1.5,
+      letterSpacing: '0.01em',
+    },
     fontWeights: {
       medium: 500,
       semibold: 600,
     },
   },
+  spacing: {
+    xs: '0.25rem',
+    sm: '0.5rem',
+    md: '1rem',
+    lg: '1.5rem',
+    xl: '2rem',
+    xxl: '3rem',
+  },
   borderRadius: {
     sm: '0.25rem',
     md: '0.5rem',
     lg: '0.75rem',
+    xl: '1rem',
     full: '9999px',
   },
   shadows: {
@@ -53,6 +130,14 @@ export const mockTheme = {
     md: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
     lg: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
     xl: '0 20px 25px -5px rgba(0, 0, 0, 0.1)',
+    card: '0 2px 4px rgba(0, 0, 0, 0.06)',
+    cardHover: '0 4px 8px rgba(0, 0, 0, 0.12)',
+  },
+  animation: {
+    fast: '150ms',
+    normal: '300ms',
+    slow: '500ms',
+    easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
   },
   transitions: {
     default: '0.2s ease',
