@@ -49,6 +49,17 @@ const users: Record<string, AuthUser & { password: string }> = {
 
 const organizations: Organization[] = [
   {
+    id: 'org-hope-wdm',
+    name: 'Lutheran Church Of Hope - WDM',
+    description:
+      'Hope’s Missions Team partners locally and globally to coordinate service projects, mission trips, and outreach opportunities.',
+    logoUrl: '/images/organizations/org-hope-wdm-logo.svg',
+    campaignCount: 6,
+    latitude: 41.5772,
+    longitude: -93.7113,
+    category: 'Community',
+  },
+  {
     id: 'org-1',
     name: 'Paws Rescue Foundation',
     description: 'Dedicated to rescuing and rehoming abandoned animals. 501(c)(3) nonprofit.',
@@ -414,6 +425,263 @@ For Maria, João, Luciana, and the entire Santo Antônio community, this conserv
     category: 'Health',
     location: 'Des Moines, IA',
   },
+  {
+    id: 'campaign-hope-pantry',
+    title: 'The Pantry at Hope',
+    shortDescription: 'Provide food and pantry staples for neighbors in need',
+    goalAmount: 25000,
+    raisedAmount: 16250,
+    status: 'Active',
+    featuredImageUrl: '/images/campaigns/hope/pantry.jpg',
+    organization: {
+      id: 'org-hope-wdm',
+      name: 'Lutheran Church Of Hope - WDM',
+      logoUrl: '/images/organizations/org-hope-wdm-logo.svg',
+    },
+    endDate: new Date(Date.now() + 60 * 24 * 60 * 60 * 1000).toISOString(),
+    category: 'Community',
+    location: 'West Des Moines, IA',
+    unitLabel: 'Pantry Bundle',
+    unitPrice: 25,
+    impactLabel: 'Families Served',
+    fundingPercentage: 88,
+    storyContent: `The Pantry at Hope is a resource for neighbors who need help putting food on the table.
+
+Your donation keeps shelves stocked with pantry staples and everyday essentials, and it supports volunteers who welcome guests with dignity and care.
+
+Every Pantry Bundle helps provide consistent, practical support so families can focus on what matters most: stability, health, and hope.`,
+    mediaGallery: [
+      {
+        type: 'image',
+        url: '/images/campaigns/hope/pantry/pantry-2048.jpg',
+        caption: 'The Pantry at Hope',
+      },
+      {
+        type: 'image',
+        url: '/images/campaigns/hope/pantry/pantry-volunteer-2048.jpg',
+        caption: 'Volunteers serving with care',
+      },
+      {
+        type: 'image',
+        url: '/images/campaigns/hope/pantry/pantry-card.png',
+        caption: 'The Pantry',
+      },
+    ],
+  },
+  {
+    id: 'campaign-hope-cafe',
+    title: 'Café Hope',
+    shortDescription: 'Support mission partners through every cup and every meal',
+    goalAmount: 15000,
+    raisedAmount: 9800,
+    status: 'Active',
+    featuredImageUrl: '/images/campaigns/hope/cafe-hope.png',
+    organization: {
+      id: 'org-hope-wdm',
+      name: 'Lutheran Church Of Hope - WDM',
+      logoUrl: '/images/organizations/org-hope-wdm-logo.svg',
+    },
+    endDate: new Date(Date.now() + 45 * 24 * 60 * 60 * 1000).toISOString(),
+    category: 'Community',
+    location: 'West Des Moines, IA',
+    unitLabel: 'Meal Sponsor',
+    unitPrice: 15,
+    impactLabel: 'Community Meals',
+    storyContent: `Café Hope is a welcoming place to meet, work, and connect over coffee and food.
+
+Every purchase supports mission partners, turning everyday moments into meaningful impact.
+
+Meal Sponsors help keep the doors open and extend Hope’s reach through local and global partnerships.`,
+  },
+  {
+    id: 'campaign-hope-homes-of-hope',
+    title: 'Homes of Hope – YWAM (Tijuana, Mexico)',
+    shortDescription: 'Help build a home with a family in need through a mission partnership',
+    goalAmount: 60000,
+    raisedAmount: 41250,
+    status: 'Active',
+    featuredImageUrl: '/images/campaigns/hope/mission-trips.png',
+    organization: {
+      id: 'org-hope-wdm',
+      name: 'Lutheran Church Of Hope - WDM',
+      logoUrl: '/images/organizations/org-hope-wdm-logo.svg',
+    },
+    endDate: new Date(Date.now() + 120 * 24 * 60 * 60 * 1000).toISOString(),
+    category: 'Community',
+    location: 'Tijuana, Mexico',
+    unitLabel: 'Build Day',
+    unitPrice: 100,
+    impactLabel: 'Build Hours',
+    fundingPercentage: 91,
+    storyContent: `Homes of Hope partners with Youth With A Mission to build a home alongside a family in need.
+
+Support covers materials, logistics, and team preparation so the work is safe, organized, and focused on relationship as much as construction.
+
+Each Build Day moves a family closer to a stable home and a stronger future.`,
+    mediaGallery: [
+      {
+        type: 'image',
+        url: '/images/campaigns/hope/homes-of-hope/hoh-1.jpg',
+        caption: 'Serving side-by-side on the build site',
+      },
+      {
+        type: 'image',
+        url: '/images/campaigns/hope/homes-of-hope/hoh-2.jpg',
+        caption: 'Framing a home together',
+      },
+      {
+        type: 'image',
+        url: '/images/campaigns/hope/homes-of-hope/hoh-3.jpg',
+        caption: 'Raising roof trusses safely',
+      },
+      {
+        type: 'image',
+        url: '/images/campaigns/hope/homes-of-hope/hoh-4.jpg',
+        caption: 'Building materials and framing in progress',
+      },
+    ],
+  },
+  {
+    id: 'campaign-hope-thanksgiving-meals',
+    title: 'Thanksgiving Meal Packaging',
+    shortDescription: 'Pack meals for families facing hunger during the holiday season',
+    goalAmount: 20000,
+    raisedAmount: 13750,
+    status: 'Active',
+    featuredImageUrl: '/images/campaigns/hope/thanksgiving-turkey.jpg',
+    organization: {
+      id: 'org-hope-wdm',
+      name: 'Lutheran Church Of Hope - WDM',
+      logoUrl: '/images/organizations/org-hope-wdm-logo.svg',
+    },
+    endDate: new Date(Date.now() + 75 * 24 * 60 * 60 * 1000).toISOString(),
+    category: 'Community',
+    location: 'West Des Moines, IA',
+    unitLabel: 'Meal Kit',
+    unitPrice: 20,
+    impactLabel: 'Meals Packed',
+    storyContent: `Thanksgiving Meal Packaging brings volunteers together to assemble meal kits for families facing hunger during the holiday season.
+
+Meal Kits sponsor ingredients, packaging supplies, and distribution through trusted partners.
+
+Your support helps families experience care and community when it matters most.`,
+    mediaGallery: [
+      {
+        type: 'image',
+        url: '/images/campaigns/hope/thanksgiving-turkey.jpg',
+        caption: 'Thanksgiving meal packaging',
+      },
+      {
+        type: 'image',
+        url: '/images/campaigns/hope/thanksgiving-meals/meal-1.jpg',
+        caption: 'Creamy mashed potatoes with butter and gravy',
+      },
+      {
+        type: 'image',
+        url: '/images/campaigns/hope/thanksgiving-meals/meal-2.jpg',
+        caption: 'Traditional Thanksgiving stuffing',
+      },
+      {
+        type: 'image',
+        url: '/images/campaigns/hope/thanksgiving-meals/meal-3.jpg',
+        caption: 'Green bean casserole with crispy onions',
+      },
+    ],
+  },
+  {
+    id: 'campaign-hope-souper-bowl',
+    title: 'Souper Bowl Food Drive',
+    shortDescription: 'Stock local pantries with nonperishable food and essentials',
+    goalAmount: 12000,
+    raisedAmount: 8350,
+    status: 'Active',
+    featuredImageUrl: '/images/campaigns/hope/souper-bowl.jpg',
+    organization: {
+      id: 'org-hope-wdm',
+      name: 'Lutheran Church Of Hope - WDM',
+      logoUrl: '/images/organizations/org-hope-wdm-logo.svg',
+    },
+    endDate: new Date(Date.now() + 25 * 24 * 60 * 60 * 1000).toISOString(),
+    category: 'Community',
+    location: 'West Des Moines, IA',
+    unitLabel: 'Bag of Groceries',
+    unitPrice: 18,
+    impactLabel: 'Pantry Donations',
+    storyContent: `Souper Bowl season is a chance to rally together and stock local pantries with food and essential items.
+
+Each Bag of Groceries helps provide practical support for neighbors, from pantry staples to household essentials.
+
+Together, we can turn a simple drive into steady help for families across our community.`,
+    mediaGallery: [
+      {
+        type: 'image',
+        url: '/images/campaigns/hope/souper-bowl.jpg',
+        caption: 'Souper Bowl Food Drive',
+      },
+      {
+        type: 'image',
+        url: '/images/campaigns/hope/souper-bowl/soup-1.jpg',
+        caption: 'Canned foods ready to donate',
+      },
+      {
+        type: 'image',
+        url: '/images/campaigns/hope/souper-bowl/soup-6.jpg',
+        caption: 'Shelf-stable pantry items',
+      },
+      {
+        type: 'image',
+        url: '/images/campaigns/hope/souper-bowl/soup-5.jpg',
+        caption: 'Pantry shelves stocked with essentials',
+      },
+    ],
+  },
+  {
+    id: 'campaign-hope-school-drive',
+    title: 'Back-to-School Drive',
+    shortDescription: 'Help students start the year with supplies, snacks, and support',
+    goalAmount: 18000,
+    raisedAmount: 10900,
+    status: 'Active',
+    featuredImageUrl: '/images/campaigns/hope/school-drive.jpg',
+    organization: {
+      id: 'org-hope-wdm',
+      name: 'Lutheran Church Of Hope - WDM',
+      logoUrl: '/images/organizations/org-hope-wdm-logo.svg',
+    },
+    endDate: new Date(Date.now() + 40 * 24 * 60 * 60 * 1000).toISOString(),
+    category: 'Education',
+    location: 'West Des Moines, IA',
+    unitLabel: 'Supply Kit',
+    unitPrice: 30,
+    impactLabel: 'Students Supported',
+    storyContent: `Back-to-School Drive helps students start the year prepared with supplies, snacks, and support.
+
+Supply Kits fund practical items that remove barriers for students and help classrooms stay stocked through the year.
+
+Your support helps students walk into school with confidence and the tools they need to learn.`,
+    mediaGallery: [
+      {
+        type: 'image',
+        url: '/images/campaigns/hope/back-to-school/school-1.jpg',
+        caption: 'School supplies ready to donate',
+      },
+      {
+        type: 'image',
+        url: '/images/campaigns/hope/back-to-school/school-2.jpg',
+        caption: 'Backpack and classroom essentials',
+      },
+      {
+        type: 'image',
+        url: '/images/campaigns/hope/back-to-school/school-3.jpg',
+        caption: 'Notebooks, pencils, and stationery',
+      },
+      {
+        type: 'image',
+        url: '/images/campaigns/hope/back-to-school/school-4.jpg',
+        caption: 'Preparing supplies for students',
+      },
+    ],
+  },
 ];
 
 const campaignDetails: Record<string, CampaignDetail> = {
@@ -766,6 +1034,265 @@ For Maria, João, Luciana, and the entire Santo Antônio community, this conserv
         type: 'image',
         url: '/images/media/gallery-community-support.jpg',
         caption: 'Volunteers working together in the garden',
+      },
+    ],
+  },
+  'campaign-hope-pantry': {
+    id: 'campaign-hope-pantry',
+    title: 'The Pantry at Hope',
+    name: 'The Pantry at Hope',
+    shortDescription: 'Provide food and pantry staples for neighbors in need',
+    description:
+      'The Pantry at Hope is an available resource for anyone in need of food assistance. Your support helps keep shelves stocked with food and household essentials while welcoming guests with dignity and care.',
+    goalAmount: 25000,
+    raisedAmount: 16250,
+    status: 'Active',
+    startDate: new Date(Date.now() - 20 * 24 * 60 * 60 * 1000).toISOString(),
+    endDate: new Date(Date.now() + 60 * 24 * 60 * 60 * 1000).toISOString(),
+    featuredImageUrl: '/images/campaigns/hope/pantry.jpg',
+    videoUrl: null,
+    organization: {
+      id: 'org-hope-wdm',
+      name: 'Lutheran Church Of Hope - WDM',
+      logoUrl: '/images/organizations/org-hope-wdm-logo.svg',
+      description:
+        "Hope's Missions Team partners locally and globally to coordinate service projects, mission trips, and outreach opportunities.",
+    },
+    mediaGallery: [
+      {
+        type: 'image',
+        url: '/images/campaigns/hope/pantry/pantry-2048.jpg',
+        caption: 'The Pantry at Hope',
+      },
+      {
+        type: 'image',
+        url: '/images/campaigns/hope/pantry/pantry-volunteer-2048.jpg',
+        caption: 'Volunteers serving with care',
+      },
+      {
+        type: 'image',
+        url: '/images/campaigns/hope/pantry/pantry-card.png',
+        caption: 'The Pantry',
+      },
+    ],
+  },
+  'campaign-hope-cafe': {
+    id: 'campaign-hope-cafe',
+    title: 'Café Hope',
+    name: 'Café Hope',
+    shortDescription: 'Support mission partners through every cup and every meal',
+    description:
+      'Café Hope is a welcoming space for coffee, breakfast, lunch, and meetings. Every purchase supports Hope’s mission partners, turning everyday moments into lasting impact.',
+    goalAmount: 15000,
+    raisedAmount: 9800,
+    status: 'Active',
+    startDate: new Date(Date.now() - 10 * 24 * 60 * 60 * 1000).toISOString(),
+    endDate: new Date(Date.now() + 45 * 24 * 60 * 60 * 1000).toISOString(),
+    featuredImageUrl: '/images/campaigns/hope/cafe-hope.png',
+    videoUrl: null,
+    organization: {
+      id: 'org-hope-wdm',
+      name: 'Lutheran Church Of Hope - WDM',
+      logoUrl: '/images/organizations/org-hope-wdm-logo.svg',
+      description:
+        "Hope's Missions Team partners locally and globally to coordinate service projects, mission trips, and outreach opportunities.",
+    },
+    mediaGallery: [
+      {
+        type: 'image',
+        url: '/images/campaigns/hope/cafe-hope.png',
+        caption: 'Café Hope',
+      },
+      {
+        type: 'image',
+        url: '/images/media/gallery-donation-collection.jpg',
+        caption: 'Supporting mission partners together',
+      },
+      {
+        type: 'image',
+        url: '/images/media/gallery-community-support.jpg',
+        caption: 'A place to gather',
+      },
+      {
+        type: 'image',
+        url: '/images/media/gallery-volunteers.jpg',
+        caption: 'Serving the community',
+      },
+    ],
+  },
+  'campaign-hope-homes-of-hope': {
+    id: 'campaign-hope-homes-of-hope',
+    title: 'Homes of Hope – YWAM (Tijuana, Mexico)',
+    name: 'Homes of Hope – YWAM (Tijuana, Mexico)',
+    shortDescription: 'Help build a home with a family in need through a mission partnership',
+    description:
+      'Join Hope and Youth With A Mission San Diego/Baja in building a home for (and with) a family in need. Support covers materials, logistics, and team preparation for a hands-on service experience.',
+    goalAmount: 60000,
+    raisedAmount: 41250,
+    status: 'Active',
+    startDate: new Date(Date.now() - 35 * 24 * 60 * 60 * 1000).toISOString(),
+    endDate: new Date(Date.now() + 120 * 24 * 60 * 60 * 1000).toISOString(),
+    featuredImageUrl: '/images/campaigns/hope/mission-trips.png',
+    videoUrl: null,
+    organization: {
+      id: 'org-hope-wdm',
+      name: 'Lutheran Church Of Hope - WDM',
+      logoUrl: '/images/organizations/org-hope-wdm-logo.svg',
+      description:
+        "Hope's Missions Team partners locally and globally to coordinate service projects, mission trips, and outreach opportunities.",
+    },
+    mediaGallery: [
+      {
+        type: 'image',
+        url: '/images/campaigns/hope/homes-of-hope/hoh-1.jpg',
+        caption: 'Serving side-by-side on the build site',
+      },
+      {
+        type: 'image',
+        url: '/images/campaigns/hope/homes-of-hope/hoh-2.jpg',
+        caption: 'Framing a home together',
+      },
+      {
+        type: 'image',
+        url: '/images/campaigns/hope/homes-of-hope/hoh-3.jpg',
+        caption: 'Raising roof trusses safely',
+      },
+      {
+        type: 'image',
+        url: '/images/campaigns/hope/homes-of-hope/hoh-4.jpg',
+        caption: 'Building materials and framing in progress',
+      },
+    ],
+  },
+  'campaign-hope-thanksgiving-meals': {
+    id: 'campaign-hope-thanksgiving-meals',
+    title: 'Thanksgiving Meal Packaging',
+    name: 'Thanksgiving Meal Packaging',
+    shortDescription: 'Pack meals for families facing hunger during the holiday season',
+    description:
+      'Each year, volunteers gather to package meals so families facing hunger can have food during the Thanksgiving season. Your donation sponsors ingredients, packaging supplies, and distribution through trusted partners.',
+    goalAmount: 20000,
+    raisedAmount: 13750,
+    status: 'Active',
+    startDate: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString(),
+    endDate: new Date(Date.now() + 75 * 24 * 60 * 60 * 1000).toISOString(),
+    featuredImageUrl: '/images/campaigns/hope/thanksgiving-turkey.jpg',
+    videoUrl: null,
+    organization: {
+      id: 'org-hope-wdm',
+      name: 'Lutheran Church Of Hope - WDM',
+      logoUrl: '/images/organizations/org-hope-wdm-logo.svg',
+      description:
+        "Hope's Missions Team partners locally and globally to coordinate service projects, mission trips, and outreach opportunities.",
+    },
+    mediaGallery: [
+      {
+        type: 'image',
+        url: '/images/campaigns/hope/thanksgiving-turkey.jpg',
+        caption: 'Thanksgiving meal packaging',
+      },
+      {
+        type: 'image',
+        url: '/images/campaigns/hope/thanksgiving-meals/meal-1.jpg',
+        caption: 'Creamy mashed potatoes with butter and gravy',
+      },
+      {
+        type: 'image',
+        url: '/images/campaigns/hope/thanksgiving-meals/meal-2.jpg',
+        caption: 'Traditional Thanksgiving stuffing',
+      },
+      {
+        type: 'image',
+        url: '/images/campaigns/hope/thanksgiving-meals/meal-3.jpg',
+        caption: 'Green bean casserole with crispy onions',
+      },
+    ],
+  },
+  'campaign-hope-souper-bowl': {
+    id: 'campaign-hope-souper-bowl',
+    title: 'Souper Bowl Food Drive',
+    name: 'Souper Bowl Food Drive',
+    shortDescription: 'Stock local pantries with nonperishable food and essentials',
+    description:
+      'Bring nonperishable food items and essential goods during Souper Bowl season to help stock local pantries. Donations support neighbors across our community with practical help and encouragement.',
+    goalAmount: 12000,
+    raisedAmount: 8350,
+    status: 'Active',
+    startDate: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(),
+    endDate: new Date(Date.now() + 25 * 24 * 60 * 60 * 1000).toISOString(),
+    featuredImageUrl: '/images/campaigns/hope/souper-bowl.jpg',
+    videoUrl: null,
+    organization: {
+      id: 'org-hope-wdm',
+      name: 'Lutheran Church Of Hope - WDM',
+      logoUrl: '/images/organizations/org-hope-wdm-logo.svg',
+      description:
+        "Hope's Missions Team partners locally and globally to coordinate service projects, mission trips, and outreach opportunities.",
+    },
+    mediaGallery: [
+      {
+        type: 'image',
+        url: '/images/campaigns/hope/souper-bowl.jpg',
+        caption: 'Souper Bowl Food Drive',
+      },
+      {
+        type: 'image',
+        url: '/images/campaigns/hope/souper-bowl/soup-1.jpg',
+        caption: 'Canned foods ready to donate',
+      },
+      {
+        type: 'image',
+        url: '/images/campaigns/hope/souper-bowl/soup-6.jpg',
+        caption: 'Shelf-stable pantry items',
+      },
+      {
+        type: 'image',
+        url: '/images/campaigns/hope/souper-bowl/soup-5.jpg',
+        caption: 'Pantry shelves stocked with essentials',
+      },
+    ],
+  },
+  'campaign-hope-school-drive': {
+    id: 'campaign-hope-school-drive',
+    title: 'Back-to-School Drive',
+    name: 'Back-to-School Drive',
+    shortDescription: 'Help students start the year with supplies, snacks, and support',
+    description:
+      'Help stock classrooms by donating school supplies and essentials. Your support helps students start the year prepared with practical items that make a real difference.',
+    goalAmount: 18000,
+    raisedAmount: 10900,
+    status: 'Active',
+    startDate: new Date(Date.now() - 8 * 24 * 60 * 60 * 1000).toISOString(),
+    endDate: new Date(Date.now() + 40 * 24 * 60 * 60 * 1000).toISOString(),
+    featuredImageUrl: '/images/campaigns/hope/school-drive.jpg',
+    videoUrl: null,
+    organization: {
+      id: 'org-hope-wdm',
+      name: 'Lutheran Church Of Hope - WDM',
+      logoUrl: null,
+      description:
+        "Hope's Missions Team partners locally and globally to coordinate service projects, mission trips, and outreach opportunities.",
+    },
+    mediaGallery: [
+      {
+        type: 'image',
+        url: '/images/campaigns/hope/back-to-school/school-1.jpg',
+        caption: 'School supplies ready to donate',
+      },
+      {
+        type: 'image',
+        url: '/images/campaigns/hope/back-to-school/school-2.jpg',
+        caption: 'Backpack and classroom essentials',
+      },
+      {
+        type: 'image',
+        url: '/images/campaigns/hope/back-to-school/school-3.jpg',
+        caption: 'Notebooks, pencils, and stationery',
+      },
+      {
+        type: 'image',
+        url: '/images/campaigns/hope/back-to-school/school-4.jpg',
+        caption: 'Preparing supplies for students',
       },
     ],
   },

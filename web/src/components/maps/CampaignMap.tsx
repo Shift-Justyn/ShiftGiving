@@ -288,14 +288,21 @@ export function CampaignMap({
       }
     };
 
-    if (window.google) {
+    if (window.google?.maps) {
       initMap();
     } else {
       const existingScript = document.querySelector(
         'script[src*="maps.googleapis.com/maps/api/js"]'
       );
       if (existingScript) {
-        existingScript.addEventListener('load', initMap);
+        // Script exists but may not be loaded yet - poll for google.maps
+        const checkGoogleMaps = setInterval(() => {
+          if (window.google?.maps) {
+            clearInterval(checkGoogleMaps);
+            initMap();
+          }
+        }, 100);
+        setTimeout(() => clearInterval(checkGoogleMaps), 10000);
         return;
       }
 

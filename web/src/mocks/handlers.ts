@@ -78,7 +78,21 @@ export const handlers = [
 
     let filtered = [...campaigns];
     if (featured) {
-      filtered = filtered.slice(0, 4);
+      const featuredIds = [
+        'campaign-hope-pantry',
+        'campaign-hope-thanksgiving-meals',
+        'campaign-hope-cafe',
+        'campaign-hope-souper-bowl',
+        'campaign-hope-school-drive',
+        'campaign-hope-homes-of-hope',
+        'campaign-kelp',
+        'campaign-amazon',
+      ];
+      const featuredCampaigns = featuredIds
+        .map((id) => campaigns.find((c) => c.id === id))
+        .filter(Boolean) as Campaign[];
+      filtered =
+        featuredCampaigns.length > 0 ? featuredCampaigns.slice(0, 6) : filtered.slice(0, 6);
     }
 
     const start = (page - 1) * pageSize;

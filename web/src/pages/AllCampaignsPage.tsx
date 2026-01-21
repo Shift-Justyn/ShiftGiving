@@ -250,7 +250,7 @@ export const AllCampaignsPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await getCampaigns();
+        const data = await getCampaigns({ page: 1, pageSize: 50 });
         setCampaigns(data);
       } catch {
         // Error handled silently

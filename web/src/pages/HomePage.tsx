@@ -479,7 +479,7 @@ export const HomePage = () => {
           <Section>
             <SectionHeader>
               <SectionTitle>{t('home.campaigns')}</SectionTitle>
-              <SeeAllLink>
+              <SeeAllLink onClick={() => navigate('/campaigns')}>
                 {t('home.seeAll')}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -539,22 +539,6 @@ export const HomePage = () => {
           <Section>
             <SectionHeader>
               <SectionTitle>{t('home.organizations')}</SectionTitle>
-              <SeeAllLink>
-                {t('home.seeAll')}
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
-              </SeeAllLink>
             </SectionHeader>
             {orgsLoading && <LoadingText>{t('home.loadingOrganizations')}</LoadingText>}
             {orgsError && <ErrorText>{orgsError}</ErrorText>}

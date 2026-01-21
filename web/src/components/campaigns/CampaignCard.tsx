@@ -912,7 +912,10 @@ export const CampaignCard = ({ campaign, onClick: _onClick, onAddToBasket }: Cam
                   Unit: <strong>{unitLabel}</strong>
                 </MetricItem>
                 <MetricItem>
-                  Price: <strong>{formatCurrency(pricePerUnit)}/ton</strong>
+                  Price:{' '}
+                  <strong>
+                    {formatCurrency(pricePerUnit)} per {unitLabel}
+                  </strong>
                 </MetricItem>
               </MetricsRow>
             )}

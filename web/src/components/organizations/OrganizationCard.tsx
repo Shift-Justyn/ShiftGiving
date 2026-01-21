@@ -35,7 +35,7 @@ const Card = styled.div<{ $clickable?: boolean }>`
 const LogoContainer = styled.div`
   position: relative;
   width: 100%;
-  aspect-ratio: 1 / 0.7;
+  aspect-ratio: 1 / 0.62;
 `;
 
 const Logo = styled.div<{ $logoUrl?: string; $bgColor?: string }>`
@@ -45,7 +45,8 @@ const Logo = styled.div<{ $logoUrl?: string; $bgColor?: string }>`
     props.$logoUrl
       ? `url(${props.$logoUrl})`
       : `linear-gradient(135deg, ${props.theme.colors.primary.light} 0%, ${props.theme.colors.primary.main}40 100%)`};
-  background-size: ${(props) => (props.$logoUrl ? 'cover' : 'contain')};
+  background-color: ${(props) => (props.$logoUrl ? '#ffffff' : 'transparent')};
+  background-size: ${(props) => (props.$logoUrl ? '80% auto' : 'contain')};
   background-position: center;
   background-repeat: no-repeat;
   display: flex;

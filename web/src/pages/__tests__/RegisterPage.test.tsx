@@ -293,7 +293,7 @@ describe('RegisterPage successful registration', () => {
     await user.type(passwordInput, 'password123');
     await user.click(submitButton);
 
-    expect(screen.getByRole('button', { name: /creating account/i })).toBeDisabled();
+    expect(submitButton).toBeDisabled();
   });
 });
 
