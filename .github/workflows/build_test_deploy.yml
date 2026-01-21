@@ -536,6 +536,8 @@ jobs:
       - name: "Build for production"
         run: npm run build
         working-directory: web
+        env:
+          VITE_GOOGLE_MAPS_API_KEY: ${{ secrets.VITE_GOOGLE_MAPS_API_KEY }}
 
       - name: "Configure AWS credentials"
         uses: aws-actions/configure-aws-credentials@v4
