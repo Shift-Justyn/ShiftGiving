@@ -42,6 +42,8 @@ app.MapCampaignEndpoints();
 app.MapOrganizationEndpoints();
 app.MapDonationEndpoints();
 app.MapNotificationEndpoints();
+app.MapMediaEndpoints();
+app.MapAIEndpoints();
 
 app.Run();
 

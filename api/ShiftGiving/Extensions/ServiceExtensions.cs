@@ -26,6 +26,7 @@ public static class ServiceExtensions
         services.AddScoped<OrganizationService>();
         services.AddScoped<DonationService>();
         services.AddScoped<NotificationService>();
+        services.AddScoped<MediaService>();
         services.AddScoped<IPaymentService, StripePaymentService>();
         return services;
     }
