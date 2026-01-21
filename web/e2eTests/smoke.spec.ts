@@ -5,8 +5,9 @@ test('homepage loads successfully', async ({ page }) => {
   expect(response?.status()).toBe(200);
 });
 
-test('homepage displays welcome text', async ({ page }) => {
-  await page.goto('/');
+test('login page displays welcome text', async ({ page }) => {
+  await page.goto('/login');
+  await page.waitForSelector('h1, h2', { state: 'visible', timeout: 10000 });
   const content = await page.textContent('body');
   expect(content).toContain('Welcome');
 });
