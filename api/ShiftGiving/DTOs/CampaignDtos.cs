@@ -13,6 +13,8 @@ public class CampaignListResponse
     public DateOnly EndDate { get; set; }
     public string Category { get; set; } = string.Empty;
     public string? Location { get; set; }
+    public decimal? Latitude { get; set; }
+    public decimal? Longitude { get; set; }
     public string? UnitLabel { get; set; }
     public decimal? UnitPrice { get; set; }
     public string? ImpactLabel { get; set; }

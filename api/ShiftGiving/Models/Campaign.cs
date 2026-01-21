@@ -21,6 +21,8 @@ public class Campaign
     public string? SocialLinkedin { get; set; }
     public string? StoryContent { get; set; }
     public string? Location { get; set; }
+    public decimal? Latitude { get; set; }
+    public decimal? Longitude { get; set; }
     public string? UnitLabel { get; set; }
     public decimal? UnitPrice { get; set; }
     public string? ImpactLabel { get; set; }

@@ -136,6 +136,8 @@ public class ShiftGivingDbContext : DbContext
             entity.Property(e => e.SocialLinkedin).HasColumnName("social_linkedin").HasMaxLength(500);
             entity.Property(e => e.StoryContent).HasColumnName("story_content").HasColumnType("text");
             entity.Property(e => e.Location).HasColumnName("location").HasMaxLength(255);
+            entity.Property(e => e.Latitude).HasColumnName("latitude").HasPrecision(10, 6);
+            entity.Property(e => e.Longitude).HasColumnName("longitude").HasPrecision(10, 6);
             entity.Property(e => e.UnitLabel).HasColumnName("unit_label").HasMaxLength(100);
             entity.Property(e => e.UnitPrice).HasColumnName("unit_price").HasPrecision(12, 2);
             entity.Property(e => e.ImpactLabel).HasColumnName("impact_label").HasMaxLength(255);

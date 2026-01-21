@@ -99,6 +99,8 @@ public class CampaignService
             EndDate = c.EndDate,
             Category = c.Category.ToString(),
             Location = c.Location,
+            Latitude = c.Latitude,
+            Longitude = c.Longitude,
             UnitLabel = c.UnitLabel,
             UnitPrice = c.UnitPrice,
             ImpactLabel = c.ImpactLabel,
