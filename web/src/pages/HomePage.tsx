@@ -227,7 +227,7 @@ const SeeAllLink = styled.button`
 
 const HorizontalScroll = styled.div`
   display: flex;
-  gap: 1rem;
+  gap: 1.5rem;
   overflow-x: auto;
   padding-bottom: 0.5rem;
   -webkit-overflow-scrolling: touch;
@@ -240,13 +240,23 @@ const HorizontalScroll = styled.div`
   > * {
     scroll-snap-align: start;
     flex-shrink: 0;
+    min-width: 20rem;
   }
 
   @media (min-width: 48rem) {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     overflow-x: visible;
     padding-bottom: 0;
+
+    > * {
+      min-width: unset;
+    }
+  }
+
+  @media (min-width: 64rem) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
   }
 `;
 
@@ -401,7 +411,7 @@ export const HomePage = () => {
         <ContentHeader>
           <HeaderTop>
             <HeaderTitle>Welcome back, {user?.firstName || 'Friend'}</HeaderTitle>
-            <ViewAllLink>
+            <ViewAllLink onClick={() => navigate('/campaigns')}>
               {t('home.viewAll')}
               <svg
                 xmlns="http://www.w3.org/2000/svg"

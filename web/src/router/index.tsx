@@ -4,6 +4,7 @@ import { LoginPage } from '../pages/LoginPage';
 import { RegisterPage } from '../pages/RegisterPage';
 import { CampaignDetailPage } from '../pages/CampaignDetailPage';
 import { CreateCampaignPage } from '../pages/CreateCampaignPage';
+import { AllCampaignsPage } from '../pages/AllCampaignsPage';
 import { DonationPage } from '../pages/DonationPage';
 import { PaymentPage } from '../pages/PaymentPage';
 import { DonationConfirmationPage } from '../pages/DonationConfirmationPage';
@@ -36,6 +37,14 @@ export const router = createBrowserRouter([
       {
         path: '/register',
         element: <RegisterPage />,
+      },
+      {
+        path: '/campaigns',
+        element: (
+          <ProtectedRoute>
+            <AllCampaignsPage />
+          </ProtectedRoute>
+        ),
       },
       {
         path: '/campaigns/create',

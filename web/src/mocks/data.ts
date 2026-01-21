@@ -109,9 +109,88 @@ const organizations: Organization[] = [
     longitude: -93.625,
     category: 'Health',
   },
+  {
+    id: 'org-7',
+    name: 'Ocean Restoration Coalition',
+    description:
+      'Dedicated to revitalizing marine ecosystems through cutting-edge restoration projects. 501(c)(3) nonprofit.',
+    logoUrl: null,
+    campaignCount: 1,
+    latitude: 44.6,
+    longitude: -125.5,
+    category: 'Environment',
+  },
+  {
+    id: 'org-8',
+    name: 'Amazon Conservation Trust',
+    description:
+      'Working with indigenous communities to protect the Amazon rainforest through sustainable conservation and community empowerment. 501(c)(3) nonprofit.',
+    logoUrl: null,
+    campaignCount: 1,
+    latitude: -3.4653,
+    longitude: -62.2159,
+    category: 'Environment',
+  },
 ];
 
 const campaigns: Campaign[] = [
+  {
+    id: 'campaign-kelp',
+    title: 'Kelp Forest Restoration',
+    shortDescription:
+      'Revitalizing underwater kelp forests to enhance marine biodiversity and carbon sequestration while supporting sustainable fisheries.',
+    goalAmount: 375000,
+    raisedAmount: 345000,
+    status: 'Active',
+    featuredImageUrl: '/images/campaigns/kelp/kelp-forest-main.png',
+    organization: {
+      id: 'org-7',
+      name: 'Ocean Restoration Coalition',
+      logoUrl: null,
+    },
+    endDate: new Date(Date.now() + 14 * 24 * 60 * 60 * 1000).toISOString(),
+    category: 'Environment',
+    location: 'Oregon Coast, USA',
+    unitLabel: '1 ton CO₂ Offset',
+    unitPrice: 25,
+    impactLabel: 'Acres Protected',
+    fundingPercentage: 92,
+    mediaGallery: [
+      {
+        type: 'video',
+        url: '/images/campaigns/kelp/kelp-forest-main.gif',
+        caption: 'Kelp forest restoration in action',
+      },
+      {
+        type: 'image',
+        url: '/images/campaigns/kelp/kelp-diver-urchin.png',
+        caption: 'Marine Life in Restored Kelp Forest',
+      },
+      {
+        type: 'image',
+        url: '/images/campaigns/kelp/kelp-elena-planting.png',
+        caption: 'Underwater Kelp Restoration Work',
+      },
+      {
+        type: 'image',
+        url: '/images/campaigns/kelp/kelp-fish-ecosystem.png',
+        caption: 'Thriving Kelp Forest Ecosystem',
+      },
+    ],
+    storyContent: `OREGON COAST, USA — Along the wild and rugged Pacific shoreline, a quiet underwater revolution is taking place. Once-thriving kelp forests that had withered under the weight of warming oceans and sea urchin overpopulation are now being brought back to life through a cutting-edge restoration project fueled by carbon offset support.
+
+Marine biologist Elena Torres leads the effort. Clad in a wetsuit and equipped with underwater monitoring gear, she dives daily into the chilly coastal waters, carefully planting strands of bull kelp and monitoring their growth. "Every blade we plant is like a breath for the ocean," she says. "It absorbs carbon, shelters sea life, and helps stabilize the marine ecosystem."
+
+The project has revitalized over 100 acres of kelp forest so far, creating critical habitat for fish, sea otters, and other marine species. Importantly, it supports sustainable local fisheries by boosting populations of commercially important species like rockfish and abalone.
+
+The initiative has also become an economic anchor for coastal communities. Fishermen like Jason Kim have joined the restoration workforce in the off-season, blending traditional ocean knowledge with new conservation training. "I never thought I'd be farming seaweed," Jason laughs, "but I know I'm helping the ocean and protecting my way of life."
+
+Funding from carbon offset purchases has been key to scaling the project—supporting dive operations, research equipment, and community outreach. These investments not only restore biodiversity but actively remove carbon from the atmosphere, with kelp forests among the fastest natural carbon sequesters on the planet.
+
+Back on shore, schoolchildren from nearby towns visit the project's education center, learning about ocean health and climate solutions. Their wide eyes and curious questions reflect a growing awareness of how connected their future is to the life below the waves.
+
+As sunbeams pierce the water's surface and dance across rising strands of kelp, the forest comes alive once more—an underwater testament to nature's resilience and what's possible when communities, science, and sustainability unite.`,
+  },
   {
     id: 'campaign-1',
     title: 'Emergency Animal Shelter Expansion',
@@ -171,6 +250,61 @@ const campaigns: Campaign[] = [
     unitLabel: 'Help 5 People',
     unitPrice: 25,
     impactLabel: 'Families Helped',
+  },
+  {
+    id: 'campaign-amazon',
+    title: 'Amazon Rainforest Conservation',
+    shortDescription:
+      'Protecting ancient rainforest ecosystems through community-led conservation efforts and sustainable land management practices.',
+    goalAmount: 500000,
+    raisedAmount: 420000,
+    status: 'Active',
+    featuredImageUrl: '/images/campaigns/amazon/amazon-featured.png',
+    organization: {
+      id: 'org-8',
+      name: 'Amazon Conservation Trust',
+      logoUrl: null,
+    },
+    endDate: new Date(Date.now() + 21 * 24 * 60 * 60 * 1000).toISOString(),
+    category: 'Environment',
+    location: 'Amazon Basin, Brazil',
+    unitLabel: '1 ton CO₂ Offset',
+    unitPrice: 20,
+    impactLabel: 'Acres Protected',
+    fundingPercentage: 84,
+    mediaGallery: [
+      {
+        type: 'video',
+        url: '/images/campaigns/amazon/amazon-main.gif',
+        caption: 'Journey through the Amazon rainforest',
+      },
+      {
+        type: 'image',
+        url: '/images/campaigns/amazon/amazon-village.png',
+        caption: 'Maria Carvalho shares stories with village children',
+      },
+      {
+        type: 'image',
+        url: '/images/campaigns/amazon/amazon-conservation.png',
+        caption: 'João leads the community conservation patrol',
+      },
+      {
+        type: 'image',
+        url: '/images/campaigns/amazon/amazon-trees.jpg',
+        caption: 'Ancient rainforest canopy in Santo Antônio',
+      },
+    ],
+    storyContent: `Deep within the verdant heart of Brazil's Amazon Basin, nestled beside the gentle curves of the winding Rio Negro, lies the village of Santo Antônio. For generations, its indigenous inhabitants have lived in harmony with the ancient rainforest, relying on its vast resources while preserving its delicate balance. Maria Carvalho, a respected elder and natural storyteller, vividly remembers the lush forests of her childhood—echoing with the calls of toucans and the rustle of jaguars moving through the dense canopy.
+
+Today, Maria's grandson, João Carvalho, leads the village conservation effort. A dynamic young leader with boundless energy, João works tirelessly alongside community members to patrol the forest boundaries, replant native trees, and educate neighboring villages about sustainable practices. Each day, João and his team carefully document wildlife sightings, monitor biodiversity, and remove illegal logging traps, knowing their efforts protect both their heritage and the planet's future.
+
+Crucially, the funding provided by carbon offset purchases is vital for sustaining these reforestation and conservation efforts. It allows the Santo Antônio community to access essential resources, training, and equipment necessary to protect and restore their beloved rainforest.
+
+Their mission not only safeguards countless endangered species but also maintains vital carbon storage, essential for global climate stability. Through a cooperative approach, the project has established thriving agroforestry plots, blending traditional knowledge with modern science, ensuring food security and income for Santo Antônio's families.
+
+Local mother and artisan, Luciana Mendes, creates vibrant jewelry from sustainably sourced seeds, weaving economic resilience directly from nature's abundance. Luciana's smile beams with pride as her handmade crafts reach global audiences, sharing the story of their home and its conservation journey.
+
+For Maria, João, Luciana, and the entire Santo Antônio community, this conservation initiative is more than a project—it's a testament to their unwavering bond with the Amazon. Their passion, wisdom, and dedication illuminate a hopeful path forward, one where humans and nature flourish together in mutual respect and abundance.`,
   },
   {
     id: 'campaign-4',
@@ -283,6 +417,116 @@ const campaigns: Campaign[] = [
 ];
 
 const campaignDetails: Record<string, CampaignDetail> = {
+  'campaign-kelp': {
+    id: 'campaign-kelp',
+    title: 'Kelp Forest Restoration',
+    name: 'Kelp Forest Restoration',
+    shortDescription:
+      'Revitalizing underwater kelp forests to enhance marine biodiversity and carbon sequestration while supporting sustainable fisheries.',
+    description: `OREGON COAST, USA — Along the wild and rugged Pacific shoreline, a quiet underwater revolution is taking place. Once-thriving kelp forests that had withered under the weight of warming oceans and sea urchin overpopulation are now being brought back to life through a cutting-edge restoration project fueled by carbon offset support.
+
+Marine biologist Elena Torres leads the effort. Clad in a wetsuit and equipped with underwater monitoring gear, she dives daily into the chilly coastal waters, carefully planting strands of bull kelp and monitoring their growth. "Every blade we plant is like a breath for the ocean," she says. "It absorbs carbon, shelters sea life, and helps stabilize the marine ecosystem."
+
+The project has revitalized over 100 acres of kelp forest so far, creating critical habitat for fish, sea otters, and other marine species. Importantly, it supports sustainable local fisheries by boosting populations of commercially important species like rockfish and abalone.
+
+The initiative has also become an economic anchor for coastal communities. Fishermen like Jason Kim have joined the restoration workforce in the off-season, blending traditional ocean knowledge with new conservation training. "I never thought I'd be farming seaweed," Jason laughs, "but I know I'm helping the ocean and protecting my way of life."
+
+Funding from carbon offset purchases has been key to scaling the project—supporting dive operations, research equipment, and community outreach. These investments not only restore biodiversity but actively remove carbon from the atmosphere, with kelp forests among the fastest natural carbon sequesters on the planet.
+
+Back on shore, schoolchildren from nearby towns visit the project's education center, learning about ocean health and climate solutions. Their wide eyes and curious questions reflect a growing awareness of how connected their future is to the life below the waves.
+
+As sunbeams pierce the water's surface and dance across rising strands of kelp, the forest comes alive once more—an underwater testament to nature's resilience and what's possible when communities, science, and sustainability unite.`,
+    goalAmount: 375000,
+    raisedAmount: 345000,
+    status: 'Active',
+    startDate: new Date(Date.now() - 60 * 24 * 60 * 60 * 1000).toISOString(),
+    endDate: new Date(Date.now() + 14 * 24 * 60 * 60 * 1000).toISOString(),
+    featuredImageUrl: '/images/campaigns/kelp/kelp-forest-main.png',
+    videoUrl: null,
+    organization: {
+      id: 'org-7',
+      name: 'Ocean Restoration Coalition',
+      logoUrl: null,
+      description:
+        'Dedicated to revitalizing marine ecosystems through cutting-edge restoration projects. 501(c)(3) nonprofit.',
+    },
+    mediaGallery: [
+      {
+        type: 'video',
+        url: '/images/campaigns/kelp/kelp-forest-main.gif',
+        caption: 'Kelp forest restoration in action',
+      },
+      {
+        type: 'image',
+        url: '/images/campaigns/kelp/kelp-diver-urchin.png',
+        caption: 'Marine Life in Restored Kelp Forest',
+      },
+      {
+        type: 'image',
+        url: '/images/campaigns/kelp/kelp-elena-planting.png',
+        caption: 'Underwater Kelp Restoration Work',
+      },
+      {
+        type: 'image',
+        url: '/images/campaigns/kelp/kelp-fish-ecosystem.png',
+        caption: 'Thriving Kelp Forest Ecosystem',
+      },
+    ],
+  },
+  'campaign-amazon': {
+    id: 'campaign-amazon',
+    title: 'Amazon Rainforest Conservation',
+    name: 'Amazon Rainforest Conservation',
+    shortDescription:
+      'Protecting ancient rainforest ecosystems through community-led conservation efforts and sustainable land management practices.',
+    description: `Deep within the verdant heart of Brazil's Amazon Basin, nestled beside the gentle curves of the winding Rio Negro, lies the village of Santo Antônio. For generations, its indigenous inhabitants have lived in harmony with the ancient rainforest, relying on its vast resources while preserving its delicate balance. Maria Carvalho, a respected elder and natural storyteller, vividly remembers the lush forests of her childhood—echoing with the calls of toucans and the rustle of jaguars moving through the dense canopy.
+
+Today, Maria's grandson, João Carvalho, leads the village conservation effort. A dynamic young leader with boundless energy, João works tirelessly alongside community members to patrol the forest boundaries, replant native trees, and educate neighboring villages about sustainable practices. Each day, João and his team carefully document wildlife sightings, monitor biodiversity, and remove illegal logging traps, knowing their efforts protect both their heritage and the planet's future.
+
+Crucially, the funding provided by carbon offset purchases is vital for sustaining these reforestation and conservation efforts. It allows the Santo Antônio community to access essential resources, training, and equipment necessary to protect and restore their beloved rainforest.
+
+Their mission not only safeguards countless endangered species but also maintains vital carbon storage, essential for global climate stability. Through a cooperative approach, the project has established thriving agroforestry plots, blending traditional knowledge with modern science, ensuring food security and income for Santo Antônio's families.
+
+Local mother and artisan, Luciana Mendes, creates vibrant jewelry from sustainably sourced seeds, weaving economic resilience directly from nature's abundance. Luciana's smile beams with pride as her handmade crafts reach global audiences, sharing the story of their home and its conservation journey.
+
+For Maria, João, Luciana, and the entire Santo Antônio community, this conservation initiative is more than a project—it's a testament to their unwavering bond with the Amazon. Their passion, wisdom, and dedication illuminate a hopeful path forward, one where humans and nature flourish together in mutual respect and abundance.`,
+    goalAmount: 500000,
+    raisedAmount: 420000,
+    status: 'Active',
+    startDate: new Date(Date.now() - 45 * 24 * 60 * 60 * 1000).toISOString(),
+    endDate: new Date(Date.now() + 21 * 24 * 60 * 60 * 1000).toISOString(),
+    featuredImageUrl: '/images/campaigns/amazon/amazon-featured.png',
+    videoUrl: null,
+    organization: {
+      id: 'org-8',
+      name: 'Amazon Conservation Trust',
+      logoUrl: null,
+      description:
+        'Working with indigenous communities to protect the Amazon rainforest through sustainable conservation and community empowerment. 501(c)(3) nonprofit.',
+    },
+    mediaGallery: [
+      {
+        type: 'video',
+        url: '/images/campaigns/amazon/amazon-main.gif',
+        caption: 'Journey through the Amazon rainforest',
+      },
+      {
+        type: 'image',
+        url: '/images/campaigns/amazon/amazon-village.png',
+        caption: 'Maria Carvalho shares stories with village children',
+      },
+      {
+        type: 'image',
+        url: '/images/campaigns/amazon/amazon-conservation.png',
+        caption: 'João leads the community conservation patrol',
+      },
+      {
+        type: 'image',
+        url: '/images/campaigns/amazon/amazon-trees.jpg',
+        caption: 'Ancient rainforest canopy in Santo Antônio',
+      },
+    ],
+  },
   'campaign-1': {
     id: 'campaign-1',
     title: 'Emergency Animal Shelter Expansion',

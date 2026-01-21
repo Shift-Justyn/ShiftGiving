@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes, css } from 'styled-components';
 import { Campaign, MediaGalleryItem } from '../../api/types';
 import {
   MapPin,
@@ -9,6 +9,7 @@ import {
   Plus,
   Minus,
   ArrowRight,
+  Play,
 } from 'lucide-react';
 import { useState, useCallback } from 'react';
 import { GivingAppLogo } from '../common/ShiftGivingLogo';
@@ -29,10 +30,29 @@ const categoryColors: Record<string, string> = {
   Arts: '#EC4899',
 };
 
-const Card = styled.div<{ $expanded?: boolean }>`
+const CAMPAIGN_VIDEOS: Record<string, string> = {
+  'Kelp Forest Restoration': '/images/campaigns/kelp/kelp-forest-main.gif',
+  'Amazon Rainforest Conservation': '/images/campaigns/amazon/amazon-main.gif',
+};
+
+const bounceIn = keyframes`
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+  75% {
+    transform: scale(0.98);
+  }
+  100% {
+    transform: scale(1);
+  }
+`;
+
+const Card = styled.div<{ $expanded?: boolean; $isExpanding?: boolean }>`
   width: 100%;
-  max-width: 22rem;
-  height: ${(props) => (props.$expanded ? 'auto' : '32rem')};
+  height: auto;
   display: flex;
   flex-direction: column;
   background: ${(props) => props.theme.colors.background.card};
@@ -41,27 +61,33 @@ const Card = styled.div<{ $expanded?: boolean }>`
   box-shadow:
     0 0.25rem 1rem rgba(0, 0, 0, 0.1),
     0 0.125rem 0.25rem rgba(0, 0, 0, 0.06);
-  transition: box-shadow 0.3s ease;
+  transition:
+    box-shadow 0.3s ease,
+    transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+    border-color 0.3s ease;
   cursor: ${(props) => (props.$expanded ? 'default' : 'pointer')};
   border: 0.125rem solid ${(props) => (props.$expanded ? '#00a0c4' : 'transparent')};
 
+  ${(props) =>
+    props.$isExpanding &&
+    css`
+      animation: ${bounceIn} 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    `}
+
   &:hover {
+    transform: ${(props) => (props.$expanded ? 'none' : 'translateY(-0.5rem)')};
     box-shadow:
       0 1.25rem 2.5rem rgba(0, 160, 196, 0.2),
       0 0.5rem 1rem rgba(0, 0, 0, 0.12);
-  }
-
-  @media (min-width: 48rem) {
-    width: 100%;
-    max-width: none;
   }
 `;
 
 const ImageContainer = styled.div`
   position: relative;
   width: 100%;
-  height: 12.5rem;
+  height: 12rem;
   overflow: hidden;
+  border-radius: 0.75rem 0.75rem 0 0;
 `;
 
 const Image = styled.div<{ $imageUrl?: string }>`
@@ -80,10 +106,15 @@ const Image = styled.div<{ $imageUrl?: string }>`
   }
 `;
 
-const CategoryBadge = styled.div<{ $color: string }>`
+const BadgeContainer = styled.div`
   position: absolute;
   top: 0.5rem;
   left: 0.5rem;
+  display: flex;
+  gap: 0.375rem;
+`;
+
+const CategoryBadge = styled.div<{ $color: string }>`
   background: rgba(255, 255, 255, 0.9);
   color: ${(props) => props.$color};
   backdrop-filter: blur(0.5rem);
@@ -93,6 +124,79 @@ const CategoryBadge = styled.div<{ $color: string }>`
   font-weight: 600;
   border: 0.0625rem solid rgba(255, 255, 255, 0.3);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+`;
+
+const LimitedAvailabilityBadge = styled.div`
+  background: rgba(239, 68, 68, 0.95);
+  color: #ffffff;
+  backdrop-filter: blur(0.5rem);
+  padding: 0.25rem 0.5rem;
+  border-radius: 1rem;
+  font-size: 0.625rem;
+  font-weight: 700;
+  border: 0.0625rem solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+  animation: pulse 2s infinite;
+
+  @keyframes pulse {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.85;
+    }
+  }
+`;
+
+const VideoPlayIndicator = styled.div`
+  position: absolute;
+  bottom: 0.75rem;
+  right: 0.75rem;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  transition: all 0.2s ease;
+
+  svg {
+    width: 1rem;
+    height: 1rem;
+    margin-left: 0.125rem;
+  }
+`;
+
+const VideoPlayingBadge = styled.div`
+  position: absolute;
+  bottom: 0.75rem;
+  right: 0.75rem;
+  background: rgba(34, 197, 94, 0.9);
+  color: #ffffff;
+  backdrop-filter: blur(0.5rem);
+  padding: 0.25rem 0.625rem;
+  border-radius: 1rem;
+  font-size: 0.625rem;
+  font-weight: 600;
+  border: 0.0625rem solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+`;
+
+const VideoImage = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+
+  ${Card}:hover & {
+    transform: scale(1.05);
+  }
 `;
 
 const HeartButton = styled.button<{ $liked: boolean }>`
@@ -486,34 +590,38 @@ const DialogHeader = styled.div`
   position: sticky;
   top: 0;
   z-index: 10;
-  background: ${(props) => props.theme.colors.background.card};
-  border-bottom: 0.0625rem solid ${(props) => props.theme.colors.border.light};
-  padding: 1.5rem;
+  background: linear-gradient(135deg, #00a0c4 0%, #0077b6 50%, #005f8a 100%);
+  padding: 1.25rem 1.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  box-shadow:
+    0 0.25rem 1rem rgba(0, 119, 182, 0.3),
+    0 0.125rem 0.5rem rgba(0, 0, 0, 0.15);
 `;
 
 const DialogTitle = styled.h2`
   font-size: 1.25rem;
   font-weight: 700;
-  color: ${(props) => props.theme.colors.text.primary};
+  color: #ffffff;
   margin: 0;
   padding-right: 2rem;
+  text-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.2);
 `;
 
 const CloseButton = styled.button`
-  background: none;
+  background: rgba(255, 255, 255, 0.15);
   border: none;
   cursor: pointer;
   padding: 0.5rem;
-  color: ${(props) => props.theme.colors.text.tertiary};
-  transition: color 0.2s ease;
+  color: #ffffff;
+  transition: all 0.2s ease;
   border-radius: 50%;
+  backdrop-filter: blur(0.25rem);
 
   &:hover {
-    color: ${(props) => props.theme.colors.text.primary};
-    background: ${(props) => props.theme.colors.border.light};
+    background: rgba(255, 255, 255, 0.25);
+    transform: scale(1.05);
   }
 
   svg {
@@ -601,7 +709,13 @@ const calculateProgress = (raised: number, goal: number): number => {
 };
 
 const formatCurrency = (amount: number): string => {
-  return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(amount);
+  const rounded = Math.round(amount);
+  return new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  }).format(rounded);
 };
 
 const calculateImpactCount = (raisedAmount: number): number => {
@@ -642,6 +756,7 @@ Together, we can create lasting change. Your support enables us to continue this
 export const CampaignCard = ({ campaign, onClick: _onClick, onAddToBasket }: CampaignCardProps) => {
   const [isLiked, setIsLiked] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isExpanding, setIsExpanding] = useState(false);
   const [isStoryOpen, setIsStoryOpen] = useState(false);
   const [quantity, setQuantity] = useState(1);
 
@@ -649,15 +764,19 @@ export const CampaignCard = ({ campaign, onClick: _onClick, onAddToBasket }: Cam
   const categoryColor = campaign.category ? categoryColors[campaign.category] : '#6B7280';
   const impactCount = calculateImpactCount(campaign.raisedAmount);
   const impactLabel = campaign.impactLabel || 'Families Helped';
+  const isLimitedAvailability = campaign.fundingPercentage && campaign.fundingPercentage >= 90;
 
   const mediaGallery = campaign.mediaGallery || DEFAULT_MEDIA_GALLERY;
   const unitLabel = campaign.unitLabel || 'Donation';
   const pricePerUnit = campaign.unitPrice || 50;
   const totalCost = quantity * pricePerUnit;
+  const storyContent = campaign.storyContent || DEFAULT_STORY;
 
   const handleCardClick = useCallback(() => {
     if (!isExpanded) {
+      setIsExpanding(true);
       setIsExpanded(true);
+      setTimeout(() => setIsExpanding(false), 400);
     }
   }, [isExpanded]);
 
@@ -720,12 +839,21 @@ export const CampaignCard = ({ campaign, onClick: _onClick, onAddToBasket }: Cam
 
   return (
     <>
-      <Card $expanded={isExpanded} onClick={handleCardClick}>
+      <Card $expanded={isExpanded} $isExpanding={isExpanding} onClick={handleCardClick}>
         <ImageContainer>
-          <Image $imageUrl={campaign.featuredImageUrl || undefined} />
-          {campaign.category && (
-            <CategoryBadge $color={categoryColor}>{campaign.category}</CategoryBadge>
+          {isExpanded && CAMPAIGN_VIDEOS[campaign.title] ? (
+            <VideoImage src={CAMPAIGN_VIDEOS[campaign.title]} alt={`${campaign.title} video`} />
+          ) : (
+            <Image $imageUrl={campaign.featuredImageUrl || undefined} />
           )}
+          <BadgeContainer>
+            {campaign.category && (
+              <CategoryBadge $color={categoryColor}>{campaign.category}</CategoryBadge>
+            )}
+            {isLimitedAvailability && (
+              <LimitedAvailabilityBadge>Limited Availability</LimitedAvailabilityBadge>
+            )}
+          </BadgeContainer>
           <HeartButton $liked={isLiked} onClick={handleHeartClick}>
             <GivingAppLogo
               size={18}
@@ -733,6 +861,14 @@ export const CampaignCard = ({ campaign, onClick: _onClick, onAddToBasket }: Cam
               backColor={isLiked ? 'rgba(239, 68, 68, 0.3)' : 'rgba(0, 160, 196, 0.3)'}
             />
           </HeartButton>
+          {CAMPAIGN_VIDEOS[campaign.title] && !isExpanded && (
+            <VideoPlayIndicator>
+              <Play />
+            </VideoPlayIndicator>
+          )}
+          {CAMPAIGN_VIDEOS[campaign.title] && isExpanded && (
+            <VideoPlayingBadge>Video Playing</VideoPlayingBadge>
+          )}
         </ImageContainer>
         <Content>
           <Title>{campaign.title}</Title>
@@ -770,9 +906,19 @@ export const CampaignCard = ({ campaign, onClick: _onClick, onAddToBasket }: Cam
                 Raised: <strong>{formatCurrency(campaign.raisedAmount)}</strong>
               </MetricItem>
             </MetricsRow>
+            {campaign.unitLabel && (
+              <MetricsRow>
+                <MetricItem>
+                  Unit: <strong>{unitLabel}</strong>
+                </MetricItem>
+                <MetricItem>
+                  Price: <strong>{formatCurrency(pricePerUnit)}/ton</strong>
+                </MetricItem>
+              </MetricsRow>
+            )}
             <ImpactMetrics>
               <GivingAppLogo size={14} color="#00a0c4" backColor="rgba(0, 160, 196, 0.3)" />
-              {impactLabel}: {impactCount}
+              {impactLabel}: {impactCount.toLocaleString()}
             </ImpactMetrics>
           </ProgressSection>
 
@@ -864,7 +1010,7 @@ export const CampaignCard = ({ campaign, onClick: _onClick, onAddToBasket }: Cam
                 </GallerySection>
                 <StorySection>
                   <StorySectionTitle>Campaign Story</StorySectionTitle>
-                  <StoryText>{DEFAULT_STORY}</StoryText>
+                  <StoryText>{storyContent}</StoryText>
                 </StorySection>
               </DialogScrollContent>
             </DialogContent>

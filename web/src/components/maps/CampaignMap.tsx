@@ -291,6 +291,14 @@ export function CampaignMap({
     if (window.google) {
       initMap();
     } else {
+      const existingScript = document.querySelector(
+        'script[src*="maps.googleapis.com/maps/api/js"]'
+      );
+      if (existingScript) {
+        existingScript.addEventListener('load', initMap);
+        return;
+      }
+
       const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
       const script = document.createElement('script');
       script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places`;

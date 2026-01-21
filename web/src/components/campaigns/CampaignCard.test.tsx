@@ -84,7 +84,7 @@ describe('CampaignCard', () => {
 
     const { container } = renderWithTheme(<CampaignCard campaign={noDonationsCampaign} />);
 
-    expect(container.textContent).toContain('$0.00');
+    expect(container.textContent).toContain('$0');
   });
 
   it('displays campaign with full progress bar when raised equals goal', () => {

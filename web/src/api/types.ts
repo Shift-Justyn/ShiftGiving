@@ -69,6 +69,8 @@ export interface Campaign {
   unitLabel?: string;
   unitPrice?: number;
   impactLabel?: string;
+  fundingPercentage?: number;
+  storyContent?: string;
 }
 
 export interface CampaignOrganizationDetail {
