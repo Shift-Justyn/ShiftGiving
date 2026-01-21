@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc;
 using ShiftGiving.DTOs;
 using ShiftGiving.Services;
 
@@ -13,7 +14,7 @@ public static class OrganizationEndpoints
     }
 
     private static async Task<IResult> HandleGetOrganizations(
-        OrganizationService organizationService,
+        [FromServices] OrganizationService organizationService,
         int page = 1,
         int pageSize = 20,
         string? search = null)
@@ -29,7 +30,7 @@ public static class OrganizationEndpoints
         return new PaginationMeta { Page = page, PageSize = pageSize, TotalCount = totalCount, TotalPages = totalPages };
     }
 
-    private static async Task<IResult> HandleGetOrganizationById(Guid id, OrganizationService organizationService)
+    private static async Task<IResult> HandleGetOrganizationById(Guid id, [FromServices] OrganizationService organizationService)
     {
         var organization = await organizationService.GetOrganizationById(id);
         if (organization == null)
@@ -37,7 +38,7 @@ public static class OrganizationEndpoints
         return Results.Ok(ApiResponse<OrganizationDetailResponse>.SuccessResponse(organization));
     }
 
-    private static async Task<IResult> HandleGetOrganizationByCode(string code, OrganizationService organizationService)
+    private static async Task<IResult> HandleGetOrganizationByCode(string code, [FromServices] OrganizationService organizationService)
     {
         var organization = await organizationService.GetOrganizationByCode(code);
         if (organization == null)

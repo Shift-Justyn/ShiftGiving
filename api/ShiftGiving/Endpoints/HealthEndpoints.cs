@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc;
 using ShiftGiving.Data;
 
 namespace ShiftGiving.Endpoints;
@@ -10,7 +11,7 @@ public static class HealthEndpoints
         app.MapGet("/health", HandleHealthCheck);
     }
 
-    private static async Task<IResult> HandleHealthCheck(ShiftGivingDbContext db)
+    private static async Task<IResult> HandleHealthCheck([FromServices] ShiftGivingDbContext db)
     {
         var canConnect = await db.Database.CanConnectAsync();
         var response = CreateHealthResponse(canConnect);

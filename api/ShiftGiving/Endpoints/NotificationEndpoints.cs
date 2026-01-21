@@ -1,4 +1,5 @@
 using System.Security.Claims;
+using Microsoft.AspNetCore.Mvc;
 using ShiftGiving.DTOs;
 using ShiftGiving.Services;
 
@@ -15,7 +16,7 @@ public static class NotificationEndpoints
 
     private static async Task<IResult> HandleGetNotifications(
         HttpContext httpContext,
-        NotificationService notificationService,
+        [FromServices] NotificationService notificationService,
         int page = 1,
         int pageSize = 20)
     {
@@ -29,7 +30,7 @@ public static class NotificationEndpoints
 
     private static async Task<IResult> HandleGetUnreadCount(
         HttpContext httpContext,
-        NotificationService notificationService)
+        [FromServices] NotificationService notificationService)
     {
         var userId = ExtractUserIdFromClaims(httpContext);
         if (userId == Guid.Empty)
@@ -41,7 +42,7 @@ public static class NotificationEndpoints
     private static async Task<IResult> HandleMarkNotificationsRead(
         HttpContext httpContext,
         MarkNotificationsReadRequest request,
-        NotificationService notificationService)
+        [FromServices] NotificationService notificationService)
     {
         var userId = ExtractUserIdFromClaims(httpContext);
         if (userId == Guid.Empty)

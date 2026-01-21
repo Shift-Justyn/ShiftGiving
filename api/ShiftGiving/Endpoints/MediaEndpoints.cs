@@ -1,4 +1,5 @@
 using System.Security.Claims;
+using Microsoft.AspNetCore.Mvc;
 using ShiftGiving.DTOs;
 using ShiftGiving.Services;
 
@@ -17,7 +18,7 @@ public static class MediaEndpoints
     private static async Task<IResult> HandleUploadMedia(
         HttpContext httpContext,
         IFormFile file,
-        MediaService mediaService)
+        [FromServices] MediaService mediaService)
     {
         var userId = ExtractUserIdFromClaims(httpContext);
         if (userId == Guid.Empty)
@@ -30,7 +31,7 @@ public static class MediaEndpoints
         return Results.Created($"/api/media/{mediaAsset.Id}", ApiResponse<MediaAssetResponse>.SuccessResponse(mediaAsset));
     }
 
-    private static async Task<IResult> HandleGetMedia(Guid id, MediaService mediaService)
+    private static async Task<IResult> HandleGetMedia(Guid id, [FromServices] MediaService mediaService)
     {
         var filePath = await mediaService.GetMediaUrlAsync(id);
         var fileExtension = Path.GetExtension(filePath).ToLower();
@@ -42,7 +43,7 @@ public static class MediaEndpoints
     private static async Task<IResult> HandleDeleteMedia(
         Guid id,
         HttpContext httpContext,
-        MediaService mediaService)
+        [FromServices] MediaService mediaService)
     {
         var userId = ExtractUserIdFromClaims(httpContext);
         if (userId == Guid.Empty)
@@ -54,7 +55,7 @@ public static class MediaEndpoints
 
     private static async Task<IResult> HandleGeneratePresignedUrl(
         HttpContext httpContext,
-        MediaService mediaService)
+        [FromServices] MediaService mediaService)
     {
         var userId = ExtractUserIdFromClaims(httpContext);
         if (userId == Guid.Empty)

@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc;
 using ShiftGiving.DTOs;
 using ShiftGiving.Services;
 
@@ -12,7 +13,7 @@ public static class CampaignEndpoints
     }
 
     private static async Task<IResult> HandleGetCampaigns(
-        CampaignService campaignService,
+        [FromServices] CampaignService campaignService,
         int page = 1,
         int pageSize = 20,
         string? status = null,
@@ -31,7 +32,7 @@ public static class CampaignEndpoints
         return new PaginationMeta { Page = page, PageSize = pageSize, TotalCount = totalCount, TotalPages = totalPages };
     }
 
-    private static async Task<IResult> HandleGetCampaignById(Guid id, CampaignService campaignService)
+    private static async Task<IResult> HandleGetCampaignById(Guid id, [FromServices] CampaignService campaignService)
     {
         var campaign = await campaignService.GetCampaignById(id);
         if (campaign == null)

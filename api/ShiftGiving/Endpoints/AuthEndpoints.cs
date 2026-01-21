@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ShiftGiving.Data;
 using ShiftGiving.DTOs;
@@ -16,7 +17,7 @@ public static class AuthEndpoints
         app.MapPost("/api/auth/forgot-password", HandleForgotPassword);
     }
 
-    private static async Task<IResult> HandleRegister(RegisterRequest request, ShiftGivingDbContext db, AuthService authService)
+    private static async Task<IResult> HandleRegister(RegisterRequest request, [FromServices] ShiftGivingDbContext db, [FromServices] AuthService authService)
     {
         var existingUser = await db.Users.FirstOrDefaultAsync(u => u.Email == request.Email);
         if (existingUser != null)
@@ -51,7 +52,7 @@ public static class AuthEndpoints
         return Results.Created($"/api/users/{user.Id}", ApiResponse<AuthResponse>.SuccessResponse(authResponse));
     }
 
-    private static async Task<IResult> HandleLogin(LoginRequest request, ShiftGivingDbContext db, AuthService authService)
+    private static async Task<IResult> HandleLogin(LoginRequest request, [FromServices] ShiftGivingDbContext db, [FromServices] AuthService authService)
     {
         var user = await db.Users.FirstOrDefaultAsync(u => u.Email == request.Email);
         if (user == null || !authService.VerifyPassword(request.Password, user.PasswordHash))
@@ -69,7 +70,7 @@ public static class AuthEndpoints
         return Results.Ok(ApiResponse<AuthResponse>.SuccessResponse(authResponse));
     }
 
-    private static Task<IResult> HandleRefresh(RefreshTokenRequest request, ShiftGivingDbContext db, AuthService authService)
+    private static Task<IResult> HandleRefresh(RefreshTokenRequest request, [FromServices] ShiftGivingDbContext db, [FromServices] AuthService authService)
     {
         var newToken = authService.GenerateRefreshToken();
         var newRefreshToken = authService.GenerateRefreshToken();
@@ -77,7 +78,7 @@ public static class AuthEndpoints
         return Task.FromResult(Results.Ok(ApiResponse<object>.SuccessResponse(tokenResponse)));
     }
 
-    private static async Task<IResult> HandleForgotPassword(ForgotPasswordRequest request, ShiftGivingDbContext db)
+    private static async Task<IResult> HandleForgotPassword(ForgotPasswordRequest request, [FromServices] ShiftGivingDbContext db)
     {
         var user = await db.Users.FirstOrDefaultAsync(u => u.Email == request.Email);
         var message = new { message = "Password reset email sent" };

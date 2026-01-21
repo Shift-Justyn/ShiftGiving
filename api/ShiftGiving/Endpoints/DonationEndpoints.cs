@@ -1,4 +1,5 @@
 using System.Security.Claims;
+using Microsoft.AspNetCore.Mvc;
 using ShiftGiving.DTOs;
 using ShiftGiving.Services;
 
@@ -18,7 +19,7 @@ public static class DonationEndpoints
     private static async Task<IResult> HandleCreateDonation(
         HttpContext httpContext,
         CreateDonationRequest request,
-        DonationService donationService)
+        [FromServices] DonationService donationService)
     {
         var userId = ExtractUserIdFromClaims(httpContext);
         if (userId == Guid.Empty)
@@ -33,7 +34,7 @@ public static class DonationEndpoints
         return Guid.TryParse(userIdClaim, out var userId) ? userId : Guid.Empty;
     }
 
-    private static async Task<IResult> HandleGetDonationById(Guid id, DonationService donationService)
+    private static async Task<IResult> HandleGetDonationById(Guid id, [FromServices] DonationService donationService)
     {
         var donation = await donationService.GetDonationById(id);
         if (donation == null)
@@ -43,7 +44,7 @@ public static class DonationEndpoints
 
     private static async Task<IResult> HandleGetDonationsByUser(
         Guid userId,
-        DonationService donationService,
+        [FromServices] DonationService donationService,
         int page = 1,
         int pageSize = 20)
     {
@@ -54,7 +55,7 @@ public static class DonationEndpoints
 
     private static async Task<IResult> HandleGetDonationsByCampaign(
         Guid campaignId,
-        DonationService donationService,
+        [FromServices] DonationService donationService,
         int page = 1,
         int pageSize = 20)
     {
@@ -63,7 +64,7 @@ public static class DonationEndpoints
         return Results.Ok(ApiResponse<List<DonationResponse>>.SuccessResponse(donations, meta));
     }
 
-    private static async Task<IResult> HandleGetDonationSummary(Guid campaignId, DonationService donationService)
+    private static async Task<IResult> HandleGetDonationSummary(Guid campaignId, [FromServices] DonationService donationService)
     {
         var summary = await donationService.GetDonationSummaryByCampaign(campaignId);
         return Results.Ok(ApiResponse<DonationSummary>.SuccessResponse(summary));
