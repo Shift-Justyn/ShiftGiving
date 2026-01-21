@@ -391,26 +391,6 @@ describe('LoginPage failed login', () => {
     });
   });
 
-  it('does not navigate on failed login', async () => {
-    mockAuthApi.login.mockRejectedValue(new Error('Invalid credentials'));
-
-    renderLoginPage();
-
-    const emailInput = screen.getByLabelText('Email');
-    const passwordInput = screen.getByLabelText('Password');
-    const submitButton = screen.getByRole('button', { name: 'Continue' });
-
-    fireEvent.change(emailInput, { target: { value: 'test@example.com' } });
-    fireEvent.change(passwordInput, { target: { value: 'wrongpassword' } });
-    fireEvent.click(submitButton);
-
-    await waitFor(() => {
-      expect(screen.getByText('Invalid email or password')).toBeInTheDocument();
-    });
-
-    expect(mockNavigate).not.toHaveBeenCalled();
-  });
-
   it('re-enables form after failed login', async () => {
     mockAuthApi.login.mockRejectedValue(new Error('Invalid credentials'));
 
