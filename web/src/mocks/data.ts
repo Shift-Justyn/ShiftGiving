@@ -68,6 +68,24 @@ const organizations: Organization[] = [
     latitude: 45.5152,
     longitude: -122.6784,
     category: 'Animals',
+    locations: [
+      { name: 'Portland, OR (Headquarters)', latitude: 45.5152, longitude: -122.6784 },
+      { name: 'Dothan, AL', latitude: 31.2232, longitude: -85.3905 },
+      { name: 'Cincinnati, OH', latitude: 39.1031, longitude: -84.512 },
+      { name: 'Kansas City, MO', latitude: 39.0997, longitude: -94.5786 },
+      { name: 'Fargo, ND', latitude: 46.8772, longitude: -96.7898 },
+    ],
+  },
+  {
+    id: '88888888-8888-8888-8888-888888888888',
+    name: 'Ocean Restoration Coalition',
+    description:
+      'Dedicated to revitalizing marine ecosystems through cutting-edge restoration projects. 501(c)(3) nonprofit.',
+    logoUrl: '/images/campaigns/kelp/kelp-forest-main.png',
+    campaignCount: 1,
+    latitude: 44.6,
+    longitude: -124.5,
+    category: 'Environment',
   },
   {
     id: '33333333-3333-3333-3333-333333333333',
@@ -98,6 +116,12 @@ const organizations: Organization[] = [
     latitude: 41.8781,
     longitude: -87.6298,
     category: 'Education',
+    locations: [
+      { name: 'Chicago, IL (Headquarters)', latitude: 41.8781, longitude: -87.6298 },
+      { name: 'Denver, CO', latitude: 39.7392, longitude: -104.9903 },
+      { name: 'Las Vegas, NV', latitude: 36.1699, longitude: -115.1398 },
+      { name: 'San Diego, CA', latitude: 32.7157, longitude: -117.1611 },
+    ],
   },
   {
     id: '66666666-6666-6666-6666-666666666666',
@@ -119,17 +143,6 @@ const organizations: Organization[] = [
     latitude: 41.5868,
     longitude: -93.625,
     category: 'Health',
-  },
-  {
-    id: '88888888-8888-8888-8888-888888888888',
-    name: 'Ocean Restoration Coalition',
-    description:
-      'Dedicated to revitalizing marine ecosystems through cutting-edge restoration projects. 501(c)(3) nonprofit.',
-    logoUrl: '/images/campaigns/kelp/kelp-forest-main.png',
-    campaignCount: 1,
-    latitude: 44.6,
-    longitude: -124.5,
-    category: 'Environment',
   },
   {
     id: '99999999-9999-9999-9999-999999999999',
@@ -162,6 +175,8 @@ const campaigns: Campaign[] = [
     endDate: new Date(Date.now() + 14 * 24 * 60 * 60 * 1000).toISOString(),
     category: 'Environment',
     location: 'Oregon Coast, USA',
+    latitude: 44.6,
+    longitude: -124.5,
     unitLabel: '1 ton CO₂ Offset',
     unitPrice: 25,
     impactLabel: 'Acres Protected',
@@ -218,9 +233,24 @@ As sunbeams pierce the water's surface and dance across rising strands of kelp, 
     endDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(),
     category: 'Animals',
     location: 'Portland, OR',
+    latitude: 45.5152,
+    longitude: -122.6784,
+    locations: [
+      { name: 'Portland, OR (Headquarters)', latitude: 45.5152, longitude: -122.6784 },
+      { name: 'Cincinnati, OH', latitude: 39.1031, longitude: -84.512 },
+      { name: 'Kansas City, MO', latitude: 39.0997, longitude: -94.5786 },
+      { name: 'Fargo, ND', latitude: 46.8772, longitude: -96.7898 },
+    ],
     unitLabel: 'Help One Pet',
     unitPrice: 25,
     impactLabel: 'Animals Helped',
+    storyContent: `Our shelter is bursting at the seams with rescued animals waiting for forever homes. With your support, we can build a new wing that will house 150 additional dogs, cats, and small animals.
+
+Each rescued animal receives veterinary care, behavioral training, and endless love from our dedicated staff. The expansion includes a state-of-the-art medical facility, climate-controlled kennels, and a socialization area where shy animals can learn to trust again.
+
+Last year alone, we turned away over 200 animals due to space constraints. This expansion means no more heartbreaking decisions about which animals we can save.
+
+Every donation brings us closer to a future where no animal is turned away from safety and love.`,
   },
   {
     id: 'c8888888-8888-8888-8888-888888888888',
@@ -237,10 +267,17 @@ As sunbeams pierce the water's surface and dance across rising strands of kelp, 
     },
     endDate: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000).toISOString(),
     category: 'Animals',
-    location: 'Portland, OR',
+    location: 'Dothan, AL',
+    latitude: 31.2232,
+    longitude: -85.3905,
     unitLabel: 'Warming Station',
     unitPrice: 75,
     impactLabel: 'Pets Helped',
+    storyContent: `When temperatures plummet below freezing, homeless and outdoor animals face life-threatening conditions. Our Winter Warming Station program deploys heated shelters, thermal blankets, and emergency food supplies to vulnerable animals across the Pacific Northwest.
+
+Our rapid response teams work around the clock during winter storms, rescuing animals from dangerous conditions and providing immediate medical care for hypothermia and frostbite. Each warming station can protect up to 10 animals from the deadly cold.
+
+We partner with local businesses and homeowners to create a network of safe havens. Your donation provides the heating equipment, insulated bedding, high-calorie food, and veterinary supplies that keep animals alive through the harshest months.`,
   },
   {
     id: 'c9999999-9999-9999-9999-999999999999',
@@ -258,14 +295,24 @@ As sunbeams pierce the water's surface and dance across rising strands of kelp, 
     endDate: new Date(Date.now() + 45 * 24 * 60 * 60 * 1000).toISOString(),
     category: 'Community',
     location: 'Austin, TX',
+    latitude: 30.2672,
+    longitude: -97.7431,
+    locations: [
+      { name: 'Austin, TX (Headquarters)', latitude: 30.2672, longitude: -97.7431 },
+      { name: 'Broken Arrow, OK', latitude: 36.0526, longitude: -95.7975 },
+      { name: 'Tampa, FL', latitude: 27.9506, longitude: -82.4572 },
+      { name: 'Cincinnati, OH', latitude: 39.1031, longitude: -84.512 },
+    ],
     unitLabel: 'Help 5 People',
     unitPrice: 25,
     impactLabel: 'Families Helped',
-    storyContent: `Grace Community Church is expanding its community outreach initiatives to serve more families in need.
+    storyContent: `Grace Community Church has been a beacon of hope in Austin for over three decades, and now we are expanding our reach to serve more neighbors in need.
 
-We serve meals, provide counseling, and offer educational workshops to underserved populations. Your donation helps us reach more families and provide critical support services.
+Our Community Outreach Program provides hot meals, professional counseling, job training workshops, and emergency financial assistance to families facing hardship. Every week, our dedicated volunteers prepare and serve over 500 nutritious meals in our community kitchen.
 
-Every contribution makes a direct impact on the lives of those we serve, bringing hope and resources to our neighbors who need it most.`,
+Our counseling center offers free sessions with licensed therapists, helping individuals navigate grief, addiction recovery, and family challenges. The job training program has helped 127 participants find stable employment in the past year alone.
+
+With your support, we can open a new outreach center in East Austin, hire additional staff, and double the number of families we serve.`,
     mediaGallery: [
       {
         type: 'image',
@@ -301,6 +348,8 @@ Every contribution makes a direct impact on the lives of those we serve, bringin
     endDate: new Date(Date.now() + 21 * 24 * 60 * 60 * 1000).toISOString(),
     category: 'Environment',
     location: 'Amazon Basin, Brazil',
+    latitude: -3.4653,
+    longitude: -62.2159,
     unitLabel: '1 ton CO₂ Offset',
     unitPrice: 20,
     impactLabel: 'Acres Protected',
@@ -355,9 +404,22 @@ For Maria, João, Luciana, and the entire Santo Antônio community, this conserv
     endDate: new Date(Date.now() + 10 * 24 * 60 * 60 * 1000).toISOString(),
     category: 'Education',
     location: 'Chicago, IL',
+    latitude: 41.8781,
+    longitude: -87.6298,
+    locations: [
+      { name: 'Chicago, IL (Headquarters)', latitude: 41.8781, longitude: -87.6298 },
+      { name: 'Denver, CO', latitude: 39.7392, longitude: -104.9903 },
+      { name: 'Las Vegas, NV', latitude: 36.1699, longitude: -115.1398 },
+      { name: 'San Diego, CA', latitude: 32.7157, longitude: -117.1611 },
+    ],
     unitLabel: 'Help 10 Kids',
     unitPrice: 50,
     impactLabel: 'Youth Helped',
+    storyContent: `Education is the great equalizer, yet thousands of talented students in Chicago lack the financial resources to pursue their dreams. Our Scholarship Fund provides comprehensive support for underprivileged youth, covering not just tuition but books, laptops, transportation, and living expenses.
+
+We currently have 25 exceptional students waiting to start college this fall—young people who have overcome tremendous obstacles and maintained outstanding academic records. Many are the first in their families to attend college.
+
+Beyond financial support, our program pairs each scholar with a professional mentor who provides guidance on career paths, internship opportunities, and professional development. Last year, 94% of our scholars graduated on time, and 89% secured employment or graduate school placement within six months of graduation.`,
   },
   {
     id: 'cbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb',
@@ -375,9 +437,16 @@ For Maria, João, Luciana, and the entire Santo Antônio community, this conserv
     endDate: new Date(Date.now() + 20 * 24 * 60 * 60 * 1000).toISOString(),
     category: 'Community',
     location: 'Seattle, WA',
+    latitude: 47.6062,
+    longitude: -122.3321,
     unitLabel: 'Feed a Family',
     unitPrice: 35,
     impactLabel: 'Families Fed',
+    storyContent: `Food insecurity affects one in eight families in the Seattle metro area, and demand at City Food Bank continues to surge. Currently serving 5,000 families weekly, we need to expand our distribution network to reach an additional 2,000 households in underserved neighborhoods.
+
+Our plan includes three new mobile distribution points, a refrigerated delivery truck for perishables, and partnerships with 15 additional grocery stores for food rescue. Each family receives a week's worth of nutritious food including fresh produce, proteins, dairy, and pantry staples.
+
+We also provide culturally appropriate foods, recognizing the diverse communities we serve. Our volunteer network of 200+ dedicated individuals ensures that food reaches families with dignity and respect. No family should have to choose between food and other basic necessities.`,
   },
   {
     id: 'cccccccc-cccc-cccc-cccc-cccccccccccc',
@@ -395,6 +464,18 @@ For Maria, João, Luciana, and the entire Santo Antônio community, this conserv
     endDate: new Date(Date.now() + 60 * 24 * 60 * 60 * 1000).toISOString(),
     category: 'Health',
     location: 'Miami, FL',
+    latitude: 25.7617,
+    longitude: -80.1918,
+    unitLabel: 'Medical Kit',
+    unitPrice: 100,
+    impactLabel: 'Lives Supported',
+    storyContent: `When disaster strikes, every minute counts. Disaster Relief International maintains emergency stockpiles of life-saving medical supplies ready for immediate deployment anywhere in the world.
+
+Our kits include trauma supplies, medications, surgical equipment, clean water purification systems, and portable medical shelters. In the past year alone, we've responded to 23 natural disasters across 15 countries, providing medical care to over 50,000 people.
+
+Our trained medical teams can be on the ground within 48 hours of a disaster declaration. Your donation helps us replenish our stockpiles, maintain our fleet of emergency response vehicles, and train local volunteers who serve as first responders in their communities.
+
+When hurricanes, earthquakes, or floods strike, we are ready—but only with your continued support.`,
   },
   {
     id: 'cddddddd-dddd-dddd-dddd-dddddddddddd',
@@ -411,7 +492,19 @@ For Maria, João, Luciana, and the entire Santo Antônio community, this conserv
     },
     endDate: new Date(Date.now() + 6 * 24 * 60 * 60 * 1000).toISOString(),
     category: 'Education',
-    location: 'Chicago, IL',
+    location: 'Denver, CO',
+    latitude: 39.7392,
+    longitude: -104.9903,
+    unitLabel: 'Tech Training',
+    unitPrice: 40,
+    impactLabel: 'Students Trained',
+    storyContent: `The tech industry is booming, but underserved youth often lack access to the training and resources needed to break into this high-paying field. Our Youth Tech Training Initiative provides free 12-week coding bootcamps, laptops, and mentorship to young people ages 16-24 from low-income families.
+
+Students learn in-demand skills including JavaScript, Python, web development, and data analysis. But we go beyond technical skills—our program includes resume building, interview preparation, and direct connections to hiring partners.
+
+Our graduates have been hired by companies including Google, Microsoft, and numerous local startups. With a 78% job placement rate and an average starting salary of $52,000, this program is transforming lives and breaking the cycle of poverty.
+
+Your support provides equipment, curriculum materials, and instructor salaries.`,
   },
   {
     id: 'ceeeeeee-eeee-eeee-eeee-eeeeeeeeeeee',
@@ -428,7 +521,25 @@ For Maria, João, Luciana, and the entire Santo Antônio community, this conserv
     },
     endDate: new Date(Date.now() + 35 * 24 * 60 * 60 * 1000).toISOString(),
     category: 'Environment',
-    location: 'Seattle, WA',
+    location: 'Tacoma, WA',
+    latitude: 47.2529,
+    longitude: -122.4443,
+    locations: [
+      { name: 'Tacoma, WA (Headquarters)', latitude: 47.2529, longitude: -122.4443 },
+      { name: 'Baltimore, MD', latitude: 39.2904, longitude: -76.6122 },
+      { name: 'Charlotte, NC', latitude: 35.2271, longitude: -80.8431 },
+      { name: 'Boston, MA', latitude: 42.3601, longitude: -71.0589 },
+    ],
+    unitLabel: 'Garden Plot',
+    unitPrice: 30,
+    impactLabel: 'Gardens Created',
+    storyContent: `In food deserts across Seattle, families often have to travel miles to find fresh vegetables and fruits. Our Community Gardens initiative is changing that by transforming vacant lots into thriving urban farms.
+
+We are establishing 10 new gardens in underserved neighborhoods, each producing thousands of pounds of organic produce annually. Beyond providing fresh food, these gardens create green spaces where neighbors connect, children learn where food comes from, and community bonds strengthen.
+
+Our job training program teaches sustainable agriculture skills, preparing participants for careers in urban farming and landscaping. Each garden plot is maintained by local volunteers who take home a share of the harvest.
+
+Your donation funds seeds, soil amendments, irrigation systems, tools, and garden coordinator salaries.`,
   },
   {
     id: 'cfffffff-ffff-ffff-ffff-ffffffffffff',
@@ -445,12 +556,19 @@ For Maria, João, Luciana, and the entire Santo Antônio community, this conserv
     },
     endDate: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000).toISOString(),
     category: 'Health',
-    location: 'Des Moines, IA',
-    storyContent: `Cancer Screen Iowa is a statewide public-private partnership dedicated to increasing early cancer detection across Iowa.
+    location: 'Phoenix, AZ',
+    latitude: 33.4484,
+    longitude: -112.074,
+    unitLabel: 'Screening',
+    unitPrice: 50,
+    impactLabel: 'Screenings Funded',
+    storyContent: `Early detection saves lives. Cancer Screen Iowa brings life-saving cancer screenings directly to underserved communities across the state through our mobile screening units.
 
-Every Birthday Matters is our flagship initiative, reaching communities throughout Iowa with mobile screening units and educational outreach. Early detection saves lives.
+Many Iowans lack access to regular healthcare due to distance, cost, or work schedules. Our "Every Birthday Matters" program provides free mammograms, colonoscopies, skin cancer checks, and lung cancer screenings to anyone who needs them, regardless of ability to pay.
 
-Your support funds screening equipment, community health navigators, and follow-up care coordination for underserved populations.`,
+We deploy our medical vans to rural communities, workplaces, and community centers, removing barriers that prevent people from getting screened. Each screening includes follow-up care coordination with local healthcare providers.
+
+Last year, we performed over 3,000 screenings and detected 47 cancers at early, treatable stages. Your donation provides screening equipment, medical supplies, fuel for our mobile units, and salaries for our healthcare professionals.`,
     mediaGallery: [
       {
         type: 'image',
@@ -459,8 +577,18 @@ Your support funds screening equipment, community health navigators, and follow-
       },
       {
         type: 'image',
-        url: '/images/media/gallery-community-support.jpg',
-        caption: 'Community health outreach',
+        url: '/images/campaigns/cancer-screening/mobile-screening-unit.jpg',
+        caption: 'Mobile cancer screening unit',
+      },
+      {
+        type: 'image',
+        url: '/images/campaigns/cancer-screening/medical-professional-screening.jpg',
+        caption: 'Medical professional conducting screening',
+      },
+      {
+        type: 'image',
+        url: '/images/campaigns/cancer-screening/community-health-outreach.jpg',
+        caption: 'Community health education outreach',
       },
     ],
   },
@@ -480,15 +608,19 @@ Your support funds screening equipment, community health navigators, and follow-
     endDate: new Date(Date.now() + 60 * 24 * 60 * 60 * 1000).toISOString(),
     category: 'Community',
     location: 'West Des Moines, IA',
+    latitude: 41.5772,
+    longitude: -93.7113,
     unitLabel: 'Pantry Bundle',
     unitPrice: 25,
     impactLabel: 'Families Served',
     fundingPercentage: 88,
-    storyContent: `The Pantry at Hope is a resource for neighbors who need help putting food on the table.
+    storyContent: `The Pantry at Hope serves as a lifeline for hundreds of families in the West Des Moines area who struggle to put food on the table. Open three days a week, our welcoming volunteers greet every guest with dignity and respect, helping them select from a wide variety of nutritious foods.
 
-Your donation keeps shelves stocked with pantry staples and everyday essentials, and it supports volunteers who welcome guests with dignity and care.
+We offer fresh produce, proteins, dairy, and shelf-stable staples—everything a family needs for balanced meals. Last year, we distributed over 50,000 pounds of food to our neighbors in need. Each Pantry Bundle provides a week's worth of groceries for a family of four, carefully curated to include balanced nutrition and culturally appropriate options.
 
-Every Pantry Bundle helps provide consistent, practical support so families can focus on what matters most: stability, health, and hope.`,
+Beyond food, we also offer diapers, personal care items, and household essentials because we understand that food insecurity is just one piece of the puzzle. Many families come to us during unexpected crises—job loss, medical emergencies, or other hardships that can happen to anyone.
+
+Your support keeps our shelves stocked and our doors open to anyone who walks through. Every donation, no matter the size, makes a tangible difference in the life of a neighbor.`,
     mediaGallery: [
       {
         type: 'image',
@@ -523,29 +655,23 @@ Every Pantry Bundle helps provide consistent, practical support so families can 
     endDate: new Date(Date.now() + 45 * 24 * 60 * 60 * 1000).toISOString(),
     category: 'Community',
     location: 'West Des Moines, IA',
+    latitude: 41.5772,
+    longitude: -93.7113,
     unitLabel: 'Meal Sponsor',
     unitPrice: 15,
     impactLabel: 'Community Meals',
-    storyContent: `Café Hope is a welcoming place to meet, work, and connect over coffee and food.
+    storyContent: `Café Hope is more than just a coffee shop—it's a community gathering space where every latte and sandwich fuels meaningful change. Located in the heart of Lutheran Church of Hope's campus, our café welcomes neighbors for conversation, connection, and nourishment.
 
-Every purchase supports mission partners, turning everyday moments into meaningful impact.
+All proceeds support Hope's mission partners, both locally and around the world, making every purchase an act of generosity. From supporting clean water projects in developing nations to funding after-school programs for at-risk youth, your Meal Sponsor donation extends our reach far beyond West Des Moines.
 
-Meal Sponsors help keep the doors open and extend Hope's reach through local and global partnerships.`,
+Our trained baristas craft specialty drinks using ethically sourced beans, while our kitchen team prepares fresh, wholesome meals daily. Whether you're meeting a friend, working remotely, or just grabbing a quick bite, Café Hope invites you to be part of something bigger.
+
+Every cup of coffee, every meal purchased, every Meal Sponsor donation creates ripples of positive change that touch lives across the globe. Join us in turning everyday moments into lasting impact.`,
     mediaGallery: [
       {
         type: 'image',
         url: '/images/campaigns/hope/cafe-hope.png',
         caption: 'Café Hope',
-      },
-      {
-        type: 'image',
-        url: '/images/media/gallery-donation-collection.jpg',
-        caption: 'Supporting mission partners together',
-      },
-      {
-        type: 'image',
-        url: '/images/media/gallery-community-support.jpg',
-        caption: 'A place to gather',
       },
     ],
   },
@@ -565,15 +691,19 @@ Meal Sponsors help keep the doors open and extend Hope's reach through local and
     endDate: new Date(Date.now() + 120 * 24 * 60 * 60 * 1000).toISOString(),
     category: 'Community',
     location: 'Tijuana, Mexico',
+    latitude: 32.5149,
+    longitude: -117.0382,
     unitLabel: 'Build Day',
     unitPrice: 100,
     impactLabel: 'Build Hours',
     fundingPercentage: 91,
-    storyContent: `Homes of Hope partners with Youth With A Mission to build a home alongside a family in need.
+    storyContent: `In the hills surrounding Tijuana, Mexico, thousands of families live in makeshift shelters cobbled together from pallets, tarps, and discarded materials. Through our partnership with Youth With A Mission (YWAM), teams from Hope travel to Mexico to build simple but sturdy homes alongside the families who will live in them.
 
-Support covers materials, logistics, and team preparation so the work is safe, organized, and focused on relationship as much as construction.
+In just two days, a team of 12 volunteers can construct a complete house—concrete floors, wooden frame, weatherproof roof, windows, and a door with a lock. For many families, it's the first time they've ever had a front door.
 
-Each Build Day moves a family closer to a stable home and a stronger future.`,
+Beyond the physical structure, something profound happens when a family works shoulder-to-shoulder with volunteers from Iowa. Relationships form, prayers are shared, and hope is restored.
+
+Your Build Day donation covers materials, tools, transportation, and team preparation, ensuring every volunteer is ready to serve safely and effectively.`,
     mediaGallery: [
       {
         type: 'image',
@@ -613,14 +743,16 @@ Each Build Day moves a family closer to a stable home and a stronger future.`,
     endDate: new Date(Date.now() + 75 * 24 * 60 * 60 * 1000).toISOString(),
     category: 'Community',
     location: 'West Des Moines, IA',
+    latitude: 41.5772,
+    longitude: -93.7113,
     unitLabel: 'Meal Kit',
     unitPrice: 20,
     impactLabel: 'Meals Packed',
-    storyContent: `Thanksgiving Meal Packaging brings volunteers together to assemble meal kits for families facing hunger during the holiday season.
+    storyContent: `The holiday season should be a time of warmth and togetherness, but for many families in central Iowa, Thanksgiving can highlight just how difficult times have become. Our Thanksgiving Meal Packaging event brings together hundreds of volunteers who assemble complete holiday meal kits for families facing food insecurity.
 
-Meal Kits sponsor ingredients, packaging supplies, and distribution through trusted partners.
+Each Meal Kit includes a turkey or ham, stuffing mix, mashed potatoes, gravy, green beans, cranberry sauce, rolls, and pumpkin pie—everything needed for a traditional feast. Last year, we packaged and distributed over 1,500 complete meals to families throughout the Des Moines metro area.
 
-Your support helps families experience care and community when it matters most.`,
+Beyond the food itself, each kit includes a note of encouragement and information about additional resources available through Hope. Your donation covers the cost of food, packaging supplies, and distribution logistics, ensuring that no family sits at an empty table this Thanksgiving.`,
     mediaGallery: [
       {
         type: 'image',
@@ -660,14 +792,18 @@ Your support helps families experience care and community when it matters most.`
     endDate: new Date(Date.now() + 25 * 24 * 60 * 60 * 1000).toISOString(),
     category: 'Community',
     location: 'West Des Moines, IA',
+    latitude: 41.5772,
+    longitude: -93.7113,
     unitLabel: 'Bag of Groceries',
     unitPrice: 18,
     impactLabel: 'Pantry Donations',
-    storyContent: `Souper Bowl season is a chance to rally together and stock local pantries with food and essential items.
+    storyContent: `While millions gather to watch the big game, we're tackling a different kind of challenge: hunger in our community. The Souper Bowl Food Drive transforms football season into a season of giving by collecting nonperishable food items and essential goods for local pantries.
 
-Each Bag of Groceries helps provide practical support for neighbors, from pantry staples to household essentials.
+This friendly competition encourages families, small groups, and organizations to fill grocery bags with items like canned soups, vegetables, pasta, peanut butter, cereal, and toiletries. Last year's drive collected over 8,000 pounds of food, enough to stock multiple food pantries for weeks.
 
-Together, we can turn a simple drive into steady help for families across our community.`,
+Each Bag of Groceries you sponsor provides practical help for a neighbor in need—someone who might be choosing between paying rent and buying food. The items go directly to The Pantry at Hope and partner organizations throughout the Des Moines metro.
+
+It's a simple concept: score a touchdown against hunger, one can at a time.`,
     mediaGallery: [
       {
         type: 'image',
@@ -707,14 +843,18 @@ Together, we can turn a simple drive into steady help for families across our co
     endDate: new Date(Date.now() + 40 * 24 * 60 * 60 * 1000).toISOString(),
     category: 'Education',
     location: 'West Des Moines, IA',
+    latitude: 41.5772,
+    longitude: -93.7113,
     unitLabel: 'Supply Kit',
     unitPrice: 30,
     impactLabel: 'Students Supported',
-    storyContent: `Back-to-School Drive helps students start the year prepared with supplies, snacks, and support.
+    storyContent: `Every child deserves to walk into their classroom on the first day of school feeling confident and prepared. Our Back-to-School Drive ensures that students from low-income families have the supplies they need to succeed.
 
-Supply Kits fund practical items that remove barriers for students and help classrooms stay stocked through the year.
+Each Supply Kit contains grade-appropriate items including a quality backpack, notebooks, pencils, pens, crayons, markers, scissors, glue sticks, rulers, folders, and more. We also include healthy snacks and water bottles because learning is hard on an empty stomach.
 
-Your support helps students walk into school with confidence and the tools they need to learn.`,
+Last year, we equipped over 600 students across a dozen schools in the West Des Moines and surrounding areas. Teachers tell us that students who receive these kits participate more actively in class and feel less anxiety about being different from their peers.
+
+Your donation removes a barrier to learning and sends a powerful message to every child: you matter, and we believe in you.`,
     mediaGallery: [
       {
         type: 'image',
@@ -1158,21 +1298,6 @@ For Maria, João, Luciana, and the entire Santo Antônio community, this conserv
         type: 'image',
         url: '/images/campaigns/hope/cafe-hope.png',
         caption: 'Café Hope',
-      },
-      {
-        type: 'image',
-        url: '/images/media/gallery-donation-collection.jpg',
-        caption: 'Supporting mission partners together',
-      },
-      {
-        type: 'image',
-        url: '/images/media/gallery-community-support.jpg',
-        caption: 'A place to gather',
-      },
-      {
-        type: 'image',
-        url: '/images/media/gallery-volunteers.jpg',
-        caption: 'Serving the community',
       },
     ],
   },

@@ -125,7 +125,7 @@ declare global {
 const MapSection = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0;
 `;
 
 const MapWrapper = styled.div`
@@ -160,53 +160,6 @@ const LoadingOverlay = styled.div`
 const LoadingText = styled.div`
   color: ${(props) => props.theme.colors.text.secondary};
   font-size: 0.875rem;
-`;
-
-const Legend = styled.div`
-  background: ${(props) => props.theme.colors.background.card};
-  border-radius: 0.5rem;
-  padding: 1rem 1.25rem;
-  border: 0.0625rem solid ${(props) => props.theme.colors.border.light};
-`;
-
-const LegendTitle = styled.h3`
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: ${(props) => props.theme.colors.text.primary};
-  margin: 0 0 0.75rem 0;
-`;
-
-const LegendGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0.5rem;
-
-  @media (min-width: 640px) {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  @media (min-width: 768px) {
-    grid-template-columns: repeat(5, 1fr);
-  }
-`;
-
-const LegendItem = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-`;
-
-const LegendDot = styled.div<{ $color: string }>`
-  width: 0.75rem;
-  height: 0.75rem;
-  border-radius: 50%;
-  background-color: ${(props) => props.$color};
-  flex-shrink: 0;
-`;
-
-const LegendLabel = styled.span`
-  font-size: 0.75rem;
-  color: ${(props) => props.theme.colors.text.secondary};
 `;
 
 const CATEGORY_COLORS: Record<string, string> = {
@@ -318,116 +271,229 @@ export function CampaignMap({
     }
   }, []);
 
-  // Create markers
+  // Create markers - one per campaign location (campaigns can have multiple locations)
   const createMarkers = useCallback(() => {
-    if (!googleMapRef.current || organizations.length === 0) return;
+    if (!googleMapRef.current || campaigns.length === 0) return;
 
     // Clear existing markers
     markersRef.current.forEach((marker) => marker.setMap(null));
     markersRef.current = [];
 
-    organizations.forEach((org) => {
-      if (!org.latitude || !org.longitude) return;
+    const formatCurrency = (amount: number): string => {
+      if (amount >= 1000) {
+        return `$${(amount / 1000).toFixed(amount % 1000 === 0 ? 0 : 1)}k`;
+      }
+      return `$${amount}`;
+    };
 
-      const color = getCategoryColor(org.category);
-      const orgCampaigns = campaigns.filter((c) => c.organization.id === org.id);
-      const firstCampaign = orgCampaigns[0];
+    campaigns.forEach((campaign) => {
+      const org = organizations.find((o) => o.id === campaign.organization.id);
+      const color = getCategoryColor(campaign.category || org?.category);
+      const orgName = org?.name || campaign.organization.name;
+      const orgId = org?.id || campaign.organization.id;
 
-      const marker = new window.google.maps.Marker({
-        position: new window.google.maps.LatLng(org.latitude, org.longitude),
-        map: googleMapRef.current || undefined,
-        title: org.name,
-        icon: {
-          path: window.google.maps.SymbolPath.CIRCLE as unknown as string,
-          scale: Math.max(zoomLevel > 1 ? 12 : 8, 8),
-          fillColor: color,
-          fillOpacity: 0.9,
-          strokeColor: '#ffffff',
-          strokeWeight: 3,
-          anchor: new window.google.maps.Point(0, 0),
-        },
-        animation: window.google.maps.Animation.DROP,
-      });
+      // Get all locations for this campaign
+      const campaignLocations =
+        campaign.locations && campaign.locations.length > 0
+          ? campaign.locations
+          : campaign.latitude && campaign.longitude
+            ? [
+                {
+                  name: campaign.location || 'Location',
+                  latitude: campaign.latitude,
+                  longitude: campaign.longitude,
+                },
+              ]
+            : org?.latitude && org?.longitude
+              ? [{ name: org.name, latitude: org.latitude, longitude: org.longitude }]
+              : [];
 
-      const infoContent = `
-        <div style="padding: 0.5rem; min-width: 180px; font-family: 'Montserrat', sans-serif;">
-          <h3 style="margin: 0 0 0.5rem 0; color: ${color}; font-size: 1rem; font-weight: 600;">${org.name}</h3>
-          <p style="margin: 0 0 0.5rem 0; font-size: 0.75rem; color: #666;">${org.campaignCount} campaign${org.campaignCount !== 1 ? 's' : ''}</p>
-          <div style="display: flex; gap: 0.5rem;">
-            <button
-              id="view-org-${org.id}"
-              style="
-                flex: 1;
-                padding: 0.375rem 0.5rem;
-                background-color: transparent;
-                color: ${color};
-                border: 1px solid ${color};
-                border-radius: 0.25rem;
-                cursor: pointer;
-                font-size: 0.75rem;
-                font-weight: 600;
-              "
-            >
-              View Org
-            </button>
+      // Create a marker for each location
+      campaignLocations.forEach((loc, locIndex) => {
+        const marker = new window.google.maps.Marker({
+          position: new window.google.maps.LatLng(loc.latitude, loc.longitude),
+          map: googleMapRef.current || undefined,
+          title: `${campaign.title} - ${loc.name}`,
+          icon: {
+            path: window.google.maps.SymbolPath.CIRCLE as unknown as string,
+            scale: Math.max(zoomLevel > 1 ? 12 : 8, 8),
+            fillColor: color,
+            fillOpacity: 0.9,
+            strokeColor: '#ffffff',
+            strokeWeight: 3,
+            anchor: new window.google.maps.Point(0, 0),
+          },
+          animation: window.google.maps.Animation.DROP,
+        });
+
+        const progressPercentage = Math.min(
+          (campaign.raisedAmount / campaign.goalAmount) * 100,
+          100
+        );
+        const markerId = `${campaign.id}-${locIndex}`;
+
+        const infoContent = `
+          <div style="padding: 0; min-width: 280px; max-width: 320px; font-family: 'Montserrat', sans-serif; overflow: hidden; border-radius: 0.5rem;">
             ${
-              firstCampaign
-                ? `<button
-              id="view-campaign-${firstCampaign.id}"
-              style="
-                flex: 1;
-                padding: 0.375rem 0.5rem;
-                background-color: ${color};
-                color: white;
-                border: none;
-                border-radius: 0.25rem;
-                cursor: pointer;
-                font-size: 0.75rem;
-                font-weight: 600;
-              "
-            >
-              Campaign
-            </button>`
+              campaign.featuredImageUrl
+                ? `<div
+                    id="campaign-image-${markerId}"
+                    style="
+                    width: 100%;
+                    height: 120px;
+                    background-image: url('${campaign.featuredImageUrl}');
+                    background-size: cover;
+                    background-position: center;
+                    position: relative;
+                    cursor: pointer;
+                    transition: opacity 0.2s;
+                  "
+                  onmouseover="this.style.opacity='0.9'"
+                  onmouseout="this.style.opacity='1'"
+                  >
+                    <div style="
+                      position: absolute;
+                      bottom: 0.5rem;
+                      left: 0.5rem;
+                      background: ${color};
+                      color: white;
+                      padding: 0.25rem 0.5rem;
+                      border-radius: 0.75rem;
+                      font-size: 0.625rem;
+                      font-weight: 600;
+                    ">${campaign.category || 'Campaign'}</div>
+                  </div>`
                 : ''
             }
+            <div style="padding: 0.75rem;">
+              <h3
+                id="campaign-title-${markerId}"
+                style="margin: 0 0 0.25rem 0; color: #1f2937; font-size: 0.9375rem; font-weight: 700; line-height: 1.3; cursor: pointer; transition: color 0.2s;"
+                onmouseover="this.style.color='${color}'" onmouseout="this.style.color='#1f2937'"
+              >
+                ${campaign.title}
+              </h3>
+              <p style="margin: 0 0 0.25rem 0; font-size: 0.6875rem; color: #6b7280; display: flex; align-items: center; gap: 0.25rem;">
+                <span style="display: inline-block; width: 0.25rem; height: 0.25rem; background: ${color}; border-radius: 50%;"></span>
+                ${orgName}
+              </p>
+              <p style="margin: 0 0 0.5rem 0; font-size: 0.625rem; color: #9ca3af; font-style: italic;">
+                ${loc.name}
+              </p>
+              <p style="margin: 0 0 0.75rem 0; font-size: 0.75rem; color: #4b5563; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
+                ${campaign.shortDescription || ''}
+              </p>
+              <div style="margin-bottom: 0.75rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.25rem;">
+                  <span style="font-size: 0.6875rem; color: #6b7280;">Progress</span>
+                  <span style="font-size: 0.75rem; font-weight: 600; color: #00a0c4;">${Math.round(progressPercentage)}%</span>
+                </div>
+                <div style="width: 100%; height: 0.375rem; background: #e5e7eb; border-radius: 0.1875rem; overflow: hidden;">
+                  <div style="width: ${progressPercentage}%; height: 100%; background: linear-gradient(90deg, #00a0c4, #0077b6);"></div>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-top: 0.25rem;">
+                  <span style="font-size: 0.625rem; color: #6b7280;">${formatCurrency(campaign.raisedAmount)} raised</span>
+                  <span style="font-size: 0.625rem; color: #6b7280;">${formatCurrency(campaign.goalAmount)} goal</span>
+                </div>
+              </div>
+              <div style="display: flex; gap: 0.5rem;">
+                <button
+                  id="view-org-${markerId}"
+                  style="
+                    flex: 1;
+                    padding: 0.5rem 0.75rem;
+                    background-color: transparent;
+                    color: ${color};
+                    border: 1.5px solid ${color};
+                    border-radius: 0.375rem;
+                    cursor: pointer;
+                    font-size: 0.75rem;
+                    font-weight: 600;
+                    transition: all 0.2s;
+                  "
+                  onmouseover="this.style.background='${color}10'"
+                  onmouseout="this.style.background='transparent'"
+                >
+                  View Org
+                </button>
+                <button
+                  id="view-campaign-${markerId}"
+                  style="
+                    flex: 1;
+                    padding: 0.5rem 0.75rem;
+                    background-color: ${color};
+                    color: white;
+                    border: none;
+                    border-radius: 0.375rem;
+                    cursor: pointer;
+                    font-size: 0.75rem;
+                    font-weight: 600;
+                    transition: all 0.2s;
+                  "
+                  onmouseover="this.style.background='${color}dd'"
+                  onmouseout="this.style.background='${color}'"
+                >
+                  Donate
+                </button>
+              </div>
+            </div>
           </div>
-        </div>
-      `;
+        `;
 
-      const infoWindow = new window.google.maps.InfoWindow({
-        content: infoContent,
-      });
-
-      if (marker.addListener) {
-        marker.addListener('click', () => {
-          if (googleMapRef.current) {
-            infoWindow.open(googleMapRef.current, marker);
-
-            // Add click listeners after info window opens
-            setTimeout(() => {
-              const viewOrgBtn = document.getElementById(`view-org-${org.id}`);
-              const viewCampaignBtn = document.getElementById(`view-campaign-${firstCampaign?.id}`);
-
-              if (viewOrgBtn && onMarkerClick) {
-                viewOrgBtn.onclick = () => {
-                  infoWindow.close();
-                  onMarkerClick(org.id);
-                };
-              }
-
-              if (viewCampaignBtn && firstCampaign && onCampaignMarkerClick) {
-                viewCampaignBtn.onclick = () => {
-                  infoWindow.close();
-                  onCampaignMarkerClick(firstCampaign);
-                };
-              }
-            }, 100);
-          }
+        const infoWindow = new window.google.maps.InfoWindow({
+          content: infoContent,
+          maxWidth: 340,
         });
-      }
 
-      markersRef.current.push(marker);
-    });
+        if (marker.addListener) {
+          marker.addListener('click', () => {
+            if (googleMapRef.current) {
+              infoWindow.open(googleMapRef.current, marker);
+
+              // Add click listeners after info window opens
+              setTimeout(() => {
+                const viewOrgBtn = document.getElementById(`view-org-${markerId}`);
+                const viewCampaignBtn = document.getElementById(`view-campaign-${markerId}`);
+                const campaignImage = document.getElementById(`campaign-image-${markerId}`);
+                const campaignTitle = document.getElementById(`campaign-title-${markerId}`);
+
+                if (viewOrgBtn && onMarkerClick) {
+                  viewOrgBtn.onclick = () => {
+                    infoWindow.close();
+                    onMarkerClick(orgId);
+                  };
+                }
+
+                if (viewCampaignBtn && onCampaignMarkerClick) {
+                  viewCampaignBtn.onclick = () => {
+                    infoWindow.close();
+                    onCampaignMarkerClick(campaign);
+                  };
+                }
+
+                // Image click navigates to campaign
+                if (campaignImage && onCampaignMarkerClick) {
+                  campaignImage.onclick = () => {
+                    infoWindow.close();
+                    onCampaignMarkerClick(campaign);
+                  };
+                }
+
+                // Title click navigates to campaign
+                if (campaignTitle && onCampaignMarkerClick) {
+                  campaignTitle.onclick = () => {
+                    infoWindow.close();
+                    onCampaignMarkerClick(campaign);
+                  };
+                }
+              }, 100);
+            }
+          });
+        }
+
+        markersRef.current.push(marker);
+      }); // End campaignLocations.forEach
+    }); // End campaigns.forEach
   }, [organizations, campaigns, onMarkerClick, onCampaignMarkerClick, zoomLevel]);
 
   // Update markers when organizations change
@@ -439,8 +505,6 @@ export function CampaignMap({
     }
   }, [createMarkers, isLoading]);
 
-  const categoryTypes = Object.keys(CATEGORY_COLORS);
-
   return (
     <MapSection>
       <MapWrapper>
@@ -451,17 +515,6 @@ export function CampaignMap({
           </LoadingOverlay>
         )}
       </MapWrapper>
-      <Legend>
-        <LegendTitle>Campaign Categories</LegendTitle>
-        <LegendGrid>
-          {categoryTypes.map((category) => (
-            <LegendItem key={category}>
-              <LegendDot $color={CATEGORY_COLORS[category]} />
-              <LegendLabel>{category}</LegendLabel>
-            </LegendItem>
-          ))}
-        </LegendGrid>
-      </Legend>
     </MapSection>
   );
 }

@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
 import { BottomNavigation } from '../components/navigation/BottomNavigation';
 import { Sidebar } from '../components/Sidebar';
-import { donations, organizations } from '../mocks/data';
+import { donations, organizations, campaigns } from '../mocks/data';
 
 const PageContainer = styled.div`
   display: flex;
@@ -157,10 +157,11 @@ const DonationCard = styled(motion.li)`
   background: ${(props) => props.theme.colors.background.card};
   border: 1px solid ${(props) => props.theme.colors.border.light};
   border-radius: 0.75rem;
-  padding: 1rem 1.25rem;
+  padding: 1.25rem 1.5rem;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
+  gap: 1rem;
   cursor: pointer;
   transition: all 0.2s;
 
@@ -174,22 +175,97 @@ const DonationCard = styled(motion.li)`
 const DonationInfo = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: 0.375rem;
+  flex: 1;
+  min-width: 0;
+`;
+
+const DonationHeader = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
 `;
 
 const DonationDate = styled.span`
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   color: ${(props) => props.theme.colors.text.tertiary};
 `;
 
+const TransactionId = styled.span`
+  font-size: 0.6875rem;
+  color: ${(props) => props.theme.colors.text.tertiary};
+  font-family: monospace;
+  background: ${(props) => props.theme.colors.background.page};
+  padding: 0.125rem 0.375rem;
+  border-radius: 0.25rem;
+`;
+
 const DonationOrg = styled.span`
-  font-size: 1rem;
+  font-size: 0.9375rem;
   font-weight: 600;
   color: ${(props) => props.theme.colors.text.primary};
 `;
 
+const CampaignName = styled.span`
+  font-size: 0.8125rem;
+  color: ${(props) => props.theme.colors.text.secondary};
+`;
+
+const DonationDetails = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+`;
+
+const UnitBadge = styled.span`
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: #00a0c4;
+  background: rgba(0, 160, 196, 0.1);
+  padding: 0.125rem 0.5rem;
+  border-radius: 0.75rem;
+`;
+
+const StatusBadge = styled.span<{ $status: string }>`
+  font-size: 0.6875rem;
+  font-weight: 600;
+  padding: 0.125rem 0.5rem;
+  border-radius: 0.75rem;
+  background: ${(props) =>
+    props.$status === 'Completed'
+      ? 'rgba(34, 197, 94, 0.1)'
+      : props.$status === 'Pending'
+        ? 'rgba(234, 179, 8, 0.1)'
+        : 'rgba(239, 68, 68, 0.1)'};
+  color: ${(props) =>
+    props.$status === 'Completed'
+      ? '#22c55e'
+      : props.$status === 'Pending'
+        ? '#eab308'
+        : '#ef4444'};
+`;
+
+const TaxDeductibleBadge = styled.span`
+  font-size: 0.6875rem;
+  font-weight: 600;
+  padding: 0.125rem 0.5rem;
+  border-radius: 0.75rem;
+  background: rgba(236, 72, 153, 0.1);
+  color: #ec4899;
+`;
+
+const DonationAmountSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.25rem;
+  flex-shrink: 0;
+`;
+
 const DonationAmount = styled.span`
-  font-size: 1.125rem;
+  font-size: 1.25rem;
   font-weight: 700;
   color: ${(props) => props.theme.colors.primary.main};
 `;
@@ -202,16 +278,69 @@ const getInitials = (firstName: string, lastName: string): string => {
 
 const formatDate = (dateString: string): string => {
   const date = new Date(dateString);
-  return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+  return date.toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+  });
+};
+
+const formatTime = (dateString: string): string => {
+  const date = new Date(dateString);
+  return date.toLocaleTimeString('en-US', {
+    hour: 'numeric',
+    minute: '2-digit',
+    hour12: true,
+  });
 };
 
 const formatAmount = (amount: number): string => {
-  return `$${amount.toFixed(2)}`;
+  return new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 2,
+  }).format(amount / 100);
 };
 
 const getOrganizationName = (orgId: string): string => {
   const org = organizations.find((o) => o.id === orgId);
-  return org?.name || 'Unknown';
+  return org?.name || 'Unknown Organization';
+};
+
+const getOrganizationLocation = (orgId: string): string | null => {
+  const org = organizations.find((o) => o.id === orgId);
+  if (org?.locations && org.locations.length > 0) {
+    const hq = org.locations.find((loc) => loc.name.includes('Headquarters'));
+    return hq ? hq.name.replace(' (Headquarters)', '') : org.locations[0].name;
+  }
+  return null;
+};
+
+const getCampaignInfo = (
+  campaignId: string
+): { title: string; unitLabel: string; unitPrice: number } | null => {
+  const campaign = campaigns.find((c) => c.id === campaignId);
+  if (campaign) {
+    return {
+      title: campaign.title,
+      unitLabel: campaign.unitLabel || 'Donation',
+      unitPrice: campaign.unitPrice || 50,
+    };
+  }
+  return null;
+};
+
+const generateTransactionId = (donationId: string, date: string): string => {
+  const dateObj = new Date(date);
+  const year = dateObj.getFullYear().toString().slice(-2);
+  const month = (dateObj.getMonth() + 1).toString().padStart(2, '0');
+  const day = dateObj.getDate().toString().padStart(2, '0');
+  const hash = donationId.slice(-6).toUpperCase();
+  return `TXN-${year}${month}${day}-${hash}`;
+};
+
+const calculateUnits = (amount: number, unitPrice: number): number => {
+  return Math.round(amount / 100 / unitPrice);
 };
 
 export const HistoryPage = () => {
@@ -313,20 +442,51 @@ export const HistoryPage = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.3 }}
           >
-            {filteredDonations.map((donation, index) => (
-              <DonationCard
-                key={donation.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: index * 0.05 }}
-              >
-                <DonationInfo>
-                  <DonationDate>{formatDate(donation.createdAt)}</DonationDate>
-                  <DonationOrg>{getOrganizationName(donation.organizationId)}</DonationOrg>
-                </DonationInfo>
-                <DonationAmount>{formatAmount(donation.amount)}</DonationAmount>
-              </DonationCard>
-            ))}
+            {filteredDonations.map((donation, index) => {
+              const campaignInfo = getCampaignInfo(donation.campaignId);
+              const orgLocation = getOrganizationLocation(donation.organizationId);
+              const units = campaignInfo
+                ? calculateUnits(donation.amount, campaignInfo.unitPrice)
+                : 1;
+
+              return (
+                <DonationCard
+                  key={donation.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3, delay: index * 0.05 }}
+                >
+                  <DonationInfo>
+                    <DonationHeader>
+                      <DonationDate>
+                        {formatDate(donation.createdAt)} at {formatTime(donation.createdAt)}
+                      </DonationDate>
+                      <TransactionId>
+                        {generateTransactionId(donation.id, donation.createdAt)}
+                      </TransactionId>
+                    </DonationHeader>
+                    <DonationOrg>
+                      {getOrganizationName(donation.organizationId)}
+                      {orgLocation && `, ${orgLocation}`}
+                    </DonationOrg>
+                    {campaignInfo && <CampaignName>{campaignInfo.title}</CampaignName>}
+                    <DonationDetails>
+                      {campaignInfo && (
+                        <UnitBadge>
+                          {units} {campaignInfo.unitLabel}
+                          {units !== 1 ? 's' : ''}
+                        </UnitBadge>
+                      )}
+                      <StatusBadge $status={donation.status}>{donation.status}</StatusBadge>
+                      <TaxDeductibleBadge>Tax Deductible</TaxDeductibleBadge>
+                    </DonationDetails>
+                  </DonationInfo>
+                  <DonationAmountSection>
+                    <DonationAmount>{formatAmount(donation.amount)}</DonationAmount>
+                  </DonationAmountSection>
+                </DonationCard>
+              );
+            })}
           </DonationList>
         </Main>
 

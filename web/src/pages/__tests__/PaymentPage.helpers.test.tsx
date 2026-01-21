@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import { AuthProvider } from '../../context/AuthContext';
 import { ThemeProvider } from '../../context/ThemeContext';
@@ -55,16 +55,24 @@ describe('PaymentPage fee calculations', () => {
     expect(txnValue).toBeInTheDocument();
   });
 
-  it('formats card numbers with spaces', async () => {
+  it('shows saved card option by default', async () => {
     renderPage();
-    const cardInput = await screen.findByLabelText(/card number/i);
-    expect(cardInput).toBeInTheDocument();
+    const savedCard = await screen.findByText(/Visa ending in 4242/i);
+    expect(savedCard).toBeInTheDocument();
   });
 
-  it('formats expiry date with slash', async () => {
+  it('shows Apple Pay option', async () => {
     renderPage();
-    const expiryInput = await screen.findByLabelText(/expiry/i);
-    expect(expiryInput).toBeInTheDocument();
+    const applePay = await screen.findByText(/Apple Pay/i);
+    expect(applePay).toBeInTheDocument();
+  });
+
+  it('shows card inputs when Add New Card is selected', async () => {
+    renderPage();
+    const addNewCard = await screen.findByText(/Add New Card/i);
+    fireEvent.click(addNewCard);
+    const cardInput = await screen.findByLabelText(/card number/i);
+    expect(cardInput).toBeInTheDocument();
   });
 
   it('shows payment options section', async () => {

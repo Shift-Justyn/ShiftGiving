@@ -78,13 +78,14 @@ export const handlers = [
 
     let filtered = [...campaigns];
     if (featured) {
+      // Return only 6 featured campaigns for homepage carousel
       const featuredIds = [
-        'c1111111-1111-1111-1111-111111111111',
-        'c2222222-2222-2222-2222-222222222222',
-        'c3333333-3333-3333-3333-333333333333',
-        'c9999999-9999-9999-9999-999999999999',
-        'cfffffff-ffff-ffff-ffff-ffffffffffff',
-        'd1111111-1111-1111-1111-111111111111',
+        'c1111111-1111-1111-1111-111111111111', // The Pantry at Hope
+        'c2222222-2222-2222-2222-222222222222', // Café Hope
+        'c3333333-3333-3333-3333-333333333333', // Homes of Hope
+        'c9999999-9999-9999-9999-999999999999', // Community Outreach
+        'cfffffff-ffff-ffff-ffff-ffffffffffff', // Cancer Screening
+        'd1111111-1111-1111-1111-111111111111', // Kelp Forest
       ];
       const featuredCampaigns = featuredIds
         .map((id) => campaigns.find((c) => c.id === id))

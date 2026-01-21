@@ -10,6 +10,7 @@ import { OrganizationCard } from '../components/organizations/OrganizationCard';
 import { BottomNavigation } from '../components/navigation/BottomNavigation';
 import { Sidebar } from '../components/Sidebar';
 import { CampaignMap } from '../components/maps/CampaignMap';
+import { CampaignMapModal } from '../components/maps/CampaignMapModal';
 import {
   CampaignFilters,
   FilterState,
@@ -17,6 +18,7 @@ import {
 } from '../components/filters/CampaignFilters';
 import { MetricsDashboard } from '../components/dashboard/MetricsDashboard';
 import { useAuth } from '../context/AuthContext';
+import { useCart } from '../context/CartContext';
 
 const focusGlow = keyframes`
   0% { box-shadow: 0 0 0 0 rgba(0, 160, 196, 0.4); }
@@ -246,11 +248,14 @@ const HorizontalScroll = styled.div`
   @media (min-width: 48rem) {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 1fr;
+    align-items: stretch;
     overflow-x: visible;
     padding-bottom: 0;
 
     > * {
       min-width: unset;
+      height: 100%;
     }
   }
 
@@ -338,7 +343,9 @@ export const HomePage = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { user } = useAuth();
+  const { addToCart } = useCart();
   const [campaigns, setCampaigns] = useState<Campaign[]>([]);
+  const [allCampaigns, setAllCampaigns] = useState<Campaign[]>([]);
   const [organizations, setOrganizations] = useState<Organization[]>([]);
   const [campaignsLoading, setCampaignsLoading] = useState(true);
   const [orgsLoading, setOrgsLoading] = useState(true);
@@ -350,7 +357,7 @@ export const HomePage = () => {
     status: 'All',
     goalRange: 'Any',
   });
-  const [_basketItems, setBasketItems] = useState<{ campaign: Campaign; amount: number }[]>([]);
+  const [selectedMapCampaign, setSelectedMapCampaign] = useState<Campaign | null>(null);
 
   const filteredCampaigns = useMemo(() => {
     return filterCampaigns(campaigns, filters);
@@ -358,6 +365,7 @@ export const HomePage = () => {
 
   useEffect(() => {
     fetchCampaigns();
+    fetchAllCampaigns();
     fetchOrganizations();
   }, []);
 
@@ -373,6 +381,15 @@ export const HomePage = () => {
     }
   };
 
+  const fetchAllCampaigns = async (): Promise<void> => {
+    try {
+      const data = await getCampaigns({ page: 1, pageSize: 50 });
+      setAllCampaigns(data);
+    } catch {
+      // Silently fail for map campaigns - map will just show fewer pins
+    }
+  };
+
   const fetchOrganizations = async (): Promise<void> => {
     try {
       setOrgsLoading(true);
@@ -385,23 +402,16 @@ export const HomePage = () => {
     }
   };
 
-  const handleAddToBasket = (campaign: Campaign, amount: number): void => {
-    setBasketItems((prev) => {
-      const existingIndex = prev.findIndex((item) => item.campaign.id === campaign.id);
-      if (existingIndex >= 0) {
-        const updated = [...prev];
-        updated[existingIndex] = { campaign, amount: updated[existingIndex].amount + amount };
-        return updated;
-      }
-      return [...prev, { campaign, amount }];
-    });
+  const handleAddToBasket = (campaign: Campaign, amount: number, quantity: number): void => {
+    addToCart(campaign, amount, quantity);
   };
 
   const handleCampaignMarkerClick = (campaign: Campaign): void => {
-    const element = document.getElementById(`campaign-${campaign.id}`);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
+    setSelectedMapCampaign(campaign);
+  };
+
+  const handleCloseMapModal = (): void => {
+    setSelectedMapCampaign(null);
   };
 
   return (
@@ -466,14 +476,13 @@ export const HomePage = () => {
           <Section>
             <CampaignMap
               organizations={organizations}
-              campaigns={campaigns}
+              campaigns={allCampaigns}
               onMarkerClick={(orgId) => navigate(`/organizations/${orgId}`)}
               onCampaignMarkerClick={handleCampaignMarkerClick}
             />
-          </Section>
-
-          <Section>
-            <CampaignFilters filters={filters} onChange={setFilters} />
+            <div style={{ marginTop: '0.5rem' }}>
+              <CampaignFilters filters={filters} onChange={setFilters} />
+            </div>
           </Section>
 
           <Section>
@@ -578,6 +587,12 @@ export const HomePage = () => {
 
         <BottomNavigation />
       </MainContent>
+
+      <CampaignMapModal
+        campaign={selectedMapCampaign}
+        onClose={handleCloseMapModal}
+        onAddToBasket={handleAddToBasket}
+      />
     </PageContainer>
   );
 };

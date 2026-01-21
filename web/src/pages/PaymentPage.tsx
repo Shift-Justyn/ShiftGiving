@@ -22,6 +22,9 @@ export const PaymentPage = () => {
   const { token } = useAuth();
   const state = location.state as LocationState;
 
+  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState<'saved' | 'apple-pay' | 'new'>(
+    'saved'
+  );
   const [cardNumber, setCardNumber] = useState('');
   const [expiryDate, setExpiryDate] = useState('');
   const [cvv, setCvv] = useState('');
@@ -33,6 +36,12 @@ export const PaymentPage = () => {
   const [recurringFrequency, setRecurringFrequency] = useState('monthly');
   const [emailReceipt, setEmailReceipt] = useState(true);
   const [transactionId, setTransactionId] = useState('');
+
+  const savedCard = {
+    last4: '4242',
+    brand: 'Visa',
+    expiry: '12/26',
+  };
 
   const formatCurrency = (value: number) => {
     return new Intl.NumberFormat('en-US', {
@@ -93,6 +102,13 @@ export const PaymentPage = () => {
     setLoading(true);
     setError('');
 
+    const paymentMethodName =
+      selectedPaymentMethod === 'saved'
+        ? `saved_card_${savedCard.brand.toLowerCase()}`
+        : selectedPaymentMethod === 'apple-pay'
+          ? 'apple_pay'
+          : 'card';
+
     try {
       const donation = await createDonation(
         {
@@ -101,7 +117,7 @@ export const PaymentPage = () => {
           organizationId: state.organizationId,
           isAnonymous: state.isAnonymous,
           donorMessage: state.message || undefined,
-          paymentMethod: 'card',
+          paymentMethod: paymentMethodName,
         },
         token
       );
@@ -155,79 +171,184 @@ export const PaymentPage = () => {
                 </ErrorMessage>
               )}
 
-              <CardPreview $cardType={getCardType()}>
-                <CardPreviewNumber>{cardNumber || '•••• •••• •••• ••••'}</CardPreviewNumber>
-                <CardPreviewDetails>
-                  <CardPreviewName>{cardholderName || 'YOUR NAME'}</CardPreviewName>
-                  <CardPreviewExpiry>{expiryDate || 'MM/YY'}</CardPreviewExpiry>
-                </CardPreviewDetails>
-                {getCardType() && <CardBrand>{getCardType()?.toUpperCase()}</CardBrand>}
-              </CardPreview>
-
-              <InputGroup>
-                <Label htmlFor="cardholderName">{t('donation.cardholderName')}</Label>
-                <InputWrapper>
-                  <InputIcon>&#128100;</InputIcon>
-                  <Input
-                    id="cardholderName"
-                    type="text"
-                    placeholder="John Doe"
-                    value={cardholderName}
-                    onChange={(e) => setCardholderName(e.target.value)}
-                    required
-                  />
-                </InputWrapper>
-              </InputGroup>
-
-              <InputGroup>
-                <Label htmlFor="cardNumber">{t('donation.cardNumber')}</Label>
-                <InputWrapper>
-                  <InputIcon>&#128179;</InputIcon>
-                  <Input
-                    id="cardNumber"
-                    type="text"
-                    placeholder="1234 5678 9012 3456"
-                    value={cardNumber}
-                    onChange={(e) => setCardNumber(formatCardNumber(e.target.value))}
-                    maxLength={19}
-                    required
-                  />
-                </InputWrapper>
-              </InputGroup>
-
-              <InputRow>
-                <InputGroup>
-                  <Label htmlFor="expiryDate">{t('donation.expiryDate')}</Label>
-                  <InputWrapper>
-                    <InputIcon>&#128197;</InputIcon>
-                    <Input
-                      id="expiryDate"
-                      type="text"
-                      placeholder="MM/YY"
-                      value={expiryDate}
-                      onChange={(e) => setExpiryDate(formatExpiry(e.target.value))}
-                      maxLength={5}
-                      required
+              <PaymentMethodSection>
+                <PaymentMethodLabel>Select Payment Method</PaymentMethodLabel>
+                <PaymentMethodOptions>
+                  <PaymentMethodOption
+                    as={motion.div}
+                    whileHover={{ scale: 1.01 }}
+                    whileTap={{ scale: 0.99 }}
+                    $selected={selectedPaymentMethod === 'saved'}
+                    onClick={() => setSelectedPaymentMethod('saved')}
+                  >
+                    <PaymentMethodRadio
+                      type="radio"
+                      name="paymentMethod"
+                      checked={selectedPaymentMethod === 'saved'}
+                      onChange={() => setSelectedPaymentMethod('saved')}
                     />
-                  </InputWrapper>
-                </InputGroup>
+                    <SavedCardIcon>
+                      <VisaLogo>VISA</VisaLogo>
+                    </SavedCardIcon>
+                    <PaymentMethodDetails>
+                      <PaymentMethodTitle>Visa ending in {savedCard.last4}</PaymentMethodTitle>
+                      <PaymentMethodSubtitle>Expires {savedCard.expiry}</PaymentMethodSubtitle>
+                    </PaymentMethodDetails>
+                    {selectedPaymentMethod === 'saved' && (
+                      <SelectedCheckmark
+                        as={motion.div}
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                      >
+                        &#10003;
+                      </SelectedCheckmark>
+                    )}
+                  </PaymentMethodOption>
 
-                <InputGroup>
-                  <Label htmlFor="cvv">{t('donation.cvv')}</Label>
-                  <InputWrapper>
-                    <InputIcon>&#128274;</InputIcon>
-                    <Input
-                      id="cvv"
-                      type="text"
-                      placeholder="123"
-                      value={cvv}
-                      onChange={(e) => setCvv(e.target.value.replace(/\D/g, '').substring(0, 4))}
-                      maxLength={4}
-                      required
+                  <PaymentMethodOption
+                    as={motion.div}
+                    whileHover={{ scale: 1.01 }}
+                    whileTap={{ scale: 0.99 }}
+                    $selected={selectedPaymentMethod === 'apple-pay'}
+                    onClick={() => setSelectedPaymentMethod('apple-pay')}
+                  >
+                    <PaymentMethodRadio
+                      type="radio"
+                      name="paymentMethod"
+                      checked={selectedPaymentMethod === 'apple-pay'}
+                      onChange={() => setSelectedPaymentMethod('apple-pay')}
                     />
-                  </InputWrapper>
-                </InputGroup>
-              </InputRow>
+                    <ApplePayIcon>
+                      <ApplePayLogo> Pay</ApplePayLogo>
+                    </ApplePayIcon>
+                    <PaymentMethodDetails>
+                      <PaymentMethodTitle>Apple Pay</PaymentMethodTitle>
+                      <PaymentMethodSubtitle>Pay with Touch ID or Face ID</PaymentMethodSubtitle>
+                    </PaymentMethodDetails>
+                    {selectedPaymentMethod === 'apple-pay' && (
+                      <SelectedCheckmark
+                        as={motion.div}
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                      >
+                        &#10003;
+                      </SelectedCheckmark>
+                    )}
+                  </PaymentMethodOption>
+
+                  <PaymentMethodOption
+                    as={motion.div}
+                    whileHover={{ scale: 1.01 }}
+                    whileTap={{ scale: 0.99 }}
+                    $selected={selectedPaymentMethod === 'new'}
+                    onClick={() => setSelectedPaymentMethod('new')}
+                  >
+                    <PaymentMethodRadio
+                      type="radio"
+                      name="paymentMethod"
+                      checked={selectedPaymentMethod === 'new'}
+                      onChange={() => setSelectedPaymentMethod('new')}
+                    />
+                    <NewCardIcon>&#43;</NewCardIcon>
+                    <PaymentMethodDetails>
+                      <PaymentMethodTitle>Add New Card</PaymentMethodTitle>
+                      <PaymentMethodSubtitle>Credit or debit card</PaymentMethodSubtitle>
+                    </PaymentMethodDetails>
+                    {selectedPaymentMethod === 'new' && (
+                      <SelectedCheckmark
+                        as={motion.div}
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                      >
+                        &#10003;
+                      </SelectedCheckmark>
+                    )}
+                  </PaymentMethodOption>
+                </PaymentMethodOptions>
+              </PaymentMethodSection>
+
+              {selectedPaymentMethod === 'new' && (
+                <>
+                  <CardPreview $cardType={getCardType()}>
+                    <CardPreviewNumber>{cardNumber || '•••• •••• •••• ••••'}</CardPreviewNumber>
+                    <CardPreviewDetails>
+                      <CardPreviewName>{cardholderName || 'YOUR NAME'}</CardPreviewName>
+                      <CardPreviewExpiry>{expiryDate || 'MM/YY'}</CardPreviewExpiry>
+                    </CardPreviewDetails>
+                    {getCardType() && <CardBrand>{getCardType()?.toUpperCase()}</CardBrand>}
+                  </CardPreview>
+
+                  <InputGroup>
+                    <Label htmlFor="cardholderName">{t('donation.cardholderName')}</Label>
+                    <InputWrapper>
+                      <InputIcon>&#128100;</InputIcon>
+                      <Input
+                        id="cardholderName"
+                        type="text"
+                        placeholder="John Doe"
+                        value={cardholderName}
+                        onChange={(e) => setCardholderName(e.target.value)}
+                        required
+                      />
+                    </InputWrapper>
+                  </InputGroup>
+
+                  <InputGroup>
+                    <Label htmlFor="cardNumber">{t('donation.cardNumber')}</Label>
+                    <InputWrapper>
+                      <InputIcon>&#128179;</InputIcon>
+                      <Input
+                        id="cardNumber"
+                        type="text"
+                        placeholder="1234 5678 9012 3456"
+                        value={cardNumber}
+                        onChange={(e) => setCardNumber(formatCardNumber(e.target.value))}
+                        maxLength={19}
+                        required
+                      />
+                    </InputWrapper>
+                  </InputGroup>
+
+                  <InputRow>
+                    <InputGroup>
+                      <Label htmlFor="expiryDate">{t('donation.expiryDate')}</Label>
+                      <InputWrapper>
+                        <InputIcon>&#128197;</InputIcon>
+                        <Input
+                          id="expiryDate"
+                          type="text"
+                          placeholder="MM/YY"
+                          value={expiryDate}
+                          onChange={(e) => setExpiryDate(formatExpiry(e.target.value))}
+                          maxLength={5}
+                          required
+                        />
+                      </InputWrapper>
+                    </InputGroup>
+
+                    <InputGroup>
+                      <Label htmlFor="cvv">{t('donation.cvv')}</Label>
+                      <InputWrapper>
+                        <InputIcon>&#128274;</InputIcon>
+                        <Input
+                          id="cvv"
+                          type="text"
+                          placeholder="123"
+                          value={cvv}
+                          onChange={(e) =>
+                            setCvv(e.target.value.replace(/\D/g, '').substring(0, 4))
+                          }
+                          maxLength={4}
+                          required
+                        />
+                      </InputWrapper>
+                    </InputGroup>
+                  </InputRow>
+                </>
+              )}
 
               <PaymentOptionsSection>
                 <SectionLabel>Payment Options</SectionLabel>
@@ -1013,4 +1134,124 @@ const TransactionIdValue = styled.span`
   font-family: 'Courier New', monospace;
   color: ${({ theme }) => theme.colors.text.primary};
   font-weight: 500;
+`;
+
+const PaymentMethodSection = styled.div`
+  margin-bottom: 2rem;
+`;
+
+const PaymentMethodLabel = styled.h3`
+  font-size: 1rem;
+  font-weight: 600;
+  color: ${({ theme }) => theme.colors.text.primary};
+  margin: 0 0 1rem 0;
+`;
+
+const PaymentMethodOptions = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+`;
+
+const PaymentMethodOption = styled.div<{ $selected?: boolean }>`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  border: 2px solid
+    ${({ $selected, theme }) => ($selected ? theme.colors.primary.main : theme.colors.border.light)};
+  border-radius: 0.75rem;
+  background: ${({ $selected }) => ($selected ? 'rgba(0, 160, 196, 0.04)' : 'white')};
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    border-color: ${({ theme }) => theme.colors.primary.main};
+    box-shadow: 0 2px 8px rgba(0, 160, 196, 0.1);
+  }
+`;
+
+const PaymentMethodRadio = styled.input`
+  width: 1.25rem;
+  height: 1.25rem;
+  cursor: pointer;
+  accent-color: ${({ theme }) => theme.colors.primary.main};
+  flex-shrink: 0;
+`;
+
+const SavedCardIcon = styled.div`
+  width: 3rem;
+  height: 2rem;
+  background: linear-gradient(135deg, #1a1f71 0%, #2b38a0 100%);
+  border-radius: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+`;
+
+const VisaLogo = styled.span`
+  color: white;
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+`;
+
+const ApplePayIcon = styled.div`
+  width: 3rem;
+  height: 2rem;
+  background: black;
+  border-radius: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+`;
+
+const ApplePayLogo = styled.span`
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 500;
+
+  &::before {
+    content: '';
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui;
+  }
+`;
+
+const NewCardIcon = styled.div`
+  width: 3rem;
+  height: 2rem;
+  background: ${({ theme }) => theme.colors.background.page};
+  border: 2px dashed ${({ theme }) => theme.colors.border.light};
+  border-radius: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  color: ${({ theme }) => theme.colors.text.tertiary};
+  flex-shrink: 0;
+`;
+
+const PaymentMethodDetails = styled.div`
+  flex: 1;
+`;
+
+const PaymentMethodTitle = styled.div`
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: ${({ theme }) => theme.colors.text.primary};
+  margin-bottom: 0.125rem;
+`;
+
+const PaymentMethodSubtitle = styled.div`
+  font-size: 0.8125rem;
+  color: ${({ theme }) => theme.colors.text.secondary};
+`;
+
+const SelectedCheckmark = styled.div`
+  color: ${({ theme }) => theme.colors.primary.main};
+  font-size: 1.25rem;
+  font-weight: 700;
+  flex-shrink: 0;
 `;

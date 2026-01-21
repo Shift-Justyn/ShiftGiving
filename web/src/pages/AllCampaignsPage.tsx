@@ -6,6 +6,7 @@ import { getCampaigns } from '../api/campaigns';
 import { Campaign } from '../api/types';
 import { CampaignCard } from '../components/campaigns/CampaignCard';
 import { Sidebar } from '../components/Sidebar';
+import { useCart } from '../context/CartContext';
 
 const PageContainer = styled.div`
   display: flex;
@@ -241,6 +242,7 @@ const LoadingContainer = styled.div`
 export const AllCampaignsPage = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
+  const { addToCart } = useCart();
   const [campaigns, setCampaigns] = useState<Campaign[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
@@ -301,8 +303,8 @@ export const AllCampaignsPage = () => {
     );
   }, [campaigns, searchQuery]);
 
-  const handleAddToBasket = (_campaign: Campaign, _amount: number): void => {
-    // Handle add to basket (would connect to basket state/context)
+  const handleAddToBasket = (campaign: Campaign, amount: number, quantity: number): void => {
+    addToCart(campaign, amount, quantity);
   };
 
   if (isLoading) {

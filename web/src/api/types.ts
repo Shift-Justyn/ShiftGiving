@@ -53,6 +53,12 @@ export interface CampaignOrganization {
   logoUrl: string | null;
 }
 
+export interface CampaignLocation {
+  name: string;
+  latitude: number;
+  longitude: number;
+}
+
 export interface Campaign {
   id: string;
   title: string;
@@ -65,6 +71,9 @@ export interface Campaign {
   endDate: string;
   category?: string;
   location?: string;
+  latitude?: number;
+  longitude?: number;
+  locations?: CampaignLocation[];
   mediaGallery?: MediaGalleryItem[];
   unitLabel?: string;
   unitPrice?: number;
@@ -97,6 +106,12 @@ export interface CampaignDetail {
   mediaGallery?: MediaGalleryItem[];
 }
 
+export interface OrganizationLocation {
+  name: string;
+  latitude: number;
+  longitude: number;
+}
+
 export interface Organization {
   id: string;
   name: string;
@@ -106,6 +121,7 @@ export interface Organization {
   latitude?: number;
   longitude?: number;
   category?: string;
+  locations?: OrganizationLocation[];
 }
 
 export interface AuthRefreshRequest {

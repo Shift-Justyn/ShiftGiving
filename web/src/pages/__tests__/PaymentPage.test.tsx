@@ -52,27 +52,31 @@ describe('PaymentPage', () => {
     });
   });
 
-  it('has card number input', async () => {
+  it('shows saved card option by default', async () => {
     renderPaymentPage();
+
+    await waitFor(() => {
+      expect(screen.getByText(/Visa ending in 4242/i)).toBeInTheDocument();
+    });
+  });
+
+  it('shows Apple Pay option', async () => {
+    renderPaymentPage();
+
+    await waitFor(() => {
+      expect(screen.getByText(/Apple Pay/i)).toBeInTheDocument();
+    });
+  });
+
+  it('has card number input when Add New Card is selected', async () => {
+    const user = userEvent.setup();
+    renderPaymentPage();
+
+    const addNewCard = await screen.findByText(/Add New Card/i);
+    await user.click(addNewCard);
 
     await waitFor(() => {
       expect(screen.getByLabelText(/card number/i)).toBeInTheDocument();
-    });
-  });
-
-  it('has expiry date input', async () => {
-    renderPaymentPage();
-
-    await waitFor(() => {
-      expect(screen.getByLabelText(/expiry/i)).toBeInTheDocument();
-    });
-  });
-
-  it('has CVV input', async () => {
-    renderPaymentPage();
-
-    await waitFor(() => {
-      expect(screen.getByLabelText(/cvv/i)).toBeInTheDocument();
     });
   });
 

@@ -4,6 +4,7 @@ import { RouterProvider } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import { ThemeProvider } from './context/ThemeContext';
 import { FeatureFlagsProvider } from './context/FeatureFlagsContext';
+import { CartProvider } from './context/CartContext';
 import { FeatureFlagDevTools } from './components/FeatureFlagDevTools';
 import { GlobalStyles } from './GlobalStyles';
 import { router } from './router/index';
@@ -27,8 +28,10 @@ enableMocks().then(() => {
         <ThemeProvider>
           <GlobalStyles />
           <AuthProvider>
-            <RouterProvider router={router} />
-            <FeatureFlagDevTools />
+            <CartProvider>
+              <RouterProvider router={router} />
+              <FeatureFlagDevTools />
+            </CartProvider>
           </AuthProvider>
         </ThemeProvider>
       </FeatureFlagsProvider>

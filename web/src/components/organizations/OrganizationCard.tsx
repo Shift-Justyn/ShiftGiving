@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 import { Heart, Users, GraduationCap, Stethoscope, Palette } from 'lucide-react';
 import { Organization } from '../../api/types';
@@ -6,6 +7,17 @@ interface OrganizationCardProps {
   organization: Organization;
   onClick?: () => void;
 }
+
+const ORGANIZATION_GIFS: Record<string, { gif: string; static: string }> = {
+  '88888888-8888-8888-8888-888888888888': {
+    gif: '/images/campaigns/kelp/kelp-forest-main.gif',
+    static: '/images/campaigns/kelp/kelp-forest-main.png',
+  },
+  '99999999-9999-9999-9999-999999999999': {
+    gif: '/images/campaigns/amazon/amazon-main.gif',
+    static: '/images/campaigns/amazon/amazon-featured.png',
+  },
+};
 
 const Card = styled.div<{ $clickable?: boolean }>`
   width: 100%;
@@ -38,7 +50,7 @@ const LogoContainer = styled.div`
   aspect-ratio: 1 / 0.62;
 `;
 
-const Logo = styled.div<{ $logoUrl?: string; $bgColor?: string }>`
+const Logo = styled.div<{ $logoUrl?: string; $bgColor?: string; $isGif?: boolean }>`
   width: 100%;
   height: 100%;
   background: ${(props) =>
@@ -46,12 +58,18 @@ const Logo = styled.div<{ $logoUrl?: string; $bgColor?: string }>`
       ? `url(${props.$logoUrl})`
       : `linear-gradient(135deg, ${props.theme.colors.primary.light} 0%, ${props.theme.colors.primary.main}40 100%)`};
   background-color: ${(props) => (props.$logoUrl ? '#ffffff' : 'transparent')};
-  background-size: ${(props) => (props.$logoUrl ? '80% auto' : 'contain')};
+  background-size: ${(props) =>
+    props.$logoUrl?.includes('.gif') ||
+    props.$logoUrl?.includes('kelp') ||
+    props.$logoUrl?.includes('amazon')
+      ? 'cover'
+      : '80% auto'};
   background-position: center;
   background-repeat: no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: background-image 0.2s ease;
 `;
 
 const LogoPlaceholder = styled.div`
@@ -149,13 +167,26 @@ const getCategoryIcon = (category?: string) => {
 };
 
 export const OrganizationCard = ({ organization, onClick }: OrganizationCardProps) => {
+  const [isHovered, setIsHovered] = useState(false);
   const totalRaised = (organization.campaignCount || 0) * 15000;
 
+  const gifData = ORGANIZATION_GIFS[organization.id];
+  const displayUrl = gifData
+    ? isHovered
+      ? gifData.gif
+      : gifData.static
+    : organization.logoUrl || undefined;
+
   return (
-    <Card $clickable={!!onClick} onClick={onClick}>
+    <Card
+      $clickable={!!onClick}
+      onClick={onClick}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
       <LogoContainer>
-        <Logo $logoUrl={organization.logoUrl || undefined}>
-          {!organization.logoUrl && (
+        <Logo $logoUrl={displayUrl}>
+          {!organization.logoUrl && !gifData && (
             <LogoPlaceholder>{getInitials(organization.name)}</LogoPlaceholder>
           )}
         </Logo>

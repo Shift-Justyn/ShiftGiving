@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronDown } from 'lucide-react';
 import { Sidebar } from '../components/Sidebar';
 import { useAuth } from '../context/AuthContext';
 import { getUserDonations } from '../api/donations';
 import { DonationListItem } from '../api/types';
+import { campaigns } from '../mocks/data';
 
 interface ImpactStats {
   totalDonated: number;
@@ -13,9 +15,45 @@ interface ImpactStats {
   donationCount: number;
 }
 
+const getCampaignInfo = (
+  campaignTitle: string
+): { unitLabel: string; unitPrice: number } | null => {
+  const campaign = campaigns.find((c) => c.title === campaignTitle);
+  if (campaign) {
+    return {
+      unitLabel: campaign.unitLabel || 'Donation',
+      unitPrice: campaign.unitPrice || 50,
+    };
+  }
+  return null;
+};
+
+const generateTransactionId = (donationId: string, date: string): string => {
+  const dateObj = new Date(date);
+  const year = dateObj.getFullYear().toString().slice(-2);
+  const month = (dateObj.getMonth() + 1).toString().padStart(2, '0');
+  const day = dateObj.getDate().toString().padStart(2, '0');
+  const hash = donationId.slice(-6).toUpperCase();
+  return `TXN-${year}${month}${day}-${hash}`;
+};
+
+const formatTime = (dateString: string): string => {
+  const date = new Date(dateString);
+  return date.toLocaleTimeString('en-US', {
+    hour: 'numeric',
+    minute: '2-digit',
+    hour12: true,
+  });
+};
+
+const calculateUnits = (amount: number, unitPrice: number): number => {
+  return Math.round(amount / unitPrice);
+};
+
 export function ImpactPage() {
   const { user, token } = useAuth();
   const [donations, setDonations] = useState<DonationListItem[]>([]);
+  const [expandedId, setExpandedId] = useState<string | null>(null);
   const [stats, setStats] = useState<ImpactStats>({
     totalDonated: 0,
     campaignsSupported: 0,
@@ -23,6 +61,10 @@ export function ImpactPage() {
     donationCount: 0,
   });
   const [isLoading, setIsLoading] = useState(true);
+
+  const toggleExpanded = (id: string) => {
+    setExpandedId(expandedId === id ? null : id);
+  };
 
   useEffect(() => {
     if (user && token) {
@@ -146,30 +188,93 @@ export function ImpactPage() {
                 </EmptyState>
               ) : (
                 <DonationList>
-                  {donations.slice(0, 10).map((donation, index) => (
-                    <DonationItem
-                      key={donation.id}
-                      as={motion.div}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.05 }}
-                    >
-                      <DonationInfo>
-                        <DonationCampaign>{donation.campaignTitle}</DonationCampaign>
-                        <DonationOrg>{donation.organizationName}</DonationOrg>
-                      </DonationInfo>
-                      <DonationMeta>
-                        <DonationAmount>{formatCurrency(donation.amount)}</DonationAmount>
-                        <DonationDate>
-                          {new Date(donation.createdAt).toLocaleDateString('en-US', {
-                            month: 'short',
-                            day: 'numeric',
-                            year: 'numeric',
-                          })}
-                        </DonationDate>
-                      </DonationMeta>
-                    </DonationItem>
-                  ))}
+                  {donations.slice(0, 10).map((donation, index) => {
+                    const isExpanded = expandedId === donation.id;
+                    const campaignInfo = getCampaignInfo(donation.campaignTitle);
+                    const units = campaignInfo
+                      ? calculateUnits(donation.amount, campaignInfo.unitPrice)
+                      : 1;
+
+                    return (
+                      <DonationItemWrapper
+                        key={donation.id}
+                        as={motion.div}
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: index * 0.05 }}
+                      >
+                        <DonationItem
+                          onClick={() => toggleExpanded(donation.id)}
+                          $expanded={isExpanded}
+                        >
+                          <DonationInfo>
+                            <DonationCampaign>{donation.campaignTitle}</DonationCampaign>
+                            <DonationOrg>{donation.organizationName}</DonationOrg>
+                          </DonationInfo>
+                          <DonationMeta>
+                            <DonationAmount>{formatCurrency(donation.amount)}</DonationAmount>
+                            <DonationDate>
+                              {new Date(donation.createdAt).toLocaleDateString('en-US', {
+                                month: 'short',
+                                day: 'numeric',
+                                year: 'numeric',
+                              })}
+                            </DonationDate>
+                          </DonationMeta>
+                          <ChevronButton $expanded={isExpanded}>
+                            <ChevronDown size={18} />
+                          </ChevronButton>
+                        </DonationItem>
+                        <AnimatePresence>
+                          {isExpanded && (
+                            <ExpandedDetails
+                              initial={{ height: 0, opacity: 0 }}
+                              animate={{ height: 'auto', opacity: 1 }}
+                              exit={{ height: 0, opacity: 0 }}
+                              transition={{ duration: 0.2 }}
+                            >
+                              <DetailRow>
+                                <DetailLabel>Transaction ID</DetailLabel>
+                                <DetailValue $mono>
+                                  {generateTransactionId(donation.id, donation.createdAt)}
+                                </DetailValue>
+                              </DetailRow>
+                              <DetailRow>
+                                <DetailLabel>Date & Time</DetailLabel>
+                                <DetailValue>
+                                  {new Date(donation.createdAt).toLocaleDateString('en-US', {
+                                    weekday: 'long',
+                                    month: 'long',
+                                    day: 'numeric',
+                                    year: 'numeric',
+                                  })}{' '}
+                                  at {formatTime(donation.createdAt)}
+                                </DetailValue>
+                              </DetailRow>
+                              {campaignInfo && (
+                                <DetailRow>
+                                  <DetailLabel>Units Purchased</DetailLabel>
+                                  <DetailValue>
+                                    {units} {campaignInfo.unitLabel}
+                                    {units !== 1 ? 's' : ''} @{' '}
+                                    {formatCurrency(campaignInfo.unitPrice)} each
+                                  </DetailValue>
+                                </DetailRow>
+                              )}
+                              <DetailRow>
+                                <DetailLabel>Status</DetailLabel>
+                                <DetailValue>
+                                  <StatusBadge $status={donation.status}>
+                                    {donation.status}
+                                  </StatusBadge>
+                                </DetailValue>
+                              </DetailRow>
+                            </ExpandedDetails>
+                          )}
+                        </AnimatePresence>
+                      </DonationItemWrapper>
+                    );
+                  })}
                 </DonationList>
               )}
             </Section>
@@ -453,17 +558,24 @@ const DonationList = styled.div`
   gap: 0.75rem;
 `;
 
-const DonationItem = styled.div`
+const DonationItemWrapper = styled.div`
+  background: ${(props) => props.theme.colors.background.page};
+  border-radius: 0.5rem;
+  overflow: hidden;
+`;
+
+const DonationItem = styled.div<{ $expanded?: boolean }>`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem;
-  background: ${(props) => props.theme.colors.background.page};
-  border-radius: 0.5rem;
-  transition: transform 0.2s ease;
+  padding: 1rem 1.25rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-bottom: ${(props) =>
+    props.$expanded ? `1px solid ${props.theme.colors.border.light}` : 'none'};
 
   &:hover {
-    transform: translateX(4px);
+    background: ${(props) => props.theme.colors.border.light}20;
   }
 `;
 
@@ -503,6 +615,62 @@ const DonationDate = styled.div`
   font-size: 0.75rem;
   color: ${(props) => props.theme.colors.text.tertiary};
   margin-top: 0.25rem;
+`;
+
+const ChevronButton = styled.div<{ $expanded: boolean }>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 0.75rem;
+  color: ${(props) => props.theme.colors.text.tertiary};
+  transition: transform 0.2s ease;
+  transform: rotate(${(props) => (props.$expanded ? '180deg' : '0deg')});
+`;
+
+const ExpandedDetails = styled(motion.div)`
+  padding: 1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  background: ${(props) => props.theme.colors.background.card};
+  overflow: hidden;
+`;
+
+const DetailRow = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const DetailLabel = styled.span`
+  font-size: 0.8125rem;
+  color: ${(props) => props.theme.colors.text.tertiary};
+`;
+
+const DetailValue = styled.span<{ $mono?: boolean }>`
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: ${(props) => props.theme.colors.text.primary};
+  font-family: ${(props) => (props.$mono ? 'monospace' : 'inherit')};
+`;
+
+const StatusBadge = styled.span<{ $status: string }>`
+  font-size: 0.6875rem;
+  font-weight: 600;
+  padding: 0.125rem 0.5rem;
+  border-radius: 0.75rem;
+  background: ${(props) =>
+    props.$status === 'Completed'
+      ? 'rgba(34, 197, 94, 0.1)'
+      : props.$status === 'Pending'
+        ? 'rgba(234, 179, 8, 0.1)'
+        : 'rgba(239, 68, 68, 0.1)'};
+  color: ${(props) =>
+    props.$status === 'Completed'
+      ? '#22c55e'
+      : props.$status === 'Pending'
+        ? '#eab308'
+        : '#ef4444'};
 `;
 
 const CategoryGrid = styled.div`

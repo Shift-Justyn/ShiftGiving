@@ -72,69 +72,57 @@ const FilterDivider = styled.div`
   flex-shrink: 0;
 `;
 
-const FilterChip = styled.button<{ $active: boolean; $color?: string }>`
-  display: flex;
+const FilterChip = styled.span<{ $active: boolean; $color?: string }>`
+  display: inline-flex;
   align-items: center;
-  gap: 0.375rem;
-  padding: 0.5rem 0.875rem;
-  border-radius: 2rem;
-  border: 1.5px solid
-    ${(props) =>
-      props.$active
-        ? props.$color || props.theme.colors.primary.main
-        : props.theme.colors.border.light};
-  background: ${(props) =>
-    props.$active
-      ? `linear-gradient(135deg, ${props.$color || props.theme.colors.primary.main} 0%, ${props.$color || props.theme.colors.primary.main}dd 100%)`
-      : props.theme.colors.background.card};
-  color: ${(props) => (props.$active ? '#ffffff' : props.theme.colors.text.secondary)};
-  font-size: 0.75rem;
+  gap: 0.25rem;
+  padding: 0.1875rem 0.5rem;
+  border-radius: 1rem;
+  font-size: 0.625rem;
   font-weight: 600;
   white-space: nowrap;
   cursor: pointer;
-  transition: all 0.2s ease;
+  flex-shrink: 0;
+  user-select: none;
+  border: 1px solid ${(props) => props.$color || props.theme.colors.border.light};
+  background: ${(props) =>
+    props.$active
+      ? props.$color || props.theme.colors.primary.main
+      : props.theme.colors.background.card};
+  color: ${(props) =>
+    props.$active ? '#ffffff' : props.$color || props.theme.colors.text.secondary};
   box-shadow: ${(props) =>
     props.$active
-      ? `0 2px 8px ${props.$color || props.theme.colors.primary.main}40`
-      : '0 1px 3px rgba(0, 0, 0, 0.05)'};
-  flex-shrink: 0;
+      ? `0 2px 4px ${props.$color || props.theme.colors.primary.main}40`
+      : '0 1px 2px rgba(0, 0, 0, 0.05)'};
+  transition: all 0.15s ease;
 
   svg {
-    width: 0.875rem;
-    height: 0.875rem;
+    width: 0.625rem;
+    height: 0.625rem;
     flex-shrink: 0;
   }
 
   &:hover {
-    transform: translateY(-1px);
-    box-shadow: ${(props) =>
+    background: ${(props) =>
       props.$active
-        ? `0 4px 12px ${props.$color || props.theme.colors.primary.main}50`
-        : '0 2px 8px rgba(0, 0, 0, 0.1)'};
-    border-color: ${(props) => props.$color || props.theme.colors.primary.main};
-    color: ${(props) => (props.$active ? '#ffffff' : props.theme.colors.text.primary)};
-  }
-
-  &:active {
-    transform: translateY(0);
-  }
-
-  &:focus {
-    outline: none;
-    box-shadow: 0 0 0 3px ${(props) => props.$color || props.theme.colors.primary.main}30;
+        ? props.$color || props.theme.colors.primary.main
+        : `${props.$color || props.theme.colors.primary.main}15`};
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
 `;
 
 const ClearButton = styled.button`
   display: flex;
   align-items: center;
-  gap: 0.375rem;
-  padding: 0.5rem 0.875rem;
+  gap: 0.1875rem;
+  padding: 0.1875rem 0.375rem;
   border: 1.5px dashed ${(props) => props.theme.colors.border.light};
-  border-radius: 2rem;
+  border-radius: 0.75rem;
+  height: 1.25rem;
   background: transparent;
   color: ${(props) => props.theme.colors.text.tertiary};
-  font-size: 0.75rem;
+  font-size: 0.625rem;
   font-weight: 600;
   white-space: nowrap;
   cursor: pointer;
@@ -142,8 +130,8 @@ const ClearButton = styled.button`
   flex-shrink: 0;
 
   svg {
-    width: 0.75rem;
-    height: 0.75rem;
+    width: 0.625rem;
+    height: 0.625rem;
   }
 
   &:hover {

@@ -1,4 +1,4 @@
-import { createBrowserRouter, Outlet } from 'react-router-dom';
+import { createBrowserRouter, Outlet, useLocation } from 'react-router-dom';
 import { HomePage } from '../pages/HomePage';
 import { LoginPage } from '../pages/LoginPage';
 import { RegisterPage } from '../pages/RegisterPage';
@@ -14,8 +14,20 @@ import { ImpactPage } from '../pages/ImpactPage';
 import { SettingsPage } from '../pages/SettingsPage';
 import { ProtectedRoute } from '../components/ProtectedRoute';
 import { ErrorBoundary } from '../components/ErrorBoundary';
+import { CartIcon } from '../components/cart/CartIcon';
 
-const RootLayout = () => <Outlet />;
+const RootLayout = () => {
+  const location = useLocation();
+  const hideCartOnPaths = ['/login', '/register'];
+  const showCart = !hideCartOnPaths.includes(location.pathname);
+
+  return (
+    <>
+      <Outlet />
+      {showCart && <CartIcon />}
+    </>
+  );
+};
 
 export const router = createBrowserRouter([
   {

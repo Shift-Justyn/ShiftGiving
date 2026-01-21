@@ -6,9 +6,9 @@ import {
   ShoppingBasket,
   X,
   ChevronUp,
+  ChevronDown,
   Plus,
   Minus,
-  ArrowRight,
   Play,
 } from 'lucide-react';
 import { useState, useCallback } from 'react';
@@ -18,7 +18,7 @@ import { createPortal } from 'react-dom';
 interface CampaignCardProps {
   campaign: Campaign;
   onClick?: () => void;
-  onAddToBasket?: (campaign: Campaign, amount: number) => void;
+  onAddToBasket?: (campaign: Campaign, amount: number, quantity: number) => void;
 }
 
 const categoryColors: Record<string, string> = {
@@ -72,10 +72,10 @@ const Card = styled.div<{ $expanded?: boolean; $isExpanding?: boolean }>`
     `}
 
   &:hover {
-    transform: ${(props) => (props.$expanded ? 'none' : 'translateY(-0.25rem)')};
+    transform: ${(props) => (props.$expanded ? 'none' : 'translateY(-0.125rem)')};
     box-shadow:
-      0 0.75rem 1.5rem rgba(0, 160, 196, 0.15),
-      0 0.25rem 0.5rem rgba(0, 0, 0, 0.08);
+      0 0.5rem 1rem rgba(0, 160, 196, 0.12),
+      0 0.125rem 0.25rem rgba(0, 0, 0, 0.06);
   }
 `;
 
@@ -482,6 +482,13 @@ const QuantityInput = styled.input`
   font-size: 0.875rem;
   text-align: center;
   outline: none;
+  -moz-appearance: textfield;
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 
   &:focus {
     border-color: #00a0c4;
@@ -584,8 +591,7 @@ const DialogContent = styled.div`
 `;
 
 const DialogHeader = styled.div`
-  position: sticky;
-  top: 0;
+  flex-shrink: 0;
   z-index: 10;
   background: linear-gradient(135deg, #00a0c4 0%, #0077b6 50%, #005f8a 100%);
   padding: 1.25rem 1.5rem;
@@ -628,8 +634,8 @@ const CloseButton = styled.button`
 `;
 
 const DialogScrollContent = styled.div`
+  flex: 1;
   overflow-y: auto;
-  max-height: calc(90vh - 6rem);
   padding: 1.5rem;
 `;
 
@@ -820,12 +826,12 @@ export const CampaignCard = ({ campaign, onClick: _onClick, onAddToBasket }: Cam
     (e: React.MouseEvent) => {
       e.stopPropagation();
       if (onAddToBasket) {
-        onAddToBasket(campaign, totalCost);
+        onAddToBasket(campaign, totalCost, quantity);
         setIsExpanded(false);
         setQuantity(1);
       }
     },
-    [campaign, totalCost, onAddToBasket]
+    [campaign, totalCost, quantity, onAddToBasket]
   );
 
   const handleCancelClick = useCallback((e: React.MouseEvent) => {
@@ -925,7 +931,7 @@ export const CampaignCard = ({ campaign, onClick: _onClick, onAddToBasket }: Cam
           {!isExpanded && (
             <LearnMoreButton onClick={handleCardClick}>
               Learn More
-              <ArrowRight />
+              <ChevronDown />
             </LearnMoreButton>
           )}
         </Content>
