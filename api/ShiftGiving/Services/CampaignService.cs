@@ -40,7 +40,7 @@ public class CampaignService
         string? search,
         bool? featured)
     {
-        var query = _db.Campaigns.Include(c => c.Organization).AsQueryable();
+        var query = _db.Campaigns.Include(c => c.Organization).Include(c => c.Images).AsQueryable();
         query = ApplyStatusFilter(query, status);
         query = ApplyOrganizationFilter(query, organizationId);
         query = ApplySearchFilter(query, search);
@@ -75,7 +75,9 @@ public class CampaignService
     private async Task<List<CampaignListResponse>> ExecuteCampaignQuery(IQueryable<Campaign> query, int page, int pageSize)
     {
         var campaigns = await query
-            .OrderByDescending(c => c.CreatedAt)
+            .OrderBy(c => c.DisplayOrder == 0 ? 1 : 0)
+            .ThenBy(c => c.DisplayOrder)
+            .ThenByDescending(c => c.CreatedAt)
             .Skip((page - 1) * pageSize)
             .Take(pageSize)
             .ToListAsync();
@@ -94,8 +96,25 @@ public class CampaignService
             Status = c.Status.ToString(),
             FeaturedImageUrl = c.FeaturedImageUrl,
             Organization = MapOrganizationBasicInfo(c.Organization),
-            EndDate = c.EndDate
+            EndDate = c.EndDate,
+            Category = c.Category.ToString(),
+            Location = c.Location,
+            UnitLabel = c.UnitLabel,
+            UnitPrice = c.UnitPrice,
+            ImpactLabel = c.ImpactLabel,
+            StoryContent = c.StoryContent,
+            MediaGallery = MapMediaGallery(c.Images)
         };
+    }
+
+    private List<MediaGalleryItem> MapMediaGallery(ICollection<CampaignImage> images)
+    {
+        return images.Select(i => new MediaGalleryItem
+        {
+            Type = "image",
+            Url = i.ImageUrl,
+            Caption = i.AltText
+        }).ToList();
     }
 
     private OrganizationBasicInfo MapOrganizationBasicInfo(Organization org)

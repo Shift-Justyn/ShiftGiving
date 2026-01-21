@@ -24,6 +24,13 @@ builder.Services.AddCors(options =>
             .AllowAnyMethod()
             .AllowCredentials();
     });
+    options.AddPolicy("Production", policy =>
+    {
+        policy.WithOrigins("https://giving.justyn.app", "https://d1a1mau07wmfww.cloudfront.net")
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            .AllowCredentials();
+    });
 });
 builder.ConfigureProductionUrls();
 
@@ -39,6 +46,10 @@ if (app.Environment.EnvironmentName == "Testing")
 if (app.Environment.IsDevelopment() || app.Environment.EnvironmentName == "Testing")
 {
     app.UseCors("Development");
+}
+else
+{
+    app.UseCors("Production");
 }
 
 app.UseAuthentication();

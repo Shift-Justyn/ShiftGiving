@@ -407,6 +407,13 @@ git config --global user.email "justyn@justyn.com"
 - **Secrets Manager**: Credentials with auto-rotation
 - **CloudWatch**: Logging and monitoring
 
+### Production URLs
+
+- **Web App**: <https://giving.justyn.app> (CloudFront → S3)
+- **API**: <https://6egddr9uvm.us-east-1.awsapprunner.com> (App Runner)
+
+For detailed deployment instructions, infrastructure configuration, and database migration procedures, see [DEPLOYMENT.md](DEPLOYMENT.md).
+
 ### Environment Variables
 
 #### API (.env)

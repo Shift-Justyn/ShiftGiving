@@ -17,6 +17,10 @@ public class Organization
     public string? PostalCode { get; set; }
     public string Country { get; set; } = "USA";
     public string? TaxId { get; set; }
+    public decimal? Latitude { get; set; }
+    public decimal? Longitude { get; set; }
+    public string? Category { get; set; }
+    public int DisplayOrder { get; set; }
     public bool IsVerified { get; set; }
     public bool IsActive { get; set; } = true;
     public DateTime CreatedAt { get; set; }

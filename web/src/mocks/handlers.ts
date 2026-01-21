@@ -79,20 +79,17 @@ export const handlers = [
     let filtered = [...campaigns];
     if (featured) {
       const featuredIds = [
-        'campaign-hope-pantry',
-        'campaign-hope-thanksgiving-meals',
-        'campaign-hope-cafe',
-        'campaign-hope-souper-bowl',
-        'campaign-hope-school-drive',
-        'campaign-hope-homes-of-hope',
-        'campaign-kelp',
-        'campaign-amazon',
+        'c1111111-1111-1111-1111-111111111111',
+        'c2222222-2222-2222-2222-222222222222',
+        'c3333333-3333-3333-3333-333333333333',
+        'c9999999-9999-9999-9999-999999999999',
+        'cfffffff-ffff-ffff-ffff-ffffffffffff',
+        'd1111111-1111-1111-1111-111111111111',
       ];
       const featuredCampaigns = featuredIds
         .map((id) => campaigns.find((c) => c.id === id))
         .filter(Boolean) as Campaign[];
-      filtered =
-        featuredCampaigns.length > 0 ? featuredCampaigns.slice(0, 6) : filtered.slice(0, 6);
+      filtered = featuredCampaigns.length > 0 ? featuredCampaigns : filtered.slice(0, 6);
     }
 
     const start = (page - 1) * pageSize;

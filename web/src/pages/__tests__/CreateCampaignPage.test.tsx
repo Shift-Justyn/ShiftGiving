@@ -69,7 +69,8 @@ const renderCreateCampaignPage = () => {
 const getSubmitButton = () => {
   const buttons = screen.getAllByRole('button');
   return buttons.find(
-    (btn) => btn.textContent === 'Create Campaign' || btn.textContent?.includes('Creating Campaign')
+    (btn) =>
+      btn.textContent?.includes('Launch Campaign') || btn.textContent?.includes('Creating Campaign')
   );
 };
 
@@ -211,13 +212,15 @@ describe('CreateCampaignPage', () => {
   it('renders create campaign submit button', () => {
     renderCreateCampaignPage();
 
-    expect(screen.getByRole('button', { name: 'Create Campaign' })).toBeInTheDocument();
+    const submitButton = getSubmitButton();
+    expect(submitButton).toBeInTheDocument();
   });
 
   it('submit button is disabled by default', () => {
     renderCreateCampaignPage();
 
-    expect(screen.getByRole('button', { name: 'Create Campaign' })).toBeDisabled();
+    const submitButton = getSubmitButton();
+    expect(submitButton).toBeDisabled();
   });
 
   it('navigates back when cancel button clicked', () => {
@@ -534,7 +537,8 @@ describe('CreateCampaignPage', () => {
     await user.type(screen.getByTestId('textarea-teaser'), 'Teaser');
     await user.type(screen.getByTestId('textarea-story'), 'Story');
 
-    expect(screen.getByRole('button', { name: 'Create Campaign' })).toBeDisabled();
+    const submitButton = getSubmitButton();
+    expect(submitButton).toBeDisabled();
   });
 
   // Note: Form submission tests (loading states, submit button enabled state, navigation after submit)
@@ -570,7 +574,7 @@ describe('CreateCampaignPage', () => {
   it('renders content section description', () => {
     renderCreateCampaignPage();
 
-    expect(screen.getByText(/Write your campaign content below/i)).toBeInTheDocument();
+    expect(screen.getByText(/Write your story/i)).toBeInTheDocument();
   });
 
   it('disables submit button when title is only whitespace', async () => {

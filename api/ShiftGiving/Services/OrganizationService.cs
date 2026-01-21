@@ -51,7 +51,9 @@ public class OrganizationService
     private async Task<List<OrganizationListResponse>> ExecuteOrganizationQuery(IQueryable<Organization> query, int page, int pageSize)
     {
         var organizations = await query
-            .OrderBy(o => o.Name)
+            .Include(o => o.Campaigns)
+            .OrderBy(o => o.DisplayOrder)
+            .ThenBy(o => o.Name)
             .Skip((page - 1) * pageSize)
             .Take(pageSize)
             .ToListAsync();
@@ -65,7 +67,10 @@ public class OrganizationService
             Name = o.Name,
             Description = o.Description,
             LogoUrl = o.LogoUrl,
-            CampaignCount = o.Campaigns.Count
+            CampaignCount = o.Campaigns.Count,
+            Latitude = o.Latitude,
+            Longitude = o.Longitude,
+            Category = o.Category
         };
 
     private async Task<Organization?> FetchOrganizationWithCampaigns(Guid id)

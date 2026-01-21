@@ -93,6 +93,10 @@ public class ShiftGivingDbContext : DbContext
             entity.Property(e => e.PostalCode).HasColumnName("postal_code").HasMaxLength(20);
             entity.Property(e => e.Country).HasColumnName("country").HasMaxLength(50).HasDefaultValue("USA");
             entity.Property(e => e.TaxId).HasColumnName("tax_id").HasMaxLength(20);
+            entity.Property(e => e.Latitude).HasColumnName("latitude").HasPrecision(10, 6);
+            entity.Property(e => e.Longitude).HasColumnName("longitude").HasPrecision(10, 6);
+            entity.Property(e => e.Category).HasColumnName("category").HasMaxLength(50);
+            entity.Property(e => e.DisplayOrder).HasColumnName("display_order").HasDefaultValue(0);
             entity.Property(e => e.IsVerified).HasColumnName("is_verified").HasDefaultValue(false);
             entity.Property(e => e.IsActive).HasColumnName("is_active").HasDefaultValue(true);
             entity.Property(e => e.CreatedAt).HasColumnName("created_at").HasDefaultValueSql("NOW()");
@@ -130,7 +134,13 @@ public class ShiftGivingDbContext : DbContext
             entity.Property(e => e.SocialTwitter).HasColumnName("social_twitter").HasMaxLength(500);
             entity.Property(e => e.SocialInstagram).HasColumnName("social_instagram").HasMaxLength(500);
             entity.Property(e => e.SocialLinkedin).HasColumnName("social_linkedin").HasMaxLength(500);
+            entity.Property(e => e.StoryContent).HasColumnName("story_content").HasColumnType("text");
+            entity.Property(e => e.Location).HasColumnName("location").HasMaxLength(255);
+            entity.Property(e => e.UnitLabel).HasColumnName("unit_label").HasMaxLength(100);
+            entity.Property(e => e.UnitPrice).HasColumnName("unit_price").HasPrecision(12, 2);
+            entity.Property(e => e.ImpactLabel).HasColumnName("impact_label").HasMaxLength(255);
             entity.Property(e => e.IsFeatured).HasColumnName("is_featured").HasDefaultValue(false);
+            entity.Property(e => e.DisplayOrder).HasColumnName("display_order").HasDefaultValue(0);
             entity.Property(e => e.CreatedAt).HasColumnName("created_at").HasDefaultValueSql("NOW()");
             entity.Property(e => e.UpdatedAt).HasColumnName("updated_at").HasDefaultValueSql("NOW()");
 

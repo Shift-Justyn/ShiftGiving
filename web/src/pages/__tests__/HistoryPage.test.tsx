@@ -100,7 +100,7 @@ describe('HistoryPage', () => {
       </BrowserRouter>
     );
 
-    expect(screen.getByRole('navigation')).toBeInTheDocument();
+    expect(screen.getAllByRole('navigation').length).toBeGreaterThan(0);
   });
 
   it('renders donation list', () => {

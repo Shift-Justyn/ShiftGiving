@@ -3,15 +3,27 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
 import { BottomNavigation } from '../components/navigation/BottomNavigation';
+import { Sidebar } from '../components/Sidebar';
 import { donations, organizations } from '../mocks/data';
 
-const Container = styled.div`
+const PageContainer = styled.div`
+  display: flex;
   min-height: 100vh;
   background: ${(props) => props.theme.colors.background.page};
-  padding-bottom: 5rem;
 
-  @media (min-width: 48rem) {
-    padding-bottom: 2rem;
+  @media (max-width: 48rem) {
+    flex-direction: column;
+  }
+`;
+
+const MainContent = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+
+  @media (max-width: 48rem) {
+    padding-bottom: 5rem;
   }
 `;
 
@@ -216,107 +228,110 @@ export const HistoryPage = () => {
   });
 
   return (
-    <Container>
-      <Header>
-        <HeaderLeft>
-          <Avatar aria-label="User avatar">{userInitials}</Avatar>
-          <Title>History</Title>
-        </HeaderLeft>
-        <HeaderRight>
-          <IconButton aria-label="Add">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M12 4v16m8-8H4"
-              />
-            </svg>
-          </IconButton>
-          <IconButton aria-label="Export">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
-              />
-            </svg>
-          </IconButton>
-          <IconButton aria-label="Print">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"
-              />
-            </svg>
-          </IconButton>
-        </HeaderRight>
-      </Header>
+    <PageContainer>
+      <Sidebar />
+      <MainContent>
+        <Header>
+          <HeaderLeft>
+            <Avatar aria-label="User avatar">{userInitials}</Avatar>
+            <Title>History</Title>
+          </HeaderLeft>
+          <HeaderRight>
+            <IconButton aria-label="Add">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M12 4v16m8-8H4"
+                />
+              </svg>
+            </IconButton>
+            <IconButton aria-label="Export">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+                />
+              </svg>
+            </IconButton>
+            <IconButton aria-label="Print">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"
+                />
+              </svg>
+            </IconButton>
+          </HeaderRight>
+        </Header>
 
-      <Main>
-        <SearchBar>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+        <Main>
+          <SearchBar>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+              />
+            </svg>
+            <SearchInput
+              type="text"
+              placeholder="Search for a charity or nonprofit"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
             />
-          </svg>
-          <SearchInput
-            type="text"
-            placeholder="Search for a charity or nonprofit"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
-        </SearchBar>
+          </SearchBar>
 
-        <DonationList
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.3 }}
-        >
-          {filteredDonations.map((donation, index) => (
-            <DonationCard
-              key={donation.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3, delay: index * 0.05 }}
-            >
-              <DonationInfo>
-                <DonationDate>{formatDate(donation.createdAt)}</DonationDate>
-                <DonationOrg>{getOrganizationName(donation.organizationId)}</DonationOrg>
-              </DonationInfo>
-              <DonationAmount>{formatAmount(donation.amount)}</DonationAmount>
-            </DonationCard>
-          ))}
-        </DonationList>
-      </Main>
+          <DonationList
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.3 }}
+          >
+            {filteredDonations.map((donation, index) => (
+              <DonationCard
+                key={donation.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: index * 0.05 }}
+              >
+                <DonationInfo>
+                  <DonationDate>{formatDate(donation.createdAt)}</DonationDate>
+                  <DonationOrg>{getOrganizationName(donation.organizationId)}</DonationOrg>
+                </DonationInfo>
+                <DonationAmount>{formatAmount(donation.amount)}</DonationAmount>
+              </DonationCard>
+            ))}
+          </DonationList>
+        </Main>
 
-      <BottomNavigation />
-    </Container>
+        <BottomNavigation />
+      </MainContent>
+    </PageContainer>
   );
 };

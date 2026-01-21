@@ -19,7 +19,13 @@ public class Campaign
     public string? SocialTwitter { get; set; }
     public string? SocialInstagram { get; set; }
     public string? SocialLinkedin { get; set; }
+    public string? StoryContent { get; set; }
+    public string? Location { get; set; }
+    public string? UnitLabel { get; set; }
+    public decimal? UnitPrice { get; set; }
+    public string? ImpactLabel { get; set; }
     public bool IsFeatured { get; set; }
+    public int DisplayOrder { get; set; }
     public DateTime CreatedAt { get; set; }
     public DateTime UpdatedAt { get; set; }
 

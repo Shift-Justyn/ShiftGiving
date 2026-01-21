@@ -40,10 +40,7 @@ const bounceIn = keyframes`
     transform: scale(1);
   }
   50% {
-    transform: scale(1.02);
-  }
-  75% {
-    transform: scale(0.98);
+    transform: scale(1.008);
   }
   100% {
     transform: scale(1);
@@ -71,14 +68,14 @@ const Card = styled.div<{ $expanded?: boolean; $isExpanding?: boolean }>`
   ${(props) =>
     props.$isExpanding &&
     css`
-      animation: ${bounceIn} 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      animation: ${bounceIn} 0.25s ease-out;
     `}
 
   &:hover {
-    transform: ${(props) => (props.$expanded ? 'none' : 'translateY(-0.5rem)')};
+    transform: ${(props) => (props.$expanded ? 'none' : 'translateY(-0.25rem)')};
     box-shadow:
-      0 1.25rem 2.5rem rgba(0, 160, 196, 0.2),
-      0 0.5rem 1rem rgba(0, 0, 0, 0.12);
+      0 0.75rem 1.5rem rgba(0, 160, 196, 0.15),
+      0 0.25rem 0.5rem rgba(0, 0, 0, 0.08);
   }
 `;
 

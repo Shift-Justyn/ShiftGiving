@@ -11,6 +11,20 @@ public class CampaignListResponse
     public string? FeaturedImageUrl { get; set; }
     public OrganizationBasicInfo Organization { get; set; } = null!;
     public DateOnly EndDate { get; set; }
+    public string Category { get; set; } = string.Empty;
+    public string? Location { get; set; }
+    public string? UnitLabel { get; set; }
+    public decimal? UnitPrice { get; set; }
+    public string? ImpactLabel { get; set; }
+    public string? StoryContent { get; set; }
+    public List<MediaGalleryItem> MediaGallery { get; set; } = new();
+}
+
+public class MediaGalleryItem
+{
+    public string Type { get; set; } = "image";
+    public string Url { get; set; } = string.Empty;
+    public string? Caption { get; set; }
 }
 
 public class CampaignDetailResponse

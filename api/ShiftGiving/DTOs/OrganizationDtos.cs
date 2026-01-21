@@ -7,6 +7,9 @@ public class OrganizationListResponse
     public string? Description { get; set; }
     public string? LogoUrl { get; set; }
     public int CampaignCount { get; set; }
+    public decimal? Latitude { get; set; }
+    public decimal? Longitude { get; set; }
+    public string? Category { get; set; }
 }
 
 public class OrganizationDetailResponse

@@ -3,14 +3,26 @@ import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { BottomNavigation } from '../components/navigation/BottomNavigation';
+import { Sidebar } from '../components/Sidebar';
 
-const Container = styled.div`
+const PageContainer = styled.div`
+  display: flex;
   min-height: 100vh;
   background: ${(props) => props.theme.colors.background.page};
-  padding-bottom: 5rem;
 
-  @media (min-width: 48rem) {
-    padding-bottom: 2rem;
+  @media (max-width: 48rem) {
+    flex-direction: column;
+  }
+`;
+
+const MainContent = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+
+  @media (max-width: 48rem) {
+    padding-bottom: 5rem;
   }
 `;
 
@@ -322,31 +334,34 @@ export const MessagesPage = () => {
   );
 
   return (
-    <Container>
-      <Header>
-        <HeaderTop>
-          <Title>{t('messages.title')}</Title>
-          <RefreshButton onClick={handleRefresh}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
-              />
-            </svg>
-          </RefreshButton>
-        </HeaderTop>
-      </Header>
+    <PageContainer>
+      <Sidebar />
+      <MainContent>
+        <Header>
+          <HeaderTop>
+            <Title>{t('messages.title')}</Title>
+            <RefreshButton onClick={handleRefresh}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                />
+              </svg>
+            </RefreshButton>
+          </HeaderTop>
+        </Header>
 
-      <Main>{messages.length === 0 ? renderEmpty() : renderMessages()}</Main>
+        <Main>{messages.length === 0 ? renderEmpty() : renderMessages()}</Main>
 
-      <BottomNavigation />
-    </Container>
+        <BottomNavigation />
+      </MainContent>
+    </PageContainer>
   );
 };
